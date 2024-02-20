@@ -1,0 +1,40 @@
+/* styles.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  color: #000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.searchbar {
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.btn {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  border: 1px solid #000;
+  color: #000;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #000;
+  color: #000;
+}

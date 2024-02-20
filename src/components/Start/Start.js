@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Logo from '../../images/logo.jpg';
 import Item1 from '../../images/pngwing.com.png';
+import Item2 from '../../images/item2.png';
 
 // Import Raleway font from Google Fonts
 import '@fontsource/raleway';
@@ -90,12 +91,22 @@ const BackgroundImage = styled.div`
     transform: rotate(20deg);
   }
 `;
+const Item2Image = styled.img`
+  position: absolute;
+  bottom: -1rem; /* Adjust bottom spacing as needed */
+  left: 10rem; /* Adjust left spacing as needed */
+  width: 25rem;
+  height: 25rem; 
+  z-index: 1; /* Ensure the image appears above the background color */
+`;
+
 
 const Start = () => {
   return (
     <>
       <GreyBackground>
         <BackgroundImage />
+        <Item2Image src={Item2} alt="Item2" />
         <LogoContainer>
           <LogoImage src={Logo} alt="Logo" />
         </LogoContainer>

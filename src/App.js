@@ -1,11 +1,12 @@
-
-import './App.css';
-import Start from './components/Start';
+import "./App.css";
+import Start from "./components/Start";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
     <div className="App">
-      <Start/>
+      <Start />
+      <Home />
     </div>
   );
 }

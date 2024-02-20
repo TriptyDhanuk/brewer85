@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Logo from '../../images/logo.jpg';
 import Item1 from '../../images/pngwing.com.png';
 import Item2 from '../../images/item2.png';
@@ -110,7 +111,9 @@ const Start = () => {
         <LogoContainer>
           <LogoImage src={Logo} alt="Logo" />
         </LogoContainer>
-        <GetStartedButton>Get Started</GetStartedButton>
+        <Link to="/login">
+          <GetStartedButton>Get Started</GetStartedButton>
+        </Link>
       </GreyBackground>
     </>
   );

@@ -254,6 +254,7 @@ const InputButtonContainer = styled.div`
   align-items: center;
   margin-top: 18%;
   margin-bottom: 20px; /* Added margin-bottom */
+  z-index:1;
 `;
 
 const MobileInput = styled.input`
@@ -266,6 +267,7 @@ const MobileInput = styled.input`
   background-position: 0px center; /* Position the country logo */
   background-repeat: no-repeat; /* Ensure the logo doesn't repeat */
   padding-left: 50px; /* Adjust padding to accommodate the country logo */
+  z-index: 1;
 `;
 
 const PhoneNumberText = styled.div`

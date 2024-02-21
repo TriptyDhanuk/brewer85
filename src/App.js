@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Start from "./components/Start/Start";
 import Home from "./components/Home/Home";
-import LoginPhoneNo from "./components/Login/LoginPhoneNo";
-import LoginOTP from "./components/Login/LoginOTP";
+import LoginPhoneNo from "./components/LogIn/LoginPhoneNo";
+import LoginOTP from "./components/LogIn/LoginOTP";
 import MenuItem from "./components/MenuItem/MenuItem";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 

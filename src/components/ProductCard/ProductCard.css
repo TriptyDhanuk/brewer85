@@ -1,0 +1,71 @@
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 260px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 85%;
+  height: 211px;
+  border-radius: 5px;
+}
+
+.product-details {
+  padding: 10px;
+}
+.price-tag {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.best-seller-ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #07b307; /* Change ribbon color to green */
+  color: white; /* Text color */
+  padding: 8px 7px 8px 20px; /* Adjust padding for the ribbon */
+  font-weight: bold;
+}
+.product-filter {
+  display: flex;
+}
+
+.best-seller-ribbon::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border-top: 10px solid green;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.best-seller-ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 17px 10px 18px;
+  border-style: solid;
+  border-color: #07b307 #07b307 #07b307 transparent;
+  position: absolute;
+  right: -20px;
+  transform: scale(-1);
+}

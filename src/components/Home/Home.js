@@ -15,20 +15,28 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Home = () => {
+  // const MySettings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 2,
+  //   slidesToScroll: 3,
+  // };
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToShow: 2,
+    slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           infinite: true,
           dots: true,
         },
@@ -58,86 +66,96 @@ const Home = () => {
             <box-icon name="menu"></box-icon>
             <h4 className="">Home</h4>
           </div>
-          <div className="top-search">
-            <box-icon name="cart"></box-icon>
-          </div>
+          <box-icon name="cart"></box-icon>
         </nav>
       </div>
+      {/* <Slider {...settings}> */}
       <div className="slider-container">
         <div className="slider-banner">
           <img src={banner1} alt="ban1" />
         </div>
         <div className="slider-banner">
-          <img src={banner4} alt="ban2" />
+          <img src={banner4} className="w-100px h-50" alt="ban2" />
         </div>
         <div className="slider-banner">
-          <img src={banner2} alt="ban3" />
+          <img src={banner2} className="w-100px h-50" alt="ban3" />
         </div>
         <div className="slider-banner">
-          <img src={banner1} alt="ban1" />
+          <img src={banner1} className="w-100px h-50" alt="ban1" />
         </div>
         <div className="slider-banner">
-          <img src={banner4} alt="ban2" />
+          <img src={banner4} className="w-100px h-50" alt="ban2" />
         </div>
         <div className="slider-banner">
-          <img src={banner2} alt="ban3" />
+          <img src={banner2} className="w-100px h-50" alt="ban3" />
         </div>
         <div className="slider-banner">
-          <img src={banner1} alt="ban1" />
+          <img src={banner1} className="w-100px h-50" alt="ban1" />
         </div>
         <div className="slider-banner">
-          <img src={banner4} alt="ban2" />
+          <img src={banner4} className="w-100px h-50" alt="ban2" />
         </div>
         <div className="slider-banner">
-          <img src={banner2} alt="ban3" />
+          <img src={banner2} className="w-100px h-50" alt="ban3" />
         </div>
       </div>
-      <div className="input-group">
+      {/* </Slider> */}
+      <div className="top-search">
         <input
           type="text"
-          className="form-control  searchbar-longer"
-          placeholder="Search Products.."
+          placeholder=" Search Products..."
+          className="search-input bg-[#fffg] "
+          style={{
+            border: "1px solid rgba(0, 0, 0, 0.1)",
+            width: "400px",
+            height: "52px",
+            // backgroundColor: "lightgrey",
+            borderRadius: "7px",
+            paddingLeft: "20px",
+          }}
         />
       </div>
+
       <div className="products ">
         <h3>All Products</h3>
         <div className="product-category">
-          <div class="product-item">
+          <a href="/menu" class="product-item">
             <img src={image1} alt="image1" class="productImage" />
             <h4>Biryani</h4>
-          </div>
-          <div class="product-item">
+          </a>
+          <a href="/menu" class="product-item">
             <img src={image2} alt="image2" class="productImage" />
             <h4>IceCream</h4>
-          </div>
-          <div class="product-item">
+          </a>
+          <a href="/menu" class="product-item">
             <img src={image3} alt="image3" class="productImage" />
             <h4>Shakes</h4>
-          </div>
-          <div class="product-item">
+          </a>
+          <a href="/menu" class="product-item">
             <img src={image4} alt="image4" class="productImage" />
             <h4>Pizza</h4>
-          </div>
-          <div class="product-item">
+          </a>
+          <a href="/menu" class="product-item">
             <img src={image1} alt="image1" class="productImage" />
             <h4>Biryani</h4>
-          </div>
-          <div class="product-item">
+          </a>
+          <a href="/menu" class="product-item">
             <img src={image2} alt="image2" class="productImage" />
             <h4>IceCream</h4>
-          </div>
-          <div class="product-item">
+          </a>
+          <a href="/menu" class="product-item">
             <img src={image3} alt="image3" class="productImage" />
             <h4>Shakes</h4>
-          </div>
-          <div class="product-item">
+          </a>
+          <a href="/menu" class="product-item">
             <img src={image4} alt="image4" class="productImage" />
             <h4>Pizza</h4>
-          </div>
+          </a>
         </div>
       </div>
       <div>
         <h3>Most Popular</h3>
+        {/* <Slider {...settings}> */}
         <div className="product-filter">
           <ProductCard
             image={image1}
@@ -188,6 +206,7 @@ const Home = () => {
             discount="60% off"
           />
         </div>
+        {/* </Slider> */}
       </div>
     </div>
   );

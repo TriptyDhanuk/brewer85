@@ -82,10 +82,8 @@
 }
 
 .slider-banner {
-  /* flex: 1; */
-  flex: 0 0 auto;
-  width: 350px;
-  background-color: #ccc; /* Placeholder color */
+  width: 370px;
+
   margin-right: 10px; /* Adjust spacing between banners */
 }
 
@@ -95,4 +93,18 @@
 
 .header {
   /* Add any styles for header/navbar */
+}
+.top-search {
+  position: relative;
+}
+
+.search-input {
+  padding-right: 30px; /* Adjust as needed */
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }

@@ -69,3 +69,7 @@ button:hover {
   right: -20px;
   transform: scale(-1);
 }
+.quantity-button {
+  display: flex;
+  width: 20px;
+}

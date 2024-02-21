@@ -1,8 +1,8 @@
-import React from "react";
-import "./ProductCard.css";
-import { useState } from "react";
+import React, { useState } from "react";
+import "../ProductCard/ProductCard.css";
+import "boxicons";
 
-const ProductCard = ({ image, name, price, discount }) => {
+const MenuCard = ({ image, name, price, discount }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
@@ -19,7 +19,6 @@ const ProductCard = ({ image, name, price, discount }) => {
       setQuantity(quantity - 1);
     }
   };
-
   return (
     <div style={{ position: "relative" }}>
       <div className="product-card">
@@ -31,10 +30,10 @@ const ProductCard = ({ image, name, price, discount }) => {
             right: "15px",
           }}
         >
-          {" "}
           <box-icon name="heart"></box-icon>
         </button>
-        <div className="best-seller-ribbon">Best Seller</div>
+        {/* <div className="best-seller-ribbon">Best Seller</div> */}
+
         <img src={image} alt={name} className="product-image" />
         <div className="product-details">
           <h3>{name}</h3>
@@ -112,4 +111,4 @@ const ProductCard = ({ image, name, price, discount }) => {
   );
 };
 
-export default ProductCard;
+export default MenuCard;

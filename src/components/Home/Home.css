@@ -8,10 +8,41 @@
   padding: 10px 20px;
   color: #000;
 }
+/* Added new CSS rules */
+.searchbar-longer {
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 50px; /* Adjust the width as needed */
+  background-color: #dddddd; /* Gray color */
+}
+.product-category {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  width: 150px; /* Adjust as needed */
+  margin: 10px;
+  text-align: center;
+}
+
+.productImage {
+  border-radius: 50%; /* Makes the image circular */
+  background-color: #ccc; /* Grey background color */
+  width: 100px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  transition: transform 0.3s ease; /* Adds transition effect */
+}
+
+.product-item:hover .productImage {
+  transform: scale(1.1); /* Scales the image on hover */
+}
 
 .logo {
   display: flex;
   align-items: center;
+  column-gap: 0.25rem;
 }
 
 .searchbar {
@@ -37,4 +68,31 @@
 .btn-outline-secondary:hover {
   background-color: #000;
   color: #000;
+}
+/* Home.css */
+
+.body {
+  position: relative;
+}
+
+.slider-container {
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  display: flex;
+}
+
+.slider-banner {
+  /* flex: 1; */
+  flex: 0 0 auto;
+  width: 350px;
+  background-color: #ccc; /* Placeholder color */
+  margin-right: 10px; /* Adjust spacing between banners */
+}
+
+.slider-banner img {
+  max-width: 100%;
+}
+
+.header {
+  /* Add any styles for header/navbar */
 }

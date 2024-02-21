@@ -147,9 +147,10 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Logo from '../../images/logo.jpg';
 import Item1 from '../../images/pngwing.com.png';
-import Item2 from '../../images/item2.png';
+// import Item2 from '../../images/item2.png';
 import CountryLogo from '../../images/country_logo.png'; // Import the country logo image
 
 // Import Raleway font from Google Fonts
@@ -239,14 +240,14 @@ const BackgroundImage = styled.div`
   }
 `;
 
-const Item2Image = styled.img`
-  position: absolute;
-  bottom: -1rem;
-  left: 3rem;
-  width: 25rem;
-  height: 25rem;
-  z-index: 1;
-`;
+// const Item2Image = styled.img`
+//   position: absolute;
+//   bottom: -1rem;
+//   left: 3rem;
+//   width: 25rem;
+//   height: 25rem;
+//   z-index: 1;
+// `;
 
 const InputButtonContainer = styled.div`
   display: flex;
@@ -290,7 +291,9 @@ const LoginPhoneNo = () => {
           {/* Input field for mobile number with country logo */}
           <MobileInput type="tel" Placeholder=" +971" />
           {/* Button for OTP */}
+          <Link to="/logInOtp">
           <GetStartedButton>Get OTP</GetStartedButton>
+          </Link>
         </InputButtonContainer>
       </GreyBackground>
     </>

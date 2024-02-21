@@ -272,14 +272,14 @@ const GetStartedButton = styled.button`
 
 const BackgroundImage = styled.div`
   position: absolute;
-  bottom: 10px; /* Adjusted position to set it at the bottom of the button */
-  width: 15rem; /* Adjusted size to make it smaller */
-  height: 15rem; /* Adjusted size to make it smaller */
+  bottom: 2px; /* Adjusted position to set it at the bottom of the button */
+  width: 24rem; /* Adjusted size to make it smaller */
+  height: 24rem; /* Adjusted size to make it smaller */
   background-color: transparent;
   background-image: url(${Item1});
-  background-size: contain; /* Adjusted to show the full image inside the box */
+  background-size: contain; 
   background-position: center;
-  background-repeat: no-repeat; /* Ensure image is not repeated */
+  background-repeat: no-repeat; 
   opacity: 1;
   z-index: 1;
 `;

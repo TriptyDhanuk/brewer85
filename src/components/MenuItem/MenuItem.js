@@ -316,6 +316,9 @@ const MenuItem = () => {
 
   // Combine filteredProducts and filteredProductsMenu into a single array
   const combinedProducts = [...filteredProducts, ...filteredProductsMenu];
+  const handleGoBack = () => {
+    window.history.back(); // Go back to the previous page
+  };
 
   // Filter the combined array based on the search query
   const filteredProductsByName = combinedProducts.filter((product) =>
@@ -326,11 +329,11 @@ const MenuItem = () => {
     <div className="body">
       <div className="header">
         <nav className="navbar headNav">
-          <div className="logo">
-            <a href="/home">
+          <div className="logo" onClick={handleGoBack}>
+            
               {" "}
               <box-icon name="arrow-back"></box-icon>
-            </a>
+            
 
             <h4 className="">Menu Item</h4>
           </div>

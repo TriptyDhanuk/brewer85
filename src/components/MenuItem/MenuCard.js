@@ -19,6 +19,11 @@ const MenuCard = ({ image, name, price, discount }) => {
       setQuantity(quantity - 1);
     }
   };
+  const handleImgClick = () => {
+    window.location.href = '/details'; 
+  };
+  
+
   return (
     <div style={{ position: "relative" }}>
       <div className="product-card">
@@ -34,7 +39,7 @@ const MenuCard = ({ image, name, price, discount }) => {
         </button>
         {/* <div className="best-seller-ribbon">Best Seller</div> */}
 
-        <img src={image} alt={name} className="product-image" />
+        <img src={image} alt={name} className="product-image" onClick={handleImgClick}/>
         <div className="product-details">
           <h3>{name}</h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>

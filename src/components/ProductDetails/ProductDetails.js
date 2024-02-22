@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import "./ProductDetails.css"; // Import your CSS file for styling
+import image1 from "../../images/image1.png"; // Import your image
 
-import { useState } from "react";
-
-const ProductDetails = ({ image, name, price, discount }) => {
+const ProductDetails = ({ discount }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const price = 30; // Static price declaration
 
   const handleAddClick = () => {
     setIsAdded(true);
@@ -19,103 +20,81 @@ const ProductDetails = ({ image, name, price, discount }) => {
       setQuantity(quantity - 1);
     }
   };
+  const handleGoBack = () => {
+    window.history.back(); // Go back to the previous page
+  };
+
+  const name = "Chicken Biryani"; // Static product name
 
   return (
-    <div className="body">
-      <div className="header">
-        <nav className="navbar headNav">
-          <div className="logo">
-            <box-icon name="menu"></box-icon>
-            <h4 className="">Product Details</h4>
+    <div className="product-details-container">
+      {/* Product Image as Header */}
+      <img src={image1} alt="Product" className="product-details-image" />
+
+      {/* Back Button and Title Overflowing on Image */}
+      <div className="product-details-header">
+        <nav className="product-details-navbar">
+          <div className="product-details-logo" onClick={handleGoBack}>
+            <box-icon name="arrow-back"></box-icon>
+            <h4 className="product-details-title">Product Details</h4>
           </div>
           <box-icon name="cart"></box-icon>
         </nav>
       </div>
-      <div style={{ position: "relative" }}>
-        <div className="product-card">
-          <button
-            style={{
-              color: "transparent",
-              backgroundColor: "transparent",
-              position: "absolute",
-              right: "15px",
-            }}
-          >
-            {" "}
-            <box-icon name="heart"></box-icon>
-          </button>
-          <div className="best-seller-ribbon">Best Seller</div>
-          <img src={image} alt={name} className="product-image" />
-          <div className="product-details">
-            <h3>{name}</h3>
-            <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
-            <div className="price-tag">
-              <p style={{ fontSize: "0.8rem", margin: "0" }}>
-                <strong>
-                  AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
-                </strong>
-              </p>
-              <p
-                style={{
-                  color: "red",
-                  margin: "0 8px",
-                  padding: "0 4px",
-                  fontWeight: "bold",
-                  fontSize: "1em",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {discount}
-              </p>
-              {isAdded ? (
-                <div className="quantity-button">
-                  <button
-                    style={{
-                      border: "1px solid green",
-                      color: "green",
-                      backgroundColor: "white",
-                      width: "100px",
-                      height: "40px",
-                    }}
-                    onClick={handleMinusClick}
-                  >
-                    -
-                  </button>
-                  <input
-                    style={{ width: "30px" }}
-                    type="text"
-                    value={quantity}
-                    readOnly
-                  />
-                  <button
-                    style={{
-                      border: "1px solid green",
-                      color: "green",
 
-                      backgroundColor: "white",
-                      width: "100px",
-                      height: "40px",
-                    }}
-                    onClick={handlePlusClick}
-                  >
-                    +
-                  </button>
-                </div>
-              ) : (
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "green",
-                    backgroundColor: "white",
-                    width: "100px",
-                    height: "40px",
-                  }}
-                  onClick={handleAddClick}
-                >
-                  ADD
-                </button>
-              )}
+      <div className="product-details-content">
+        <div className="product-details-image-container">
+          <div className="product-details-kcal-circle">
+            <div className="product-details-cal-value">25</div>
+            <div className="product-details-cal-unit">Cal</div>
+          </div>
+        </div>
+        <div className="product-details-info">
+          {/* Static Product Name */}
+          <h3 className="product-details-name">Chicken Biryani</h3>
+          {/* Price */}
+          <p className="product-details-price">AED <span>30</span></p>
+          <div className="product-details-price-rating-container">
+            <div className="product-details-price-tag">
+              <p className="product-details-discount">{discount}</p>
             </div>
+            <div className="product-details-your-rating">
+              <p>4.5 rating</p>
+              <div className="product-details-star-rating">
+                {[...Array(5)].map((_, index) => (
+                  <span key={index} className="star">&#9733;</span>
+                ))}
+              </div>
+            </div>
+            <div className="product-details-your-rating">
+              <p>Your rating</p>
+              <div className="product-details-star-rating">
+                {[...Array(5)].map((_, index) => (
+                  <span key={index} className="star">&#9733;</span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="product-details-additional-details">
+            <p className="bold-text">Details</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....
+              <span><a href="#" className="show-more-link">Show More</a></span>
+            </p>
+          </div>
+          {/* Quantity and Add to Cart */}
+          <div className="product-details-quantity-container">
+            <div className="product-details-quantity-button">
+              <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>Quantity</p>
+              <button className="product-details-quantity-btn minus-btn" onClick={handleMinusClick}>-</button>
+              <span className="product-details-quantity-input">{quantity}</span>
+              <button className="product-details-quantity-btn plus-btn" onClick={handlePlusClick}>+</button>
+            </div>
+            <p>
+              <span style={{ fontWeight: 'bold' }}>Total Price </span>
+              <span className="product-details-price">AED <span>{(quantity * price % 1 === 0 ? (quantity * price).toFixed(0) : (quantity * price).toFixed(2))}</span></span>
+            </p>
+            <button className="product-details-add-to-cart-btn" onClick={handleAddClick}>ADD TO MY ORDER</button>
           </div>
         </div>
       </div>

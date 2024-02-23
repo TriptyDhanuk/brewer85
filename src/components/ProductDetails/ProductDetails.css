@@ -49,7 +49,7 @@
   margin-right: 5px;
 }
 .product-details-name {
-  font-family: "Raleway", sans-serif; /* Use Raleway font */
+  font-family: 'Raleway', sans-serif; /* Use Raleway font */
   font-weight: bold; /* Make it bold */
 }
 .product-details-header {
@@ -71,6 +71,7 @@
 }
 .product-details-title {
   margin-left: 10px;
+  font-weight: bold;
 }
 .product-details-image-container {
   position: relative;
@@ -219,7 +220,7 @@
 }
 .product-details-container {
   position: relative;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   overflow: hidden;
 }
 .product-details-content {

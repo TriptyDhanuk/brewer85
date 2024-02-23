@@ -31,8 +31,8 @@
   margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
-  width: 63rem;
-  height: 9rem;
+  /* width: 63rem;
+  height: 11rem; */
 }
 
 .item-details {

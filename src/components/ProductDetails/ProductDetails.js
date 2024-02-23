@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./ProductDetails.css"; // Import your CSS file for styling
-import image1 from "../../images/image1.png"; // Import your image
+import image1 from "../../images/image1.png";
+import { Link } from "react-router-dom";
 const ProductDetails = ({ discount }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
   const price = 30; // Static price declaration
   const handleAddClick = () => {
     setIsAdded(true);
+    setTotalItems(totalItems + quantity);
   };
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
@@ -31,7 +34,17 @@ const ProductDetails = ({ discount }) => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="product-details-title">Product Details</h4>
           </div>
-          <box-icon name="cart" style={{ marginRight: "1.8rem" }}></box-icon>
+          <Link to="/checkout">
+            <div className="cart-icon-container">
+              <box-icon
+                name="cart"
+                style={{ marginRight: "1.8rem" }}
+              ></box-icon>
+              {/* {totalItems > 0 && (
+                <span className="cart-badge">{totalItems}</span>
+              )} */}
+            </div>
+          </Link>
         </nav>
       </div>
       <div className="product-details-content">

@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Checkout.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
@@ -15,6 +18,44 @@ import drinks from "../../images/drinks.png";
 const CheckOut = () => {
   const [quantity, setQuantity] = useState(1);
   const price = 30;
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [subtotal, setSubtotal] = useState(0);
+  const VAT_RATE = 0.05;
+
+  const [items, setItems] = useState([
+    {
+      id: 1,
+      image: image1,
+      name: "Kashmiri Biryani",
+      price: "25",
+      discount: "60% off",
+      quantity: 1,
+    },
+    {
+      id: 2,
+      image: image1,
+      name: "Hydrabadi Biryani",
+      price: "25",
+      discount: "60% off",
+      quantity: 1,
+    },
+    {
+      id: 3,
+      image: image1,
+      name: "Kolkata Special Biryani",
+      price: "25",
+      discount: "60% off",
+      quantity: 1,
+    },
+  ]);
+  useEffect(() => {
+    // Calculate subtotal
+    const subTotal = items.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+    setSubtotal(subTotal);
+  }, [items]);
 
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
@@ -25,26 +66,6 @@ const CheckOut = () => {
       setQuantity(quantity - 1);
     }
   };
-  const [items, setItems] = useState([
-    {
-      image: image1,
-      name: "Kashmiri Biryani",
-      price: "25",
-      discount: "60% off",
-    },
-    {
-      image: image1,
-      name: "Hydrabadi Biryani",
-      price: "25",
-      discount: "60% off",
-    },
-    {
-      image: image1,
-      name: "Kolkata Special Biryani",
-      price: "25",
-      discount: "60% off",
-    },
-  ]);
   const handleRemoveItem = (itemId) => {
     setItems(items.filter((item) => item.id !== itemId));
   };
@@ -52,9 +73,23 @@ const CheckOut = () => {
     console.log("Item saved for later:", itemId);
   };
   const handleGoBack = () => {
-    console.log("Going back...");
+    window.history.back();
   };
 
+  const handleApplyCoupon = () => {
+    if (couponCode === "SAVE10") {
+      setDiscount(10);
+      alert("valid coupon code");
+    } else {
+      alert("Invalid coupon code");
+    }
+  };
+
+  // Calculate VAT
+  const VAT = subtotal * VAT_RATE;
+
+  // Calculate total
+  const total = subtotal - discount + VAT;
   return (
     <div>
       <nav className="navbar headNav">
@@ -93,22 +128,26 @@ const CheckOut = () => {
                     {item.discount}
                   </p>
                 </div>
-                <div className="icons">
+                <div className="icons" style={{ display: "flex" }}>
                   <span onClick={() => handleSaveForLater(item.id)}>
-                    Save for Later
+                    <box-icon type="solid" name="bookmark-star"></box-icon>
                   </span>
                   <span onClick={() => handleRemoveItem(item.id)}>
-                    {" "}
-                    <i class="bx bx-trash bx-sm"></i> Delete
+                    {/* {" "}
+                    <i class="bx bx-trash bx-sm"></i> Delete */}
+                    <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
                   </span>
                 </div>
               </div>
             </div>
             <div className="item-actions">
               <div>
-                <label htmlFor={`qty-${item.id}`}>Qty:</label>
+                <label htmlFor={`qty-${item.id}`}>
+                  <b> Qty:</b>
+                </label>
                 <input
                   type="number"
+                  style={{ width: "50px", height: "20px" }}
                   id={`qty-${item.id}`}
                   value={item.quantity}
                   onChange={(e) => {
@@ -136,81 +175,96 @@ const CheckOut = () => {
             </div>
           </div>
         ))}
-      </div>
-      <div>
-        {" "}
-        <input
-          type="text"
-          id="textbox"
-          name="textbox"
-          placeholder="Type something..."
-          style={{
-            padding: "8px",
-            borderRadius: "4px",
-            border: "1px solid #ccc",
-            width: "20%",
-            height: "28px",
-            marginLeft: "4rem",
-          }}
-        />
-        <button
-          style={{
-            backgroundColor: "#f7387f",
-            height: "48px",
-            marginLeft: "10px",
-          }}
-        >
-          Apply Coupon
-        </button>
-      </div>
 
-      <h5 style={{ marginLeft: "25px" }}>
-        <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
-          SUBTOTAL{" "}
-        </span>
-        <span className="product-details-price" style={{ marginLeft: "15rem" }}>
-          AED{" "}
-          <span>
-            {(quantity * price) % 1 === 0
-              ? (quantity * price).toFixed(0)
-              : (quantity * price).toFixed(2)}
+        <div>
+          <input
+            type="text"
+            id="textbox"
+            name="textbox"
+            placeholder="Type something..."
+            style={{
+              padding: "8px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+              width: "20%",
+              height: "48px",
+              marginLeft: "4rem",
+            }}
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+          />
+          <button
+            style={{
+              backgroundColor: "#f7387f",
+              height: "48px",
+              marginLeft: "10px",
+              marginBottom: "20px",
+            }}
+            onClick={handleApplyCoupon}
+          >
+            Apply Coupon
+          </button>
+        </div>
+
+        <h5 style={{ marginLeft: "25px" }}>
+          <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
+            SUBTOTAL{" "}
           </span>
-        </span>
-      </h5>
-      <hr style={{ margin: "20px 0", border: "1px solid #ccc" }} />
-      <h5 style={{ marginLeft: "25px" }}>
-        <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
-          VAT (5%){" "}
-        </span>
-        <span className="product-details-price" style={{ marginLeft: "15rem" }}>
-          AED{" "}
-          <span>
-            {(quantity * price) % 1 === 0
-              ? (quantity * price).toFixed(0)
-              : (quantity * price).toFixed(2)}
+          <span
+            className="product-details-price"
+            style={{ marginLeft: "15rem" }}
+          >
+            AED{" "}
+            <span style={{ fontSize: "1.2rem" }}>
+              {(quantity * price) % 1 === 0
+                ? (quantity * price).toFixed(0)
+                : (quantity * price).toFixed(2)}
+            </span>
           </span>
-        </span>
-      </h5>
-      <hr style={{ margin: "20px 0", border: "1px solid #ccc" }} />
-      <h2 style={{ marginLeft: "25px" }}>
-        <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
-          Total Price{" "}
-        </span>
-        <span className="product-details-price" style={{ marginLeft: "15rem" }}>
-          AED{" "}
-          <span>
-            {(quantity * price) % 1 === 0
-              ? (quantity * price).toFixed(0)
-              : (quantity * price).toFixed(2)}
+        </h5>
+        <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
+        <h5 style={{ marginLeft: "25px" }}>
+          <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
+            VAT (5%){" "}
           </span>
-        </span>
-      </h2>
-      <button
-        className="product-details-add-to-cart-btn"
-        style={{ width: "53rem", marginLeft: "23rem" }}
-      >
-        PLACE ORDER
-      </button>
+          <span
+            className="product-details-price"
+            style={{ marginLeft: "16rem" }}
+          >
+            AED{" "}
+            <span style={{ fontSize: "1.2rem" }}>
+              {(quantity * price) % 1 === 0
+                ? (quantity * price).toFixed(0)
+                : (quantity * price).toFixed(2)}
+            </span>
+          </span>
+        </h5>
+        <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
+        <h3 style={{ marginLeft: "25px" }}>
+          <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
+            Total Price{" "}
+          </span>
+          <span
+            className="product-details-price"
+            style={{ marginLeft: "12rem" }}
+          >
+            AED{" "}
+            <span>
+              {(quantity * price) % 1 === 0
+                ? (quantity * price).toFixed(0)
+                : (quantity * price).toFixed(2)}
+            </span>
+          </span>
+        </h3>
+        <Link to="/thankyou">
+          <button
+            className="product-details-add-to-cart-btn"
+            style={{ width: "53rem", marginLeft: "5rem" }}
+          >
+            PLACE ORDER
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

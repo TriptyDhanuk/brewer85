@@ -65,6 +65,8 @@ const GetStartedButton = styled.button`
 const BackgroundImage = styled.div`
   position: absolute;
   bottom: 2px;
+  right: 30%; /* Shift to the right side */
+  transform: translateX(50%) rotate(-12deg); /* Rotate slightly to the left */
   width: 24rem;
   height: 24rem;
   background-color: transparent;
@@ -85,6 +87,7 @@ const BackgroundImage = styled.div`
     height: 25rem;
   }
 `;
+
 
 const InputButtonContainer = styled.div`
   position: relative;

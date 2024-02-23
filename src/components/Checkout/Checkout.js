@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./Checkout.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
@@ -27,22 +30,28 @@ const CheckOut = () => {
   };
   const [items, setItems] = useState([
     {
+      id: 1,
       image: image1,
       name: "Kashmiri Biryani",
       price: "25",
       discount: "60% off",
+      quantity: 1,
     },
     {
+      id: 2,
       image: image1,
       name: "Hydrabadi Biryani",
       price: "25",
       discount: "60% off",
+      quantity: 1,
     },
     {
+      id: 3,
       image: image1,
       name: "Kolkata Special Biryani",
       price: "25",
       discount: "60% off",
+      quantity: 1,
     },
   ]);
   const handleRemoveItem = (itemId) => {
@@ -98,8 +107,9 @@ const CheckOut = () => {
                     Save for Later
                   </span>
                   <span onClick={() => handleRemoveItem(item.id)}>
-                    {" "}
-                    <i class="bx bx-trash bx-sm"></i> Delete
+                    {/* {" "}
+                    <i class="bx bx-trash bx-sm"></i> Delete */}
+                    <FontAwesomeIcon icon={faTrash} />
                   </span>
                 </div>
               </div>

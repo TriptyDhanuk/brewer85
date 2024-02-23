@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import "./ProductDetails.css"; // Import your CSS file for styling
 import image1 from "../../images/image1.png"; // Import your image
-
 const ProductDetails = ({ discount }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const price = 30; // Static price declaration
-
   const handleAddClick = () => {
     setIsAdded(true);
   };
-
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
   };
-
   const handleMinusClick = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -23,14 +19,11 @@ const ProductDetails = ({ discount }) => {
   const handleGoBack = () => {
     window.history.back(); // Go back to the previous page
   };
-
   const name = "Chicken Biryani"; // Static product name
-
   return (
     <div className="product-details-container">
       {/* Product Image as Header */}
       <img src={image1} alt="Product" className="product-details-image" />
-
       {/* Back Button and Title Overflowing on Image */}
       <div className="product-details-header">
         <nav className="product-details-navbar">
@@ -41,7 +34,6 @@ const ProductDetails = ({ discount }) => {
           <box-icon name="cart" style={{ marginRight: '1.8rem' }}></box-icon>
         </nav>
       </div>
-
       <div className="product-details-content">
         <div className="product-details-image-container">
           <div className="product-details-kcal-circle">
@@ -101,5 +93,4 @@ const ProductDetails = ({ discount }) => {
     </div>
   );
 };
-
 export default ProductDetails;

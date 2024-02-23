@@ -1,11 +1,9 @@
 .bold-text {
   font-weight: bold;
 }
-
 .show-more-link {
-  text-decoration: none; 
+  text-decoration: none;
 }
-
 .product-details-quantity-btn {
   background-color: rgb(59, 190, 59);
   color: white;
@@ -20,51 +18,40 @@
   align-items: center;
   justify-content: center;
 }
-
 .product-details-quantity-btn:hover {
   background-color: rgb(59, 190, 59);
 }
-
 .product-details-quantity-button p {
-  margin-right: 10px; 
+  margin-right: 10px;
 }
-
 .product-details-total-price p {
   font-weight: bold;
 }
-
 .product-details-rating {
   display: flex;
   align-items: center;
 }
-
 .product-details-rating p {
   margin-right: 5px;
 }
-
 .product-details-rating .star {
   color: rgb(255, 58, 117);
 }
-
 .product-details-your-rating {
   margin-right: 10%;
   color: grey;
 }
-
 .product-details-star-rating {
   display: flex;
 }
-
 .product-details-star-rating .star {
   color: rgb(255, 58, 117);
   margin-right: 5px;
 }
-
 .product-details-name {
   font-family: 'Raleway', sans-serif; /* Use Raleway font */
   font-weight: bold; /* Make it bold */
 }
-
 .product-details-header {
   position: absolute;
   width: 100%;
@@ -72,28 +59,23 @@
   left: 0;
   z-index: 1;
 }
-
 .product-details-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
 }
-
 .product-details-logo {
   display: flex;
   align-items: center;
 }
-
 .product-details-title {
   margin-left: 10px;
 }
-
 .product-details-image-container {
   position: relative;
   z-index: 1;
 }
-
 .product-details-kcal-circle {
   position: absolute;
   bottom: 10px;
@@ -109,95 +91,75 @@
   padding: 5px;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1; 
+  z-index: 1;
 }
-
 .product-details-cal-value,
 .product-details-cal-unit {
-  display: inline-block; 
+  display: inline-block;
 }
-
 .product-details-cal-value {
   font-size: 20px;
-  margin-bottom: 3px; 
+  margin-bottom: 3px;
 }
-
 .product-details-cal-unit {
   font-size: 12px;
-  color: rgb(0, 0, 0); 
+  color: rgb(0, 0, 0);
 }
-
-
-
 .product-details-info {
   padding-top: 20px;
 }
-
 .product-details-name {
   font-size: 24px;
   margin-bottom: 10px;
 }
-
 .product-details-description {
   color: grey;
   font-weight: bold;
 }
-
 .product-details-price-rating-container {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
-
 .product-details-price-tag {
   margin-right: 20px;
 }
-
 .product-details-price {
-  font-weight: normal; 
+  font-weight: normal;
   font-size: 1.2rem;
-  color: rgb(255, 58, 117); 
+  color: rgb(255, 58, 117);
 }
-
 .product-details-price span {
-  font-size: 2.5rem; 
-  font-weight: bold; 
-  color: rgb(255, 58, 117); 
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgb(255, 58, 117);
 }
-
 .product-details-discount {
   color: red;
 }
-
 .product-details-rating-container {
   display: flex;
   align-items: center;
   margin-top: 5px;
 }
-
 .product-details-star-rating {
   color: rgb(255, 58, 117);
   margin-right: 5px;
-  font-size: 24px; 
+  font-size: 24px;
 }
-
 .product-details-your-rating {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
-
 .product-details-your-rating p {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
-
 .product-details-quantity-container {
   margin-top: 20px;
 }
-
 .product-details-quantity-button {
   display: flex;
   align-items: center;
 }
-
 .product-details-quantity-btn {
   background-color: rgb(59, 190, 59);
   color: white;
@@ -210,9 +172,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 5px; 
+  margin-right: 5px;
 }
-
 .product-details-quantity-input {
   width: 50px;
   text-align: center;
@@ -221,7 +182,6 @@
   margin: 0px;
   font-size: 1.5rem;
 }
-
 .product-details-add-to-cart-btn {
   background-color: rgb(59, 190, 59);
   color: white;
@@ -234,56 +194,45 @@
   cursor: pointer;
   font-weight: bold; /* Make the button text bold */
 }
-
 .product-details-add-to-cart-btn:hover {
   background-color: rgb(59, 190, 59);
 }
-
 .product-details-total-price {
   margin-left: 16px;
   font-size: 14px;
   color: grey;
 }
-
 /* Media Queries */
 @media only screen and (max-width: 768px) {
   .product-details-navbar {
-    padding: 10px; 
+    padding: 10px;
   }
-
   .product-details-content {
-    margin-top: 60px; 
+    margin-top: 60px;
   }
-
   .product-details-info {
-    padding: 15px; 
+    padding: 15px;
   }
-
   .product-details-header {
     background-color: rgba(255, 255, 255, 0.5);
   }
 }
-
 .product-details-container {
   position: relative;
   font-family: 'Raleway', sans-serif;
   overflow: hidden;
 }
-
 .product-details-content {
   margin-top: 80px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
   max-height: calc(100vh - 80px);
-
 }
-
 .product-details-image {
   width: 80%;
   margin: 0 auto;
   display: block;
 }
-
 @media only screen and (max-width: 768px) {
   .product-details-content {
     margin-top: 60px;

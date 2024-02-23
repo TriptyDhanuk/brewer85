@@ -95,7 +95,7 @@ const CheckOut = () => {
                 </div>
                 <div className="icons">
                   <span onClick={() => handleSaveForLater(item.id)}>
-                    Save for Later
+                    <box-icon type="solid" name="bookmark-star"></box-icon>
                   </span>
                   <span onClick={() => handleRemoveItem(item.id)}>
                     {" "}
@@ -106,9 +106,12 @@ const CheckOut = () => {
             </div>
             <div className="item-actions">
               <div>
-                <label htmlFor={`qty-${item.id}`}>Qty:</label>
+                <label htmlFor={`qty-${item.id}`}>
+                  <b> Qty:</b>
+                </label>
                 <input
                   type="number"
+                  style={{ width: "50px", height: "20px" }}
                   id={`qty-${item.id}`}
                   value={item.quantity}
                   onChange={(e) => {

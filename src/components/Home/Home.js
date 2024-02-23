@@ -116,14 +116,50 @@ const Home = () => {
     // Add more products as needed
   };
 
-  // const MySettings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 2,
-  //   slidesToScroll: 3,
-  // };
+  const settingsMy = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
 
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+        },
+      },
+    ],
+  };
   const settings = {
     dots: false,
     infinite: true,
@@ -179,7 +215,7 @@ const Home = () => {
           <box-icon name="cart"></box-icon>
         </nav>
       </div>
-      <Slider {...settings}>
+      <Slider {...settingsMy}>
         <div className="slider-banner">
           <img src={banner1} alt="ban1" />
         </div>
@@ -189,7 +225,15 @@ const Home = () => {
         <div className="slider-banner">
           <img src={banner2} className="w-100px h-50" alt="ban3" />
         </div>
-        {/* Additional banner items */}
+        <div className="slider-banner">
+          <img src={banner1} alt="ban1" />
+        </div>
+        <div className="slider-banner">
+          <img src={banner4} className="w-100px h-50" alt="ban2" />
+        </div>
+        <div className="slider-banner">
+          <img src={banner2} className="w-100px h-50" alt="ban3" />
+        </div>
       </Slider>
 
       <div className="top-search">
@@ -210,7 +254,7 @@ const Home = () => {
         />
       </div>
 
-      <div className="products ">
+      <div className="products " style={{ marginLeft: "10px" }}>
         <h3>All Products</h3>
         <div className="product-category">
           <a href="/menu" class="product-item">
@@ -278,7 +322,7 @@ const Home = () => {
           </a>
         </div>
       </div>
-      <div>
+      <div style={{ marginLeft: "5px", marginRight: "5px" }}>
         <h3>Most Popular</h3>
         <Slider {...settings}>
           {Object.keys(products).map((category) =>

@@ -8,7 +8,7 @@ import LoginOTP from "./components/LogIn/LoginOTP";
 import MenuItem from "./components/MenuItem/MenuItem";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import CheckOut from "./components/Checkout/Checkout";
-import ThankYou from "./components/ThankYou/ThankYou";
+import ThankYou from "./components/Thankyou/ThankYou";
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
           <Route path="/home" exact element={<Home />} />
           <Route path="/menu" exact element={<MenuItem />} />
           <Route path="/details" exact element={<ProductDetails />} />
-          <Route path="/checkout" exact element={<CheckOut/>} />
-          <Route path="/thankyou" exact element={<ThankYou/>} />
+          <Route path="/checkout" exact element={<CheckOut />} />
+          <Route path="/thankyou" exact element={<ThankYou />} />
         </Routes>
       </Router>
     </div>

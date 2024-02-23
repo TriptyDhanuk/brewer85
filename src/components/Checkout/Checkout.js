@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Checkout.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 
 import image1 from "../../images/image1.png";
@@ -61,7 +62,7 @@ const CheckOut = () => {
     console.log("Item saved for later:", itemId);
   };
   const handleGoBack = () => {
-    console.log("Going back...");
+    window.history.back();
   };
 
   return (
@@ -215,12 +216,14 @@ const CheckOut = () => {
           </span>
         </span>
       </h2>
+      <Link to="/thankyou">
       <button
         className="product-details-add-to-cart-btn"
         style={{ width: "53rem", marginLeft: "23rem" }}
       >
         PLACE ORDER
       </button>
+      </Link>
     </div>
   );
 };

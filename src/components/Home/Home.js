@@ -55,6 +55,67 @@ const Home = () => {
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
+
+  const products = {
+    Biryani: [
+      {
+        image: image1,
+        name: "Hydrabadi Biryani",
+        price: "25",
+        discount: "60% off",
+      },
+    ],
+    IceCream: [
+      {
+        image: image2,
+        name: "IceCream",
+        price: "25",
+        discount: "60% off",
+      },
+    ],
+    Pizza: [
+      {
+        image: image4,
+        name: "Pizza",
+        price: "25",
+        discount: "60% off",
+      },
+    ],
+    Burger: [
+      {
+        image: burger,
+        name: "Burger",
+        price: "25",
+        discount: "60% off",
+      },
+    ],
+    Shakes: [
+      {
+        image: shakes,
+        name: "Shakes",
+        price: "25",
+        discount: "60% off",
+      },
+    ],
+    Chinese: [
+      {
+        image: noodles,
+        name: "Chinese",
+        price: "25",
+        discount: "60% off",
+      },
+    ],
+    Drinks: [
+      {
+        image: drinks,
+        name: "Drinks",
+        price: "25",
+        discount: "60% off",
+      },
+    ],
+    // Add more products as needed
+  };
+
   // const MySettings = {
   //   dots: true,
   //   infinite: true,
@@ -64,36 +125,45 @@ const Home = () => {
   // };
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
           dots: true,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 640,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2,
+          dots: true,
         },
       },
+
       {
-        breakpoint: 480,
+        breakpoint: 420,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: true,
         },
       },
     ],
@@ -109,8 +179,7 @@ const Home = () => {
           <box-icon name="cart"></box-icon>
         </nav>
       </div>
-      {/* <Slider {...settings}> */}
-      <div className="slider-container">
+      <Slider {...settings}>
         <div className="slider-banner">
           <img src={banner1} alt="ban1" />
         </div>
@@ -120,26 +189,9 @@ const Home = () => {
         <div className="slider-banner">
           <img src={banner2} className="w-100px h-50" alt="ban3" />
         </div>
-        <div className="slider-banner">
-          <img src={banner1} className="w-100px h-50" alt="ban1" />
-        </div>
-        <div className="slider-banner">
-          <img src={banner4} className="w-100px h-50" alt="ban2" />
-        </div>
-        <div className="slider-banner">
-          <img src={banner2} className="w-100px h-50" alt="ban3" />
-        </div>
-        <div className="slider-banner">
-          <img src={banner1} className="w-100px h-50" alt="ban1" />
-        </div>
-        <div className="slider-banner">
-          <img src={banner4} className="w-100px h-50" alt="ban2" />
-        </div>
-        <div className="slider-banner">
-          <img src={banner2} className="w-100px h-50" alt="ban3" />
-        </div>
-      </div>
-      {/* </Slider> */}
+        {/* Additional banner items */}
+      </Slider>
+
       <div className="top-search">
         <input
           type="text"
@@ -228,58 +280,20 @@ const Home = () => {
       </div>
       <div>
         <h3>Most Popular</h3>
-        {/* <Slider {...settings}> */}
-        <div className="product-filter">
-          <ProductCard
-            image={image1}
-            name="Hydrabadi Biryani"
-            price="25"
-            discount="60% off"
-          />
-          <ProductCard
-            image={image4}
-            name="Pizza"
-            price="25"
-            discount="60% off"
-          />
-          <ProductCard
-            image={image2}
-            name="IceCream"
-            price="25"
-            discount="60% off"
-          />
-          <ProductCard
-            image={burger}
-            name="Veg Burger"
-            price="25"
-            discount="60% off"
-          />
-          <ProductCard
-            image={image1}
-            name="Hydrabadi Biryani"
-            price="25"
-            discount="60% off"
-          />
-          <ProductCard
-            image={image4}
-            name="Pizza"
-            price="25"
-            discount="60% off"
-          />
-          <ProductCard
-            image={image2}
-            name="IceCream"
-            price="25"
-            discount="60% off"
-          />
-          <ProductCard
-            image={burger}
-            name="Veg Burger"
-            price="25"
-            discount="60% off"
-          />
-        </div>
-        {/* </Slider> */}
+        <Slider {...settings}>
+          {Object.keys(products).map((category) =>
+            products[category].map((product) => (
+              <div className="product-filter" key={product.name}>
+                <ProductCard
+                  image={product.image}
+                  name={product.name}
+                  price={product.price}
+                  discount={product.discount}
+                />
+              </div>
+            ))
+          )}
+        </Slider>
       </div>
     </div>
   );

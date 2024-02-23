@@ -330,11 +330,8 @@ const MenuItem = () => {
       <div className="header">
         <nav className="navbar headNav">
           <div className="logo" onClick={handleGoBack}>
-            
-              {" "}
-              <box-icon name="arrow-back"></box-icon>
-            
-
+            {" "}
+            <box-icon name="arrow-back"></box-icon>
             <h4 className="">Menu Item</h4>
           </div>
           <box-icon name="cart"></box-icon>

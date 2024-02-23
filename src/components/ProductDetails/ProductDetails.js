@@ -38,7 +38,7 @@ const ProductDetails = ({ discount }) => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="product-details-title">Product Details</h4>
           </div>
-          <box-icon name="cart"></box-icon>
+          <box-icon name="cart" style={{ marginRight: '1.8rem' }}></box-icon>
         </nav>
       </div>
 

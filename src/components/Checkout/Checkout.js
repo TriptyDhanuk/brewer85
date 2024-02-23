@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "./Checkout.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
+
 
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
@@ -27,22 +31,28 @@ const CheckOut = () => {
   };
   const [items, setItems] = useState([
     {
+      id: 1,
       image: image1,
       name: "Kashmiri Biryani",
       price: "25",
       discount: "60% off",
+      quantity: 1,
     },
     {
+      id: 2,
       image: image1,
       name: "Hydrabadi Biryani",
       price: "25",
       discount: "60% off",
+      quantity: 1,
     },
     {
+      id: 3,
       image: image1,
       name: "Kolkata Special Biryani",
       price: "25",
       discount: "60% off",
+      quantity: 1,
     },
   ]);
   const handleRemoveItem = (itemId) => {
@@ -52,7 +62,7 @@ const CheckOut = () => {
     console.log("Item saved for later:", itemId);
   };
   const handleGoBack = () => {
-    console.log("Going back...");
+    window.history.back();
   };
 
   return (
@@ -98,8 +108,9 @@ const CheckOut = () => {
                     <box-icon type="solid" name="bookmark-star"></box-icon>
                   </span>
                   <span onClick={() => handleRemoveItem(item.id)}>
-                    {" "}
-                    <i class="bx bx-trash bx-sm"></i> Delete
+                    {/* {" "}
+                    <i class="bx bx-trash bx-sm"></i> Delete */}
+                    <FontAwesomeIcon icon={faTrash} />
                   </span>
                 </div>
               </div>
@@ -208,12 +219,14 @@ const CheckOut = () => {
           </span>
         </span>
       </h2>
+      <Link to="/thankyou">
       <button
         className="product-details-add-to-cart-btn"
         style={{ width: "53rem", marginLeft: "23rem" }}
       >
         PLACE ORDER
       </button>
+      </Link>
     </div>
   );
 };

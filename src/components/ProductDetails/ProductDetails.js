@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./ProductDetails.css"; // Import your CSS file for styling
-import image1 from "../../images/image1.png"; // Import your image
+import image1 from "../../images/image1.png";
+import { Link } from "react-router-dom";
 const ProductDetails = ({ discount }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
   const price = 30; // Static price declaration
   const handleAddClick = () => {
     setIsAdded(true);
+    setTotalItems(totalItems + quantity);
   };
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
@@ -31,7 +34,17 @@ const ProductDetails = ({ discount }) => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="product-details-title">Product Details</h4>
           </div>
-          <box-icon name="cart" style={{ marginRight: '1.8rem' }}></box-icon>
+          <Link to="/checkout">
+            <div className="cart-icon-container">
+              <box-icon
+                name="cart"
+                style={{ marginRight: "1.8rem" }}
+              ></box-icon>
+              {/* {totalItems > 0 && (
+                <span className="cart-badge">{totalItems}</span>
+              )} */}
+            </div>
+          </Link>
         </nav>
       </div>
       <div className="product-details-content">
@@ -45,7 +58,9 @@ const ProductDetails = ({ discount }) => {
           {/* Static Product Name */}
           <h3 className="product-details-name">Chicken Biryani</h3>
           {/* Price */}
-          <p className="product-details-price">AED <span>30</span></p>
+          <p className="product-details-price">
+            AED <span>30</span>
+          </p>
           <div className="product-details-price-rating-container">
             <div className="product-details-price-tag">
               <p className="product-details-discount">{discount}</p>
@@ -54,7 +69,9 @@ const ProductDetails = ({ discount }) => {
               <p>4.5 rating</p>
               <div className="product-details-star-rating">
                 {[...Array(5)].map((_, index) => (
-                  <span key={index} className="star">&#9733;</span>
+                  <span key={index} className="star">
+                    &#9733;
+                  </span>
                 ))}
               </div>
             </div>
@@ -62,7 +79,9 @@ const ProductDetails = ({ discount }) => {
               <p>Your rating</p>
               <div className="product-details-star-rating">
                 {[...Array(5)].map((_, index) => (
-                  <span key={index} className="star">&#9733;</span>
+                  <span key={index} className="star">
+                    &#9733;
+                  </span>
                 ))}
               </div>
             </div>
@@ -70,23 +89,52 @@ const ProductDetails = ({ discount }) => {
           <div className="product-details-additional-details">
             <p className="bold-text">Details</p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....
-              <span><a href="#" className="show-more-link">Show More</a></span>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua....
+              <span>
+                <a href="#" className="show-more-link">
+                  Show More
+                </a>
+              </span>
             </p>
           </div>
           {/* Quantity and Add to Cart */}
           <div className="product-details-quantity-container">
             <div className="product-details-quantity-button">
-              <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>Quantity</p>
-              <button className="product-details-quantity-btn minus-btn" onClick={handleMinusClick}>-</button>
+              <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                Quantity
+              </p>
+              <button
+                className="product-details-quantity-btn minus-btn"
+                onClick={handleMinusClick}
+              >
+                -
+              </button>
               <span className="product-details-quantity-input">{quantity}</span>
-              <button className="product-details-quantity-btn plus-btn" onClick={handlePlusClick}>+</button>
+              <button
+                className="product-details-quantity-btn plus-btn"
+                onClick={handlePlusClick}
+              >
+                +
+              </button>
             </div>
             <p>
-              <span style={{ fontWeight: 'bold' }}>Total Price </span>
-              <span className="product-details-price">AED <span>{(quantity * price % 1 === 0 ? (quantity * price).toFixed(0) : (quantity * price).toFixed(2))}</span></span>
+              <span style={{ fontWeight: "bold" }}>Total Price </span>
+              <span className="product-details-price">
+                AED{" "}
+                <span>
+                  {(quantity * price) % 1 === 0
+                    ? (quantity * price).toFixed(0)
+                    : (quantity * price).toFixed(2)}
+                </span>
+              </span>
             </p>
-            <button className="product-details-add-to-cart-btn" onClick={handleAddClick}>ADD TO MY ORDER</button>
+            <button
+              className="product-details-add-to-cart-btn"
+              onClick={handleAddClick}
+            >
+              ADD TO MY ORDER
+            </button>
           </div>
         </div>
       </div>

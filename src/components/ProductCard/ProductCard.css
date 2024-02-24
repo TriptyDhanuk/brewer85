@@ -38,13 +38,22 @@ button:hover {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #07b307; /* Change ribbon color to green */
-  color: white; /* Text color */
-  padding: 8px 7px 8px 20px; /* Adjust padding for the ribbon */
+  background-color: #07b307;
+  color: white;
+  padding: 8px 7px 8px 20px;
   font-weight: bold;
 }
 .product-filter {
   display: flex;
+}
+.product-filter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-filter > * {
+  flex-basis: calc(25% - 20px);
+  margin-bottom: 20px;
 }
 
 .best-seller-ribbon::before {

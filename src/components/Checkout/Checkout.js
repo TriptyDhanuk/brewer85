@@ -22,13 +22,17 @@ const CheckOut = () => {
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const VAT_RATE = 0.05;
+  const [invalidCoupon, setInvalidCoupon] = useState(false);
+
+  const [appliedCoupon, setAppliedCoupon] = useState("");
+  const [couponApplied, setCouponApplied] = useState(false);
 
   const [items, setItems] = useState([
     {
       id: 1,
       image: image1,
       name: "Kashmiri Biryani",
-      price: "25",
+      price: 25,
       discount: "60% off",
       quantity: 1,
     },
@@ -36,7 +40,7 @@ const CheckOut = () => {
       id: 2,
       image: image1,
       name: "Hydrabadi Biryani",
-      price: "25",
+      price: 25,
       discount: "60% off",
       quantity: 1,
     },
@@ -44,11 +48,12 @@ const CheckOut = () => {
       id: 3,
       image: image1,
       name: "Kolkata Special Biryani",
-      price: "25",
+      price: 25,
       discount: "60% off",
       quantity: 1,
     },
   ]);
+
   useEffect(() => {
     // Calculate subtotal
     const subTotal = items.reduce((total, item) => {
@@ -56,6 +61,13 @@ const CheckOut = () => {
     }, 0);
     setSubtotal(subTotal);
   }, [items]);
+
+  useEffect(() => {
+    // Calculate VAT
+    const VAT = subtotal * VAT_RATE;
+    // Calculate total
+    const total = subtotal + VAT - discount;
+  }, [subtotal, discount]);
 
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
@@ -77,19 +89,22 @@ const CheckOut = () => {
   };
 
   const handleApplyCoupon = () => {
-    if (couponCode === "SAVE10") {
+    if (!couponApplied && couponCode === "SAVE10") {
       setDiscount(10);
-      alert("valid coupon code");
+      setAppliedCoupon(couponCode);
+      setCouponApplied(true);
+      setInvalidCoupon(false);
     } else {
-      alert("Invalid coupon code");
+      setInvalidCoupon(true);
     }
   };
 
-  // Calculate VAT
-  const VAT = subtotal * VAT_RATE;
-
-  // Calculate total
-  const total = subtotal - discount + VAT;
+  const handleRemoveCoupon = () => {
+    setDiscount(0);
+    setAppliedCoupon("");
+    setCouponApplied(false);
+    setInvalidCoupon(false);
+  };
   return (
     <div>
       <nav className="navbar headNav">
@@ -133,9 +148,7 @@ const CheckOut = () => {
                     <box-icon type="solid" name="bookmark-star"></box-icon>
                   </span>
                   <span onClick={() => handleRemoveItem(item.id)}>
-                    {/* {" "}
-                    <i class="bx bx-trash bx-sm"></i> Delete */}
-                    <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
+                    <FontAwesomeIcon icon={faTrash} style={{ color: "gray" }} />
                   </span>
                 </div>
               </div>
@@ -147,7 +160,14 @@ const CheckOut = () => {
                 </label>
                 <input
                   type="number"
-                  style={{ width: "50px", height: "20px" }}
+                  style={{
+                    width: " 97px",
+                    height: "32px",
+                    border: "2px solid pink",
+                    fontWeight: "bold",
+                    fontSize: "1.2rem",
+                    marginRight: "10rem",
+                  }}
                   id={`qty-${item.id}`}
                   value={item.quantity}
                   onChange={(e) => {
@@ -192,6 +212,7 @@ const CheckOut = () => {
             }}
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
+            disabled={couponApplied}
           />
           <button
             style={{
@@ -201,9 +222,33 @@ const CheckOut = () => {
               marginBottom: "20px",
             }}
             onClick={handleApplyCoupon}
+            disabled={couponApplied}
           >
             Apply Coupon
           </button>
+          {couponApplied && (
+            <button
+              style={{
+                backgroundColor: "#ccc",
+                height: "48px",
+                marginLeft: "10px",
+                marginBottom: "20px",
+              }}
+              onClick={handleRemoveCoupon}
+            >
+              Remove Coupon
+            </button>
+          )}
+          {invalidCoupon && (
+            <p style={{ color: "red", marginLeft: "10px" }}>Invalid Coupon</p>
+          )}
+          {couponApplied && (
+            <p style={{ marginLeft: "10px" }}>
+              {discount
+                ? `Discount Applied: AED ${discount.toFixed(2)}`
+                : "Invalid Coupon Applied"}
+            </p>
+          )}
         </div>
 
         <h5 style={{ marginLeft: "25px" }}>
@@ -215,11 +260,7 @@ const CheckOut = () => {
             style={{ marginLeft: "15rem" }}
           >
             AED{" "}
-            <span style={{ fontSize: "1.2rem" }}>
-              {(quantity * price) % 1 === 0
-                ? (quantity * price).toFixed(0)
-                : (quantity * price).toFixed(2)}
-            </span>
+            <span style={{ fontSize: "1.2rem" }}>{subtotal.toFixed(2)}</span>
           </span>
         </h5>
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
@@ -233,29 +274,36 @@ const CheckOut = () => {
           >
             AED{" "}
             <span style={{ fontSize: "1.2rem" }}>
-              {(quantity * price) % 1 === 0
-                ? (quantity * price).toFixed(0)
-                : (quantity * price).toFixed(2)}
+              {(subtotal * VAT_RATE).toFixed(2)}
             </span>
           </span>
         </h5>
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
         <h3 style={{ marginLeft: "25px" }}>
-          <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
-            Total Price{" "}
+          <span style={{}}>
+            Total Price:{" "}
+            {couponApplied ? (
+              <span
+                style={{
+                  textDecoration: "line-through",
+                  color: "red",
+                  marginRight: "1rem",
+                  fontSize: "0.8rem",
+                }}
+              >
+                AED {(subtotal + subtotal * VAT_RATE).toFixed(2)}
+              </span>
+            ) : (
+              <span>AED {(subtotal + subtotal * VAT_RATE).toFixed(2)}</span>
+            )}
           </span>
-          <span
-            className="product-details-price"
-            style={{ marginLeft: "12rem" }}
-          >
-            AED{" "}
-            <span>
-              {(quantity * price) % 1 === 0
-                ? (quantity * price).toFixed(0)
-                : (quantity * price).toFixed(2)}
+          {couponApplied && (
+            <span style={{ fontWeight: "bold", color: "red" }}>
+              AED {(subtotal + subtotal * VAT_RATE - discount).toFixed(2)}
             </span>
-          </span>
+          )}
         </h3>
+
         <Link to="/thankyou">
           <button
             className="product-details-add-to-cart-btn"

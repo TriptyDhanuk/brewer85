@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import "../ProductCard/ProductCard.css";
 import "boxicons";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice";
 
 const MenuCard = ({ image, name, price, discount }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
+  const dispatch = useDispatch();
+  const totalItems = useSelector(selectCartTotalItems);
+
   const handleAddClick = () => {
     setIsAdded(true);
+    setQuantity(quantity + 1);
+
+    dispatch(addToCart({ name: "Chicken Biryani", quantity }));
   };
 
-  const handlePlusClick = () => {
+  const handleAddToCart = () => {
     setQuantity(quantity + 1);
+    setIsAdded(true);
+    dispatch(addToCart({ name: "Chicken Biryani", quantity }));
   };
 
   const handleMinusClick = () => {
@@ -19,9 +29,11 @@ const MenuCard = ({ image, name, price, discount }) => {
       setQuantity(quantity - 1);
     }
   };
+
   const handleImgClick = () => {
     window.location.href = "/details";
   };
+  console.log(totalItems);
 
   return (
     <div style={{ position: "relative" }}>
@@ -94,7 +106,7 @@ const MenuCard = ({ image, name, price, discount }) => {
                     width: "100px",
                     height: "40px",
                   }}
-                  onClick={handlePlusClick}
+                  onClick={handleAddToCart}
                 >
                   +
                 </button>

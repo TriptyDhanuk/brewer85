@@ -2,27 +2,35 @@ import React, { useState } from "react";
 import "./ProductDetails.css"; // Import your CSS file for styling
 import image1 from "../../images/image1.png";
 import { Link } from "react-router-dom";
-const ProductDetails = ({ discount }) => {
+import { useDispatch, useSelector } from "react-redux"; // Import the hooks
+import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice"; // Import the selector
+
+const ProductDetails = () => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [totalItems, setTotalItems] = useState(0);
-  const price = 30; // Static price declaration
-  const handleAddClick = () => {
+  const dispatch = useDispatch(); // Initialize useDispatch hook
+  const totalItems = useSelector(selectCartTotalItems); // Select total items from the store
+
+  const handleAddToCart = () => {
     setIsAdded(true);
-    setTotalItems(totalItems + quantity);
+    dispatch(addToCart({ name: "Chicken Biryani", quantity })); // Dispatch the addToCart action with the product details
   };
+
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
   };
+
   const handleMinusClick = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
+
   const handleGoBack = () => {
     window.history.back(); // Go back to the previous page
   };
-  const name = "Chicken Biryani"; // Static product name
+  console.log(totalItems)
+
   return (
     <div className="product-details-container">
       {/* Product Image as Header */}
@@ -34,16 +42,11 @@ const ProductDetails = ({ discount }) => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="product-details-title">Product Details</h4>
           </div>
-          <Link to="/checkout">
-            <div className="cart-icon-container">
-              <box-icon
-                name="cart"
-                style={{ marginRight: "1.8rem" }}
-              ></box-icon>
-              {/* {totalItems > 0 && (
-                <span className="cart-badge">{totalItems}</span>
-              )} */}
-            </div>
+          {/* Cart Icon */}
+          <Link to="/checkout" className="cart-icon-container">
+            <box-icon name="cart" style={{ marginRight: "1.8rem" }}>
+              {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+            </box-icon>
           </Link>
         </nav>
       </div>
@@ -61,44 +64,13 @@ const ProductDetails = ({ discount }) => {
           <p className="product-details-price">
             AED <span>30</span>
           </p>
+          {/* Discount */}
           <div className="product-details-price-rating-container">
             <div className="product-details-price-tag">
-              <p className="product-details-discount">{discount}</p>
-            </div>
-            <div className="product-details-your-rating">
-              <p>4.5 rating</p>
-              <div className="product-details-star-rating">
-                {[...Array(5)].map((_, index) => (
-                  <span key={index} className="star">
-                    &#9733;
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="product-details-your-rating">
-              <p>Your rating</p>
-              <div className="product-details-star-rating">
-                {[...Array(5)].map((_, index) => (
-                  <span key={index} className="star">
-                    &#9733;
-                  </span>
-                ))}
-              </div>
+              <p className="product-details-discount">10</p>
             </div>
           </div>
-          <div className="product-details-additional-details">
-            <p className="bold-text">Details</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua....
-              <span>
-                <a href="#" className="show-more-link">
-                  Show More
-                </a>
-              </span>
-            </p>
-          </div>
-          {/* Quantity and Add to Cart */}
+          {/* Quantity */}
           <div className="product-details-quantity-container">
             <div className="product-details-quantity-button">
               <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
@@ -118,20 +90,18 @@ const ProductDetails = ({ discount }) => {
                 +
               </button>
             </div>
+            {/* Total Price */}
             <p>
               <span style={{ fontWeight: "bold" }}>Total Price </span>
               <span className="product-details-price">
                 AED{" "}
-                <span>
-                  {(quantity * price) % 1 === 0
-                    ? (quantity * price).toFixed(0)
-                    : (quantity * price).toFixed(2)}
-                </span>
+                <span>{(quantity * 30).toFixed(2)}</span>
               </span>
             </p>
+            {/* Add to Cart Button */}
             <button
               className="product-details-add-to-cart-btn"
-              onClick={handleAddClick}
+              onClick={handleAddToCart}
             >
               ADD TO MY ORDER
             </button>
@@ -141,4 +111,5 @@ const ProductDetails = ({ discount }) => {
     </div>
   );
 };
+
 export default ProductDetails;

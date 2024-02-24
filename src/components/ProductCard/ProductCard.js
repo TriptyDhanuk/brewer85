@@ -6,13 +6,15 @@ import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice";
 
 const ProductCard = ({ image, name, price, discount }) => {
   const [isAdded, setIsAdded] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
 
   const dispatch = useDispatch();
   const totalItems = useSelector(selectCartTotalItems);
-
   const handleAddClick = () => {
     setIsAdded(true);
+    setQuantity(quantity + 1);
+
+    dispatch(addToCart({ name: "Chicken Biryani", quantity }));
   };
 
   const handleAddToCart = () => {

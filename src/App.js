@@ -8,7 +8,7 @@ import LoginOTP from "./components/LogIn/LoginOTP";
 import MenuItem from "./components/MenuItem/MenuItem";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import CheckOut from "./components/Checkout/Checkout";
-import ThankYou from "./components/Thankyou/ThankYou";
+import ThankYou from "./components/ThankYou/ThankYou";
 
 function App() {
   return (

@@ -105,30 +105,35 @@ const MenuItem = () => {
   const productsMenu = {
     Biryani: [
       {
+        id: 1,
         image: image1,
         name: "Kashmiri Biryani",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 2,
         image: image1,
         name: "Hydrabadi Biryani",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 3,
         image: image1,
         name: "Kolkata Special Biryani",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 4,
         image: image1,
         name: "Hydrabadi Biryani",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 5,
         image: image1,
         name: "Kashmiri Biryani ",
         price: "25",
@@ -137,18 +142,21 @@ const MenuItem = () => {
     ],
     IceCream: [
       {
+        id: 6,
         image: image2,
         name: "IceCream",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 7,
         image: image2,
         name: "IceCream",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 8,
         image: image2,
         name: "IceCream",
         price: "25",
@@ -368,6 +376,7 @@ const MenuItem = () => {
                   key={index}
                   image={product.image}
                   name={product.name}
+                  id={product.id}
                   price={product.price}
                   discount={product.discount}
                 />
@@ -384,6 +393,7 @@ const MenuItem = () => {
               image={product.image}
               name={product.name}
               price={product.price}
+              id={product.id}
               discount={product.discount}
             />
           ))}

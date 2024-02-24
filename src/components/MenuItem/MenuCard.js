@@ -1,27 +1,32 @@
 import React, { useState } from "react";
 import "../ProductCard/ProductCard.css";
 import "boxicons";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/cart/cartSlice";
 
-const MenuCard = ({ image, name, price, discount }) => {
+const MenuCard = ({ id, image, name, price, discount }) => {
   const [isAdded, setIsAdded] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
 
   const dispatch = useDispatch();
-  const totalItems = useSelector(selectCartTotalItems);
-
-  const handleAddClick = () => {
-    setIsAdded(true);
-    setQuantity(quantity + 1);
-
-    dispatch(addToCart({ name: "Chicken Biryani", quantity }));
-  };
 
   const handleAddToCart = () => {
-    setQuantity(quantity + 1);
     setIsAdded(true);
-    dispatch(addToCart({ name: "Chicken Biryani", quantity }));
+    setQuantity(quantity + 1);
+
+    const item = {
+      id,
+      image,
+      name,
+      price,
+      discount,
+      quantity: 1, // Assuming quantity is set to 1 when adding to cart initially
+    };
+
+    dispatch(addToCart(item));
+
+    // Log the item details to the console
+    console.log("Item added to cart:", item);
   };
 
   const handleMinusClick = () => {
@@ -33,7 +38,6 @@ const MenuCard = ({ image, name, price, discount }) => {
   const handleImgClick = () => {
     window.location.href = "/details";
   };
-  console.log(totalItems);
 
   return (
     <div style={{ position: "relative" }}>
@@ -48,8 +52,6 @@ const MenuCard = ({ image, name, price, discount }) => {
         >
           <box-icon name="heart"></box-icon>
         </button>
-        {/* <div className="best-seller-ribbon">Best Seller</div> */}
-
         <img
           src={image}
           alt={name}
@@ -57,7 +59,10 @@ const MenuCard = ({ image, name, price, discount }) => {
           onClick={handleImgClick}
         />
         <div className="product-details">
-          <h3>{name}</h3>
+          <h3>
+            {name}
+            {id}
+          </h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
           <div className="price-tag">
             <p style={{ fontSize: "0.8rem", margin: "0" }}>
@@ -101,7 +106,6 @@ const MenuCard = ({ image, name, price, discount }) => {
                   style={{
                     border: "1px solid green",
                     color: "white",
-
                     backgroundColor: "#7ad17a",
                     width: "100px",
                     height: "40px",
@@ -120,7 +124,7 @@ const MenuCard = ({ image, name, price, discount }) => {
                   width: "100px",
                   height: "40px",
                 }}
-                onClick={handleAddClick}
+                onClick={handleAddToCart}
               >
                 ADD
               </button>

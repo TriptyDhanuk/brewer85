@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./ProductDetails.css";
 import image1 from "../../images/image1.png";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import CartIconBadge from "../CartIconBadge";
 
 
 const ProductDetails = () => {
@@ -42,13 +42,7 @@ const ProductDetails = () => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="product-details-title">Product Details</h4>
           </div>
-          <Link to="/checkout" className="cart-icon-container">
-            <i className="fas fa-shopping-cart" style={{ marginRight: "2.1rem", position: "relative" }}>
-              {totalItems > 0 && (
-                <span className="cart-badge">{totalItems}</span>
-              )}
-            </i>
-          </Link>
+          <CartIconBadge/>
         </nav>
       </div>
       <div className="product-details-content">

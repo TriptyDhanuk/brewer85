@@ -12,10 +12,12 @@ import searchIcon from "../../images/searchIcon.png";
 import ProductCard from "../ProductCard/ProductCard";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MenuCard from "./MenuCard";
+import CartIconBadge from "../CartIconBadge";
 
 const MenuItem = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -342,7 +344,7 @@ const MenuItem = () => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="">Menu Item</h4>
           </div>
-          <box-icon name="cart"></box-icon>
+          <CartIconBadge />
         </nav>
       </div>
 

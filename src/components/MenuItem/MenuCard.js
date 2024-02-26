@@ -6,7 +6,7 @@ import { addToCart } from "../../features/cart/cartSlice";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
   const [isAdded, setIsAdded] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -20,12 +20,22 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       name,
       price,
       discount,
-      quantity: 1, // Assuming quantity is set to 1 when adding to cart initially
+      quantity,
     };
+
+    const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingItemIndex = existingItems.findIndex(
+      (existingItem) => existingItem.id === id
+    );
+
+    if (existingItemIndex !== -1) {
+      existingItems[existingItemIndex].quantity += 1;
+    } else {
+      existingItems.push(item);
+    }
 
     dispatch(addToCart(item));
 
-    // Log the item details to the console
     console.log("Item added to cart:", item);
   };
 

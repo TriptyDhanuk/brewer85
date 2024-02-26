@@ -55,16 +55,22 @@ const CheckOut = () => {
 
   const handleMinusClick = (itemId) => {
     const updatedCartItems = cartItems.map((item) => {
-      if (item.id === itemId && item.quantity > 1) {
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
+      if (item.id === itemId) {
+        if (item.quantity > 1) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+        } else {
+          return null; 
+        }
       }
       return item;
-    });
-    dispatch(updateCart(updatedCartItems)); // Dispatch the updateCart action with the updated items
+    }).filter(item => item !== null); 
+  
+    dispatch(updateCart(updatedCartItems)); 
   };
+  
   const handleGoBack = () => {
     window.history.back();
   };

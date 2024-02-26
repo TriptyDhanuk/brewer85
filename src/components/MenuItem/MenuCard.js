@@ -6,7 +6,7 @@ import { addToCart } from "../../features/cart/cartSlice";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
   const [isAdded, setIsAdded] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -29,18 +29,13 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     );
 
     if (existingItemIndex !== -1) {
-      // If the item already exists in the cart, update its quantity
       existingItems[existingItemIndex].quantity += 1;
     } else {
-      // If it's a new item, add it to the cart
       existingItems.push(item);
     }
 
-    // localStorage.setItem("cartItems", JSON.stringify(existingItems));
-
     dispatch(addToCart(item));
 
-    // Log the item details to the console
     console.log("Item added to cart:", item);
   };
 

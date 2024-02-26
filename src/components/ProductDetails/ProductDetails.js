@@ -4,6 +4,8 @@ import image1 from "../../images/image1.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const ProductDetails = () => {
   const [isAdded, setIsAdded] = useState(false);
@@ -29,26 +31,23 @@ const ProductDetails = () => {
   const handleGoBack = () => {
     window.history.back();
   };
-  console.log(totalItems);
+  console.log("totalItems",totalItems);
 
   return (
     <div className="product-details-container">
-      {/* Product Image as Header */}
       <img src={image1} alt="Product" className="product-details-image" />
-      {/* Back Button and Title Overflowing on Image */}
       <div className="product-details-header">
         <nav className="product-details-navbar">
           <div className="product-details-logo" onClick={handleGoBack}>
             <box-icon name="arrow-back"></box-icon>
             <h4 className="product-details-title">Product Details</h4>
           </div>
-          {/* Cart Icon */}
           <Link to="/checkout" className="cart-icon-container">
-            <box-icon name="cart" style={{ marginRight: "1.8rem" }}>
+            <i className="fas fa-shopping-cart" style={{ marginRight: "2.1rem", position: "relative" }}>
               {totalItems > 0 && (
                 <span className="cart-badge">{totalItems}</span>
               )}
-            </box-icon>
+            </i>
           </Link>
         </nav>
       </div>

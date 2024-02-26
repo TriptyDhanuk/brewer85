@@ -9,7 +9,6 @@ import { selectCartItems } from "../../features/cart/selectors";
 const CheckOut = () => {
   const cartItems = useSelector(selectCartItems);
   const [quantity, setQuantity] = useState(1);
-  const price = 30;
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
@@ -17,6 +16,7 @@ const CheckOut = () => {
   const [invalidCoupon, setInvalidCoupon] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
+  const [cartItem, setCartItem] = useState(cartItems);
 
   console.log("cartItems check", cartItems);
 
@@ -64,9 +64,13 @@ const CheckOut = () => {
     setCouponApplied(false);
     setInvalidCoupon(false);
   };
+
   const handleRemoveItem = (itemId) => {
-    // setItems(cartItems.filter((item) => item.id !== itemId));
+    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+
+    setCartItem(updatedCartItems);
   };
+
   const handleSaveForLater = (itemId) => {
     console.log("Item saved for later:", itemId);
   };
@@ -136,7 +140,7 @@ const CheckOut = () => {
                   value={item.quantity}
                   onChange={(e) => {
                     const newQuantity = parseInt(e.target.value);
-                    setQuantity((prevItems) =>
+                    setCartItem((prevItems) =>
                       prevItems.map((prevItem) => {
                         if (prevItem.id === item.id) {
                           return { ...prevItem, quantity: newQuantity };

@@ -313,7 +313,6 @@ const MenuItem = () => {
         discount: "60% off",
       },
     ],
-    // Add more products as needed
   };
 
   const filteredProducts = selectedProduct ? products[selectedProduct] : [];
@@ -324,13 +323,11 @@ const MenuItem = () => {
     : [];
   console.log("Filtered Products:", filteredProducts);
 
-  // Combine filteredProducts and filteredProductsMenu into a single array
   const combinedProducts = [...filteredProducts, ...filteredProductsMenu];
   const handleGoBack = () => {
-    window.history.back(); // Go back to the previous page
+    window.history.back();
   };
 
-  // Filter the combined array based on the search query
   const filteredProductsByName = combinedProducts.filter((product) =>
     product.name.toLowerCase().includes(searchQuery)
   );

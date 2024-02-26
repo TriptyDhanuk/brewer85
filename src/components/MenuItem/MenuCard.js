@@ -10,6 +10,10 @@ const MenuCard = ({ id, image, name, price, discount }) => {
 
   const dispatch = useDispatch();
 
+  const handleAdd = () => {
+    setIsAdded(true);
+  };
+
   const handleAddToCart = () => {
     setIsAdded(true);
     setQuantity(quantity + 1);
@@ -33,7 +37,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     } else {
       existingItems.push(item);
     }
-
+    localStorage.setItem("cartItems", JSON.stringify(existingItems));
     dispatch(addToCart(item));
 
     console.log("Item added to cart:", item);
@@ -48,6 +52,13 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   const handleImgClick = () => {
     window.location.href = "/details";
   };
+
+  // const handleInputChange = (itemId, newQuantity) => {
+  //   dispatch(updateCartItemQuantity({ itemId, newQuantity }));
+  // };
+  // const handleInputChange = (itemId, newQuantity) => {
+  //   dispatch(updateCartItemQuantity({ itemId, newQuantity }));
+  // };
 
   return (
     <div style={{ position: "relative" }}>
@@ -110,7 +121,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
                   style={{ width: "30px" }}
                   type="text"
                   value={quantity}
-                  readOnly
+                  // onChange={handleInputChange}
                 />
                 <button
                   style={{
@@ -134,7 +145,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
                   width: "100px",
                   height: "40px",
                 }}
-                onClick={handleAddToCart}
+                onClick={handleAdd}
               >
                 ADD
               </button>

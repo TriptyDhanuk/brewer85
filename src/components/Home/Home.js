@@ -59,6 +59,7 @@ const Home = () => {
   const products = {
     Biryani: [
       {
+        id: 12,
         image: image1,
         name: "Hydrabadi Biryani",
         price: "25",
@@ -67,6 +68,7 @@ const Home = () => {
     ],
     IceCream: [
       {
+        id: 12,
         image: image2,
         name: "IceCream",
         price: "25",
@@ -75,6 +77,7 @@ const Home = () => {
     ],
     Pizza: [
       {
+        id: 13,
         image: image4,
         name: "Pizza",
         price: "25",
@@ -83,6 +86,7 @@ const Home = () => {
     ],
     Burger: [
       {
+        id: 14,
         image: burger,
         name: "Burger",
         price: "25",

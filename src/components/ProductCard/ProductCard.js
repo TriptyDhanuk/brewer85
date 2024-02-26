@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice";
 
-const ProductCard = ({ image, name, price, discount }) => {
+const ProductCard = ({ id, image, name, price, discount }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(0);
 
@@ -16,11 +16,34 @@ const ProductCard = ({ image, name, price, discount }) => {
 
     dispatch(addToCart({ name: "Chicken Biryani", quantity }));
   };
-
   const handleAddToCart = () => {
-    setQuantity(quantity + 1);
     setIsAdded(true);
-    dispatch(addToCart({ name: "Chicken Biryani", quantity }));
+    setQuantity(quantity + 1);
+
+    const item = {
+      id,
+      image,
+      name,
+      price,
+      discount,
+      quantity,
+    };
+
+    const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingItemIndex = existingItems.findIndex(
+      (existingItem) => existingItem.id === id
+    );
+
+    if (existingItemIndex !== -1) {
+      existingItems[existingItemIndex].quantity += 1;
+    } else {
+      existingItems.push(item);
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(existingItems));
+    dispatch(addToCart(item));
+
+    console.log("Item added to cart:", item);
   };
 
   const handleMinusClick = () => {
@@ -45,6 +68,7 @@ const ProductCard = ({ image, name, price, discount }) => {
           <box-icon name="heart"></box-icon>
         </button>
         <div className="best-seller-ribbon">Best Seller</div>
+        <p>{id}</p>
         <img src={image} alt={name} className="product-image" />
         <div className="product-details">
           <h3>{name}</h3>

@@ -9,6 +9,7 @@ import { selectCartItems } from "../../features/cart/selectors";
 const CheckOut = () => {
   const cartItems = useSelector(selectCartItems);
   const [quantity, setQuantity] = useState(1);
+
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
@@ -66,8 +67,9 @@ const CheckOut = () => {
   };
 
   const handleRemoveItem = (itemId) => {
+    // Filter out the item with the given itemId from the cartItems array
     const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
-
+    // Update the cartItems state with the filtered array
     setCartItem(updatedCartItems);
   };
 

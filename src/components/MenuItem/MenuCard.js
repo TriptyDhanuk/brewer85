@@ -3,8 +3,11 @@ import "../ProductCard/ProductCard.css";
 import "boxicons";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "../../features/cart/selectors";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
+  const cartItems = useSelector(selectCartItems);
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
@@ -37,6 +40,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     } else {
       existingItems.push(item);
     }
+
     localStorage.setItem("cartItems", JSON.stringify(existingItems));
     dispatch(addToCart(item));
 
@@ -52,13 +56,12 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   const handleImgClick = () => {
     window.location.href = "/details";
   };
-
-  // const handleInputChange = (itemId, newQuantity) => {
-  //   dispatch(updateCartItemQuantity({ itemId, newQuantity }));
-  // };
-  // const handleInputChange = (itemId, newQuantity) => {
-  //   dispatch(updateCartItemQuantity({ itemId, newQuantity }));
-  // };
+  const handleInputChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (!isNaN(value) && value >= 1) {
+      setQuantity(value);
+    }
+  };
 
   return (
     <div style={{ position: "relative" }}>

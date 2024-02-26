@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../ProductCard/ProductCard.css";
 import "boxicons";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../features/cart/cartSlice";
+import { addToCart, saveForLater } from "../../features/cart/cartSlice";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
   const [isAdded, setIsAdded] = useState(false);
@@ -48,6 +48,20 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   const handleImgClick = () => {
     window.location.href = "/details";
   };
+  
+  // Define saveForLaterItem function properly
+  const saveForLaterItem = () => {
+    const item = { // Define item here
+      id,
+      image,
+      name,
+      price,
+      discount,
+      quantity,
+    };
+    dispatch(saveForLater(item));
+    console.log("Item saved for later:", item); // Log the item saved for later
+  };
 
   return (
     <div style={{ position: "relative" }}>
@@ -60,7 +74,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
             right: "15px",
           }}
         >
-          <box-icon name="heart"></box-icon>
+          <box-icon name="heart" onClick={saveForLaterItem}></box-icon>
         </button>
         <img
           src={image}

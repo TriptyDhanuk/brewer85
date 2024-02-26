@@ -22,10 +22,23 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.items = [];
     },
+    //save for later
+    saveForLater: (state, action) => {
+      const itemIdToSave = action.payload;
+      const itemToSave = state.items.find(item => item.id === itemIdToSave);
+      if (itemToSave) {
+        state.savedForLater.push(itemToSave);
+        state.items = state.items.filter(item => item.id !== itemIdToSave);
+      }
+    },
+    removeFromSavedForLater: (state, action) => {
+      const itemIdToRemove = action.payload;
+      state.savedForLater = state.savedForLater.filter(item => item.id !== itemIdToRemove);
+    },
   },
 });
 
-export const { addToCart, updateCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, updateCart, removeFromCart, clearCart, saveForLater, removeFromSavedForLater } = cartSlice.actions;
 
 export const selectCartItems = (state) => state.cart.items;
 

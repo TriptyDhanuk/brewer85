@@ -17,6 +17,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CartIconBadge from "../CartIconBadge";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -218,7 +219,8 @@ const Home = () => {
             <box-icon name="menu"></box-icon>
             <h4 className="">Home</h4>
           </div>
-          <box-icon name="cart"></box-icon>
+          {/* <box-icon name="cart"></box-icon> */}
+          <CartIconBadge/>
         </nav>
       </div>
       <Slider {...settingsMy}>

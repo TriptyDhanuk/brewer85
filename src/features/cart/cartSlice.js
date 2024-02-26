@@ -17,7 +17,6 @@ export const cartSlice = createSlice({
 
 export const { addToCart } = cartSlice.actions;
 
-// Selector to retrieve cart items
 export const selectCartItems = (state) => state.cart.items;
 
 export const selectCartTotalItems = (state) => state.cart.items.length;

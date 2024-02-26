@@ -20,8 +20,23 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       name,
       price,
       discount,
-      quantity: 1, // Assuming quantity is set to 1 when adding to cart initially
+      quantity,
     };
+
+    const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingItemIndex = existingItems.findIndex(
+      (existingItem) => existingItem.id === id
+    );
+
+    if (existingItemIndex !== -1) {
+      // If the item already exists in the cart, update its quantity
+      existingItems[existingItemIndex].quantity += 1;
+    } else {
+      // If it's a new item, add it to the cart
+      existingItems.push(item);
+    }
+
+    // localStorage.setItem("cartItems", JSON.stringify(existingItems));
 
     dispatch(addToCart(item));
 

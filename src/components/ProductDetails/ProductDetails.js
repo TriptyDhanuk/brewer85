@@ -27,7 +27,7 @@ const ProductDetails = () => {
   };
 
   const handleGoBack = () => {
-    window.history.back(); // Go back to the previous page
+    window.history.back();
   };
   console.log(totalItems);
 

@@ -18,7 +18,9 @@ import { selectCartItems } from "../../features/cart/cartSlice";
 
 import { useSelector } from "react-redux";
 const CheckOut = () => {
-  const cartItems = useSelector(selectCartItems);
+  const storedCartItems = localStorage.getItem("cartItems");
+  const initialCartItems = storedCartItems ? JSON.parse(storedCartItems) : [];
+  const [cartItems, setCartItems] = useState(initialCartItems);
 
   const [quantity, setQuantity] = useState(1);
   const price = 30;
@@ -31,8 +33,10 @@ const CheckOut = () => {
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
 
-  console.log("cartItems check", cartItems);
-
+  // Update cartItems state if the items change in localStorage
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
   // const [items, setItems] = useState([
   //   {
   //     id: 1,
@@ -124,10 +128,80 @@ const CheckOut = () => {
 
       <div className="items-container">
         {cartItems.map((item) => (
-          <div key={item.id}>
-            {/* Render individual cart item details */}
-            <p>{item.name}</p>
-            {/* Add more details as needed */}
+          <div key={item.id} className="item">
+            <div className="item-details">
+              <div className="product-details">
+                <h3>{item.name}</h3>
+                <p style={{ color: "grey", font: "bold" }}>
+                  yahoo comidia
+                </p>{" "}
+                <div className="price-tag">
+                  <p style={{ fontSize: "0.8rem", margin: "0" }}>
+                    <strong>
+                      AED{" "}
+                      <span style={{ fontSize: "1.2rem" }}>{item.price}</span>
+                    </strong>
+                  </p>
+
+                  <p
+                    style={{
+                      color: "red",
+                      margin: "0 8px",
+                      padding: "0 4px",
+                      fontWeight: "bold",
+                      fontSize: "1em",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {item.discount}
+                  </p>
+                </div>
+                <div className="icons" style={{ display: "flex" }}>
+                  <span onClick={() => handleSaveForLater(item.id)}>
+                    <box-icon type="solid" name="bookmark-star"></box-icon>
+                  </span>
+                  <span onClick={() => handleRemoveItem(item.id)}>
+                    {/* {" "}
+                    <i class="bx bx-trash bx-sm"></i> Delete */}
+                    <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="item-actions">
+              <div>
+                <label htmlFor={`qty-${item.id}`}>
+                  <b> Qty:</b>
+                </label>
+                <input
+                  type="number"
+                  style={{ width: "50px", height: "20px" }}
+                  id={`qty-${item.id}`}
+                  value={item.quantity}
+                  onChange={(e) => {
+                    const newQuantity = parseInt(e.target.value);
+                    setCartItems((prevItems) =>
+                      prevItems.map((prevItem) => {
+                        if (prevItem.id === item.id) {
+                          return { ...prevItem, quantity: newQuantity };
+                        }
+                        return prevItem;
+                      })
+                    );
+                  }}
+                  min="1"
+                  max="10"
+                />
+              </div>
+              <h4> Qty:{item.quantity}</h4>
+              <div>
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  style={{ height: "134px", width: "141px" }}
+                />
+              </div>
+            </div>
           </div>
         ))}
 

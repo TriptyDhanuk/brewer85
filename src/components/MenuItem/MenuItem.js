@@ -115,7 +115,7 @@ const MenuItem = () => {
       },
     ],
   };
-  
+
   const productsMenu = {
     Biryani: [
       {
@@ -301,7 +301,6 @@ const MenuItem = () => {
     ],
     // Add more categories if needed
   };
-  
 
   const filteredProducts = selectedProduct ? products[selectedProduct] : [];
   console.log("Filtered Products:", filteredProducts);

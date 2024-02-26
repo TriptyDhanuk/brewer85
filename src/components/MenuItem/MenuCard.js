@@ -3,12 +3,19 @@ import "../ProductCard/ProductCard.css";
 import "boxicons";
 import { useDispatch } from "react-redux";
 import { addToCart, saveForLater } from "../../features/cart/cartSlice";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "../../features/cart/selectors";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
+  const cartItems = useSelector(selectCartItems);
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
+
+  const handleAdd = () => {
+    setIsAdded(true);
+  };
 
   const handleAddToCart = () => {
     setIsAdded(true);
@@ -34,6 +41,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       existingItems.push(item);
     }
 
+    localStorage.setItem("cartItems", JSON.stringify(existingItems));
     dispatch(addToCart(item));
 
     console.log("Item added to cart:", item);
@@ -124,7 +132,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
                   style={{ width: "30px" }}
                   type="text"
                   value={quantity}
-                  readOnly
+                  // onChange={handleInputChange}
                 />
                 <button
                   style={{
@@ -148,7 +156,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
                   width: "100px",
                   height: "40px",
                 }}
-                onClick={handleAddToCart}
+                onClick={handleAdd}
               >
                 ADD
               </button>

@@ -122,7 +122,7 @@ const Home = () => {
       },
     ],
   };
-  
+
   const settingsMy = {
     dots: false,
     infinite: true,

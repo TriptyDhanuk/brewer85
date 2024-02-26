@@ -110,7 +110,41 @@ const ProductCard = ({ id, image, name, price, discount }) => {
             >
               {discount}
             </p>
-            {isAdded ? (
+
+            <div className="quantity-button">
+              <button
+                style={{
+                  border: "1px solid green",
+                  color: "white",
+                  backgroundColor: "#f35353",
+                  width: "100px",
+                  height: "40px",
+                }}
+                onClick={handleMinusClick}
+              >
+                -
+              </button>
+              <input
+                style={{ width: "30px" }}
+                type="text"
+                value={quantity}
+                // onChange={handleInputChange}
+              />
+              <button
+                style={{
+                  border: "1px solid green",
+                  color: "white",
+                  backgroundColor: "#7ad17a",
+                  width: "100px",
+                  height: "40px",
+                }}
+                onClick={handleAddToCart}
+              >
+                +
+              </button>
+            </div>
+
+            {/* {isAdded ? (
               <div className="quantity-button">
                 <button
                   style={{
@@ -157,7 +191,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
               >
                 ADD
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </div>

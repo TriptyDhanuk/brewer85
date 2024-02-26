@@ -3,13 +3,19 @@ import "./Checkout.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectCartItems } from "../../features/cart/selectors";
+import { useSelector, useDispatch } from "react-redux";
+import { updateCart } from "../../features/cart/cartSlice";
+import {
+  selectCartItems,
+  clearCart,
+  removeFromCart,
+} from "../../features/cart/cartSlice";
 
 const CheckOut = () => {
   const cartItems = useSelector(selectCartItems);
-  const [quantity, setQuantity] = useState(1);
-
+  const [cartUpdate, setCartUpdate] = useState();
+  const [quantity, setQuantity] = useState();
+  const price = 30;
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
@@ -17,7 +23,7 @@ const CheckOut = () => {
   const [invalidCoupon, setInvalidCoupon] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
-  const [cartItem, setCartItem] = useState(cartItems);
+  const dispatch = useDispatch();
 
   console.log("cartItems check", cartItems);
 
@@ -34,16 +40,31 @@ const CheckOut = () => {
     const total = subtotal + VAT - discount;
   }, [subtotal, discount]);
 
-  const handlePlusClick = () => {
-    setQuantity(quantity + 1);
+  const handlePlusClick = (itemId) => {
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.id === itemId) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    dispatch(updateCart(updatedCartItems)); // Dispatch the updateCart action with the updated items
   };
 
-  const handleMinusClick = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+  const handleMinusClick = (itemId) => {
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.id === itemId && item.quantity > 1) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+      return item;
+    });
+    dispatch(updateCart(updatedCartItems)); // Dispatch the updateCart action with the updated items
   };
-
   const handleGoBack = () => {
     window.history.back();
   };
@@ -65,16 +86,15 @@ const CheckOut = () => {
     setCouponApplied(false);
     setInvalidCoupon(false);
   };
-
   const handleRemoveItem = (itemId) => {
-    // Filter out the item with the given itemId from the cartItems array
-    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
-    // Update the cartItems state with the filtered array
-    setCartItem(updatedCartItems);
+    dispatch(removeFromCart(itemId));
   };
-
   const handleSaveForLater = (itemId) => {
     console.log("Item saved for later:", itemId);
+  };
+
+  const handlePlaceOrder = () => {
+    dispatch(clearCart());
   };
 
   return (
@@ -135,27 +155,62 @@ const CheckOut = () => {
                 <label htmlFor={`qty-${item.id}`}>
                   <b> Qty:</b>
                 </label>
-                <input
-                  type="number"
-                  style={{ width: "50px", height: "20px" }}
-                  id={`qty-${item.id}`}
-                  value={item.quantity}
-                  onChange={(e) => {
-                    const newQuantity = parseInt(e.target.value);
-                    setCartItem((prevItems) =>
-                      prevItems.map((prevItem) => {
-                        if (prevItem.id === item.id) {
-                          return { ...prevItem, quantity: newQuantity };
-                        }
-                        return prevItem;
-                      })
-                    );
-                  }}
-                  min="1"
-                  max="10"
-                />
+                <div className="" style={{ display: "flex" }}>
+                  <button
+                    style={{
+                      border: "1px solid green",
+                      color: "black",
+                      backgroundColor: "white",
+                      width: "50px",
+                      height: "40px",
+                    }}
+                    onClick={() => handleMinusClick(item.id, item.quantity)}
+                  >
+                    -
+                  </button>
+
+                  <input
+                    type="number"
+                    style={{ width: "50px", height: "40px" }}
+                    id={`qty-${item.id}`}
+                    value={item.quantity}
+                    onChange={(e) => {
+                      const newQuantity = parseInt(e.target.value);
+                      setCartUpdate((prevItems) =>
+                        prevItems.map((prevItem) => {
+                          if (prevItem.id === item.id) {
+                            return { ...prevItem, quantity: newQuantity };
+                          }
+                          return prevItem;
+                        })
+                      );
+                    }}
+                    min="1"
+                    max="10"
+                  />
+                  <button
+                    style={{
+                      border: "1px solid green",
+                      color: "black",
+                      backgroundColor: "white",
+                      width: "50px",
+                      height: "40px",
+                    }}
+                    onClick={() => handlePlusClick(item.id, item.quantity)}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
-              <h4> Qty:{item.quantity}</h4>
+
+              {/* <h4> Qty:{item.quantity}</h4>
+              <select>
+                <option value="2">2</option>
+
+                <option value="3">3</option>
+
+                <option value="4">4</option>
+              </select> */}
               <div>
                 <img
                   src={item.image}
@@ -279,6 +334,7 @@ const CheckOut = () => {
           <button
             className="product-details-add-to-cart-btn"
             style={{ width: "53rem", marginLeft: "5rem" }}
+            onClick={handlePlaceOrder}
           >
             PLACE ORDER
           </button>

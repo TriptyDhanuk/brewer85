@@ -59,7 +59,7 @@ const Home = () => {
   const products = {
     Biryani: [
       {
-        id: 12,
+        id: 1,
         image: image1,
         name: "Hydrabadi Biryani",
         price: "25",
@@ -68,7 +68,7 @@ const Home = () => {
     ],
     IceCream: [
       {
-        id: 12,
+        id: 2,
         image: image2,
         name: "IceCream",
         price: "25",
@@ -77,7 +77,7 @@ const Home = () => {
     ],
     Pizza: [
       {
-        id: 13,
+        id: 3,
         image: image4,
         name: "Pizza",
         price: "25",
@@ -86,7 +86,7 @@ const Home = () => {
     ],
     Burger: [
       {
-        id: 14,
+        id: 4,
         image: burger,
         name: "Burger",
         price: "25",
@@ -95,6 +95,7 @@ const Home = () => {
     ],
     Shakes: [
       {
+        id: 5,
         image: shakes,
         name: "Shakes",
         price: "25",
@@ -103,6 +104,7 @@ const Home = () => {
     ],
     Chinese: [
       {
+        id: 6,
         image: noodles,
         name: "Chinese",
         price: "25",
@@ -111,13 +113,13 @@ const Home = () => {
     ],
     Drinks: [
       {
+        id: 7,
         image: drinks,
         name: "Drinks",
         price: "25",
         discount: "60% off",
       },
     ],
-    // Add more products as needed
   };
 
   const settingsMy = {

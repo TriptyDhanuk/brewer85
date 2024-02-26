@@ -156,7 +156,15 @@ const ProductDetails = () => {
 
   const handleAddToCart = () => {
     setIsAdded(true);
-    dispatch(addToCart({ name: "Chicken Biryani", quantity }));
+    const item = {
+      id: 1,
+      image: image1, 
+      name: "Chicken Biryani", 
+      price: 30, 
+      discount: "60% off",
+      quantity: quantity, 
+    };
+    dispatch(addToCart(item));
   };
 
   const handlePlusClick = () => {
@@ -231,7 +239,7 @@ const ProductDetails = () => {
               <a
                 className="show-more-link"
                 onClick={() => setShowMore(!showMore)}
-                style={{color:'rgb(255, 58, 117)'}}
+                style={{color:'rgb(255, 58, 117)', cursor:'pointer'}}
               >
                 {showMore ? "Show Less" : "Show More"}
               </a>

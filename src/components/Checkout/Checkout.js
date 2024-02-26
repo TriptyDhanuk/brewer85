@@ -3,8 +3,9 @@ import "./Checkout.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectCartItems } from "../../features/cart/selectors";
+import { useSelector,useDispatch  } from "react-redux";
+import { selectCartItems, clearCart,removeFromCart } from "../../features/cart/cartSlice";
+
 
 const CheckOut = () => {
   const cartItems = useSelector(selectCartItems);
@@ -17,6 +18,7 @@ const CheckOut = () => {
   const [invalidCoupon, setInvalidCoupon] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
+  const dispatch = useDispatch();
 
   console.log("cartItems check", cartItems);
 
@@ -65,10 +67,14 @@ const CheckOut = () => {
     setInvalidCoupon(false);
   };
   const handleRemoveItem = (itemId) => {
-    // setItems(cartItems.filter((item) => item.id !== itemId));
+    dispatch(removeFromCart(itemId));
   };
   const handleSaveForLater = (itemId) => {
     console.log("Item saved for later:", itemId);
+  };
+
+  const handlePlaceOrder = () => {
+    dispatch(clearCart());
   };
 
   return (
@@ -273,6 +279,7 @@ const CheckOut = () => {
           <button
             className="product-details-add-to-cart-btn"
             style={{ width: "53rem", marginLeft: "5rem" }}
+            onClick={handlePlaceOrder}
           >
             PLACE ORDER
           </button>

@@ -47,63 +47,75 @@ const MenuItem = () => {
   const products = {
     Biryani: [
       {
+        id: 1,
         image: image1,
         name: "Hydrabadi Biryani",
         price: "25",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     IceCream: [
       {
+        id: 2,
         image: image2,
         name: "IceCream",
         price: "25",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Pizza: [
       {
+        id: 3,
         image: image4,
         name: "Pizza",
         price: "25",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Burger: [
       {
+        id: 4,
         image: burger,
         name: "Burger",
         price: "25",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Shakes: [
       {
+        id: 5,
         image: shakes,
         name: "Shakes",
         price: "25",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Chinese: [
       {
+        id: 6,
         image: noodles,
         name: "Chinese",
         price: "25",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Drinks: [
       {
+        id: 7,
         image: drinks,
         name: "Drinks",
         price: "25",
         discount: "60% off",
       },
     ],
-    // Add more products as needed
   };
-
+  
   const productsMenu = {
     Biryani: [
       {
@@ -141,6 +153,7 @@ const MenuItem = () => {
         price: "25",
         discount: "60% off",
       },
+      // Add more items as needed
     ],
     IceCream: [
       {
@@ -164,157 +177,131 @@ const MenuItem = () => {
         price: "25",
         discount: "60% off",
       },
-      {
-        image: image2,
-        name: "IceCream",
-        price: "25",
-        discount: "60% off",
-      },
+      // Add more items as needed
     ],
     Pizza: [
       {
+        id: 9,
         image: image4,
         name: "Pizza",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 10,
         image: image4,
         name: "Pizza",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 11,
         image: image4,
         name: "Pizza",
         price: "25",
         discount: "60% off",
       },
-      {
-        image: image4,
-        name: "Pizza",
-        price: "25",
-        discount: "60% off",
-      },
+      // Add more items as needed
     ],
     Burger: [
       {
+        id: 12,
         image: burger,
         name: "Burger",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 13,
         image: burger,
         name: "Burger",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 14,
         image: burger,
         name: "Burger",
         price: "25",
         discount: "60% off",
       },
-      {
-        image: burger,
-        name: "Burger",
-        price: "25",
-        discount: "60% off",
-      },
-      {
-        image: burger,
-        name: "Burger",
-        price: "25",
-        discount: "60% off",
-      },
+      // Add more items as needed
     ],
     Shakes: [
       {
+        id: 15,
         image: shakes,
         name: "Shakes",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 16,
         image: shakes,
         name: "Shakes",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 17,
         image: shakes,
         name: "Shakes",
         price: "25",
         discount: "60% off",
       },
-      {
-        image: shakes,
-        name: "Shakes",
-        price: "25",
-        discount: "60% off",
-      },
-      {
-        image: shakes,
-        name: "Shakes",
-        price: "25",
-        discount: "60% off",
-      },
+      // Add more items as needed
     ],
     Chinese: [
       {
+        id: 18,
         image: noodles,
         name: "Chinese",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 19,
         image: noodles,
         name: "Chinese",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 20,
         image: noodles,
         name: "Chinese",
         price: "25",
         discount: "60% off",
       },
+      // Add more items as needed
     ],
     Drinks: [
       {
+        id: 21,
         image: drinks,
         name: "Drinks",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 22,
         image: drinks,
         name: "Drinks",
         price: "25",
         discount: "60% off",
       },
       {
+        id: 23,
         image: drinks,
         name: "Drinks",
         price: "25",
         discount: "60% off",
       },
-      {
-        image: drinks,
-        name: "Drinks",
-        price: "25",
-        discount: "60% off",
-      },
-      {
-        image: drinks,
-        name: "Drinks",
-        price: "25",
-        discount: "60% off",
-      },
+      // Add more items as needed
     ],
-    // Add more products as needed
+    // Add more categories if needed
   };
+  
 
   const filteredProducts = selectedProduct ? products[selectedProduct] : [];
   console.log("Filtered Products:", filteredProducts);

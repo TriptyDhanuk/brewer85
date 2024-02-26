@@ -17,9 +17,12 @@ const ProductCard = ({ id, image, name, price, discount }) => {
     setIsAdded(true);
   };
 
+  const handlePlusClick = () => {
+    setQuantity(quantity + 1);
+  };
+
   const handleAddToCart = () => {
     setIsAdded(true);
-    setQuantity(quantity + 1);
 
     const item = {
       id,
@@ -110,7 +113,9 @@ const ProductCard = ({ id, image, name, price, discount }) => {
             >
               {discount}
             </p>
+          </div>
 
+          <div style={{ display: "flex", marginTop: "1rem" }}>
             <div className="quantity-button">
               <button
                 style={{
@@ -138,13 +143,27 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                   width: "100px",
                   height: "40px",
                 }}
-                onClick={handleAddToCart}
+                onClick={handlePlusClick}
               >
                 +
               </button>
             </div>
+            <button
+              style={{
+                border: "1px solid green",
+                color: "green",
+                backgroundColor: "white",
+                width: "100px",
+                height: "40px",
+                marginLeft: "7rem",
+              }}
+              onClick={handleAddToCart}
+            >
+              ADD
+            </button>
+          </div>
 
-            {/* {isAdded ? (
+          {/* {isAdded ? (
               <div className="quantity-button">
                 <button
                   style={{
@@ -192,7 +211,6 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                 ADD
               </button>
             )} */}
-          </div>
         </div>
       </div>
     </div>

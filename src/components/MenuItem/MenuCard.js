@@ -17,9 +17,12 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     setIsAdded(true);
   };
 
+  const handlePlusClick = () => {
+    setQuantity(quantity + 1);
+  };
+
   const handleAddToCart = () => {
     setIsAdded(true);
-    setQuantity(quantity + 1);
 
     const item = {
       id,
@@ -116,39 +119,53 @@ const MenuCard = ({ id, image, name, price, discount }) => {
               {discount}
             </p>
 
-            <div className="quantity-button">
+            <div style={{ display: "flex", marginTop: "1rem" }}>
+              <div className="quantity-button">
+                <button
+                  style={{
+                    border: "1px solid green",
+                    color: "white",
+                    backgroundColor: "#f35353",
+                    width: "100px",
+                    height: "40px",
+                  }}
+                  onClick={handleMinusClick}
+                >
+                  -
+                </button>
+                <input
+                  style={{ width: "30px" }}
+                  type="text"
+                  value={quantity}
+                  // onChange={handleInputChange}
+                />
+                <button
+                  style={{
+                    border: "1px solid green",
+                    color: "white",
+                    backgroundColor: "#7ad17a",
+                    width: "100px",
+                    height: "40px",
+                  }}
+                  onClick={handlePlusClick}
+                >
+                  +
+                </button>
+              </div>
               <button
                 style={{
                   border: "1px solid green",
-                  color: "white",
-                  backgroundColor: "#f35353",
+                  color: "green",
+                  backgroundColor: "white",
                   width: "100px",
                   height: "40px",
-                }}
-                onClick={handleMinusClick}
-              >
-                -
-              </button>
-              <input
-                style={{ width: "30px" }}
-                type="text"
-                value={quantity}
-                // onChange={handleInputChange}
-              />
-              <button
-                style={{
-                  border: "1px solid green",
-                  color: "white",
-                  backgroundColor: "#7ad17a",
-                  width: "100px",
-                  height: "40px",
+                  marginLeft: "7rem",
                 }}
                 onClick={handleAddToCart}
               >
-                +
+                ADD
               </button>
             </div>
-
             {/* {isAdded ? (
               <div className="quantity-button">
                 <button

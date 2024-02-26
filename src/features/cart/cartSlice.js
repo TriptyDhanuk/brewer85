@@ -10,12 +10,15 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.items = [...state.items, action.payload];
+      state.items.push(action.payload);
+    },
+    updateCart: (state, action) => {
+      state.items = action.payload;
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateCart } = cartSlice.actions;
 
 export const selectCartItems = (state) => state.cart.items;
 

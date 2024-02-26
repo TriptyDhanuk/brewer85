@@ -1,21 +1,22 @@
 import React from "react";
 import "./ProductCard.css";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { addToCart, saveForLater } from "../../features/cart/cartSlice";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "../../features/cart/selectors";
 
 const ProductCard = ({ id, image, name, price, discount }) => {
+  const cartItems = useSelector(selectCartItems);
   const [isAdded, setIsAdded] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
-  const totalItems = useSelector(selectCartTotalItems);
-  const handleAddClick = () => {
-    setIsAdded(true);
-    setQuantity(quantity + 1);
 
-    dispatch(addToCart({ name: "Chicken Biryani", quantity }));
+  const handleAdd = () => {
+    setIsAdded(true);
   };
+
   const handleAddToCart = () => {
     setIsAdded(true);
     setQuantity(quantity + 1);
@@ -51,7 +52,25 @@ const ProductCard = ({ id, image, name, price, discount }) => {
       setQuantity(quantity - 1);
     }
   };
-  console.log(totalItems);
+
+  const handleImgClick = () => {
+    window.location.href = "/details";
+  };
+
+  // Define saveForLaterItem function properly
+  const saveForLaterItem = () => {
+    const item = {
+      // Define item here
+      id,
+      image,
+      name,
+      price,
+      discount,
+      quantity,
+    };
+    dispatch(saveForLater(item));
+    console.log("Item saved for later:", item);
+  };
 
   return (
     <div style={{ position: "relative" }}>
@@ -134,7 +153,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                   width: "100px",
                   height: "40px",
                 }}
-                onClick={handleAddClick}
+                onClick={handleAdd}
               >
                 ADD
               </button>

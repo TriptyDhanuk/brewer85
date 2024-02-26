@@ -220,7 +220,7 @@ const Home = () => {
             <h4 className="">Home</h4>
           </div>
           {/* <box-icon name="cart"></box-icon> */}
-          <CartIconBadge/>
+          <CartIconBadge />
         </nav>
       </div>
       <Slider {...settingsMy}>

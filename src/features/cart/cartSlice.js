@@ -31,7 +31,7 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.items = [];
     },
-    //save for later
+
     saveForLater: (state, action) => {
       const itemIdToSave = action.payload;
       const itemToSave = state.items.find((item) => item.id === itemIdToSave);
@@ -58,7 +58,6 @@ export const {
   removeFromSavedForLater,
 } = cartSlice.actions;
 
-// Selector to retrieve cart items
 export const selectCartItems = (state) => state.cart.items;
 
 export const selectCartTotalItems = (state) => state.cart.items.length;

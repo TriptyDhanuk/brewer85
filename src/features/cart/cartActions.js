@@ -1,5 +1,5 @@
 // cartActions.js
-import { ADD_TO_CART, UPDATE_CART, SAVE_FOR_LATER } from './cartActionTypes'; // Import the new action type
+import { ADD_TO_CART, UPDATE_CART, SAVE_FOR_LATER } from "./cartActionTypes"; // Import the new action type
 
 export const addToCart = (item) => ({
   type: ADD_TO_CART,
@@ -7,11 +7,11 @@ export const addToCart = (item) => ({
 });
 
 export const updateCart = (updatedCartItems) => ({
-    type: UPDATE_CART,
-    payload: updatedCartItems,
+  type: UPDATE_CART,
+  payload: updatedCartItems,
 });
 
 export const saveForLater = (item) => ({
-    type: SAVE_FOR_LATER, 
-    payload: item,
+  type: SAVE_FOR_LATER,
+  payload: item,
 });

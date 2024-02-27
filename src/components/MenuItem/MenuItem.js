@@ -18,6 +18,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MenuCard from "./MenuCard";
 import CartIconBadge from "../CartIconBadge";
+import Wishlist from "../../components/Wishlist";
 
 const MenuItem = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -330,6 +331,7 @@ const MenuItem = () => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="">Menu Item</h4>
           </div>
+          <Wishlist />
           <CartIconBadge />
         </nav>
       </div>

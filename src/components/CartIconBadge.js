@@ -8,10 +8,11 @@ const CartIconBadge = () => {
 
   return (
     <Link to="/checkout" className="cart-icon-container">
-      <i className="fas fa-shopping-cart" style={{ marginRight: "1.8rem", position: "relative" }}>
-        {totalItems > 0 && (
-          <span className="cart-badge">{totalItems}</span>
-        )}
+      <i
+        className="fas fa-shopping-cart"
+        style={{ marginRight: "1.8rem", position: "relative" }}
+      >
+        {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
       </i>
     </Link>
   );

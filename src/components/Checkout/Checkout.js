@@ -13,9 +13,6 @@ import {
 
 const CheckOut = () => {
   const cartItems = useSelector(selectCartItems);
-  const [cartUpdate, setCartUpdate] = useState();
-  const [quantity, setQuantity] = useState();
-  const price = 30;
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
@@ -24,8 +21,6 @@ const CheckOut = () => {
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
   const dispatch = useDispatch();
-
-  console.log("cartItems check", cartItems);
 
   useEffect(() => {
     const subTotal = cartItems.reduce((total, item) => {
@@ -36,7 +31,6 @@ const CheckOut = () => {
 
   useEffect(() => {
     const VAT = subtotal * VAT_RATE;
-
     const total = subtotal + VAT - discount;
   }, [subtotal, discount]);
 
@@ -50,27 +44,30 @@ const CheckOut = () => {
       }
       return item;
     });
-    dispatch(updateCart(updatedCartItems)); // Dispatch the updateCart action with the updated items
+    dispatch(updateCart(updatedCartItems));
   };
 
   const handleMinusClick = (itemId) => {
     const updatedCartItems = cartItems.map((item) => {
-      if (item.id === itemId) {
-        if (item.quantity > 1) {
-          return {
-            ...item,
-            quantity: item.quantity - 1,
-          };
-        } else {
-          return null; 
-        }
+      if (item.id === itemId && item.quantity > 1) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
       }
       return item;
-    }).filter(item => item !== null); 
-  
-    dispatch(updateCart(updatedCartItems)); 
+    });
+    dispatch(updateCart(updatedCartItems));
   };
-  
+
+  const handleRemoveItem = (itemId) => {
+    dispatch(removeFromCart(itemId));
+  };
+
+  const handleSaveForLater = (itemId) => {
+    console.log("Item saved for later:", itemId);
+  };
+
   const handleGoBack = () => {
     window.history.back();
   };
@@ -92,12 +89,6 @@ const CheckOut = () => {
     setCouponApplied(false);
     setInvalidCoupon(false);
   };
-  const handleRemoveItem = (itemId) => {
-    dispatch(removeFromCart(itemId));
-  };
-  const handleSaveForLater = (itemId) => {
-    console.log("Item saved for later:", itemId);
-  };
 
   const handlePlaceOrder = () => {
     dispatch(clearCart());
@@ -107,7 +98,6 @@ const CheckOut = () => {
     <div>
       <nav className="navbar headNav">
         <div className="logo" onClick={handleGoBack}>
-          {" "}
           <box-icon name="arrow-back"></box-icon>
           <h4 className="">Checkout</h4>
         </div>
@@ -149,8 +139,6 @@ const CheckOut = () => {
                     <box-icon type="solid" name="bookmark-star"></box-icon>
                   </span>
                   <span onClick={() => handleRemoveItem(item.id)}>
-                    {/* {" "}
-                    <i class="bx bx-trash bx-sm"></i> Delete */}
                     <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
                   </span>
                 </div>
@@ -170,7 +158,7 @@ const CheckOut = () => {
                       width: "50px",
                       height: "40px",
                     }}
-                    onClick={() => handleMinusClick(item.id, item.quantity)}
+                    onClick={() => handleMinusClick(item.id)}
                   >
                     -
                   </button>
@@ -180,17 +168,7 @@ const CheckOut = () => {
                     style={{ width: "50px", height: "40px" }}
                     id={`qty-${item.id}`}
                     value={item.quantity}
-                    onChange={(e) => {
-                      const newQuantity = parseInt(e.target.value);
-                      setCartUpdate((prevItems) =>
-                        prevItems.map((prevItem) => {
-                          if (prevItem.id === item.id) {
-                            return { ...prevItem, quantity: newQuantity };
-                          }
-                          return prevItem;
-                        })
-                      );
-                    }}
+                    readOnly
                     min="1"
                     max="10"
                   />
@@ -202,21 +180,13 @@ const CheckOut = () => {
                       width: "50px",
                       height: "40px",
                     }}
-                    onClick={() => handlePlusClick(item.id, item.quantity)}
+                    onClick={() => handlePlusClick(item.id)}
                   >
                     +
                   </button>
                 </div>
               </div>
 
-              {/* <h4> Qty:{item.quantity}</h4>
-              <select>
-                <option value="2">2</option>
-
-                <option value="3">3</option>
-
-                <option value="4">4</option>
-              </select> */}
               <div>
                 <img
                   src={item.image}
@@ -228,6 +198,7 @@ const CheckOut = () => {
           </div>
         ))}
 
+        {/* Coupon Section */}
         <div>
           <input
             type="text"
@@ -283,6 +254,7 @@ const CheckOut = () => {
           )}
         </div>
 
+        {/* Subtotal */}
         <h5 style={{ marginLeft: "25px" }}>
           <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
             SUBTOTAL{" "}
@@ -296,6 +268,8 @@ const CheckOut = () => {
           </span>
         </h5>
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
+
+        {/* VAT */}
         <h5 style={{ marginLeft: "25px" }}>
           <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
             VAT (5%){" "}
@@ -311,6 +285,8 @@ const CheckOut = () => {
           </span>
         </h5>
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
+
+        {/* Total Price */}
         <h3 style={{ marginLeft: "25px" }}>
           <span style={{}}>
             Total Price:{" "}
@@ -336,6 +312,7 @@ const CheckOut = () => {
           )}
         </h3>
 
+        {/* Place Order Button */}
         <Link to="/thankyou">
           <button
             className="product-details-add-to-cart-btn"

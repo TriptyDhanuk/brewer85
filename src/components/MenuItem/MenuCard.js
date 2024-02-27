@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import "../ProductCard/ProductCard.css";
 import "boxicons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart, saveForLater } from "../../features/cart/cartSlice";
-import { useSelector } from "react-redux";
 import { selectCartItems } from "../../features/cart/selectors";
+import { Link } from "react-router-dom";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
   const cartItems = useSelector(selectCartItems);
-  const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
 
-  const handleAdd = () => {
-    setIsAdded(true);
-  };
+  const existingCartItem = cartItems.find((item) => item.id === id);
 
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
   };
 
-  const handleAddToCart = () => {
-    setIsAdded(true);
+  const handleMinusClick = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
+  const handleAddToCart = () => {
     const item = {
       id,
       image,
@@ -39,7 +40,8 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     );
 
     if (existingItemIndex !== -1) {
-      existingItems[existingItemIndex].quantity += 1;
+      // Item is already in the cart, update its quantity
+      existingItems[existingItemIndex].quantity += quantity;
     } else {
       existingItems.push(item);
     }
@@ -50,20 +52,46 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     console.log("Item added to cart:", item);
   };
 
-  const handleMinusClick = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  // const handleAddToCart = () => {
+  //   if (existingCartItem) {
+  //     // Item is already in the cart, navigate to the cart page
+  //     window.location.href = "/checkout";
+  //   } else {
+  //     const item = {
+  //       id,
+  //       image,
+  //       name,
+  //       price,
+  //       discount,
+  //       quantity,
+  //     };
+
+  //     const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  //     const existingItemIndex = existingItems.findIndex(
+  //       (existingItem) => existingItem.id === id
+  //     );
+
+  //     if (existingItemIndex !== -1) {
+  //       // Item is already in the cart, update its quantity
+  //       existingItems[existingItemIndex].quantity += quantity;
+  //     } else {
+  //       // Item is not in the cart, add it as a new item
+  //       existingItems.push(item);
+  //     }
+
+  //     localStorage.setItem("cartItems", JSON.stringify(existingItems));
+  //     dispatch(addToCart(item));
+
+  //     console.log("Item added to cart:", item);
+  //   }
+  // };
 
   const handleImgClick = () => {
     window.location.href = "/details";
   };
 
-  // Define saveForLaterItem function properly
   const saveForLaterItem = () => {
     const item = {
-      // Define item here
       id,
       image,
       name,
@@ -72,7 +100,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       quantity,
     };
     dispatch(saveForLater(item));
-    console.log("Item saved for later:", item); // Log the item saved for later
+    console.log("Item saved for later:", item);
   };
 
   return (
@@ -137,7 +165,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
                   style={{ width: "30px" }}
                   type="text"
                   value={quantity}
-                  // onChange={handleInputChange}
+                  readOnly
                 />
                 <button
                   style={{
@@ -165,54 +193,37 @@ const MenuCard = ({ id, image, name, price, discount }) => {
               >
                 ADD
               </button>
-            </div>
-            {/* {isAdded ? (
-              <div className="quantity-button">
+              {/* {existingCartItem ? (
+                <Link to="/checkout">
+                  <button
+                    style={{
+                      border: "1px solid green",
+                      color: "green",
+                      backgroundColor: "white",
+                      width: "100px",
+                      height: "40px",
+                      marginLeft: "7rem",
+                    }}
+                  >
+                    GO TO CART
+                  </button>
+                </Link>
+              ) : (
                 <button
                   style={{
                     border: "1px solid green",
-                    color: "white",
-                    backgroundColor: "#f35353",
+                    color: "green",
+                    backgroundColor: "white",
                     width: "100px",
                     height: "40px",
-                  }}
-                  onClick={handleMinusClick}
-                >
-                  -
-                </button>
-                <input
-                  style={{ width: "30px" }}
-                  type="text"
-                  value={quantity}
-                  // onChange={handleInputChange}
-                />
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "white",
-                    backgroundColor: "#7ad17a",
-                    width: "100px",
-                    height: "40px",
+                    marginLeft: "7rem",
                   }}
                   onClick={handleAddToCart}
                 >
-                  +
+                  ADD
                 </button>
-              </div>
-            ) : (
-              <button
-                style={{
-                  border: "1px solid green",
-                  color: "green",
-                  backgroundColor: "white",
-                  width: "100px",
-                  height: "40px",
-                }}
-                onClick={handleAdd}
-              >
-                ADD
-              </button>
-            )} */}
+              )} */}
+            </div>
           </div>
         </div>
       </div>

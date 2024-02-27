@@ -13,7 +13,7 @@ import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
 import ProductCard from "../ProductCard/ProductCard";
-
+import Wishlist from "../../components/Wishlist";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -220,6 +220,7 @@ const Home = () => {
             <h4 className="">Home</h4>
           </div>
           {/* <box-icon name="cart"></box-icon> */}
+          <Wishlist />
           <CartIconBadge />
         </nav>
       </div>

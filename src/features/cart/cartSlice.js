@@ -1,8 +1,8 @@
-// cartSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
+  savedForLater: [],
 };
 
 export const cartSlice = createSlice({
@@ -36,10 +36,21 @@ export const cartSlice = createSlice({
       const itemIdToSave = action.payload;
       const itemToSave = state.items.find((item) => item.id === itemIdToSave);
       if (itemToSave) {
+        // Remove item from items array
+        const updatedItems = state.items.filter(
+          (item) => item.id !== itemIdToSave
+        );
+        // Add item to savedForLater array
         state.savedForLater.push(itemToSave);
-        state.items = state.items.filter((item) => item.id !== itemIdToSave);
+        // Update the state with new arrays
+        return {
+          ...state,
+          items: updatedItems,
+        };
       }
+      return state; // Return current state if item was not found
     },
+
     removeFromSavedForLater: (state, action) => {
       const itemIdToRemove = action.payload;
       state.savedForLater = state.savedForLater.filter(
@@ -59,6 +70,8 @@ export const {
 } = cartSlice.actions;
 
 export const selectCartItems = (state) => state.cart.items;
+
+export const selectSavedForLaterItems = (state) => state.cart.savedForLater;
 
 export const selectCartTotalItems = (state) => state.cart.items.length;
 

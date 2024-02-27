@@ -5,24 +5,24 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateCart } from "../../features/cart/cartSlice";
-
-import { saveForLater } from "../../features/cart/cartSlice";
-
 import {
   selectCartItems,
   clearCart,
   removeFromCart,
 } from "../../features/cart/cartSlice";
 
-const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
-  const cartItems = useSelector(selectCartItems);
-  const [couponCode, setCouponCode] = useState("");
+import { removeFromSavedForLater } from "../../features/cart/cartSlice";
+import { selectSavedForLaterItems } from "../../features/cart/cartSlice";
 
+const SaveForLater = () => {
+  const cartItems = useSelector(selectSavedForLaterItems) ?? [];
+
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const VAT_RATE = 0.05;
   const [invalidCoupon, setInvalidCoupon] = useState(false);
-  const [appliedCoupon, setAppliedCoupon] = useState("");
-  const [couponApplied, setCouponApplied] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,15 +51,22 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
   };
 
   const handleMinusClick = (itemId) => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (item.id === itemId && item.quantity > 1) {
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
-      }
-      return item;
-    });
+    const updatedCartItems = cartItems
+      .map((item) => {
+        if (item.id === itemId) {
+          if (item.quantity > 1) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          } else {
+            return null;
+          }
+        }
+        return item;
+      })
+      .filter((item) => item !== null);
+
     dispatch(updateCart(updatedCartItems));
   };
 
@@ -74,32 +81,9 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
   const handleGoBack = () => {
     window.history.back();
   };
-  const handleAddToCart = () => {
-    const item = {
-      id,
-      image,
-      name,
-      price,
-      discount,
-      quantity,
-    };
 
-    const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const existingItemIndex = existingItems.findIndex(
-      (existingItem) => existingItem.id === id
-    );
-
-    if (existingItemIndex !== -1) {
-      // Item is already in the cart, update its quantity
-      existingItems[existingItemIndex].quantity += quantity;
-    } else {
-      existingItems.push(item);
-    }
-
-    localStorage.setItem("cartItems", JSON.stringify(existingItems));
-    dispatch(saveForLater(item));
-
-    console.log("Item added to cart:", item);
+  const handlePlaceOrder = () => {
+    dispatch(clearCart());
   };
 
   return (
@@ -149,23 +133,9 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
                   <span onClick={() => handleRemoveItem(item.id)}>
                     <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
                   </span>
-                  <button
-                    style={{
-                      border: "1px solid green",
-                      color: "green",
-                      backgroundColor: "white",
-                      width: "100px",
-                      height: "40px",
-                      marginLeft: "7rem",
-                    }}
-                    onClick={handleAddToCart}
-                  >
-                    ADD
-                  </button>
                 </div>
               </div>
             </div>
-
             <div className="item-actions">
               <div>
                 <label htmlFor={`qty-${item.id}`}>

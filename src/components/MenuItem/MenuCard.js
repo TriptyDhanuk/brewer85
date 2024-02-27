@@ -99,7 +99,15 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       discount,
       quantity,
     };
+
+    // Dispatch action to save item for later
     dispatch(saveForLater(item));
+
+    // Update local storage
+    const savedItems = JSON.parse(localStorage.getItem("savedForLater")) || [];
+    savedItems.push(item);
+    localStorage.setItem("savedForLater", JSON.stringify(savedItems));
+
     console.log("Item saved for later:", item);
   };
 

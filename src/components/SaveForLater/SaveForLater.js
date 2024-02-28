@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import "../Checkout/Checkout.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, updateCart } from "../../features/cart/cartSlice";
 import CartIconBadge from "../CartIconBadge";
-import { saveForLater } from "../../features/cart/cartSlice";
 
 // import {
 //   selectCartItems,
@@ -16,6 +15,7 @@ import { saveForLater } from "../../features/cart/cartSlice";
 import {
   selectSavedForLaterItems,
   removeFromWishlist,
+  updateWishlist,
 } from "../../features/cart/wishlistSlice";
 
 const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
@@ -60,21 +60,41 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
       }
       return item;
     });
-    dispatch(updateCart(updatedCartItems));
+    dispatch(updateWishlist(updatedCartItems));
   };
 
   const handleMinusClick = (itemId) => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (item.id === itemId && item.quantity > 1) {
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
-      }
-      return item;
-    });
-    dispatch(updateCart(updatedCartItems));
+    const updatedCartItems = cartItems
+      .map((item) => {
+        if (item.id === itemId) {
+          if (item.quantity > 1) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          } else {
+            return null;
+          }
+        }
+        return item;
+      })
+      .filter((item) => item !== null);
+
+    dispatch(updateWishlist(updatedCartItems));
   };
+
+  // const handleMinusClick = (itemId) => {
+  //   const updatedCartItems = cartItems.map((item) => {
+  //     if (item.id === itemId && item.quantity > 1) {
+  //       return {
+  //         ...item,
+  //         quantity: item.quantity - 1,
+  //       };
+  //     }
+  //     return item;
+  //   });
+  //   dispatch(updateWishlist(updatedCartItems));
+  // };
 
   const handleRemoveItem = (itemId) => {
     dispatch(removeFromWishlist(itemId));
@@ -92,8 +112,7 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
       dispatch(
         addToCart({
           ...clickedItem,
-          quantity:
-            clickedItem.quantity + cartItems[existingItemIndex].quantity,
+          quantity: clickedItem.quantity,
         })
       );
     } else {

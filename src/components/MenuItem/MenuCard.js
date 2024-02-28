@@ -5,11 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
 import { addToWishlist } from "../../features/cart/wishlistSlice";
 import { selectCartItems } from "../../features/cart/selectors";
+import WishlistNotification from "../Notificaiton/WishlistNotification.js";
+import Notification from "../Notificaiton/Notification.js";
 import { Link } from "react-router-dom";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
   const cartItems = useSelector(selectCartItems);
   const [quantity, setQuantity] = useState(1);
+  const [notification, setNotification] = useState(null);
+  const [wishlistNoti, setWishlistNoti]=useState(null);
 
   const dispatch = useDispatch();
 
@@ -49,6 +53,10 @@ const MenuCard = ({ id, image, name, price, discount }) => {
 
     localStorage.setItem("cartItems", JSON.stringify(existingItems));
     dispatch(addToCart(item));
+    setNotification({ name: item.name, quantity: quantity });
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
 
     console.log("Item added to cart:", item);
   };
@@ -101,6 +109,10 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       quantity,
     };
     dispatch(addToWishlist(item));
+    setWishlistNoti({ name: item.name });
+    setTimeout(() => {
+      setWishlistNoti(null);
+    }, 3000);
     console.log("Item saved for later:", item);
   };
 
@@ -228,6 +240,13 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           </div>
         </div>
       </div>
+      {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
+      {notification && (
+        <Notification
+          quantity={notification.quantity}
+          productName={notification.name}
+        />
+      )}
     </div>
   );
 };

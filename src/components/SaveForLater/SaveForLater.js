@@ -4,15 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateCart, saveForLater } from "../../features/cart/cartSlice";
+import { updateCart } from "../../features/cart/cartSlice";
+
+import { saveForLater } from "../../features/cart/cartSlice";
+
+// import {
+//   selectCartItems,
+//   clearCart,
+//   removeFromCart,
+// } from "../../features/cart/cartSlice";
 import {
   selectSavedForLaterItems,
-  clearCart,
-  removeFromCart,
-} from "../../features/cart/cartSlice";
+  removeFromWishlist,
+} from "../../features/cart/wishlistSlice";
 
-const SaveForLater = () => {
-  const savedForLaterItems = useSelector(selectSavedForLaterItems);
+const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
+  const cartItems = useSelector(selectSavedForLaterItems);
+  const [couponCode, setCouponCode] = useState("");
 
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
@@ -68,7 +76,7 @@ const SaveForLater = () => {
   };
 
   const handleRemoveItem = (itemId) => {
-    dispatch(removeFromCart(itemId));
+    dispatch(removeFromWishlist(itemId));
   };
 
   const handleSaveForLater = (itemId) => {

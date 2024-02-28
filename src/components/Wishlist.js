@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectSavedForLaterTotalItems } from "../features/cart/cartSlice";
+import { selectWishlistTotalItems } from "../features/cart/wishlistSlice";
 
 const Wishlist = () => {
-  const savedForLaterItems = useSelector(selectSavedForLaterTotalItems);
-  const totalItems = savedForLaterItems ? savedForLaterItems.length : 0;
+  const totalItems = useSelector(selectWishlistTotalItems);
+  console.log("totalItems for wishlist", totalItems);
 
   return (
     <Link to="/wishlist" className="wishlist-icon-container">

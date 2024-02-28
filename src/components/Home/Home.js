@@ -220,8 +220,10 @@ const Home = () => {
             <h4 className="">Home</h4>
           </div>
           {/* <box-icon name="cart"></box-icon> */}
-          <Wishlist />
-          <CartIconBadge />
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Wishlist style={{ marginRight: "10px" }} />
+            <CartIconBadge />
+          </div>
         </nav>
       </div>
       <Slider {...settingsMy}>

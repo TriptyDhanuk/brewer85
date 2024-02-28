@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "../Checkout/Checkout.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, updateCart } from "../../features/cart/cartSlice";
 import CartIconBadge from "../CartIconBadge";
-
+import Notification from "../Notificaiton/Notification";
+import RemoveNotification from "../Notificaiton/RemoveNotification";
 // import {
 //   selectCartItems,
 //   clearCart,
@@ -21,6 +21,8 @@ import {
 const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
   const cartItems = useSelector(selectSavedForLaterItems);
   const [subtotal, setSubtotal] = useState(0);
+  const [notification, setNotification] = useState(null);
+  const [isRemoved, setIsRemoved] = useState(false);
   const VAT_RATE = 0.05;
 
   const dispatch = useDispatch();
@@ -73,6 +75,10 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
               quantity: item.quantity - 1,
             };
           } else {
+            setIsRemoved(true);
+            setTimeout(() => {
+              setIsRemoved(false);
+            }, 3000);
             return null;
           }
         }
@@ -98,6 +104,10 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
 
   const handleRemoveItem = (itemId) => {
     dispatch(removeFromWishlist(itemId));
+    setIsRemoved(true);
+    setTimeout(() => {
+      setIsRemoved(false);
+    }, 3000);
   };
 
   const handleGoBack = () => {
@@ -115,6 +125,13 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
           quantity: clickedItem.quantity,
         })
       );
+      setNotification({
+        name: clickedItem.name,
+        quantity: clickedItem.quantity,
+      });
+      setTimeout(() => {
+        setNotification(null);
+      }, 3000);
     } else {
       dispatch(addToCart(clickedItem));
     }
@@ -242,6 +259,13 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
           </div>
         ))}
       </div>
+      {notification && (
+        <Notification
+          quantity={notification.quantity}
+          productName={notification.name}
+        />
+      )}
+      {isRemoved && <RemoveNotification />}
     </div>
   );
 };

@@ -100,15 +100,22 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       quantity,
     };
 
-    // Dispatch action to save item for later
+    const existingItems = JSON.parse(localStorage.getItem("saveLater")) || [];
+    const existingItemIndex = existingItems.findIndex(
+      (existingItem) => existingItem.id === id
+    );
+
+    if (existingItemIndex !== -1) {
+      // Item is already in the cart, update its quantity
+      existingItems[existingItemIndex].quantity += quantity;
+    } else {
+      existingItems.push(item);
+    }
+
+    localStorage.setItem("saveLater", JSON.stringify(existingItems));
     dispatch(saveForLater(item));
 
-    // Update local storage
-    const savedItems = JSON.parse(localStorage.getItem("savedForLater")) || [];
-    savedItems.push(item);
-    localStorage.setItem("savedForLater", JSON.stringify(savedItems));
-
-    console.log("Item saved for later:", item);
+    console.log("Item added to cart:", item);
   };
 
   return (

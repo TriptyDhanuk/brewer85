@@ -6,14 +6,16 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateCart, saveForLater } from "../../features/cart/cartSlice";
 import {
-  selectCartItems,
+  selectSavedForLaterItems,
   clearCart,
   removeFromCart,
 } from "../../features/cart/cartSlice";
 
 const SaveForLater = () => {
-  const cartItems = useSelector(selectCartItems);
+  const savedForLaterItems = useSelector(selectSavedForLaterItems);
+  console.log("itemsSaved", savedForLaterItems);
   const [couponCode, setCouponCode] = useState("");
+  const [savedItems, setSavedItems] = useState([]);
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const VAT_RATE = 0.05;
@@ -22,11 +24,19 @@ const SaveForLater = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const subTotal = cartItems.reduce((total, item) => {
-      return total + item.price * item.quantity;
-    }, 0);
-    setSubtotal(subTotal);
-  }, [cartItems]);
+    if (savedItems) {
+      const subTotal = savedItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+      setSubtotal(subTotal);
+    }
+  }, [savedItems]);
+
+  useEffect(() => {
+    // Retrieve items from local storage
+    const savedItems = JSON.parse(localStorage.getItem("saveLater")) || [];
+    setSavedItems(savedItems);
+  }, []);
 
   useEffect(() => {
     const VAT = subtotal * VAT_RATE;
@@ -34,7 +44,7 @@ const SaveForLater = () => {
   }, [subtotal, discount]);
 
   const handlePlusClick = (itemId) => {
-    const updatedCartItems = cartItems.map((item) => {
+    const updatedCartItems = savedItems.map((item) => {
       if (item.id === itemId) {
         return {
           ...item,
@@ -47,7 +57,7 @@ const SaveForLater = () => {
   };
 
   const handleMinusClick = (itemId) => {
-    const updatedCartItems = cartItems
+    const updatedCartItems = savedItems
       .map((item) => {
         if (item.id === itemId) {
           if (item.quantity > 1) {
@@ -71,8 +81,8 @@ const SaveForLater = () => {
   };
 
   const handleSaveForLater = (itemId) => {
-    const itemToSave = cartItems.find((item) => item.id === itemId);
-    dispatch(saveForLater(itemToSave)); // Dispatch saveForLater action
+    const itemToSave = savedItems.find((item) => item.id === itemId);
+    dispatch(saveForLater(itemToSave));
   };
 
   const handleGoBack = () => {
@@ -94,98 +104,102 @@ const SaveForLater = () => {
       </nav>
 
       <div className="items-container">
-        {cartItems.map((item) => (
-          <div key={item.id} className="item">
-            <div className="item-details">
-              <div className="product-details">
-                <h3>{item.name}</h3>
-                <p style={{ color: "grey", font: "bold" }}>
-                  yahoo comidia
-                </p>{" "}
-                <div className="price-tag">
-                  <p style={{ fontSize: "0.8rem", margin: "0" }}>
-                    <strong>
-                      AED{" "}
-                      <span style={{ fontSize: "1.2rem" }}>{item.price}</span>
-                    </strong>
-                  </p>
+        {savedItems &&
+          savedItems.map((item) => (
+            <div key={item.id} className="item">
+              <div className="item-details">
+                <div className="product-details">
+                  <h3>{item.name}</h3>
+                  <p style={{ color: "grey", font: "bold" }}>
+                    yahoo comidia
+                  </p>{" "}
+                  <div className="price-tag">
+                    <p style={{ fontSize: "0.8rem", margin: "0" }}>
+                      <strong>
+                        AED{" "}
+                        <span style={{ fontSize: "1.2rem" }}>{item.price}</span>
+                      </strong>
+                    </p>
 
-                  <p
-                    style={{
-                      color: "red",
-                      margin: "0 8px",
-                      padding: "0 4px",
-                      fontWeight: "bold",
-                      fontSize: "1em",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {item.discount}
-                  </p>
-                </div>
-                <div className="icons" style={{ display: "flex" }}>
-                  <span onClick={() => handleSaveForLater(item.id)}>
-                    <box-icon type="solid" name="bookmark-star"></box-icon>
-                  </span>
-                  <span onClick={() => handleRemoveItem(item.id)}>
-                    <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
-                  </span>
+                    <p
+                      style={{
+                        color: "red",
+                        margin: "0 8px",
+                        padding: "0 4px",
+                        fontWeight: "bold",
+                        fontSize: "1em",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.discount}
+                    </p>
+                  </div>
+                  <div className="icons" style={{ display: "flex" }}>
+                    <span onClick={() => handleSaveForLater(item.id)}>
+                      <box-icon type="solid" name="bookmark-star"></box-icon>
+                    </span>
+                    <span onClick={() => handleRemoveItem(item.id)}>
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        style={{ Color: "gray" }}
+                      />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="item-actions">
-              <div>
-                <label htmlFor={`qty-${item.id}`}>
-                  <b> Qty:</b>
-                </label>
-                <div className="" style={{ display: "flex" }}>
-                  <button
-                    style={{
-                      border: "1px solid green",
-                      color: "black",
-                      backgroundColor: "white",
-                      width: "50px",
-                      height: "40px",
-                    }}
-                    onClick={() => handleMinusClick(item.id)}
-                  >
-                    -
-                  </button>
+              <div className="item-actions">
+                <div>
+                  <label htmlFor={`qty-${item.id}`}>
+                    <b> Qty:</b>
+                  </label>
+                  <div className="" style={{ display: "flex" }}>
+                    <button
+                      style={{
+                        border: "1px solid green",
+                        color: "black",
+                        backgroundColor: "white",
+                        width: "50px",
+                        height: "40px",
+                      }}
+                      onClick={() => handleMinusClick(item.id)}
+                    >
+                      -
+                    </button>
 
-                  <input
-                    type="number"
-                    style={{ width: "50px", height: "40px" }}
-                    id={`qty-${item.id}`}
-                    value={item.quantity}
-                    readOnly
-                    min="1"
-                    max="10"
+                    <input
+                      type="number"
+                      style={{ width: "50px", height: "40px" }}
+                      id={`qty-${item.id}`}
+                      value={item.quantity}
+                      readOnly
+                      min="1"
+                      max="10"
+                    />
+                    <button
+                      style={{
+                        border: "1px solid green",
+                        color: "black",
+                        backgroundColor: "white",
+                        width: "50px",
+                        height: "40px",
+                      }}
+                      onClick={() => handlePlusClick(item.id)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={{ height: "134px", width: "141px" }}
                   />
-                  <button
-                    style={{
-                      border: "1px solid green",
-                      color: "black",
-                      backgroundColor: "white",
-                      width: "50px",
-                      height: "40px",
-                    }}
-                    onClick={() => handlePlusClick(item.id)}
-                  >
-                    +
-                  </button>
                 </div>
               </div>
-
-              <div>
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{ height: "134px", width: "141px" }}
-                />
-              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

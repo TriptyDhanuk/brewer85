@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCartItems } from "../features/cart/cartSlice";
+import { selectSavedForLaterTotalItems } from "../features/cart/cartSlice";
 
 const Wishlist = () => {
-  const savedForLaterItems = useSelector(selectCartItems);
+  const savedForLaterItems = useSelector(selectSavedForLaterTotalItems);
   const totalItems = savedForLaterItems ? savedForLaterItems.length : 0;
 
   return (

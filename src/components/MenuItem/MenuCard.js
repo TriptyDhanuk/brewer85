@@ -87,7 +87,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   // };
 
   const handleImgClick = () => {
-    window.location.href = "/details";
+    window.location.href = `/details/${id}`;
   };
 
   const saveForLaterItem = () => {

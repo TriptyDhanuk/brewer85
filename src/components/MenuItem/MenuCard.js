@@ -38,7 +38,6 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     }
 
     setSavedForLater(!isItemSaved);
-    localStorage.setItem("isItemSaved", JSON.stringify(isItemSaved));
   };
 
   console.log("savedForLater", savedForLater);
@@ -142,6 +141,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
         <div className="product-details">
           <h3>
             {name}
+            {id}
           </h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
           <div className="price-tag">

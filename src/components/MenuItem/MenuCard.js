@@ -10,9 +10,11 @@ import {
 import { selectCartItems } from "../../features/cart/selectors";
 import WishlistNotification from "../Notificaiton/WishlistNotification.js";
 import Notification from "../Notificaiton/Notification.js";
+import { selectSavedForLaterItems } from "../../features/cart/wishlistSlice";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
   const cartItems = useSelector(selectCartItems);
+  const SaveItems = useSelector(selectSavedForLaterItems);
   const [quantity, setQuantity] = useState(1);
   const [notification, setNotification] = useState(null);
   const [wishlistNoti, setWishlistNoti] = useState(null);
@@ -21,10 +23,11 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   const [savedForLater, setSavedForLater] = useState(false);
 
   const toggleSavedForLater = () => {
-    const isItemSaved = cartItems.some((item) => item.id === id);
+    const isItemSaved = SaveItems.some((item) => item.id === id);
 
     if (isItemSaved) {
       dispatch(removeFromWishlist(id));
+      setSavedForLater(false);
     } else {
       const itemToAdd = {
         id: id,
@@ -35,9 +38,8 @@ const MenuCard = ({ id, image, name, price, discount }) => {
         image: image,
       };
       dispatch(addToWishlist(itemToAdd));
+      setSavedForLater(true);
     }
-
-    setSavedForLater(!isItemSaved);
   };
 
   console.log("savedForLater", savedForLater);
@@ -107,7 +109,20 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   return (
     <div style={{ position: "relative" }}>
       <div className="product-card">
-        {savedForLater ? (
+        <button
+          className={savedForLater ? "selected" : ""}
+          style={{
+            color: savedForLater ? "pink" : "black",
+            backgroundColor: savedForLater ? "pink" : "white",
+            position: "absolute",
+            right: "15px",
+          }}
+          onClick={toggleSavedForLater}
+        >
+          <box-icon name="heart"></box-icon>
+        </button>
+
+        {/* {savedForLater ? (
           <button
             style={{
               color: "pink",
@@ -123,7 +138,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           <button
             style={{
               color: "pink",
-              backgroundColor: "#d7358b",
+              backgroundColor: "transparent",
               position: "absolute",
               right: "15px",
             }}
@@ -131,7 +146,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           >
             <box-icon name="heart"></box-icon>
           </button>
-        )}
+        )} */}
         <img
           src={image}
           alt={name}

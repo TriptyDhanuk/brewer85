@@ -34,7 +34,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  savedForLater: [], // Initialize savedForLater as an empty array
+  savedForLater: [],
 };
 
 export const wishlistSlice = createSlice({

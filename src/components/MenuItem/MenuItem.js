@@ -331,8 +331,10 @@ const MenuItem = () => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="">Menu Item</h4>
           </div>
-          <Wishlist />
-          <CartIconBadge />
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Wishlist style={{ marginRight: "10px" }} />
+            <CartIconBadge />
+          </div>
         </nav>
       </div>
 

@@ -33,24 +33,17 @@ export const cartSlice = createSlice({
     },
 
     saveForLater: (state, action) => {
-      const itemIdToSave = action.payload;
-      const itemToSave = state.items.find((item) => item.id === itemIdToSave);
-      if (itemToSave) {
-        // Remove item from items array
-        const updatedItems = state.items.filter(
-          (item) => item.id !== itemIdToSave
-        );
-        // Add item to savedForLater array
-        state.savedForLater.push(itemToSave);
-        // Update the state with new arrays
-        return {
-          ...state,
-          items: updatedItems,
-        };
-      }
-      return state; // Return current state if item was not found
-    },
+      const itemToAdd = action.payload;
+      const existingItemIndex = state.items.findIndex(
+        (item) => item.id === itemToAdd.id
+      );
 
+      if (existingItemIndex !== -1) {
+        state.items[existingItemIndex].quantity += itemToAdd.quantity;
+      } else {
+        state.items.push(itemToAdd);
+      }
+    },
     removeFromSavedForLater: (state, action) => {
       const itemIdToRemove = action.payload;
       state.savedForLater = state.savedForLater.filter(
@@ -70,9 +63,9 @@ export const {
 } = cartSlice.actions;
 
 export const selectCartItems = (state) => state.cart.items;
-
 export const selectSavedForLaterItems = (state) => state.cart.savedForLater;
-
 export const selectCartTotalItems = (state) => state.cart.items.length;
+export const selectSavedForLaterTotalItems = (state) =>
+  state.cart.savedForLater.length;
 
 export default cartSlice.reducer;

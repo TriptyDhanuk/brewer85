@@ -30,7 +30,6 @@
 
 // export default wishlistSlice.reducer;
 
-
 // wishlistSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -43,9 +42,17 @@ export const wishlistSlice = createSlice({
   initialState,
   reducers: {
     addToWishlist: (state, action) => {
-      const itemToAdd = action.payload;
-      state.savedForLater.push(itemToAdd);
+      const newItem = action.payload;
+      const existingItemIndex = state.savedForLater.findIndex(
+        (item) => item.id === newItem.id
+      );
+      if (existingItemIndex !== -1) {
+        state.savedForLater[existingItemIndex].quantity = newItem.quantity;
+      } else {
+        state.savedForLater.push(newItem);
+      }
     },
+
     updateWishlist: (state, action) => {
       state.savedForLater = action.payload;
     },
@@ -70,7 +77,8 @@ export const {
 
 export const selectSavedForLaterItems = (state) => state.wishlist.savedForLater;
 
-export const selectWishlistTotalItems = (state) => state.wishlist.savedForLater.length;
-console.log("selectWishlistTotalItems",selectWishlistTotalItems);
+export const selectWishlistTotalItems = (state) =>
+  state.wishlist.savedForLater.length;
+console.log("selectWishlistTotalItems", selectWishlistTotalItems);
 
 export default wishlistSlice.reducer;

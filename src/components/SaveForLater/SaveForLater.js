@@ -64,17 +64,37 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
   };
 
   const handleMinusClick = (itemId) => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (item.id === itemId && item.quantity > 1) {
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
-      }
-      return item;
-    });
+    const updatedCartItems = cartItems
+      .map((item) => {
+        if (item.id === itemId) {
+          if (item.quantity > 1) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          } else {
+            return null;
+          }
+        }
+        return item;
+      })
+      .filter((item) => item !== null);
+
     dispatch(updateWishlist(updatedCartItems));
   };
+
+  // const handleMinusClick = (itemId) => {
+  //   const updatedCartItems = cartItems.map((item) => {
+  //     if (item.id === itemId && item.quantity > 1) {
+  //       return {
+  //         ...item,
+  //         quantity: item.quantity - 1,
+  //       };
+  //     }
+  //     return item;
+  //   });
+  //   dispatch(updateWishlist(updatedCartItems));
+  // };
 
   const handleRemoveItem = (itemId) => {
     dispatch(removeFromWishlist(itemId));

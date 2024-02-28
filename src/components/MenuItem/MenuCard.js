@@ -28,6 +28,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     if (isItemSaved) {
       dispatch(removeFromWishlist(id));
       setSavedForLater(false);
+      localStorage.setItem("savedForLater", savedForLater);
     } else {
       const itemToAdd = {
         id: id,
@@ -39,6 +40,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       };
       dispatch(addToWishlist(itemToAdd));
       setSavedForLater(true);
+      localStorage.setItem("savedForLater", savedForLater);
     }
   };
 
@@ -110,9 +112,9 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     <div style={{ position: "relative" }}>
       <div className="product-card">
         <button
-          className={savedForLater ? "selected" : ""}
+          className={!savedForLater ? "selected" : ""}
           style={{
-            color: savedForLater ? "pink" : "black",
+            color: savedForLater ? "pink" : "white",
             backgroundColor: savedForLater ? "pink" : "white",
             position: "absolute",
             right: "15px",

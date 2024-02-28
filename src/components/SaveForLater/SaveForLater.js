@@ -34,8 +34,6 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
     }))
   );
 
-  console.log("Cart items in JSON format:", cartItemsJSON);
-
   useEffect(() => {
     const subTotal = cartItems.reduce((total, item) => {
       return total + item.price * item.quantity;

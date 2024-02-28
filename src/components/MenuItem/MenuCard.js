@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../ProductCard/ProductCard.css";
 import "boxicons";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, saveForLater } from "../../features/cart/cartSlice";
+import { addToCart } from "../../features/cart/cartSlice";
+import { addToWishlist } from "../../features/cart/wishlistSlice";
 import { selectCartItems } from "../../features/cart/selectors";
 import { Link } from "react-router-dom";
 
@@ -99,7 +100,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       discount,
       quantity,
     };
-    dispatch(saveForLater(item));
+    dispatch(addToWishlist(item));
     console.log("Item saved for later:", item);
   };
 

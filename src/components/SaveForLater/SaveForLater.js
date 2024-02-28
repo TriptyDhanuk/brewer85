@@ -8,14 +8,15 @@ import { updateCart } from "../../features/cart/cartSlice";
 
 import { saveForLater } from "../../features/cart/cartSlice";
 
-import {
-  selectCartItems,
-  clearCart,
-  removeFromCart,
-} from "../../features/cart/cartSlice";
+// import {
+//   selectCartItems,
+//   clearCart,
+//   removeFromCart,
+// } from "../../features/cart/cartSlice";
+import {selectSavedForLaterItems, removeFromWishlist} from "../../features/cart/wishlistSlice";
 
 const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
-  const cartItems = useSelector(selectCartItems);
+  const cartItems = useSelector(selectSavedForLaterItems);
   const [couponCode, setCouponCode] = useState("");
 
   const [subtotal, setSubtotal] = useState(0);
@@ -64,7 +65,7 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
   };
 
   const handleRemoveItem = (itemId) => {
-    dispatch(removeFromCart(itemId));
+    dispatch(removeFromWishlist(itemId));
   };
 
   const handleSaveForLater = (itemId) => {

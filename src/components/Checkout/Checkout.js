@@ -10,6 +10,7 @@ import {
   clearCart,
   removeFromCart,
 } from "../../features/cart/cartSlice";
+import RemoveNotification from "../Notificaiton/RemoveNotification";
 
 const CheckOut = () => {
   const cartItems = useSelector(selectCartItems);
@@ -20,6 +21,7 @@ const CheckOut = () => {
   const [invalidCoupon, setInvalidCoupon] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
+  const [isRemoved, setIsRemoved] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,6 +59,10 @@ const CheckOut = () => {
               quantity: item.quantity - 1,
             };
           } else {
+            setIsRemoved(true);
+            setTimeout(() => {
+              setIsRemoved(false);
+            }, 3000);
             return null;
           }
         }
@@ -69,6 +75,10 @@ const CheckOut = () => {
 
   const handleRemoveItem = (itemId) => {
     dispatch(removeFromCart(itemId));
+    setIsRemoved(true);
+    setTimeout(() => {
+      setIsRemoved(false);
+    }, 3000);
   };
 
   const handleSaveForLater = (itemId) => {
@@ -329,6 +339,7 @@ const CheckOut = () => {
           </button>
         </Link>
       </div>
+      {isRemoved && <RemoveNotification/>}
     </div>
   );
 };

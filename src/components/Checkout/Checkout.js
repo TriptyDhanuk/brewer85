@@ -48,21 +48,23 @@ const CheckOut = () => {
   };
 
   const handleMinusClick = (itemId) => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (item.id === itemId) {
-        if (item.quantity > 1) {
-          return {
-            ...item,
-            quantity: item.quantity - 1,
-          };
-        } else {
-          return null; 
+    const updatedCartItems = cartItems
+      .map((item) => {
+        if (item.id === itemId) {
+          if (item.quantity > 1) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          } else {
+            return null;
+          }
         }
-      }
-      return item;
-    }).filter(item => item !== null); 
-  
-    dispatch(updateCart(updatedCartItems)); 
+        return item;
+      })
+      .filter((item) => item !== null);
+
+    dispatch(updateCart(updatedCartItems));
   };
 
   const handleRemoveItem = (itemId) => {
@@ -317,7 +319,6 @@ const CheckOut = () => {
           )}
         </h3>
 
-        {/* Place Order Button */}
         <Link to="/thankyou">
           <button
             className="product-details-add-to-cart-btn"

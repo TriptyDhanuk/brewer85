@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
@@ -10,15 +10,13 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const itemToAdd = action.payload;
-      const existingItemIndex = state.items.findIndex(
-        (item) => item.id === itemToAdd.id
-      );
+      const { id, quantity } = action.payload;
+      const existingItem = state.items.find((item) => item.id === id);
 
-      if (existingItemIndex !== -1) {
-        state.items[existingItemIndex].quantity += itemToAdd.quantity;
+      if (existingItem) {
+        existingItem.quantity += quantity;
       } else {
-        state.items.push(itemToAdd);
+        state.items.push(action.payload);
       }
     },
     updateCart: (state, action) => {
@@ -34,14 +32,14 @@ export const cartSlice = createSlice({
 
     saveForLater: (state, action) => {
       const itemToAdd = action.payload;
-      const existingItemIndex = state.items.findIndex(
+      const existingItemIndex = state.savedForLater.findIndex(
         (item) => item.id === itemToAdd.id
       );
 
       if (existingItemIndex !== -1) {
-        state.items[existingItemIndex].quantity += itemToAdd.quantity;
+        state.savedForLater[existingItemIndex].quantity += itemToAdd.quantity;
       } else {
-        state.items.push(itemToAdd);
+        state.savedForLater.push(itemToAdd);
       }
     },
     removeFromSavedForLater: (state, action) => {
@@ -66,6 +64,6 @@ export const selectCartItems = (state) => state.cart.items;
 export const selectSavedForLaterItems = (state) => state.cart.savedForLater;
 export const selectCartTotalItems = (state) => state.cart.items.length;
 export const selectSavedForLaterTotalItems = (state) =>
-  state.cart.savedForLater.length;
+  state.cart.savedForLater;
 
 export default cartSlice.reducer;

@@ -3,98 +3,118 @@ import "./Checkout.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-
-import image1 from "../../images/image1.png";
-import image2 from "../../images/image2.png";
-import image3 from "../../images/image3.png";
-import image4 from "../../images/image4.png";
-import burger from "../../images/burger.png";
-import shakes from "../../images/shakes.png";
-import searchIcon from "../../images/searchIcon.png";
-import ProductCard from "../ProductCard/ProductCard";
-import noodles from "../../images/noodles.png";
-import drinks from "../../images/drinks.png";
+import { useSelector, useDispatch } from "react-redux";
+import { updateCart } from "../../features/cart/cartSlice";
+import {
+  selectCartItems,
+  clearCart,
+  removeFromCart,
+} from "../../features/cart/cartSlice";
+import RemoveNotification from "../Notificaiton/RemoveNotification";
 
 const CheckOut = () => {
-  const [quantity, setQuantity] = useState(1);
-  const price = 30;
+  const cartItems = useSelector(selectCartItems);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const VAT_RATE = 0.05;
+  const [invalidCoupon, setInvalidCoupon] = useState(false);
+  const [appliedCoupon, setAppliedCoupon] = useState("");
+  const [couponApplied, setCouponApplied] = useState(false);
+  const [isRemoved, setIsRemoved] = useState(false);
+  const dispatch = useDispatch();
 
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      image: image1,
-      name: "Kashmiri Biryani",
-      price: "25",
-      discount: "60% off",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      image: image1,
-      name: "Hydrabadi Biryani",
-      price: "25",
-      discount: "60% off",
-      quantity: 1,
-    },
-    {
-      id: 3,
-      image: image1,
-      name: "Kolkata Special Biryani",
-      price: "25",
-      discount: "60% off",
-      quantity: 1,
-    },
-  ]);
   useEffect(() => {
-    // Calculate subtotal
-    const subTotal = items.reduce((total, item) => {
+    const subTotal = cartItems.reduce((total, item) => {
       return total + item.price * item.quantity;
     }, 0);
     setSubtotal(subTotal);
-  }, [items]);
+  }, [cartItems]);
 
-  const handlePlusClick = () => {
-    setQuantity(quantity + 1);
+  useEffect(() => {
+    const VAT = subtotal * VAT_RATE;
+    const total = subtotal + VAT - discount;
+  }, [subtotal, discount]);
+
+  const handlePlusClick = (itemId) => {
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.id === itemId) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    dispatch(updateCart(updatedCartItems));
   };
 
-  const handleMinusClick = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+  const handleMinusClick = (itemId) => {
+    const updatedCartItems = cartItems
+      .map((item) => {
+        if (item.id === itemId) {
+          if (item.quantity > 1) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          } else {
+            setIsRemoved(true);
+            setTimeout(() => {
+              setIsRemoved(false);
+            }, 3000);
+            return null;
+          }
+        }
+        return item;
+      })
+      .filter((item) => item !== null);
+
+    dispatch(updateCart(updatedCartItems));
   };
+
   const handleRemoveItem = (itemId) => {
-    setItems(items.filter((item) => item.id !== itemId));
+    dispatch(removeFromCart(itemId));
+    setIsRemoved(true);
+    setTimeout(() => {
+      setIsRemoved(false);
+    }, 3000);
   };
+
   const handleSaveForLater = (itemId) => {
     console.log("Item saved for later:", itemId);
   };
+
   const handleGoBack = () => {
     window.history.back();
   };
 
   const handleApplyCoupon = () => {
-    if (couponCode === "SAVE10") {
+    if (!couponApplied && couponCode === "SAVE10") {
       setDiscount(10);
-      alert("valid coupon code");
+      setAppliedCoupon(couponCode);
+      setCouponApplied(true);
+      setInvalidCoupon(false);
     } else {
-      alert("Invalid coupon code");
+      setInvalidCoupon(true);
     }
   };
 
-  // Calculate VAT
-  const VAT = subtotal * VAT_RATE;
+  const handleRemoveCoupon = () => {
+    setDiscount(0);
+    setAppliedCoupon("");
+    setCouponApplied(false);
+    setInvalidCoupon(false);
+  };
 
-  // Calculate total
-  const total = subtotal - discount + VAT;
+  const handlePlaceOrder = () => {
+    dispatch(clearCart());
+  };
+
   return (
     <div>
       <nav className="navbar headNav">
         <div className="logo" onClick={handleGoBack}>
-          {" "}
           <box-icon name="arrow-back"></box-icon>
           <h4 className="">Checkout</h4>
         </div>
@@ -102,12 +122,14 @@ const CheckOut = () => {
       </nav>
 
       <div className="items-container">
-        {items.map((item) => (
+        {cartItems.map((item) => (
           <div key={item.id} className="item">
             <div className="item-details">
               <div className="product-details">
                 <h3>{item.name}</h3>
-                <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
+                <p style={{ color: "grey", font: "bold" }}>
+                  yahoo comidia
+                </p>{" "}
                 <div className="price-tag">
                   <p style={{ fontSize: "0.8rem", margin: "0" }}>
                     <strong>
@@ -115,6 +137,7 @@ const CheckOut = () => {
                       <span style={{ fontSize: "1.2rem" }}>{item.price}</span>
                     </strong>
                   </p>
+
                   <p
                     style={{
                       color: "red",
@@ -133,8 +156,6 @@ const CheckOut = () => {
                     <box-icon type="solid" name="bookmark-star"></box-icon>
                   </span>
                   <span onClick={() => handleRemoveItem(item.id)}>
-                    {/* {" "}
-                    <i class="bx bx-trash bx-sm"></i> Delete */}
                     <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
                   </span>
                 </div>
@@ -145,26 +166,44 @@ const CheckOut = () => {
                 <label htmlFor={`qty-${item.id}`}>
                   <b> Qty:</b>
                 </label>
-                <input
-                  type="number"
-                  style={{ width: "50px", height: "20px" }}
-                  id={`qty-${item.id}`}
-                  value={item.quantity}
-                  onChange={(e) => {
-                    const newQuantity = parseInt(e.target.value);
-                    setItems((prevItems) =>
-                      prevItems.map((prevItem) => {
-                        if (prevItem.id === item.id) {
-                          return { ...prevItem, quantity: newQuantity };
-                        }
-                        return prevItem;
-                      })
-                    );
-                  }}
-                  min="1"
-                  max="10"
-                />
+                <div className="" style={{ display: "flex" }}>
+                  <button
+                    style={{
+                      border: "1px solid green",
+                      color: "black",
+                      backgroundColor: "white",
+                      width: "50px",
+                      height: "40px",
+                    }}
+                    onClick={() => handleMinusClick(item.id)}
+                  >
+                    -
+                  </button>
+
+                  <input
+                    type="number"
+                    style={{ width: "50px", height: "40px" }}
+                    id={`qty-${item.id}`}
+                    value={item.quantity}
+                    readOnly
+                    min="1"
+                    max="10"
+                  />
+                  <button
+                    style={{
+                      border: "1px solid green",
+                      color: "black",
+                      backgroundColor: "white",
+                      width: "50px",
+                      height: "40px",
+                    }}
+                    onClick={() => handlePlusClick(item.id)}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
+
               <div>
                 <img
                   src={item.image}
@@ -176,6 +215,7 @@ const CheckOut = () => {
           </div>
         ))}
 
+        {/* Coupon Section */}
         <div>
           <input
             type="text"
@@ -192,6 +232,7 @@ const CheckOut = () => {
             }}
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
+            disabled={couponApplied}
           />
           <button
             style={{
@@ -201,11 +242,36 @@ const CheckOut = () => {
               marginBottom: "20px",
             }}
             onClick={handleApplyCoupon}
+            disabled={couponApplied}
           >
             Apply Coupon
           </button>
+          {couponApplied && (
+            <button
+              style={{
+                backgroundColor: "#ccc",
+                height: "48px",
+                marginLeft: "10px",
+                marginBottom: "20px",
+              }}
+              onClick={handleRemoveCoupon}
+            >
+              Remove Coupon
+            </button>
+          )}
+          {invalidCoupon && (
+            <p style={{ color: "red", marginLeft: "10px" }}>Invalid Coupon</p>
+          )}
+          {couponApplied && (
+            <p style={{ marginLeft: "10px" }}>
+              {discount
+                ? `Discount Applied: AED ${discount.toFixed(2)}`
+                : "Invalid Coupon Applied"}
+            </p>
+          )}
         </div>
 
+        {/* Subtotal */}
         <h5 style={{ marginLeft: "25px" }}>
           <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
             SUBTOTAL{" "}
@@ -215,14 +281,12 @@ const CheckOut = () => {
             style={{ marginLeft: "15rem" }}
           >
             AED{" "}
-            <span style={{ fontSize: "1.2rem" }}>
-              {(quantity * price) % 1 === 0
-                ? (quantity * price).toFixed(0)
-                : (quantity * price).toFixed(2)}
-            </span>
+            <span style={{ fontSize: "1.2rem" }}>{subtotal.toFixed(2)}</span>
           </span>
         </h5>
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
+
+        {/* VAT */}
         <h5 style={{ marginLeft: "25px" }}>
           <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
             VAT (5%){" "}
@@ -233,38 +297,49 @@ const CheckOut = () => {
           >
             AED{" "}
             <span style={{ fontSize: "1.2rem" }}>
-              {(quantity * price) % 1 === 0
-                ? (quantity * price).toFixed(0)
-                : (quantity * price).toFixed(2)}
+              {(subtotal * VAT_RATE).toFixed(2)}
             </span>
           </span>
         </h5>
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
+
+        {/* Total Price */}
         <h3 style={{ marginLeft: "25px" }}>
-          <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
-            Total Price{" "}
+          <span style={{}}>
+            Total Price:{" "}
+            {couponApplied ? (
+              <span
+                style={{
+                  textDecoration: "line-through",
+                  color: "red",
+                  marginRight: "1rem",
+                  fontSize: "0.8rem",
+                }}
+              >
+                AED {(subtotal + subtotal * VAT_RATE).toFixed(2)}
+              </span>
+            ) : (
+              <span>AED {(subtotal + subtotal * VAT_RATE).toFixed(2)}</span>
+            )}
           </span>
-          <span
-            className="product-details-price"
-            style={{ marginLeft: "12rem" }}
-          >
-            AED{" "}
-            <span>
-              {(quantity * price) % 1 === 0
-                ? (quantity * price).toFixed(0)
-                : (quantity * price).toFixed(2)}
+          {couponApplied && (
+            <span style={{ fontWeight: "bold", color: "red" }}>
+              AED {(subtotal + subtotal * VAT_RATE - discount).toFixed(2)}
             </span>
-          </span>
+          )}
         </h3>
+
         <Link to="/thankyou">
           <button
             className="product-details-add-to-cart-btn"
             style={{ width: "53rem", marginLeft: "5rem" }}
+            onClick={handlePlaceOrder}
           >
             PLACE ORDER
           </button>
         </Link>
       </div>
+      {isRemoved && <RemoveNotification/>}
     </div>
   );
 };

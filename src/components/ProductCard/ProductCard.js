@@ -1,12 +1,19 @@
 import React from "react";
 import "./ProductCard.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart, saveForLater } from "../../features/cart/cartSlice";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "../../features/cart/selectors";
 
-const ProductCard = ({ image, name, price, discount }) => {
+const ProductCard = ({ id, image, name, price, discount }) => {
+  const cartItems = useSelector(selectCartItems);
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-  const handleAddClick = () => {
+  const dispatch = useDispatch();
+
+  const handleAdd = () => {
     setIsAdded(true);
   };
 
@@ -14,10 +21,58 @@ const ProductCard = ({ image, name, price, discount }) => {
     setQuantity(quantity + 1);
   };
 
+  const handleAddToCart = () => {
+    setIsAdded(true);
+
+    const item = {
+      id,
+      image,
+      name,
+      price,
+      discount,
+      quantity,
+    };
+
+    const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingItemIndex = existingItems.findIndex(
+      (existingItem) => existingItem.id === id
+    );
+
+    if (existingItemIndex !== -1) {
+      existingItems[existingItemIndex].quantity += 1;
+    } else {
+      existingItems.push(item);
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(existingItems));
+    dispatch(addToCart(item));
+
+    console.log("Item added to cart:", item);
+  };
+
   const handleMinusClick = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const handleImgClick = () => {
+    window.location.href = "/details";
+  };
+
+  // Define saveForLaterItem function properly
+  const saveForLaterItem = () => {
+    const item = {
+      // Define item here
+      id,
+      image,
+      name,
+      price,
+      discount,
+      quantity,
+    };
+    dispatch(saveForLater(item));
+    console.log("Item saved for later:", item);
   };
 
   return (
@@ -35,6 +90,7 @@ const ProductCard = ({ image, name, price, discount }) => {
           <box-icon name="heart"></box-icon>
         </button>
         <div className="best-seller-ribbon">Best Seller</div>
+        <p>{id}</p>
         <img src={image} alt={name} className="product-image" />
         <div className="product-details">
           <h3>{name}</h3>
@@ -57,7 +113,57 @@ const ProductCard = ({ image, name, price, discount }) => {
             >
               {discount}
             </p>
-            {isAdded ? (
+          </div>
+
+          <div style={{ display: "flex", marginTop: "1rem" }}>
+            <div className="quantity-button">
+              <button
+                style={{
+                  border: "1px solid green",
+                  color: "white",
+                  backgroundColor: "#f35353",
+                  width: "100px",
+                  height: "40px",
+                }}
+                onClick={handleMinusClick}
+              >
+                -
+              </button>
+              <input
+                style={{ width: "30px" }}
+                type="text"
+                value={quantity}
+                // onChange={handleInputChange}
+              />
+              <button
+                style={{
+                  border: "1px solid green",
+                  color: "white",
+                  backgroundColor: "#7ad17a",
+                  width: "100px",
+                  height: "40px",
+                }}
+                onClick={handlePlusClick}
+              >
+                +
+              </button>
+            </div>
+            <button
+              style={{
+                border: "1px solid green",
+                color: "green",
+                backgroundColor: "white",
+                width: "100px",
+                height: "40px",
+                marginLeft: "7rem",
+              }}
+              onClick={handleAddToCart}
+            >
+              ADD
+            </button>
+          </div>
+
+          {/* {isAdded ? (
               <div className="quantity-button">
                 <button
                   style={{
@@ -86,7 +192,7 @@ const ProductCard = ({ image, name, price, discount }) => {
                     width: "100px",
                     height: "40px",
                   }}
-                  onClick={handlePlusClick}
+                  onClick={handleAddToCart}
                 >
                   +
                 </button>
@@ -100,12 +206,11 @@ const ProductCard = ({ image, name, price, discount }) => {
                   width: "100px",
                   height: "40px",
                 }}
-                onClick={handleAddClick}
+                onClick={handleAdd}
               >
                 ADD
               </button>
-            )}
-          </div>
+            )} */}
         </div>
       </div>
     </div>

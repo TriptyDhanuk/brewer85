@@ -13,10 +13,11 @@ import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
 import ProductCard from "../ProductCard/ProductCard";
-
+import Wishlist from "../../components/Wishlist";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CartIconBadge from "../CartIconBadge";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -59,6 +60,7 @@ const Home = () => {
   const products = {
     Biryani: [
       {
+        id: 1,
         image: image1,
         name: "Hydrabadi Biryani",
         price: "25",
@@ -67,6 +69,7 @@ const Home = () => {
     ],
     IceCream: [
       {
+        id: 2,
         image: image2,
         name: "IceCream",
         price: "25",
@@ -75,6 +78,7 @@ const Home = () => {
     ],
     Pizza: [
       {
+        id: 3,
         image: image4,
         name: "Pizza",
         price: "25",
@@ -83,6 +87,7 @@ const Home = () => {
     ],
     Burger: [
       {
+        id: 4,
         image: burger,
         name: "Burger",
         price: "25",
@@ -91,6 +96,7 @@ const Home = () => {
     ],
     Shakes: [
       {
+        id: 5,
         image: shakes,
         name: "Shakes",
         price: "25",
@@ -99,6 +105,7 @@ const Home = () => {
     ],
     Chinese: [
       {
+        id: 6,
         image: noodles,
         name: "Chinese",
         price: "25",
@@ -107,13 +114,13 @@ const Home = () => {
     ],
     Drinks: [
       {
+        id: 7,
         image: drinks,
         name: "Drinks",
         price: "25",
         discount: "60% off",
       },
     ],
-    // Add more products as needed
   };
 
   const settingsMy = {
@@ -212,7 +219,11 @@ const Home = () => {
             <box-icon name="menu"></box-icon>
             <h4 className="">Home</h4>
           </div>
-          <box-icon name="cart"></box-icon>
+          {/* <box-icon name="cart"></box-icon> */}
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Wishlist style={{ marginRight: "10px" }} />
+            <CartIconBadge />
+          </div>
         </nav>
       </div>
       <Slider {...settingsMy}>

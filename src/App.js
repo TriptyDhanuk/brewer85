@@ -8,7 +8,8 @@ import LoginOTP from "./components/LogIn/LoginOTP";
 import MenuItem from "./components/MenuItem/MenuItem";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import CheckOut from "./components/Checkout/Checkout";
-import ThankYou from "./components/Thankyou/ThankYou";
+import ThankYou from "./components/ThankYou/ThankYou";
+import SaveForLater from "./components/SaveForLater/SaveForLater";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <Route path="/logInOtp" element={<LoginOTP />} />
           <Route path="/home" exact element={<Home />} />
           <Route path="/menu" exact element={<MenuItem />} />
-          <Route path="/details" exact element={<ProductDetails />} />
+          <Route path="/details/:productId" exact element={<ProductDetails />} />
+          <Route path="/wishlist" exact element={<SaveForLater />} />
           <Route path="/checkout" exact element={<CheckOut />} />
           <Route path="/thankyou" exact element={<ThankYou />} />
         </Routes>

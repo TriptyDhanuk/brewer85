@@ -126,7 +126,7 @@ const ErrorText = styled.span`
 `;
 
 const LoginPhoneNo = () => {
-  const [phoneNumber, setPhoneNumber] = useState('+971 '); 
+  const [phoneNumber, setPhoneNumber] = useState('+971' ); 
   const [error, setError] = useState('');
 
   const handleGetOTP = () => {
@@ -135,6 +135,19 @@ const LoginPhoneNo = () => {
     } else {
       setError('');
       window.location.href = "/logInOtp";
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    const charCode = event.which ? event.which : event.keyCode;
+    const inputValue = event.target.value;
+    
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+
+    if (inputValue.length >= 14) {
+      event.preventDefault();
     }
   };
   
@@ -150,10 +163,11 @@ const LoginPhoneNo = () => {
         <InputButtonContainer>
           <PhoneNumberText>Please Insert your Phone no</PhoneNumberText>
           <MobileInput
-            type="tel" // Change type to "tel" for phone number input
-            placeholder="Enter your phone no" // Remove the country code from the placeholder
+            type="tel"
+            placeholder="Enter your phone no" 
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            onKeyPress={handleKeyPress} // Prevent non-numeric characters
           />
           {error && <ErrorText>{error}</ErrorText>}
           <GetStartedButton onClick={handleGetOTP}>Get OTP</GetStartedButton>

@@ -1,29 +1,73 @@
-import React from "react";
-import "./ProductCard.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addToCart, saveForLater } from "../../features/cart/cartSlice";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import "../ProductCard/ProductCard.css";
+import "boxicons";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../features/cart/cartSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../features/cart/wishlistSlice";
+import RemoveNotification from "../Notificaiton/RemoveNotification.js";
 import { selectCartItems } from "../../features/cart/selectors";
+import WishlistNotification from "../Notificaiton/WishlistNotification.js";
+import Notification from "../Notificaiton/Notification.js";
+import { selectSavedForLaterItems } from "../../features/cart/wishlistSlice";
 
 const ProductCard = ({ id, image, name, price, discount }) => {
   const cartItems = useSelector(selectCartItems);
-  const [isAdded, setIsAdded] = useState(false);
+  const [isRemoved, setIsRemoved] = useState(false);
+  const SaveItems = useSelector(selectSavedForLaterItems);
   const [quantity, setQuantity] = useState(1);
-
+  const [notification, setNotification] = useState(null);
+  const [wishlistNoti, setWishlistNoti] = useState(null);
   const dispatch = useDispatch();
+  const existingCartItem = cartItems.find((item) => item.id === id);
+  const [savedForLater, setSavedForLater] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState();
 
-  const handleAdd = () => {
-    setIsAdded(true);
+  const toggleSavedForLater = () => {
+    const isItemSaved = SaveItems.some((item) => item.id === id);
+
+    if (isItemSaved) {
+      dispatch(removeFromWishlist(id));
+      setSavedForLater(false);
+      setIsRemoved(true);
+      setTimeout(() => {
+        setIsRemoved(null);
+      }, 3000);
+      localStorage.setItem("savedForLater", savedForLater);
+    } else {
+      const itemToAdd = {
+        id: id,
+        name: name,
+        price: price,
+        discount: discount,
+        quantity: quantity,
+        image: image,
+      };
+      dispatch(addToWishlist(itemToAdd));
+      setSavedForLater(true);
+      setWishlistNoti({ name: itemToAdd.name });
+      setTimeout(() => {
+        setWishlistNoti(null);
+      }, 3000);
+      localStorage.setItem("savedForLater", savedForLater);
+    }
   };
+
+  console.log("savedForLater", savedForLater);
 
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
   };
 
-  const handleAddToCart = () => {
-    setIsAdded(true);
+  const handleMinusClick = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
+  const handleAddToCart = () => {
     const item = {
       id,
       image,
@@ -39,31 +83,27 @@ const ProductCard = ({ id, image, name, price, discount }) => {
     );
 
     if (existingItemIndex !== -1) {
-      existingItems[existingItemIndex].quantity += 1;
+      existingItems[existingItemIndex].quantity += quantity;
     } else {
       existingItems.push(item);
     }
 
     localStorage.setItem("cartItems", JSON.stringify(existingItems));
     dispatch(addToCart(item));
+    setNotification({ name: item.name, quantity: quantity });
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
 
     console.log("Item added to cart:", item);
   };
 
-  const handleMinusClick = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
   const handleImgClick = () => {
-    window.location.href = "/details";
+    window.location.href = `/details/${id}`;
   };
 
-  // Define saveForLaterItem function properly
   const saveForLaterItem = () => {
     const item = {
-      // Define item here
       id,
       image,
       name,
@@ -71,29 +111,41 @@ const ProductCard = ({ id, image, name, price, discount }) => {
       discount,
       quantity,
     };
-    dispatch(saveForLater(item));
+    dispatch(addToWishlist(item));
+    setWishlistNoti({ name: item.name });
+    setTimeout(() => {
+      setWishlistNoti(null);
+    }, 3000);
     console.log("Item saved for later:", item);
   };
-
   return (
     <div style={{ position: "relative" }}>
       <div className="product-card">
         <button
+          className={!savedForLater ? "selected" : ""}
           style={{
-            color: "transparent",
-            backgroundColor: "transparent",
+            color: savedForLater ? "pink" : "white",
+            backgroundColor: savedForLater ? "pink" : "white",
             position: "absolute",
             right: "15px",
           }}
+          onClick={toggleSavedForLater}
         >
-          {" "}
           <box-icon name="heart"></box-icon>
         </button>
         <div className="best-seller-ribbon">Best Seller</div>
         <p>{id}</p>
-        <img src={image} alt={name} className="product-image" />
+        <img
+          src={image}
+          alt={name}
+          className="product-image"
+          onClick={handleImgClick}
+        />
         <div className="product-details">
-          <h3>{name}</h3>
+          <h3>
+            {name}
+            {id}
+          </h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
           <div className="price-tag">
             <p style={{ fontSize: "0.8rem", margin: "0" }}>
@@ -113,57 +165,8 @@ const ProductCard = ({ id, image, name, price, discount }) => {
             >
               {discount}
             </p>
-          </div>
 
-          <div style={{ display: "flex", marginTop: "1rem" }}>
-            <div className="quantity-button">
-              <button
-                style={{
-                  border: "1px solid green",
-                  color: "white",
-                  backgroundColor: "#f35353",
-                  width: "100px",
-                  height: "40px",
-                }}
-                onClick={handleMinusClick}
-              >
-                -
-              </button>
-              <input
-                style={{ width: "30px" }}
-                type="text"
-                value={quantity}
-                // onChange={handleInputChange}
-              />
-              <button
-                style={{
-                  border: "1px solid green",
-                  color: "white",
-                  backgroundColor: "#7ad17a",
-                  width: "100px",
-                  height: "40px",
-                }}
-                onClick={handlePlusClick}
-              >
-                +
-              </button>
-            </div>
-            <button
-              style={{
-                border: "1px solid green",
-                color: "green",
-                backgroundColor: "white",
-                width: "100px",
-                height: "40px",
-                marginLeft: "7rem",
-              }}
-              onClick={handleAddToCart}
-            >
-              ADD
-            </button>
-          </div>
-
-          {/* {isAdded ? (
+            <div style={{ display: "flex", marginTop: "1rem" }}>
               <div className="quantity-button">
                 <button
                   style={{
@@ -187,17 +190,15 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                   style={{
                     border: "1px solid green",
                     color: "white",
-
                     backgroundColor: "#7ad17a",
                     width: "100px",
                     height: "40px",
                   }}
-                  onClick={handleAddToCart}
+                  onClick={handlePlusClick}
                 >
                   +
                 </button>
               </div>
-            ) : (
               <button
                 style={{
                   border: "1px solid green",
@@ -205,14 +206,54 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                   backgroundColor: "white",
                   width: "100px",
                   height: "40px",
+                  marginLeft: "7rem",
                 }}
-                onClick={handleAdd}
+                onClick={handleAddToCart}
               >
                 ADD
               </button>
-            )} */}
+              {/* {existingCartItem ? (
+                <Link to="/checkout">
+                  <button
+                    style={{
+                      border: "1px solid green",
+                      color: "green",
+                      backgroundColor: "white",
+                      width: "100px",
+                      height: "40px",
+                      marginLeft: "7rem",
+                    }}
+                  >
+                    GO TO CART
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  style={{
+                    border: "1px solid green",
+                    color: "green",
+                    backgroundColor: "white",
+                    width: "100px",
+                    height: "40px",
+                    marginLeft: "7rem",
+                  }}
+                  onClick={handleAddToCart}
+                >
+                  ADD
+                </button>
+              )} */}
+            </div>
+          </div>
         </div>
       </div>
+      {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
+      {notification && (
+        <Notification
+          quantity={notification.quantity}
+          productName={notification.name}
+        />
+      )}
+      {isRemoved && <RemoveNotification />}
     </div>
   );
 };

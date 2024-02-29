@@ -3,21 +3,60 @@ import "../ProductCard/ProductCard.css";
 import "boxicons";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
-import { addToWishlist } from "../../features/cart/wishlistSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../features/cart/wishlistSlice";
 import { selectCartItems } from "../../features/cart/selectors";
 import WishlistNotification from "../Notificaiton/WishlistNotification.js";
+import RemoveNotification from "../Notificaiton/RemoveNotification.js";
 import Notification from "../Notificaiton/Notification.js";
-import { Link } from "react-router-dom";
+
+import { selectSavedForLaterItems } from "../../features/cart/wishlistSlice";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
   const cartItems = useSelector(selectCartItems);
+  const SaveItems = useSelector(selectSavedForLaterItems);
   const [quantity, setQuantity] = useState(1);
   const [notification, setNotification] = useState(null);
-  const [wishlistNoti, setWishlistNoti]=useState(null);
-
+  const [wishlistNoti, setWishlistNoti] = useState(null);
+  const [isRemoved, setIsRemoved] = useState(false);
+  const [removeWishlistNoti, setRemoveWishlistNoti] = useState(null);
   const dispatch = useDispatch();
-
   const existingCartItem = cartItems.find((item) => item.id === id);
+  const [savedForLater, setSavedForLater] = useState(false);
+
+  const toggleSavedForLater = () => {
+    const isItemSaved = SaveItems.some((item) => item.id === id);
+
+    if (isItemSaved) {
+      dispatch(removeFromWishlist(id));
+      setSavedForLater(false);
+      setIsRemoved(true);
+      setTimeout(() => {
+        setIsRemoved(null);
+      }, 3000);
+      localStorage.setItem("savedForLater", savedForLater);
+    } else {
+      const itemToAdd = {
+        id: id,
+        name: name,
+        price: price,
+        discount: discount,
+        quantity: quantity,
+        image: image,
+      };
+      dispatch(addToWishlist(itemToAdd));
+      setSavedForLater(true);
+      setWishlistNoti({ name: itemToAdd.name });
+      setTimeout(() => {
+        setWishlistNoti(null);
+      }, 3000);
+      localStorage.setItem("savedForLater", savedForLater);
+    }
+  };
+
+  console.log("savedForLater", savedForLater);
 
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
@@ -45,7 +84,6 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     );
 
     if (existingItemIndex !== -1) {
-      // Item is already in the cart, update its quantity
       existingItems[existingItemIndex].quantity += quantity;
     } else {
       existingItems.push(item);
@@ -60,40 +98,6 @@ const MenuCard = ({ id, image, name, price, discount }) => {
 
     console.log("Item added to cart:", item);
   };
-
-  // const handleAddToCart = () => {
-  //   if (existingCartItem) {
-  //     // Item is already in the cart, navigate to the cart page
-  //     window.location.href = "/checkout";
-  //   } else {
-  //     const item = {
-  //       id,
-  //       image,
-  //       name,
-  //       price,
-  //       discount,
-  //       quantity,
-  //     };
-
-  //     const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  //     const existingItemIndex = existingItems.findIndex(
-  //       (existingItem) => existingItem.id === id
-  //     );
-
-  //     if (existingItemIndex !== -1) {
-  //       // Item is already in the cart, update its quantity
-  //       existingItems[existingItemIndex].quantity += quantity;
-  //     } else {
-  //       // Item is not in the cart, add it as a new item
-  //       existingItems.push(item);
-  //     }
-
-  //     localStorage.setItem("cartItems", JSON.stringify(existingItems));
-  //     dispatch(addToCart(item));
-
-  //     console.log("Item added to cart:", item);
-  //   }
-  // };
 
   const handleImgClick = () => {
     window.location.href = `/details/${id}`;
@@ -120,15 +124,43 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     <div style={{ position: "relative" }}>
       <div className="product-card">
         <button
+          className={!savedForLater ? "selected" : ""}
           style={{
-            color: "transparent",
-            backgroundColor: "transparent",
+            color: savedForLater ? "pink" : "white",
+            backgroundColor: savedForLater ? "pink" : "white",
             position: "absolute",
             right: "15px",
           }}
+          onClick={toggleSavedForLater}
         >
-          <box-icon name="heart" onClick={saveForLaterItem}></box-icon>
+          <box-icon name="heart"></box-icon>
         </button>
+
+        {/* {savedForLater ? (
+          <button
+            style={{
+              color: "pink",
+              backgroundColor: "transparent",
+              position: "absolute",
+              right: "15px",
+            }}
+            onClick={toggleSavedForLater}
+          >
+            <box-icon name="heart"></box-icon>
+          </button>
+        ) : (
+          <button
+            style={{
+              color: "pink",
+              backgroundColor: "transparent",
+              position: "absolute",
+              right: "15px",
+            }}
+            onClick={toggleSavedForLater}
+          >
+            <box-icon name="heart"></box-icon>
+          </button>
+        )} */}
         <img
           src={image}
           alt={name}
@@ -138,6 +170,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
         <div className="product-details">
           <h3>
             {name}
+            {id}
           </h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
           <div className="price-tag">
@@ -246,6 +279,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           productName={notification.name}
         />
       )}
+      {isRemoved && <RemoveNotification />}
     </div>
   );
 };

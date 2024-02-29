@@ -7,11 +7,7 @@ import { addToCart, updateCart } from "../../features/cart/cartSlice";
 import CartIconBadge from "../CartIconBadge";
 import Notification from "../Notificaiton/Notification";
 import RemoveNotification from "../Notificaiton/RemoveNotification";
-// import {
-//   selectCartItems,
-//   clearCart,
-//   removeFromCart,
-// } from "../../features/cart/cartSlice";
+
 import {
   selectSavedForLaterItems,
   removeFromWishlist,
@@ -37,8 +33,6 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
       image: item.image,
     }))
   );
-
-  console.log("Cart items in JSON format:", cartItemsJSON);
 
   useEffect(() => {
     const subTotal = cartItems.reduce((total, item) => {
@@ -89,19 +83,6 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
     dispatch(updateWishlist(updatedCartItems));
   };
 
-  // const handleMinusClick = (itemId) => {
-  //   const updatedCartItems = cartItems.map((item) => {
-  //     if (item.id === itemId && item.quantity > 1) {
-  //       return {
-  //         ...item,
-  //         quantity: item.quantity - 1,
-  //       };
-  //     }
-  //     return item;
-  //   });
-  //   dispatch(updateWishlist(updatedCartItems));
-  // };
-
   const handleRemoveItem = (itemId) => {
     dispatch(removeFromWishlist(itemId));
     setIsRemoved(true);
@@ -113,6 +94,7 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
   const handleGoBack = () => {
     window.history.back();
   };
+
   const handleAddToCart = (clickedItem) => {
     const existingItemIndex = cartItems.findIndex(
       (existingItem) => existingItem.id === clickedItem.id

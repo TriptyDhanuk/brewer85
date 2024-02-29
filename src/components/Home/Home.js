@@ -78,7 +78,7 @@ const Home = () => {
       {
         id: 1,
         image: image1,
-        name: "Hydrabadi Biryani",
+        name: "Biryani",
         price: "25",
         discount: "60% off",
       },
@@ -352,9 +352,7 @@ const Home = () => {
       <div className="products" style={{ marginLeft: "10px" }}>
         <h3>All Products</h3>
         <div className="product-category">
-          {filteredProducts.length === 0 ? (
-            <p>No products found</p>
-          ) : (
+          {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <a href="/menu" className="product-item" key={product.name}>
                 <img
@@ -366,6 +364,8 @@ const Home = () => {
                 <h4>{product.name}</h4>
               </a>
             ))
+          ) : (
+            <p>No products found</p>
           )}
         </div>
       </div>

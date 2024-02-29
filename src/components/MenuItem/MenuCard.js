@@ -9,7 +9,9 @@ import {
 } from "../../features/cart/wishlistSlice";
 import { selectCartItems } from "../../features/cart/selectors";
 import WishlistNotification from "../Notificaiton/WishlistNotification.js";
+import RemoveNotification from "../Notificaiton/RemoveNotification.js";
 import Notification from "../Notificaiton/Notification.js";
+
 import { selectSavedForLaterItems } from "../../features/cart/wishlistSlice";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
@@ -18,6 +20,8 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   const [quantity, setQuantity] = useState(1);
   const [notification, setNotification] = useState(null);
   const [wishlistNoti, setWishlistNoti] = useState(null);
+  const [isRemoved, setIsRemoved] = useState(false);
+  const [removeWishlistNoti, setRemoveWishlistNoti] = useState(null);
   const dispatch = useDispatch();
   const existingCartItem = cartItems.find((item) => item.id === id);
   const [savedForLater, setSavedForLater] = useState(false);
@@ -28,6 +32,10 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     if (isItemSaved) {
       dispatch(removeFromWishlist(id));
       setSavedForLater(false);
+      setIsRemoved(true);
+      setTimeout(() => {
+        setIsRemoved(null);
+      }, 3000);
       localStorage.setItem("savedForLater", savedForLater);
     } else {
       const itemToAdd = {
@@ -40,6 +48,10 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       };
       dispatch(addToWishlist(itemToAdd));
       setSavedForLater(true);
+      setWishlistNoti({ name: itemToAdd.name });
+      setTimeout(() => {
+        setWishlistNoti(null);
+      }, 3000);
       localStorage.setItem("savedForLater", savedForLater);
     }
   };
@@ -267,6 +279,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           productName={notification.name}
         />
       )}
+      {isRemoved && <RemoveNotification />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../ProductCard/ProductCard.css";
 import "boxicons";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,28 +14,35 @@ import Notification from "../Notificaiton/Notification.js";
 import { selectSavedForLaterItems } from "../../features/cart/wishlistSlice";
 
 const ProductCard = ({ id, image, name, price, discount }) => {
+  const saveItems = useSelector(selectSavedForLaterItems);
   const cartItems = useSelector(selectCartItems);
   const [isRemoved, setIsRemoved] = useState(false);
-  const SaveItems = useSelector(selectSavedForLaterItems);
+
   const [quantity, setQuantity] = useState(1);
   const [notification, setNotification] = useState(null);
   const [wishlistNoti, setWishlistNoti] = useState(null);
   const dispatch = useDispatch();
   const existingCartItem = cartItems.find((item) => item.id === id);
+
   const [savedForLater, setSavedForLater] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState();
+
+  useEffect(() => {
+    localStorage.setItem("savedForLater", savedForLater);
+  }, [savedForLater]);
+
+  useEffect(() => {
+    if (saveItems.some((item) => item.id === id)) {
+      setSavedForLater(true);
+    }
+  }, [saveItems, id]);
 
   const toggleSavedForLater = () => {
-    const isItemSaved = SaveItems.some((item) => item.id === id);
-
-    if (isItemSaved) {
+    if (savedForLater) {
       dispatch(removeFromWishlist(id));
-      setSavedForLater(false);
       setIsRemoved(true);
       setTimeout(() => {
-        setIsRemoved(null);
+        setIsRemoved(false);
       }, 3000);
-      localStorage.setItem("savedForLater", savedForLater);
     } else {
       const itemToAdd = {
         id: id,
@@ -51,8 +58,8 @@ const ProductCard = ({ id, image, name, price, discount }) => {
       setTimeout(() => {
         setWishlistNoti(null);
       }, 3000);
-      localStorage.setItem("savedForLater", savedForLater);
     }
+    setSavedForLater(!savedForLater);
   };
 
   console.log("savedForLater", savedForLater);
@@ -122,16 +129,24 @@ const ProductCard = ({ id, image, name, price, discount }) => {
     <div style={{ position: "relative" }}>
       <div className="product-card">
         <button
-          className={!savedForLater ? "selected" : ""}
+          className={saveItems.some((item) => item.id === id) ? "selected" : ""}
           style={{
-            color: savedForLater ? "pink" : "white",
-            backgroundColor: savedForLater ? "pink" : "white",
+            color: saveItems.some((item) => item.id === id) ? "pink" : "white",
+            backgroundColor: "transparent",
             position: "absolute",
             right: "15px",
           }}
           onClick={toggleSavedForLater}
         >
-          <box-icon name="heart"></box-icon>
+          <box-icon
+            type="solid"
+            name="heart"
+            className="heart-icon"
+            style={{
+              fill: saveItems.some((item) => item.id === id) ? "pink" : "white",
+              stroke: "red",
+            }}
+          ></box-icon>
         </button>
         <div className="best-seller-ribbon">Best Seller</div>
         <p>{id}</p>

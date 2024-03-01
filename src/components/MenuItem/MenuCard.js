@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../ProductCard/ProductCard.css";
 import "boxicons";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,8 +15,8 @@ import Notification from "../Notificaiton/Notification.js";
 import { selectSavedForLaterItems } from "../../features/cart/wishlistSlice";
 
 const MenuCard = ({ id, image, name, price, discount }) => {
+  const saveItems = useSelector(selectSavedForLaterItems);
   const cartItems = useSelector(selectCartItems);
-  const SaveItems = useSelector(selectSavedForLaterItems);
   const [quantity, setQuantity] = useState(1);
   const [notification, setNotification] = useState(null);
   const [wishlistNoti, setWishlistNoti] = useState(null);
@@ -26,17 +26,23 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   const existingCartItem = cartItems.find((item) => item.id === id);
   const [savedForLater, setSavedForLater] = useState(false);
 
-  const toggleSavedForLater = () => {
-    const isItemSaved = SaveItems.some((item) => item.id === id);
+  useEffect(() => {
+    localStorage.setItem("savedForLater", savedForLater);
+  }, [savedForLater]);
 
-    if (isItemSaved) {
+  useEffect(() => {
+    if (saveItems.some((item) => item.id === id)) {
+      setSavedForLater(true);
+    }
+  }, [saveItems, id]);
+
+  const toggleSavedForLater = () => {
+    if (savedForLater) {
       dispatch(removeFromWishlist(id));
-      setSavedForLater(false);
       setIsRemoved(true);
       setTimeout(() => {
-        setIsRemoved(null);
+        setIsRemoved(false);
       }, 3000);
-      localStorage.setItem("savedForLater", savedForLater);
     } else {
       const itemToAdd = {
         id: id,
@@ -52,11 +58,9 @@ const MenuCard = ({ id, image, name, price, discount }) => {
       setTimeout(() => {
         setWishlistNoti(null);
       }, 3000);
-      localStorage.setItem("savedForLater", savedForLater);
     }
+    setSavedForLater(!savedForLater);
   };
-
-  console.log("savedForLater", savedForLater);
 
   const handlePlusClick = () => {
     setQuantity(quantity + 1);
@@ -95,72 +99,36 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     setTimeout(() => {
       setNotification(null);
     }, 3000);
-
-    console.log("Item added to cart:", item);
   };
 
   const handleImgClick = () => {
     window.location.href = `/details/${id}`;
   };
 
-  const saveForLaterItem = () => {
-    const item = {
-      id,
-      image,
-      name,
-      price,
-      discount,
-      quantity,
-    };
-    dispatch(addToWishlist(item));
-    setWishlistNoti({ name: item.name });
-    setTimeout(() => {
-      setWishlistNoti(null);
-    }, 3000);
-    console.log("Item saved for later:", item);
-  };
-
   return (
     <div style={{ position: "relative" }}>
       <div className="product-card">
         <button
-          className={!savedForLater ? "selected" : ""}
+          className={saveItems.some((item) => item.id === id) ? "selected" : ""}
           style={{
-            color: savedForLater ? "pink" : "white",
-            backgroundColor: savedForLater ? "pink" : "white",
+            color: saveItems.some((item) => item.id === id) ? "pink" : "white",
+            backgroundColor: "transparent",
             position: "absolute",
             right: "15px",
           }}
           onClick={toggleSavedForLater}
         >
-          <box-icon name="heart"></box-icon>
+          <box-icon
+            type="solid"
+            name="heart"
+            className="heart-icon"
+            style={{
+              fill: saveItems.some((item) => item.id === id) ? "pink" : "white",
+              stroke: "red",
+            }}
+          ></box-icon>
         </button>
 
-        {/* {savedForLater ? (
-          <button
-            style={{
-              color: "pink",
-              backgroundColor: "transparent",
-              position: "absolute",
-              right: "15px",
-            }}
-            onClick={toggleSavedForLater}
-          >
-            <box-icon name="heart"></box-icon>
-          </button>
-        ) : (
-          <button
-            style={{
-              color: "pink",
-              backgroundColor: "transparent",
-              position: "absolute",
-              right: "15px",
-            }}
-            onClick={toggleSavedForLater}
-          >
-            <box-icon name="heart"></box-icon>
-          </button>
-        )} */}
         <img
           src={image}
           alt={name}
@@ -238,36 +206,6 @@ const MenuCard = ({ id, image, name, price, discount }) => {
               >
                 ADD
               </button>
-              {/* {existingCartItem ? (
-                <Link to="/checkout">
-                  <button
-                    style={{
-                      border: "1px solid green",
-                      color: "green",
-                      backgroundColor: "white",
-                      width: "100px",
-                      height: "40px",
-                      marginLeft: "7rem",
-                    }}
-                  >
-                    GO TO CART
-                  </button>
-                </Link>
-              ) : (
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "green",
-                    backgroundColor: "white",
-                    width: "100px",
-                    height: "40px",
-                    marginLeft: "7rem",
-                  }}
-                  onClick={handleAddToCart}
-                >
-                  ADD
-                </button>
-              )} */}
             </div>
           </div>
         </div>

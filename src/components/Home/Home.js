@@ -60,7 +60,7 @@ const Home = () => {
   const products = {
     Biryani: [
       {
-        id: 1,
+        id: 101,
         image: image1,
         name: "Hydrabadi Biryani",
         price: "25",
@@ -69,7 +69,7 @@ const Home = () => {
     ],
     IceCream: [
       {
-        id: 2,
+        id: 201,
         image: image2,
         name: "IceCream",
         price: "25",
@@ -78,7 +78,7 @@ const Home = () => {
     ],
     Pizza: [
       {
-        id: 3,
+        id: 301,
         image: image4,
         name: "Pizza",
         price: "25",
@@ -87,7 +87,7 @@ const Home = () => {
     ],
     Burger: [
       {
-        id: 4,
+        id: 401,
         image: burger,
         name: "Burger",
         price: "25",
@@ -96,7 +96,7 @@ const Home = () => {
     ],
     Shakes: [
       {
-        id: 5,
+        id: 501,
         image: shakes,
         name: "Shakes",
         price: "25",
@@ -105,7 +105,7 @@ const Home = () => {
     ],
     Chinese: [
       {
-        id: 6,
+        id: 601,
         image: noodles,
         name: "Chinese",
         price: "25",
@@ -114,7 +114,7 @@ const Home = () => {
     ],
     Drinks: [
       {
-        id: 7,
+        id: 701,
         image: drinks,
         name: "Drinks",
         price: "25",
@@ -340,6 +340,7 @@ const Home = () => {
             products[category].map((product) => (
               <div className="product-filter" key={product.name}>
                 <ProductCard
+                  id={product.id}
                   image={product.image}
                   name={product.name}
                   price={product.price}

@@ -48,7 +48,7 @@ const MenuItem = () => {
   const products = {
     Biryani: [
       {
-        id: 1,
+        id: 111,
         image: image1,
         name: "Hydrabadi Biryani",
         price: "100",
@@ -58,7 +58,7 @@ const MenuItem = () => {
     ],
     IceCream: [
       {
-        id: 2,
+        id: 222,
         image: image2,
         name: "IceCream",
         price: "125",
@@ -68,7 +68,7 @@ const MenuItem = () => {
     ],
     Pizza: [
       {
-        id: 3,
+        id: 333,
         image: image4,
         name: "Pizza",
         price: "150",
@@ -78,7 +78,7 @@ const MenuItem = () => {
     ],
     Burger: [
       {
-        id: 4,
+        id: 444,
         image: burger,
         name: "Burger",
         price: "90",
@@ -88,7 +88,7 @@ const MenuItem = () => {
     ],
     Shakes: [
       {
-        id: 5,
+        id: 555,
         image: shakes,
         name: "Shakes",
         price: "70",
@@ -98,7 +98,7 @@ const MenuItem = () => {
     ],
     Chinese: [
       {
-        id: 6,
+        id: 666,
         image: noodles,
         name: "Chinese",
         price: "120",
@@ -108,7 +108,7 @@ const MenuItem = () => {
     ],
     Drinks: [
       {
-        id: 7,
+        id: 777,
         image: drinks,
         name: "Drinks",
         price: "55",
@@ -309,13 +309,11 @@ const MenuItem = () => {
     : [];
   console.log("Filtered Products:", filteredProducts);
 
-  // Combine filteredProducts and filteredProductsMenu into a single array
   const combinedProducts = [...filteredProducts, ...filteredProductsMenu];
   const handleGoBack = () => {
-    window.history.back(); // Go back to the previous page
+    window.history.back();
   };
 
-  // Filter the combined array based on the search query
   const filteredProductsByName = combinedProducts.filter((product) =>
     product.name.toLowerCase().includes(searchQuery)
   );

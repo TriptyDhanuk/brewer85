@@ -11,12 +11,18 @@ import {
   removeFromCart,
 } from "../../features/cart/cartSlice";
 import RemoveNotification from "../Notificaiton/RemoveNotification";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../features/cart/wishlistSlice";
+import WishlistNotification from "../Notificaiton/WishlistNotification.js";
 
 const CheckOut = () => {
   const cartItems = useSelector(selectCartItems);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
+  const [wishlistNoti, setWishlistNoti] = useState(null);
   const VAT_RATE = 0.05;
   const [invalidCoupon, setInvalidCoupon] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState("");
@@ -47,6 +53,18 @@ const CheckOut = () => {
       return item;
     });
     dispatch(updateCart(updatedCartItems));
+  };
+
+  const toggleSavedForLater = (itemId) => {
+    const selectedItem = cartItems.find((item) => item.id === itemId);
+    if (selectedItem) {
+      dispatch(addToWishlist(selectedItem));
+      setWishlistNoti({ name: selectedItem.name });
+      dispatch(removeFromCart(itemId));
+      setTimeout(() => {
+        setWishlistNoti(null);
+      }, 3000);
+    }
   };
 
   const handleMinusClick = (itemId) => {
@@ -152,9 +170,14 @@ const CheckOut = () => {
                   </p>
                 </div>
                 <div className="icons" style={{ display: "flex" }}>
-                  <span onClick={() => handleSaveForLater(item.id)}>
-                    <box-icon type="solid" name="bookmark-star"></box-icon>
+                  <span onClick={() => toggleSavedForLater(item.id)}>
+                    <box-icon
+                      type="solid"
+                      name="bookmark-star"
+                      style={{ fill: "#f7387f", stroke: "yellow" }}
+                    ></box-icon>
                   </span>
+
                   <span onClick={() => handleRemoveItem(item.id)}>
                     <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
                   </span>
@@ -339,7 +362,7 @@ const CheckOut = () => {
           </button>
         </Link>
       </div>
-      {isRemoved && <RemoveNotification/>}
+      {isRemoved && <RemoveNotification />}
     </div>
   );
 };

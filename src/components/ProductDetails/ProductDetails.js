@@ -25,6 +25,72 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   let { productId } = useParams();
 
+  const products = {
+    Biryani: [
+      {
+        id: 111,
+        image: image1,
+        name: "Hydrabadi Biryani",
+        price: "100",
+        discount: "60% off",
+      },
+    ],
+    IceCream: [
+      {
+        id: 222,
+        image: image2,
+        name: "IceCream",
+        price: "125",
+        discount: "60% off",
+      },
+    ],
+    Pizza: [
+      {
+        id: 333,
+        image: image4,
+        name: "Pizza",
+        price: "150",
+        discount: "60% off",
+      },
+    ],
+    Burger: [
+      {
+        id: 444,
+        image: burger,
+        name: "Burger",
+        price: "90",
+        discount: "60% off",
+      },
+    ],
+    Shakes: [
+      {
+        id: 555,
+        image: shakes,
+        name: "Shakes",
+        price: "70",
+        discount: "60% off",
+      },
+    ],
+    Chinese: [
+      {
+        id: 666,
+        image: noodles,
+        name: "Chinese",
+        price: "120",
+        discount: "60% off",
+      },
+      // Add more products as needed
+    ],
+    Drinks: [
+      {
+        id: 777,
+        image: drinks,
+        name: "Drinks",
+        price: "55",
+        discount: "60% off",
+      },
+    ],
+  };
   const productsMenu = {
     Biryani: [
       {
@@ -216,21 +282,34 @@ const ProductDetails = () => {
 
   useEffect(() => {
     const findProduct = () => {
+      // Check productsMenu
       for (const category in productsMenu) {
         const foundProduct = productsMenu[category].find(
           (item) => item.id === parseInt(productId)
         );
         if (foundProduct) {
           setProduct(foundProduct);
-          break;
+          return; // Exit loop if found in productsMenu
+        }
+      }
+  
+      // Check products
+      for (const category in products) {
+        const foundProduct = products[category].find(
+          (item) => item.id === parseInt(productId)
+        );
+        if (foundProduct) {
+          setProduct(foundProduct);
+          return; // Exit loop if found in products
         }
       }
     };
-
+  
     if (productId && !product) {
       findProduct();
     }
-  }, [productId, product, productsMenu]);
+  }, [productId, product, productsMenu, products]);
+  
 
   const handleAddToCart = () => {
     setIsAdded(true);

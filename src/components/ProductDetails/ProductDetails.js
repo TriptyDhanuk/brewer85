@@ -25,6 +25,72 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   let { productId } = useParams();
 
+  const products = {
+    Biryani: [
+      {
+        id: 111,
+        image: image1,
+        name: "Hydrabadi Biryani",
+        price: "100",
+        discount: "60% off",
+      },
+    ],
+    IceCream: [
+      {
+        id: 222,
+        image: image2,
+        name: "IceCream",
+        price: "125",
+        discount: "60% off",
+      },
+    ],
+    Pizza: [
+      {
+        id: 333,
+        image: image4,
+        name: "Pizza",
+        price: "150",
+        discount: "60% off",
+      },
+    ],
+    Burger: [
+      {
+        id: 444,
+        image: burger,
+        name: "Burger",
+        price: "90",
+        discount: "60% off",
+      },
+    ],
+    Shakes: [
+      {
+        id: 555,
+        image: shakes,
+        name: "Shakes",
+        price: "70",
+        discount: "60% off",
+      },
+    ],
+    Chinese: [
+      {
+        id: 666,
+        image: noodles,
+        name: "Chinese",
+        price: "120",
+        discount: "60% off",
+      },
+      // Add more products as needed
+    ],
+    Drinks: [
+      {
+        id: 777,
+        image: drinks,
+        name: "Drinks",
+        price: "55",
+        discount: "60% off",
+      },
+    ],
+  };
   const productsMenu = {
     Biryani: [
       {
@@ -216,21 +282,34 @@ const ProductDetails = () => {
 
   useEffect(() => {
     const findProduct = () => {
+      // Check productsMenu
       for (const category in productsMenu) {
         const foundProduct = productsMenu[category].find(
           (item) => item.id === parseInt(productId)
         );
         if (foundProduct) {
           setProduct(foundProduct);
-          break;
+          return; // Exit loop if found in productsMenu
+        }
+      }
+  
+      // Check products
+      for (const category in products) {
+        const foundProduct = products[category].find(
+          (item) => item.id === parseInt(productId)
+        );
+        if (foundProduct) {
+          setProduct(foundProduct);
+          return; // Exit loop if found in products
         }
       }
     };
-
+  
     if (productId && !product) {
       findProduct();
     }
-  }, [productId, product, productsMenu]);
+  }, [productId, product, productsMenu, products]);
+  
 
   const handleAddToCart = () => {
     setIsAdded(true);
@@ -275,114 +354,118 @@ const ProductDetails = () => {
   return (
     <div className="product-details-container">
       {product && (
-      <><img
-        src={product.image}
-        alt="Product"
-        className="product-details-image"
-      />
-      <div className="product-details-header">
-        <nav className="product-details-navbar">
-          <div className="product-details-logo" onClick={handleGoBack}>
-            <box-icon name="arrow-back"></box-icon>
-            <h4 className="product-details-title">Product Details</h4>
+        <>
+          <img
+            src={product.image}
+            alt="Product"
+            className="product-details-image"
+          />
+          <div className="product-details-header">
+            <nav className="product-details-navbar">
+              <div className="product-details-logo" onClick={handleGoBack}>
+                <box-icon name="arrow-back"></box-icon>
+                <h4 className="product-details-title">Product Details</h4>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Wishlist style={{ marginRight: "10px" }} />
+                <CartIconBadge />
+              </div>
+            </nav>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Wishlist style={{ marginRight: "10px" }} />
-            <CartIconBadge />
-          </div>
-        </nav>
-      </div>
-      <div className="product-details-content">
-        <div className="product-details-image-container">
-          <div className="product-details-kcal-circle">
-            <div className="product-details-cal-value">25</div>
-            <div className="product-details-cal-unit">Cal</div>
-          </div>
-        </div>
-        <div className="product-details-info">
-          <h3 className="product-details-name">{product.name}</h3>
-          <p className="product-details-price">
-            AED <span>{product.price}</span>
-          </p>
-          <div className="product-details-price-rating-container">
-            <div className="product-details-your-rating">
-              <p>4.5 rating</p>
-              <div className="product-details-star-rating">
-                {[...Array(5)].map((_, index) => (
-                  <span key={index} className="star">
-                    &#9733;
-                  </span>
-                ))}
+          <div className="product-details-content">
+            <div className="product-details-image-container">
+              <div className="product-details-kcal-circle">
+                <div className="product-details-cal-value">25</div>
+                <div className="product-details-cal-unit">Cal</div>
               </div>
             </div>
-            <div className="product-details-your-rating">
-              <p>Your rating</p>
-              <div className="product-details-star-rating">
-                {[...Array(5)].map((_, index) => (
-                  <span key={index} className="star">
-                    &#9733;
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="product-details-additional-details">
-            <p className="bold-text">Details</p>
-            <h6>
-              {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
-              <span>
-                <a
-                  className="show-more-link"
-                  onClick={() => setShowMore(!showMore)}
-                  style={{ color: "rgb(255, 58, 117)", cursor: "pointer" }}
-                >
-                  {showMore ? "Show Less" : "Show More"}
-                </a>
-              </span>
-            </h6>
-          </div>
-
-          <div className="product-details-quantity-container">
-            <div className="product-details-quantity-button">
-              <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
-                Quantity
+            <div className="product-details-info">
+              <h3 className="product-details-name">{product.name}</h3>
+              <p className="product-details-price">
+                AED <span>{product.price}</span>
               </p>
-              <button
-                className="product-details-quantity-btn minus-btn"
-                onClick={handleMinusClick}
-              >
-                -
-              </button>
-              <span className="product-details-quantity-input">{quantity}</span>
-              <button
-                className="product-details-quantity-btn plus-btn"
-                onClick={handlePlusClick}
-              >
-                +
-              </button>
+              <div className="product-details-price-rating-container">
+                <div className="product-details-your-rating">
+                  <p>4.5 rating</p>
+                  <div className="product-details-star-rating">
+                    {[...Array(5)].map((_, index) => (
+                      <span key={index} className="star">
+                        &#9733;
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="product-details-your-rating">
+                  <p>Your rating</p>
+                  <div className="product-details-star-rating">
+                    {[...Array(5)].map((_, index) => (
+                      <span key={index} className="star">
+                        &#9733;
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="product-details-additional-details">
+                <p className="bold-text">Details</p>
+                <h6>
+                  {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
+                  <span>
+                    <a
+                      className="show-more-link"
+                      onClick={() => setShowMore(!showMore)}
+                      style={{ color: "rgb(255, 58, 117)", cursor: "pointer" }}
+                    >
+                      {showMore ? "Show Less" : "Show More"}
+                    </a>
+                  </span>
+                </h6>
+              </div>
+
+              <div className="product-details-quantity-container">
+                <div className="product-details-quantity-button">
+                  <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                    Quantity
+                  </p>
+                  <button
+                    className="product-details-quantity-btn minus-btn"
+                    onClick={handleMinusClick}
+                  >
+                    -
+                  </button>
+                  <span className="product-details-quantity-input">
+                    {quantity}
+                  </span>
+                  <button
+                    className="product-details-quantity-btn plus-btn"
+                    onClick={handlePlusClick}
+                  >
+                    +
+                  </button>
+                </div>
+                <p>
+                  <span style={{ fontWeight: "bold" }}>Total Price </span>
+                  <span className="product-details-price">
+                    AED <span>{(quantity * product.price).toFixed(2)}</span>
+                  </span>
+                </p>
+                <button
+                  className="product-details-add-to-cart-btn"
+                  onClick={handleAddToCart}
+                >
+                  ADD TO MY ORDER
+                </button>
+              </div>
             </div>
-            <p>
-              <span style={{ fontWeight: "bold" }}>Total Price </span>
-              <span className="product-details-price">
-                AED <span>{(quantity * product.price).toFixed(2)}</span>
-              </span>
-            </p>
-            <button
-              className="product-details-add-to-cart-btn"
-              onClick={handleAddToCart}
-            >
-              ADD TO MY ORDER
-            </button>
           </div>
-        </div>
-      </div>
-      {notification && (
-        <Notification
-          quantity={notification.quantity}
-          productName={notification.name}
-        />
+          {notification && (
+            <Notification
+              quantity={notification.quantity}
+              productName={notification.name}
+            />
+          )}
+        </>
       )}
-      </>)}
     </div>
   );
 };

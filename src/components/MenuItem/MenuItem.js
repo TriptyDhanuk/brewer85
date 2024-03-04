@@ -4,16 +4,15 @@ import "../Home/Home.css";
 import "./MenuCard";
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
-import image3 from "../../images/image3.png";
+
 import image4 from "../../images/image4.png";
 import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
-import searchIcon from "../../images/searchIcon.png";
+
 import ProductCard from "../ProductCard/ProductCard";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
-import { Link } from "react-router-dom";
-import Slider from "react-slick";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MenuCard from "./MenuCard";
@@ -90,6 +89,7 @@ const MenuItem = () => {
         price: "70",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Chinese: [
       {

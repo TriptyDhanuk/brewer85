@@ -26,7 +26,6 @@ const Home = () => {
   const [cart, setCart] = useState([]);
   console.log("selectedProduct", selectedProduct);
   useEffect(() => {
-    // Load selected product from localStorage on component mount
     const storedProduct = localStorage.getItem("selectedProduct");
     if (storedProduct) {
       setSelectedProduct(storedProduct);
@@ -34,7 +33,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Save selected product to localStorage whenever it changes
     localStorage.setItem("selectedProduct", selectedProduct);
   }, [selectedProduct]);
 

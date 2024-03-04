@@ -51,6 +51,22 @@ const Home = () => {
   //   setFilteredProducts(filtered);
   // }, [searchQuery]);
 
+  //search product Category
+  useEffect(() => {
+    const filterProducts = () => {
+      const filtered = [];
+      for (const category in products) {
+        const categoryProducts = products[category].filter((product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        filtered.push(...categoryProducts);
+      }
+      setFilteredProducts(filtered);
+    };
+
+    filterProducts();
+  }, [searchQuery]);
+
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -60,7 +76,7 @@ const Home = () => {
       {
         id: 101,
         image: image1,
-        name: "Hydrabadi Biryani",
+        name: "Biryani",
         price: "25",
         discount: "60% off",
       },
@@ -255,7 +271,7 @@ const Home = () => {
         />
       </div>
 
-      <div className="products " style={{ marginLeft: "10px" }}>
+      {/* <div className="products " style={{ marginLeft: "10px" }}>
         <h3>All Products</h3>
         <div className="product-category">
           <a href="/menu" class="product-item">
@@ -322,7 +338,28 @@ const Home = () => {
             <h4>Drinks</h4>
           </a>
         </div>
+      </div> */}
+      <div className="products" style={{ marginLeft: "10px" }}>
+        <h3>All Products</h3>
+        <div className="product-category">
+          {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <a href="/menu" className="product-item" key={product.name}>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="productImage"
+                  onClick={() => handleProductItemClick(product.name)}
+                />
+                <h4>{product.name}</h4>
+              </a>
+            ))
+          ) : (
+            <p>No products found</p>
+          )}
+        </div>
       </div>
+
       <div style={{ marginLeft: "5px", marginRight: "5px" }}>
         <h3>Most Popular</h3>
         <Slider {...settings}>

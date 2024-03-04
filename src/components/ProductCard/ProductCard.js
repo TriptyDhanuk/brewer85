@@ -163,11 +163,11 @@ const ProductCard = ({ id, image, name, price, discount }) => {
           </h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
           <div>
-            <div className="price-tag">
+            <div className="bg-red-900">
               <div style={{ display: "flex", alignItems: "center" }}>
                 <p style={{ fontSize: "0.8rem", margin: "0" }}>
                   <strong>
-                    AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
+                    AED <span>{price}</span>
                   </strong>
                 </p>
                 <p

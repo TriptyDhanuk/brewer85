@@ -15,6 +15,7 @@ import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
+import Modal from 'react-modal';
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -24,6 +25,20 @@ const ProductDetails = () => {
   const [notification, setNotification] = useState(null);
   const dispatch = useDispatch();
   let { productId } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleRatingChange = (value) => {
+    setRating(value);
+  };
+
 
   const products = {
     Biryani: [
@@ -292,7 +307,7 @@ const ProductDetails = () => {
           return; // Exit loop if found in productsMenu
         }
       }
-  
+
       // Check products
       for (const category in products) {
         const foundProduct = products[category].find(
@@ -304,12 +319,11 @@ const ProductDetails = () => {
         }
       }
     };
-  
+
     if (productId && !product) {
       findProduct();
     }
   }, [productId, product, productsMenu, products]);
-  
 
   const handleAddToCart = () => {
     setIsAdded(true);
@@ -354,114 +368,132 @@ const ProductDetails = () => {
   return (
     <div className="product-details-container">
       {product && (
-      <><img
-        src={product.image}
-        alt="Product"
-        className="product-details-image"
-      />
-      <div className="product-details-header">
-        <nav className="product-details-navbar">
-          <div className="product-details-logo" onClick={handleGoBack}>
-            <box-icon name="arrow-back"></box-icon>
-            <h4 className="product-details-title">Product Details</h4>
+        <>
+          <img
+            src={product.image}
+            alt="Product"
+            className="product-details-image"
+          />
+          <div className="product-details-header">
+            <nav className="product-details-navbar">
+              <div className="product-details-logo" onClick={handleGoBack}>
+                <box-icon name="arrow-back"></box-icon>
+                <h4 className="product-details-title">Product Details</h4>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Wishlist style={{ marginRight: "10px" }} />
+                <CartIconBadge />
+              </div>
+            </nav>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Wishlist style={{ marginRight: "10px" }} />
-            <CartIconBadge />
-          </div>
-        </nav>
-      </div>
-      <div className="product-details-content">
-        <div className="product-details-image-container">
-          <div className="product-details-kcal-circle">
-            <div className="product-details-cal-value">25</div>
-            <div className="product-details-cal-unit">Cal</div>
-          </div>
-        </div>
-        <div className="product-details-info">
-          <h3 className="product-details-name">{product.name}</h3>
-          <p className="product-details-price">
-            AED <span>{product.price}</span>
-          </p>
-          <div className="product-details-price-rating-container">
-            <div className="product-details-your-rating">
-              <p>4.5 rating</p>
-              <div className="product-details-star-rating">
-                {[...Array(5)].map((_, index) => (
-                  <span key={index} className="star">
-                    &#9733;
-                  </span>
-                ))}
+          <div className="product-details-content">
+            <div className="product-details-image-container">
+              <div className="product-details-kcal-circle">
+                <div className="product-details-cal-value">25</div>
+                <div className="product-details-cal-unit">Cal</div>
               </div>
             </div>
-            <div className="product-details-your-rating">
-              <p>Your rating</p>
-              <div className="product-details-star-rating">
-                {[...Array(5)].map((_, index) => (
-                  <span key={index} className="star">
-                    &#9733;
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="product-details-additional-details">
-            <p className="bold-text">Details</p>
-            <h6>
-              {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
-              <span>
-                <a
-                  className="show-more-link"
-                  onClick={() => setShowMore(!showMore)}
-                  style={{ color: "rgb(255, 58, 117)", cursor: "pointer" }}
-                >
-                  {showMore ? "Show Less" : "Show More"}
-                </a>
-              </span>
-            </h6>
-          </div>
-
-          <div className="product-details-quantity-container">
-            <div className="product-details-quantity-button">
-              <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
-                Quantity
+            <div className="product-details-info">
+              <h3 className="product-details-name">{product.name}</h3>
+              <p className="product-details-price">
+                AED <span>{product.price}</span>
               </p>
-              <button
-                className="product-details-quantity-btn minus-btn"
-                onClick={handleMinusClick}
-              >
-                -
-              </button>
-              <span className="product-details-quantity-input">{quantity}</span>
-              <button
-                className="product-details-quantity-btn plus-btn"
-                onClick={handlePlusClick}
-              >
-                +
-              </button>
+              <div className="product-details-price-rating-container">
+                <div className="product-details-your-rating">
+                  <p>4.5 rating</p>
+                  <div className="product-details-star-rating">
+                    {[...Array(5)].map((_, index) => (
+                      <span key={index} className="star">
+                        &#9733;
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div
+                  className="product-details-your-rating"
+                  onClick={() => {
+                    openModal();
+                    console.log("hello");
+                  }}
+                >
+                  <p>Your rating</p>
+                  <div className="product-details-star-rating">
+                    {[...Array(5)].map((_, index) => (
+                      <span key={index} className="star">
+                        &#9733;
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="product-details-additional-details">
+                <p className="bold-text">Details</p>
+                <h6>
+                  {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
+                  <span>
+                    <a
+                      className="show-more-link"
+                      onClick={() => setShowMore(!showMore)}
+                      style={{ color: "rgb(255, 58, 117)", cursor: "pointer" }}
+                    >
+                      {showMore ? "Show Less" : "Show More"}
+                    </a>
+                  </span>
+                </h6>
+              </div>
+
+              <div className="product-details-quantity-container">
+                <div className="product-details-quantity-button">
+                  <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                    Quantity
+                  </p>
+                  <button
+                    className="product-details-quantity-btn minus-btn"
+                    onClick={handleMinusClick}
+                  >
+                    -
+                  </button>
+                  <span className="product-details-quantity-input">
+                    {quantity}
+                  </span>
+                  <button
+                    className="product-details-quantity-btn plus-btn"
+                    onClick={handlePlusClick}
+                  >
+                    +
+                  </button>
+                </div>
+                <p>
+                  <span style={{ fontWeight: "bold" }}>Total Price </span>
+                  <span className="product-details-price">
+                    AED <span>{(quantity * product.price).toFixed(2)}</span>
+                  </span>
+                </p>
+                <button
+                  className="product-details-add-to-cart-btn"
+                  onClick={handleAddToCart}
+                >
+                  ADD TO MY ORDER
+                </button>
+              </div>
             </div>
-            <p>
-              <span style={{ fontWeight: "bold" }}>Total Price </span>
-              <span className="product-details-price">
-                AED <span>{(quantity * product.price).toFixed(2)}</span>
-              </span>
-            </p>
-            <button
-              className="product-details-add-to-cart-btn"
-              onClick={handleAddToCart}
-            >
-              ADD TO MY ORDER
-            </button>
           </div>
-        </div>
-      </div>
-      {notification && (
-        <Notification
-          quantity={notification.quantity}
-          productName={notification.name}
-        />
+          {notification && (
+            <Notification
+              quantity={notification.quantity}
+              productName={notification.name}
+            />
+          )}
+          <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Example Modal"
+          >
+            <button onClick={closeModal}>Close Modal</button>
+            <p>Hello, this is the modal content!</p>
+          </Modal>
+        </>
       )}
-      </>)}
     </div>
   );
 };

@@ -76,14 +76,15 @@ button:hover {
   position: absolute;
   top: 0;
   right: 0;
-  border-width: 17px 10px 18px;
+  border-width: 23px 10px 18px;
   border-style: solid;
   border-color: #07b307 #07b307 #07b307 transparent;
   position: absolute;
-  right: -20px;
+  right: -19px;
   transform: scale(-1);
 }
 .quantity-button {
   display: flex;
-  width: 20px;
+  /* width: 20px; */
+  margin-left: auto;
 }

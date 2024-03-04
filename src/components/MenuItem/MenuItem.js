@@ -54,7 +54,6 @@ const MenuItem = () => {
         price: "100",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     IceCream: [
       {
@@ -64,7 +63,6 @@ const MenuItem = () => {
         price: "125",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Pizza: [
       {
@@ -74,7 +72,6 @@ const MenuItem = () => {
         price: "150",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Burger: [
       {
@@ -84,7 +81,6 @@ const MenuItem = () => {
         price: "90",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Shakes: [
       {
@@ -94,7 +90,6 @@ const MenuItem = () => {
         price: "70",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Chinese: [
       {
@@ -339,15 +334,6 @@ const MenuItem = () => {
           type="text"
           placeholder=" What are you looking for ?"
           className="search-input"
-          style={{
-            border: "1px solid rgba(0, 0, 0, 0.1)",
-            width: "400px",
-            height: "52px",
-            backgroundColor: "#e7e7e7",
-            backgroundImage: { searchIcon },
-            borderRadius: "7px",
-            paddingLeft: "20px",
-          }}
           value={searchQuery}
           onChange={handleSearchInputChange}
         />

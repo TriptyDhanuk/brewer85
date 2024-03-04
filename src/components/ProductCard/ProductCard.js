@@ -157,38 +157,39 @@ const ProductCard = ({ id, image, name, price, discount }) => {
           onClick={handleImgClick}
         />
         <div className="product-details">
-          <h3>
+          <h3 style={{ fontSize: "1.5rem" }}>
             {name}
             {id}
           </h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
-          <div className="price-tag">
-            <p style={{ fontSize: "0.8rem", margin: "0" }}>
-              <strong>
-                AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
-              </strong>
-            </p>
-            <p
-              style={{
-                color: "red",
-                margin: "0 8px",
-                padding: "0 4px",
-                fontWeight: "bold",
-                fontSize: "1em",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {discount}
-            </p>
-
-            <div style={{ display: "flex", marginTop: "1rem" }}>
+          <div>
+            <div className="price-tag">
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <p style={{ fontSize: "0.8rem", margin: "0" }}>
+                  <strong>
+                    AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
+                  </strong>
+                </p>
+                <p
+                  style={{
+                    color: "red",
+                    margin: "0 8px",
+                    padding: "0 4px",
+                    fontWeight: "bold",
+                    fontSize: "1em",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {discount}
+                </p>
+              </div>
               <div className="quantity-button">
                 <button
                   style={{
                     border: "1px solid green",
                     color: "white",
                     backgroundColor: "#f35353",
-                    width: "100px",
+                    // width: "100px",
                     height: "40px",
                   }}
                   onClick={handleMinusClick}
@@ -206,7 +207,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                     border: "1px solid green",
                     color: "white",
                     backgroundColor: "#7ad17a",
-                    width: "100px",
+                    // width: "100px",
                     height: "40px",
                   }}
                   onClick={handlePlusClick}
@@ -214,21 +215,38 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                   +
                 </button>
               </div>
+            </div>
+            <div style={{ display: "flex", marginTop: "1rem" }}>
               <button
                 style={{
                   border: "1px solid green",
                   color: "green",
                   backgroundColor: "white",
-                  width: "100px",
+                  width: "100%",
                   height: "40px",
-                  marginLeft: "7rem",
+                  padding: "0.625rem 1.25rem",
+                  // marginLeft: "7rem",
                 }}
                 onClick={handleAddToCart}
               >
                 ADD
               </button>
               {/* {existingCartItem ? (
-                <Link to="/checkout">
+                  <Link to="/checkout">
+                    <button
+                      style={{
+                        border: "1px solid green",
+                        color: "green",
+                        backgroundColor: "white",
+                        width: "100px",
+                        height: "40px",
+                        marginLeft: "7rem",
+                      }}
+                    >
+                      GO TO CART
+                    </button>
+                  </Link>
+                ) : (
                   <button
                     style={{
                       border: "1px solid green",
@@ -238,25 +256,11 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                       height: "40px",
                       marginLeft: "7rem",
                     }}
+                    onClick={handleAddToCart}
                   >
-                    GO TO CART
+                    ADD
                   </button>
-                </Link>
-              ) : (
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "green",
-                    backgroundColor: "white",
-                    width: "100px",
-                    height: "40px",
-                    marginLeft: "7rem",
-                  }}
-                  onClick={handleAddToCart}
-                >
-                  ADD
-                </button>
-              )} */}
+                )} */}
             </div>
           </div>
         </div>

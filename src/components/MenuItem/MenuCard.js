@@ -142,72 +142,73 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           </h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
           <div className="price-tag">
-            <p style={{ fontSize: "0.8rem", margin: "0" }}>
-              <strong>
-                AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
-              </strong>
-            </p>
-            <p
-              style={{
-                color: "red",
-                margin: "0 8px",
-                padding: "0 4px",
-                fontWeight: "bold",
-                fontSize: "1em",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {discount}
-            </p>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <p style={{ fontSize: "0.8rem", margin: "0" }}>
+                <strong>
+                  AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
+                </strong>
+              </p>
+              <p
+                style={{
+                  color: "red",
+                  margin: "0 8px",
+                  padding: "0 4px",
+                  fontWeight: "bold",
+                  fontSize: "1em",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {discount}
+              </p>
+            </div>
 
-            <div style={{ display: "flex", marginTop: "1rem" }}>
-              <div className="quantity-button">
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "white",
-                    backgroundColor: "#f35353",
-                    width: "100px",
-                    height: "40px",
-                  }}
-                  onClick={handleMinusClick}
-                >
-                  -
-                </button>
-                <input
-                  style={{ width: "30px" }}
-                  type="text"
-                  value={quantity}
-                  readOnly
-                />
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "white",
-                    backgroundColor: "#7ad17a",
-                    width: "100px",
-                    height: "40px",
-                  }}
-                  onClick={handlePlusClick}
-                >
-                  +
-                </button>
-              </div>
+            <div className="quantity-button">
               <button
                 style={{
                   border: "1px solid green",
-                  color: "green",
-                  backgroundColor: "white",
-                  width: "100px",
+                  color: "white",
+                  backgroundColor: "#f35353",
+                  // width: "100px",
                   height: "40px",
-                  marginLeft: "7rem",
                 }}
-                onClick={handleAddToCart}
+                onClick={handleMinusClick}
               >
-                ADD
+                -
+              </button>
+              <input
+                style={{ width: "30px" }}
+                type="text"
+                value={quantity}
+                readOnly
+              />
+              <button
+                style={{
+                  border: "1px solid green",
+                  color: "white",
+                  backgroundColor: "#7ad17a",
+                  // width: "100px",
+                  height: "40px",
+                }}
+                onClick={handlePlusClick}
+              >
+                +
               </button>
             </div>
           </div>
+          <button
+            style={{
+              marginTop: "0.5rem",
+              border: "1px solid green",
+              color: "green",
+              backgroundColor: "white",
+              display: "block",
+              width: "100%",
+              height: "40px",
+            }}
+            onClick={handleAddToCart}
+          >
+            ADD
+          </button>
         </div>
       </div>
       {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}

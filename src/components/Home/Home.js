@@ -250,16 +250,8 @@ const Home = () => {
       <div className="top-search">
         <input
           type="text"
-          placeholder=" Search Products..."
-          className="search-input bg-[#fffg] "
-          style={{
-            border: "1px solid rgba(0, 0, 0, 0.1)",
-            width: "400px",
-            height: "52px",
-            // backgroundColor: "lightgrey",
-            borderRadius: "7px",
-            paddingLeft: "20px",
-          }}
+          placeholder=" What are you looking for ?"
+          className="search-input"
           value={searchQuery}
           onChange={handleSearchInputChange}
         />

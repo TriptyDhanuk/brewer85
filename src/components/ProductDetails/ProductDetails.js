@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectCartTotalItems } from "../../features/cart/cartSlice";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import CartIconBadge from "../CartIconBadge";
+import Wishlist from "../Wishlist";
 import Notification from "../Notificaiton/Notification";
 import { useParams } from "react-router-dom";
 import image1 from "../../images/image1.png";
@@ -285,7 +286,10 @@ const ProductDetails = () => {
             <box-icon name="arrow-back"></box-icon>
             <h4 className="product-details-title">Product Details</h4>
           </div>
-          <CartIconBadge />
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Wishlist style={{ marginRight: "10px" }} />
+            <CartIconBadge />
+          </div>
         </nav>
       </div>
       <div className="product-details-content">

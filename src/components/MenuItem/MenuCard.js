@@ -149,7 +149,6 @@ const MenuCard = ({ id, image, name, price, discount }) => {
                 </strong>
               </p>
               <p
-                className="bg-red-900"
                 style={{
                   color: "red",
                   margin: "0 8px",

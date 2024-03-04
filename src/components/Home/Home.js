@@ -70,67 +70,72 @@ const Home = () => {
   const products = {
     Biryani: [
       {
-        id: 101,
+        id: 111,
         image: image1,
-        name: "Biryani",
-        price: "25",
+        name: "Hydrabadi Biryani",
+        price: "100",
         discount: "60% off",
       },
     ],
     IceCream: [
       {
-        id: 201,
+        id: 222,
         image: image2,
         name: "IceCream",
-        price: "25",
+        price: "125",
         discount: "60% off",
       },
     ],
     Pizza: [
       {
-        id: 301,
+        id: 333,
         image: image4,
         name: "Pizza",
-        price: "25",
+        price: "150",
         discount: "60% off",
       },
     ],
     Burger: [
       {
-        id: 401,
+        id: 444,
         image: burger,
         name: "Burger",
-        price: "25",
+        price: "90",
         discount: "60% off",
       },
     ],
     Shakes: [
       {
-        id: 501,
+        id: 555,
         image: shakes,
         name: "Shakes",
-        price: "25",
+        price: "70",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Chinese: [
       {
-        id: 601,
+        id: 666,
         image: noodles,
         name: "Chinese",
-        price: "25",
+        price: "120",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Drinks: [
       {
-        id: 701,
+        id: 777,
         image: drinks,
         name: "Drinks",
-        price: "25",
+        price: "55",
         discount: "60% off",
       },
     ],
+  };
+  const handleImgClick = () => {
+    window.location.href = `/details/${products.id}`;
   };
 
   const settingsMy = {

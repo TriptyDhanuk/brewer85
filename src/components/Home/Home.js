@@ -40,10 +40,6 @@ const Home = () => {
     setSelectedProduct(productName);
   };
 
-  const handleAddToCart = (product) => {
-    setCart([...cart, product]);
-  };
-
   // useEffect(() => {
   //   const filtered = products.filter((product) =>
   //     product.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -233,7 +229,7 @@ const Home = () => {
             <box-icon name="menu"></box-icon>
             <h4 className="">Home</h4>
           </div>
-          {/* <box-icon name="cart"></box-icon> */}
+
           <div style={{ display: "flex", alignItems: "center" }}>
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />

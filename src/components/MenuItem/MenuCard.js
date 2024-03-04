@@ -136,7 +136,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           onClick={handleImgClick}
         />
         <div className="product-details">
-          <h3>
+          <h3 style={{ fontSize: "1.5rem" }}>
             {name}
             {id}
           </h3>

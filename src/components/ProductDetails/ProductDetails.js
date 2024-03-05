@@ -15,7 +15,12 @@ import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
-import Modal from 'react-modal';
+import Modal from "react-modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import Lottie from "react-lottie";
+import feedbackSuccessAnimation from './feedBackAnimation.json';
+
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -26,6 +31,8 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   let { productId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -39,6 +46,10 @@ const ProductDetails = () => {
     setRating(value);
   };
 
+  const handleSubmitFeedback = () => {
+    console.log("Feedback submitted:", rating);
+    setFeedbackSubmitted(true);
+  };
 
   const products = {
     Biryani: [
@@ -484,13 +495,83 @@ const ProductDetails = () => {
               productName={notification.name}
             />
           )}
+          // Inside the modal component
+          {/* <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Feedback Modal"
+          >
+            <button className="close-modal-button" onClick={closeModal}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+            <div className="feedback-container">
+              <p>Please rate your experience:</p>
+              <div className="rating-stars">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className={star <= rating ? "gold-star" : "empty-star"}
+                    onClick={() => handleRatingChange(star)}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+              <button
+                className="submit-feedback-button"
+                onClick={handleSubmitFeedback}
+              >
+                Submit Feedback
+              </button>
+            </div>
+          </Modal> */}
+          // Inside the modal component
           <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}
-            contentLabel="Example Modal"
+            contentLabel="Feedback Modal"
           >
-            <button onClick={closeModal}>Close Modal</button>
-            <p>Hello, this is the modal content!</p>
+            <div className="modal-content">
+              <button className="close-modal-button" onClick={closeModal}>
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+              <div className="feedback-container">
+                {feedbackSubmitted ? (
+                  <Lottie
+                    options={{
+                      loop: false,
+                      autoplay: true,
+                      animationData: feedbackSuccessAnimation,
+                    }}
+                    height={400}
+                    width={400}
+                  />
+                ) : (
+                  <>
+                    <p>Please rate your experience:</p>
+                    <div className="rating-stars">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span
+                          key={star}
+                          className={
+                            star <= rating ? "gold-star" : "empty-star"
+                          }
+                          onClick={() => handleRatingChange(star)}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      className="submit-feedback-button"
+                      onClick={handleSubmitFeedback}
+                    >
+                      Submit Feedback
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
           </Modal>
         </>
       )}

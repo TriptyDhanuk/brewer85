@@ -130,17 +130,17 @@
   margin-right: 20px;
 }
 .product-details-price {
-  font-weight: normal;
+  /* font-weight: normal;
   font-size: 1.2rem;
-  color: rgb(255, 58, 117);
+  color: rgb(255, 58, 117); */
 }
 .product-details-price span {
-  font-size: 2.5rem;
+  /* font-size: 2.5rem;
   font-weight: bold;
-  color: rgb(255, 58, 117);
+  color: rgb(255, 58, 117); */
 }
 .product-details-discount {
-  color: red;
+  /* color: red; */
 }
 .product-details-rating-container {
   display: flex;
@@ -209,7 +209,7 @@
 }
 .cart-badge {
   position: absolute;
-  top: -15px; /* Adjust as needed */
+  top: -10px; /* Adjust as needed */
   right: -16px; /* Adjust as needed */
   background-color: red;
   color: white;

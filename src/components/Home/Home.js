@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "boxicons";
+// import "boxicons";
 import "./Home.css";
 import banner1 from "../../images/banner1.jpg";
 import banner2 from "../../images/banner2.jpg";
@@ -140,6 +140,7 @@ const Home = () => {
 
   const settingsMy = {
     dots: false,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
@@ -184,6 +185,7 @@ const Home = () => {
   };
   const settings = {
     dots: false,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
@@ -227,15 +229,15 @@ const Home = () => {
     ],
   };
   return (
-    <div className="body">
-      <div className="header">
-        <nav className="navbar headNav">
+    <div className="body px-4">
+      <div className="header py-3">
+        <nav className="flex flex-wrap">
           <div className="logo">
             <box-icon name="menu"></box-icon>
             <h4 className="">Home</h4>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="flex items-center ml-auto">
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />
           </div>
@@ -266,7 +268,7 @@ const Home = () => {
         <input
           type="text"
           placeholder=" What are you looking for ?"
-          className="search-input"
+          className="search-input block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={searchQuery}
           onChange={handleSearchInputChange}
         />

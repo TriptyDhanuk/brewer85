@@ -130,18 +130,29 @@ const CheckOut = () => {
   };
 
   return (
-    <div>
-      <nav className="navbar headNav">
+    <div className="body px-4">
+      <div className="header py-3">
+      <nav className="flex flex-wrap">
         <div className="logo" onClick={handleGoBack}>
           <box-icon name="arrow-back"></box-icon>
           <h4 className="">Checkout</h4>
         </div>
+        <div className="ml-auto">
         <box-icon type="solid" name="filter-alt"></box-icon>
+        </div>
       </nav>
+      </div>
 
       <div className="items-container">
         {cartItems.map((item) => (
-          <div key={item.id} className="item">
+          <div key={item.id} className="item mb-3 p-3 flex items-center border border-solid border-slate-200 rounded-md">
+            <div>
+              <img
+                src={item.image}
+                alt={item.name}
+                style={{ height: "134px", width: "141px" }}
+              />
+            </div>
             <div className="item-details">
               <div className="product-details">
                 <h3>{item.name}</h3>
@@ -169,106 +180,77 @@ const CheckOut = () => {
                     {item.discount}
                   </p>
                 </div>
-                <div className="icons" style={{ display: "flex" }}>
-                  <span onClick={() => toggleSavedForLater(item.id)}>
-                    <box-icon
-                      type="solid"
-                      name="bookmark-star"
-                      style={{ fill: "#f7387f", stroke: "yellow" }}
-                    ></box-icon>
-                  </span>
-
-                  <span onClick={() => handleRemoveItem(item.id)}>
-                    <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} />
-                  </span>
-                </div>
               </div>
             </div>
             <div className="item-actions">
               <div>
-                <label htmlFor={`qty-${item.id}`}>
-                  <b> Qty:</b>
-                </label>
-                <div className="" style={{ display: "flex" }}>
+                <label htmlFor={`qty-${item.id}`} className="mr-2"> Qty:</label>
+                <div class="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700">
+                <div class="flex items-center gap-x-1.5">
                   <button
-                    style={{
-                      border: "1px solid green",
-                      color: "black",
-                      backgroundColor: "white",
-                      width: "50px",
-                      height: "40px",
-                    }}
-                    onClick={() => handleMinusClick(item.id)}
+                      className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" onClick={() => handleMinusClick(item.id)}
                   >
-                    -
+                     <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
                   </button>
 
                   <input
                     type="number"
-                    style={{ width: "50px", height: "40px" }}
                     id={`qty-${item.id}`}
                     value={item.quantity}
                     readOnly
                     min="1"
                     max="10"
+                    className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white"
                   />
-                  <button
-                    style={{
-                      border: "1px solid green",
-                      color: "black",
-                      backgroundColor: "white",
-                      width: "50px",
-                      height: "40px",
-                    }}
-                    onClick={() => handlePlusClick(item.id)}
+                  <button className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" onClick={() => handlePlusClick(item.id)}
                   >
-                    +
+                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                   </button>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{ height: "134px", width: "141px" }}
-                />
-              </div>
+              
+            </div>
+            
+            <div className="icons ml-3 flex items-center">
+              <button type="button" onClick={() => toggleSavedForLater(item.id)} className="p-1 hover:bg-transparent">
+                <box-icon
+                  type="solid"
+                  name="bookmark-star"
+                  style={{ fill: "#f7387f", stroke: "yellow" }}
+                ></box-icon>
+              </button>
+
+              <button type="button" onClick={() => handleRemoveItem(item.id)} className="p-1 hover:bg-transparent">
+                <box-icon name="trash" style={{ fill: "#ff0000" }}></box-icon>
+                {/* <FontAwesomeIcon icon={faTrash} style={{ Color: "gray" }} /> */}
+              </button>
             </div>
           </div>
         ))}
 
         {/* Coupon Section */}
-        <div>
+        <div className="mb-3">
+        <div className="flex mb-1">
           <input
             type="text"
             id="textbox"
             name="textbox"
             placeholder="Type something..."
-            style={{
-              padding: "8px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-              width: "20%",
-              height: "48px",
-              marginLeft: "4rem",
-            }}
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value)}
             disabled={couponApplied}
+            className="block w-full py-3 px-3 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
           <button
-            style={{
-              backgroundColor: "#f7387f",
-              height: "48px",
-              marginLeft: "10px",
-              marginBottom: "20px",
-            }}
+            className="ml-2 py-3 px-5 text-white font-semibold bg-slate-700 rounded-lg whitespace-nowrap"
             onClick={handleApplyCoupon}
             disabled={couponApplied}
           >
             Apply Coupon
           </button>
+          </div>
           {couponApplied && (
             <button
               style={{
@@ -283,7 +265,7 @@ const CheckOut = () => {
             </button>
           )}
           {invalidCoupon && (
-            <p style={{ color: "red", marginLeft: "10px" }}>Invalid Coupon</p>
+            <p className="font-semibold text-red-500">Invalid Coupon</p>
           )}
           {couponApplied && (
             <p style={{ marginLeft: "10px" }}>
@@ -295,72 +277,68 @@ const CheckOut = () => {
         </div>
 
         {/* Subtotal */}
-        <h5 style={{ marginLeft: "25px" }}>
-          <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
+        <div className="flex">
+          <h5 className="font-semibold text-slate-800">
             SUBTOTAL{" "}
-          </span>
+          </h5>
           <span
-            className="product-details-price"
-            style={{ marginLeft: "15rem" }}
+            className="price ml-auto font-semibold text-slate-800"
           >
-            AED{" "}
-            <span style={{ fontSize: "1.2rem" }}>{subtotal.toFixed(2)}</span>
+            <small className="mr-2">AED</small>
+            <span className="text-xl font-semibold text-green-700">{subtotal.toFixed(2)}</span>
           </span>
-        </h5>
+          </div>
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
 
         {/* VAT */}
-        <h5 style={{ marginLeft: "25px" }}>
-          <span style={{ fontWeight: "bold", marginLeft: "3rem" }}>
-            VAT (5%){" "}
-          </span>
-          <span
-            className="product-details-price"
-            style={{ marginLeft: "16rem" }}
-          >
-            AED{" "}
-            <span style={{ fontSize: "1.2rem" }}>
-              {(subtotal * VAT_RATE).toFixed(2)}
-            </span>
-          </span>
+        <div className="flex">
+        <h5>Vat 
+          <span className="ml-4 font-semibold text-lg text-slate-900">(5%)</span>
         </h5>
+          <span
+            className="product-details-price ml-auto font-semibold text-slate-800"
+            
+          >
+            <small className="mr-2">AED</small>
+            <span className="text-xl font-semibold text-red-500">{(subtotal * VAT_RATE).toFixed(2)}</span>
+          </span>
+          </div>
+        
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
 
         {/* Total Price */}
-        <h3 style={{ marginLeft: "25px" }}>
-          <span style={{}}>
-            Total Price:{" "}
+
+        <div className="flex mb-4">
+          <span>Total Price:</span>
+          <div className="ml-auto">
+          <h3 className="">
             {couponApplied ? (
-              <span
-                style={{
-                  textDecoration: "line-through",
-                  color: "red",
-                  marginRight: "1rem",
-                  fontSize: "0.8rem",
-                }}
+              <span className="me-3 text-sm line-through text-slate-500"
               >
                 AED {(subtotal + subtotal * VAT_RATE).toFixed(2)}
               </span>
             ) : (
-              <span>AED {(subtotal + subtotal * VAT_RATE).toFixed(2)}</span>
+              <span className=" font-bold text-red-500">AED {(subtotal + subtotal * VAT_RATE).toFixed(2)}</span>
             )}
-          </span>
+          </h3>
           {couponApplied && (
-            <span style={{ fontWeight: "bold", color: "red" }}>
-              AED {(subtotal + subtotal * VAT_RATE - discount).toFixed(2)}
-            </span>
+            <h3 className="text-slate-800">
+              <small>AED</small> <span className="text-xl font-bold text-red-500">{(subtotal + subtotal * VAT_RATE - discount).toFixed(2)}</span>
+            </h3>
           )}
-        </h3>
-
+          </div>
+        </div>
+        <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
+            <div className="text-right">
         <Link to="/thankyou">
           <button
-            className="product-details-add-to-cart-btn"
-            style={{ width: "53rem", marginLeft: "5rem" }}
+            className="py-3 px-5 text-white font-semibold bg-green-700 rounded-lg whitespace-nowrap"
             onClick={handlePlaceOrder}
           >
             PLACE ORDER
           </button>
         </Link>
+        </div>
       </div>
       {isRemoved && <RemoveNotification />}
     </div>

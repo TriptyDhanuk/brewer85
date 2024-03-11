@@ -45,13 +45,13 @@
   margin-right: 10%;
   color: grey;
 }
-.product-details-star-rating {
+/* .product-details-star-rating {
   display: flex;
 }
 .product-details-star-rating .star {
   color: rgb(255, 58, 117);
   margin-right: 5px;
-}
+} */
 .product-details-name {
   font-family: 'Raleway', sans-serif; /* Use Raleway font */
   font-weight: bold; /* Make it bold */
@@ -301,6 +301,24 @@
   margin: 0 auto;
   display: block;
 }
+
+/* feedbaack stars */
+.star {
+  font-size: 1.2rem; 
+  cursor: pointer; 
+  margin-right: 5px; 
+}
+
+/* Filled star */
+.pink-star {
+  color: rgb(255, 58, 117);
+}
+
+/* Empty star */
+.empty-star {
+  color: grey; 
+}
+
 @media only screen and (max-width: 768px) {
   .product-details-content {
     margin-top: 60px;

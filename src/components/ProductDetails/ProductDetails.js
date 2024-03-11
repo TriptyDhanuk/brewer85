@@ -19,8 +19,7 @@ import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Lottie from "react-lottie";
-import feedbackSuccessAnimation from './feedBackAnimation.json';
-
+import feedbackSuccessAnimation from "./feedBackAnimation.json";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -49,6 +48,8 @@ const ProductDetails = () => {
   const handleSubmitFeedback = () => {
     console.log("Feedback submitted:", rating);
     setFeedbackSubmitted(true);
+    localStorage.setItem("feedbackSubmitted", true);
+    localStorage.setItem("feedbackSubmittedCount", rating);
   };
 
   const products = {
@@ -423,17 +424,49 @@ const ProductDetails = () => {
                 <div
                   className="product-details-your-rating"
                   onClick={() => {
-                    openModal();
+                    // openModal();
+                    if (!localStorage.getItem("feedbackSubmitted")) {
+                      openModal();
+                    }
                     console.log("hello");
                   }}
                 >
                   <p>Your rating</p>
-                  <div className="product-details-star-rating">
+                  {/* <div className="product-details-star-rating">
                     {[...Array(5)].map((_, index) => (
                       <span key={index} className="star">
                         &#9733;
                       </span>
                     ))}
+                  </div> */}
+                  <div className="product-details-star-rating">
+                    {[...Array(5)].map((_, index) => {
+                      // Retrieve feedback count from local storage
+                      const feedbackCount = localStorage.getItem(
+                        "feedbackSubmittedCount"
+                      );
+                      // Parse feedback count as integer
+                      const parsedFeedbackCount = parseInt(feedbackCount);
+                      // Check if parsedFeedbackCount is a valid integer
+                      const isValidCount = !isNaN(parsedFeedbackCount);
+                      const shouldFillStar =
+                        isValidCount && index < parsedFeedbackCount;
+
+                      console.log(
+                        `Index: ${index}, Feedback Count: ${parsedFeedbackCount}, Should Fill Star: ${shouldFillStar}`
+                      );
+
+                      return (
+                        <span
+                          key={index}
+                          className={`star ${
+                            shouldFillStar ? "pink-star" : "empty-star"
+                          }`}
+                        >
+                          &#9733;
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -494,7 +527,7 @@ const ProductDetails = () => {
               quantity={notification.quantity}
               productName={notification.name}
             />
-          )} 
+          )}
           <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}

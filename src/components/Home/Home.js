@@ -6,7 +6,6 @@ import banner2 from "../../images/banner2.jpg";
 import banner4 from "../../images/banner4.jpg";
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
-import image3 from "../../images/image3.png";
 import image4 from "../../images/image4.png";
 import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
@@ -185,7 +184,7 @@ const Home = () => {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     responsive: [
       {
         breakpoint: 1400,
@@ -237,22 +236,46 @@ const Home = () => {
       </div>
       <Slider {...settingsMy} className="mb-3">
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner1} className="w-100px h-50 block rounded-lg" alt="ban1" />
+          <img
+            src={banner1}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban1"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner4} className="w-100px h-50 block rounded-lg" alt="ban2" />
+          <img
+            src={banner4}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban2"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner2} className="w-100px h-50 block rounded-lg" alt="ban3" />
+          <img
+            src={banner2}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban3"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner1} className="w-100px h-50 block rounded-lg" alt="ban1" />
+          <img
+            src={banner1}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban1"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner4} className="w-100px h-50 block rounded-lg" alt="ban2" />
+          <img
+            src={banner4}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban2"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner2} className="w-100px h-50 block rounded-lg" alt="ban3" />
+          <img
+            src={banner2}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban3"
+          />
         </div>
       </Slider>
 
@@ -260,7 +283,7 @@ const Home = () => {
         <input
           type="text"
           placeholder=" What are you looking for ?"
-          className="search-input block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="search-input block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-200 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={searchQuery}
           onChange={handleSearchInputChange}
         />
@@ -335,28 +358,40 @@ const Home = () => {
         </div>
       </div> */}
       <div className="products" style={{ marginLeft: "10px" }}>
-        <h3 className="text-xl font-semibold text-slate-800 mb-3">All Products</h3>
+        <h3 className="text-xl font-semibold text-slate-800 mb-3">
+          All Products
+        </h3>
         <div className="product-category flex flex-wrap">
           {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <a href="/menu" className="product-item block mx-auto" key={product.name}>
+              <a
+                href="/menu"
+                className="product-item block mx-auto"
+                key={product.name}
+              >
                 <img
                   src={product.image}
                   alt={product.name}
                   className="productImage mx-auto mb-3 block"
                   onClick={() => handleProductItemClick(product.name)}
                 />
-                <h4 className="text-lg font-semibold text-slate-800">{product.name}</h4>
+                <h4 className="text-lg font-semibold text-slate-800">
+                  {product.name}
+                </h4>
               </a>
             ))
           ) : (
-            <p className="text-base font-medium text-slate-800">No products found</p>
+            <p className="text-base font-medium text-slate-800">
+              No products found
+            </p>
           )}
         </div>
       </div>
 
       <div style={{ marginLeft: "5px", marginRight: "5px" }}>
-        <h3 className="text-xl font-semibold text-slate-800 mb-3">Most Popular</h3>
+        <h3 className="text-xl font-semibold text-slate-800 mb-3">
+          Most Popular
+        </h3>
         <Slider {...settings}>
           {Object.keys(products).map((category) =>
             products[category].map((product) => (

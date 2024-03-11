@@ -162,37 +162,59 @@ const MenuCard = ({ id, image, name, price, discount }) => {
               </p>
             </div>
 
-            <div className="quantity-button">
-              <button
-                style={{
-                  border: "1px solid green",
-                  color: "white",
-                  backgroundColor: "#f35353",
-                  // width: "100px",
-                  height: "40px",
-                }}
-                onClick={handleMinusClick}
+            <div className="quantity-button w-1/2">
+              <div
+                class="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700"
+                data-hs-input-number
               >
-                -
-              </button>
-              <input
-                style={{ width: "30px" }}
-                type="text"
-                value={quantity}
-                readOnly
-              />
-              <button
-                style={{
-                  border: "1px solid green",
-                  color: "white",
-                  backgroundColor: "#7ad17a",
-                  // width: "100px",
-                  height: "40px",
-                }}
-                onClick={handlePlusClick}
-              >
-                +
-              </button>
+                <div class="flex items-center gap-x-1.5">
+                  <button
+                    className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    onClick={handleMinusClick}
+                  >
+                    <svg
+                      class="flex-shrink-0 size-3.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12h14" />
+                    </svg>
+                  </button>
+                  <input
+                    type="text"
+                    value={quantity}
+                    readOnly
+                    className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white"
+                  />
+                  <button
+                    className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    onClick={handlePlusClick}
+                  >
+                    <svg
+                      class="flex-shrink-0 size-3.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="M12 5v14" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           <button

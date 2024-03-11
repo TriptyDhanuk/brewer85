@@ -4,15 +4,12 @@ import "../Home/Home.css";
 import "./MenuCard";
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
-
 import image4 from "../../images/image4.png";
 import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
-
 import ProductCard from "../ProductCard/ProductCard";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MenuCard from "./MenuCard";
@@ -49,7 +46,7 @@ const MenuItem = () => {
       {
         id: 111,
         image: image1,
-        name: "Biryani",
+        name: "Hydrabadi Biryani",
         price: "100",
         discount: "60% off",
       },
@@ -333,7 +330,7 @@ const MenuItem = () => {
         <input
           type="text"
           placeholder=" What are you looking for ?"
-          className="search-input"
+          className="search-input block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-200 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={searchQuery}
           onChange={handleSearchInputChange}
         />

@@ -1,6 +1,6 @@
 .details-container {
-  max-height: 150px; 
-  overflow: auto; 
+  max-height: 150px;
+  overflow: auto;
 }
 .bold-text {
   font-weight: bold;
@@ -53,7 +53,7 @@
   margin-right: 5px;
 } */
 .product-details-name {
-  font-family: 'Raleway', sans-serif; /* Use Raleway font */
+  font-family: "Raleway", sans-serif; /* Use Raleway font */
   font-weight: bold; /* Make it bold */
 }
 .product-details-header {
@@ -104,7 +104,6 @@
 }
 .product-details-cal-value {
   font-size: 40px;
-
 }
 .product-details-cal-unit {
   font-size: 14px;
@@ -211,7 +210,44 @@
  
 }
 
-/* feedback modal */
+/* .feedback-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rating-stars {
+  font-size: 2em;
+}
+
+.gold-star {
+  color: gold;
+  cursor: pointer;
+}
+
+.empty-star {
+  color: #ddd;
+  cursor: pointer;
+}
+
+.submit-feedback-button {
+  margin-top: 20px;
+}
+
+.close-modal-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #888;
+  padding: 0;
+} */
+
 .modal-content {
   display: flex;
   flex-direction: column;
@@ -280,7 +316,7 @@
 }
 .product-details-container {
   position: relative;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   overflow: hidden;
 }
 .product-details-content {

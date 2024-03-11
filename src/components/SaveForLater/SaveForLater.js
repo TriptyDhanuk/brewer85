@@ -7,6 +7,7 @@ import { addToCart, updateCart } from "../../features/cart/cartSlice";
 import CartIconBadge from "../CartIconBadge";
 import Notification from "../Notificaiton/Notification";
 import RemoveNotification from "../Notificaiton/RemoveNotification";
+import "./SaveForLater.css";
 
 import {
   selectSavedForLaterItems,
@@ -141,7 +142,8 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
       </div>
 
       <div className="items-container">
-        {cartItems.map((item) => (
+      {cartItems.length > 0 ?(
+        cartItems.map((item) => (
           <div key={item.id} className="item mb-3 p-3 flex items-center border border-solid border-slate-200 rounded-md">
             <div>
                 <img
@@ -255,7 +257,12 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
                   </button>
                 </div>
           </div>
-        ))}
+        ))
+      ):(
+        <div className="empty-cart-message">
+            <h1>Add items to your Cart</h1>
+          </div>
+      )}
       </div>
       {notification && (
         <Notification

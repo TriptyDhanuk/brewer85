@@ -48,6 +48,8 @@ const ProductDetails = () => {
   const handleSubmitFeedback = () => {
     console.log("Feedback submitted:", rating);
     setFeedbackSubmitted(true);
+    localStorage.setItem("feedbackSubmitted", true);
+    localStorage.setItem("feedbackSubmittedCount", rating);
   };
 
   const products = {
@@ -422,17 +424,49 @@ const ProductDetails = () => {
                 <div
                   className="product-details-your-rating"
                   onClick={() => {
-                    openModal();
+                    // openModal();
+                    if (!localStorage.getItem("feedbackSubmitted")) {
+                      openModal();
+                    }
                     console.log("hello");
                   }}
                 >
                   <p>Your rating</p>
-                  <div className="product-details-star-rating">
+                  {/* <div className="product-details-star-rating">
                     {[...Array(5)].map((_, index) => (
                       <span key={index} className="star">
                         &#9733;
                       </span>
                     ))}
+                  </div> */}
+                  <div className="product-details-star-rating">
+                    {[...Array(5)].map((_, index) => {
+                      // Retrieve feedback count from local storage
+                      const feedbackCount = localStorage.getItem(
+                        "feedbackSubmittedCount"
+                      );
+                      // Parse feedback count as integer
+                      const parsedFeedbackCount = parseInt(feedbackCount);
+                      // Check if parsedFeedbackCount is a valid integer
+                      const isValidCount = !isNaN(parsedFeedbackCount);
+                      const shouldFillStar =
+                        isValidCount && index < parsedFeedbackCount;
+
+                      console.log(
+                        `Index: ${index}, Feedback Count: ${parsedFeedbackCount}, Should Fill Star: ${shouldFillStar}`
+                      );
+
+                      return (
+                        <span
+                          key={index}
+                          className={`star ${
+                            shouldFillStar ? "pink-star" : "empty-star"
+                          }`}
+                        >
+                          &#9733;
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -494,37 +528,6 @@ const ProductDetails = () => {
               productName={notification.name}
             />
           )}
-          // Inside the modal component
-          {/* <Modal
-            isOpen={isModalOpen}
-            onRequestClose={closeModal}
-            contentLabel="Feedback Modal"
-          >
-            <button className="close-modal-button" onClick={closeModal}>
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-            <div className="feedback-container">
-              <p>Please rate your experience:</p>
-              <div className="rating-stars">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    className={star <= rating ? "gold-star" : "empty-star"}
-                    onClick={() => handleRatingChange(star)}
-                  >
-                    ★
-                  </span>
-                ))}
-              </div>
-              <button
-                className="submit-feedback-button"
-                onClick={handleSubmitFeedback}
-              >
-                Submit Feedback
-              </button>
-            </div>
-          </Modal> */}
-          // Inside the modal component
           <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}

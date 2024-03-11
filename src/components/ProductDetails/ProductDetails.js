@@ -378,147 +378,155 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="product-details-container">
-      {product && (
-        <>
-          <img
-            src={product.image}
-            alt="Product"
-            className="product-details-image"
-          />
-          <div className="product-details-header">
-            <nav className="product-details-navbar">
+    <div className="body px-4">
+      
+      <div className="header py-3">
+        <nav className="flex flex-wrap">
               <div className="product-details-logo" onClick={handleGoBack}>
                 <box-icon name="arrow-back"></box-icon>
                 <h4 className="product-details-title">Product Details</h4>
               </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div className="flex items-center ml-auto">
                 <Wishlist style={{ marginRight: "10px" }} />
                 <CartIconBadge />
               </div>
             </nav>
           </div>
-          <div className="product-details-content">
-            <div className="product-details-image-container">
-              <div className="product-details-kcal-circle">
-                <div className="product-details-cal-value">25</div>
-                <div className="product-details-cal-unit">Cal</div>
-              </div>
+      {product && (
+        <>
+        <div>
+          <div className="flex flex-wrap items-center">
+            <div className="md:w-6/12">
+              <img
+                src={product.image}
+                alt="Product"
+                className="product-details-image"
+              />
             </div>
-            <div className="product-details-info">
-              <h3 className="product-details-name">{product.name}</h3>
-              <p className="product-details-price">
-                AED <span>{product.price}</span>
-              </p>
-              <div className="product-details-price-rating-container">
-                <div className="product-details-your-rating">
-                  <p>4.5 rating</p>
-                  <div className="product-details-star-rating">
-                    {[...Array(5)].map((_, index) => (
-                      <span key={index} className="star">
-                        &#9733;
-                      </span>
-                    ))}
+            <div className="md:w-6/12">
+              <div className="product-details-content">
+                <div className="product-details-image-container">
+                  <div className="product-details-kcal-circle">
+                    <div className="product-details-cal-value">25</div>
+                    <div className="product-details-cal-unit">Cal</div>
                   </div>
                 </div>
-                <div
-                  className="product-details-your-rating"
-                  onClick={() => {
-                    // openModal();
-                    if (!localStorage.getItem("feedbackSubmitted")) {
-                      openModal();
-                    }
-                    console.log("hello");
-                  }}
-                >
-                  <p>Your rating</p>
-                  {/* <div className="product-details-star-rating">
-                    {[...Array(5)].map((_, index) => (
-                      <span key={index} className="star">
-                        &#9733;
-                      </span>
-                    ))}
-                  </div> */}
-                  <div className="product-details-star-rating">
-                    {[...Array(5)].map((_, index) => {
-                      // Retrieve feedback count from local storage
-                      const feedbackCount = localStorage.getItem(
-                        "feedbackSubmittedCount"
-                      );
-                      // Parse feedback count as integer
-                      const parsedFeedbackCount = parseInt(feedbackCount);
-                      // Check if parsedFeedbackCount is a valid integer
-                      const isValidCount = !isNaN(parsedFeedbackCount);
-                      const shouldFillStar =
-                        isValidCount && index < parsedFeedbackCount;
-
-                      console.log(
-                        `Index: ${index}, Feedback Count: ${parsedFeedbackCount}, Should Fill Star: ${shouldFillStar}`
-                      );
-
-                      return (
-                        <span
-                          key={index}
-                          className={`star ${
-                            shouldFillStar ? "pink-star" : "empty-star"
-                          }`}
-                        >
-                          &#9733;
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-              <div className="product-details-additional-details">
-                <p className="bold-text">Details</p>
-                <h6>
-                  {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
-                  <span>
-                    <a
-                      className="show-more-link"
-                      onClick={() => setShowMore(!showMore)}
-                      style={{ color: "rgb(255, 58, 117)", cursor: "pointer" }}
-                    >
-                      {showMore ? "Show Less" : "Show More"}
-                    </a>
-                  </span>
-                </h6>
-              </div>
-
-              <div className="product-details-quantity-container">
-                <div className="product-details-quantity-button">
-                  <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
-                    Quantity
+                <div className="product-details-info">
+                  <h3 className="product-details-name">{product.name}</h3>
+                  <p className="product-details-price">
+                    AED <span>{product.price}</span>
                   </p>
-                  <button
-                    className="product-details-quantity-btn minus-btn"
-                    onClick={handleMinusClick}
-                  >
-                    -
-                  </button>
-                  <span className="product-details-quantity-input">
-                    {quantity}
-                  </span>
-                  <button
-                    className="product-details-quantity-btn plus-btn"
-                    onClick={handlePlusClick}
-                  >
-                    +
-                  </button>
+                  <div className="product-details-price-rating-container">
+                    <div className="product-details-your-rating">
+                      <p>4.5 rating</p>
+                      <div className="product-details-star-rating">
+                        {[...Array(5)].map((_, index) => (
+                          <span key={index} className="star">
+                            &#9733;
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div
+                      className="product-details-your-rating"
+                      onClick={() => {
+                        // openModal();
+                        if (!localStorage.getItem("feedbackSubmitted")) {
+                          openModal();
+                        }
+                        console.log("hello");
+                      }}
+                    >
+                      <p>Your rating</p>
+                      {/* <div className="product-details-star-rating">
+                        {[...Array(5)].map((_, index) => (
+                          <span key={index} className="star">
+                            &#9733;
+                          </span>
+                        ))}
+                      </div> */}
+                      <div className="product-details-star-rating">
+                        {[...Array(5)].map((_, index) => {
+                          // Retrieve feedback count from local storage
+                          const feedbackCount = localStorage.getItem(
+                            "feedbackSubmittedCount"
+                          );
+                          // Parse feedback count as integer
+                          const parsedFeedbackCount = parseInt(feedbackCount);
+                          // Check if parsedFeedbackCount is a valid integer
+                          const isValidCount = !isNaN(parsedFeedbackCount);
+                          const shouldFillStar =
+                            isValidCount && index < parsedFeedbackCount;
+
+                          console.log(
+                            `Index: ${index}, Feedback Count: ${parsedFeedbackCount}, Should Fill Star: ${shouldFillStar}`
+                          );
+
+                          return (
+                            <span
+                              key={index}
+                              className={`star ${
+                                shouldFillStar ? "pink-star" : "empty-star"
+                              }`}
+                            >
+                              &#9733;
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="product-details-additional-details">
+                    <p className="bold-text">Details</p>
+                    <h6>
+                      {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
+                      <span>
+                        <a
+                          className="show-more-link"
+                          onClick={() => setShowMore(!showMore)}
+                          style={{ color: "rgb(255, 58, 117)", cursor: "pointer" }}
+                        >
+                          {showMore ? "Show Less" : "Show More"}
+                        </a>
+                      </span>
+                    </h6>
+                  </div>
+
+                  <div className="product-details-quantity-container">
+                    <div className="product-details-quantity-button">
+                      <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                        Quantity
+                      </p>
+                      <button
+                        className="product-details-quantity-btn minus-btn"
+                        onClick={handleMinusClick}
+                      >
+                        -
+                      </button>
+                      <span className="product-details-quantity-input">
+                        {quantity}
+                      </span>
+                      <button
+                        className="product-details-quantity-btn plus-btn"
+                        onClick={handlePlusClick}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <p>
+                      <span style={{ fontWeight: "bold" }}>Total Price </span>
+                      <span className="product-details-price">
+                        AED <span>{(quantity * product.price).toFixed(2)}</span>
+                      </span>
+                    </p>
+                    <button
+                      className="product-details-add-to-cart-btn"
+                      onClick={handleAddToCart}
+                    >
+                      ADD TO MY ORDER
+                    </button>
+                  </div>
                 </div>
-                <p>
-                  <span style={{ fontWeight: "bold" }}>Total Price </span>
-                  <span className="product-details-price">
-                    AED <span>{(quantity * product.price).toFixed(2)}</span>
-                  </span>
-                </p>
-                <button
-                  className="product-details-add-to-cart-btn"
-                  onClick={handleAddToCart}
-                >
-                  ADD TO MY ORDER
-                </button>
               </div>
             </div>
           </div>
@@ -575,6 +583,7 @@ const ProductDetails = () => {
               </div>
             </div>
           </Modal>
+          </div>
         </>
       )}
     </div>

@@ -1,10 +1,10 @@
 .product-card {
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
-  /* width: 368px; */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 368px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
 }
 
 .heart-icon {
@@ -20,7 +20,7 @@
 }
 
 .product-details {
-  padding: 10px;
+  /* padding: 10px; */
 }
 .price-tag {
   /* display: flex;
@@ -41,25 +41,25 @@ button:hover {
 }
 
 .best-seller-ribbon {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   background-color: #07b307;
   color: white;
   padding: 8px 7px 8px 20px;
-  font-weight: bold;
+  font-weight: bold; */
 }
 .product-filter {
-  display: flex;
+  /* display: flex; */
 }
 .product-filter {
-  display: flex;
-  flex-wrap: wrap;
+  /*display: flex;
+  flex-wrap: wrap;*/
 }
 
 .product-filter > * {
-  flex-basis: calc(25% - 20px);
-  margin-bottom: 20px;
+  /* flex-basis: calc(25% - 20px);
+  margin-bottom: 20px; */
 }
 
 .best-seller-ribbon::before {
@@ -73,7 +73,7 @@ button:hover {
 }
 
 .best-seller-ribbon::after {
-  content: "";
+  /* content: "";
   position: absolute;
   top: 0;
   right: 0;
@@ -82,7 +82,7 @@ button:hover {
   border-color: #07b307 #07b307 #07b307 transparent;
   position: absolute;
   right: -19px;
-  transform: scale(-1);
+  transform: scale(-1); */
 }
 .quantity-button {
 }

@@ -19,8 +19,7 @@ import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Lottie from "react-lottie";
-import feedbackSuccessAnimation from './feedBackAnimation.json';
-
+import feedbackSuccessAnimation from "./feedBackAnimation.json";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -494,7 +493,38 @@ const ProductDetails = () => {
               quantity={notification.quantity}
               productName={notification.name}
             />
-          )} 
+          )}
+          // Inside the modal component
+          {/* <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Feedback Modal"
+          >
+            <button className="close-modal-button" onClick={closeModal}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+            <div className="feedback-container">
+              <p>Please rate your experience:</p>
+              <div className="rating-stars">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className={star <= rating ? "gold-star" : "empty-star"}
+                    onClick={() => handleRatingChange(star)}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+              <button
+                className="submit-feedback-button"
+                onClick={handleSubmitFeedback}
+              >
+                Submit Feedback
+              </button>
+            </div>
+          </Modal> */}
+          // Inside the modal component
           <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}

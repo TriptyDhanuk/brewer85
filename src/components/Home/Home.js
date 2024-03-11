@@ -6,7 +6,6 @@ import banner2 from "../../images/banner2.jpg";
 import banner4 from "../../images/banner4.jpg";
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
-import image3 from "../../images/image3.png";
 import image4 from "../../images/image4.png";
 import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";

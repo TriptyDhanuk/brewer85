@@ -1,13 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../ProductCard/ProductCard.css";
 import "boxicons";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../features/cart/cartSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../features/cart/wishlistSlice";
+import { selectCartItems } from "../../features/cart/selectors";
+import WishlistNotification from "../Notificaiton/WishlistNotification.js";
+import RemoveNotification from "../Notificaiton/RemoveNotification.js";
+import Notification from "../Notificaiton/Notification.js";
 
-const MenuCard = ({ image, name, price, discount }) => {
-  const [isAdded, setIsAdded] = useState(false);
+import { selectSavedForLaterItems } from "../../features/cart/wishlistSlice";
+
+const MenuCard = ({ id, image, name, price, discount }) => {
+  const saveItems = useSelector(selectSavedForLaterItems);
+  const cartItems = useSelector(selectCartItems);
   const [quantity, setQuantity] = useState(1);
+  const [notification, setNotification] = useState(null);
+  const [wishlistNoti, setWishlistNoti] = useState(null);
+  const [isRemoved, setIsRemoved] = useState(false);
+  const [removeWishlistNoti, setRemoveWishlistNoti] = useState(null);
+  const dispatch = useDispatch();
+  const existingCartItem = cartItems.find((item) => item.id === id);
+  const [savedForLater, setSavedForLater] = useState(false);
 
-  const handleAddClick = () => {
-    setIsAdded(true);
+  useEffect(() => {
+    localStorage.setItem("savedForLater", savedForLater);
+  }, [savedForLater]);
+
+  useEffect(() => {
+    if (saveItems.some((item) => item.id === id)) {
+      setSavedForLater(true);
+    }
+  }, [saveItems, id]);
+
+  const toggleSavedForLater = () => {
+    if (savedForLater) {
+      dispatch(removeFromWishlist(id));
+      setIsRemoved(true);
+      setTimeout(() => {
+        setIsRemoved(false);
+      }, 3000);
+    } else {
+      const itemToAdd = {
+        id: id,
+        name: name,
+        price: price,
+        discount: discount,
+        quantity: quantity,
+        image: image,
+      };
+      dispatch(addToWishlist(itemToAdd));
+      setSavedForLater(true);
+      setWishlistNoti({ name: itemToAdd.name });
+      setTimeout(() => {
+        setWishlistNoti(null);
+      }, 3000);
+    }
+    setSavedForLater(!savedForLater);
   };
 
   const handlePlusClick = () => {
@@ -19,24 +71,63 @@ const MenuCard = ({ image, name, price, discount }) => {
       setQuantity(quantity - 1);
     }
   };
+
+  const handleAddToCart = () => {
+    const item = {
+      id,
+      image,
+      name,
+      price,
+      discount,
+      quantity,
+    };
+
+    const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingItemIndex = existingItems.findIndex(
+      (existingItem) => existingItem.id === id
+    );
+
+    if (existingItemIndex !== -1) {
+      existingItems[existingItemIndex].quantity += quantity;
+    } else {
+      existingItems.push(item);
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(existingItems));
+    dispatch(addToCart(item));
+    setNotification({ name: item.name, quantity: quantity });
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
+  };
+
   const handleImgClick = () => {
-    window.location.href = "/details";
+    window.location.href = `/details/${id}`;
   };
 
   return (
     <div style={{ position: "relative" }}>
       <div className="product-card">
         <button
+          className={saveItems.some((item) => item.id === id) ? "selected" : ""}
           style={{
-            color: "transparent",
+            color: saveItems.some((item) => item.id === id) ? "pink" : "white",
             backgroundColor: "transparent",
             position: "absolute",
             right: "15px",
           }}
+          onClick={toggleSavedForLater}
         >
-          <box-icon name="heart"></box-icon>
+          <box-icon
+            type="solid"
+            name="heart"
+            className="heart-icon"
+            style={{
+              fill: saveItems.some((item) => item.id === id) ? "pink" : "white",
+              stroke: "red",
+            }}
+          ></box-icon>
         </button>
-        {/* <div className="best-seller-ribbon">Best Seller</div> */}
 
         <img
           src={image}
@@ -45,77 +136,89 @@ const MenuCard = ({ image, name, price, discount }) => {
           onClick={handleImgClick}
         />
         <div className="product-details">
-          <h3>{name}</h3>
+          <h3 style={{ fontSize: "1.5rem" }}>
+            {name}
+            {id}
+          </h3>
           <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
           <div className="price-tag">
-            <p style={{ fontSize: "0.8rem", margin: "0" }}>
-              <strong>
-                AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
-              </strong>
-            </p>
-            <p
-              style={{
-                color: "red",
-                margin: "0 8px",
-                padding: "0 4px",
-                fontWeight: "bold",
-                fontSize: "1em",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {discount}
-            </p>
-            {isAdded ? (
-              <div className="quantity-button">
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "white",
-                    backgroundColor: "#f35353",
-                    width: "100px",
-                    height: "40px",
-                  }}
-                  onClick={handleMinusClick}
-                >
-                  -
-                </button>
-                <input
-                  style={{ width: "30px" }}
-                  type="text"
-                  value={quantity}
-                  readOnly
-                />
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "white",
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <p style={{ fontSize: "0.8rem", margin: "0" }}>
+                <strong>
+                  AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
+                </strong>
+              </p>
+              <p
+                style={{
+                  color: "red",
+                  margin: "0 8px",
+                  padding: "0 4px",
+                  fontWeight: "bold",
+                  fontSize: "1em",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {discount}
+              </p>
+            </div>
 
-                    backgroundColor: "#7ad17a",
-                    width: "100px",
-                    height: "40px",
-                  }}
-                  onClick={handlePlusClick}
-                >
-                  +
-                </button>
-              </div>
-            ) : (
+            <div className="quantity-button">
               <button
                 style={{
                   border: "1px solid green",
-                  color: "green",
-                  backgroundColor: "white",
-                  width: "100px",
+                  color: "white",
+                  backgroundColor: "#f35353",
+                  // width: "100px",
                   height: "40px",
                 }}
-                onClick={handleAddClick}
+                onClick={handleMinusClick}
               >
-                ADD
+                -
               </button>
-            )}
+              <input
+                style={{ width: "30px" }}
+                type="text"
+                value={quantity}
+                readOnly
+              />
+              <button
+                style={{
+                  border: "1px solid green",
+                  color: "white",
+                  backgroundColor: "#7ad17a",
+                  // width: "100px",
+                  height: "40px",
+                }}
+                onClick={handlePlusClick}
+              >
+                +
+              </button>
+            </div>
           </div>
+          <button
+            style={{
+              marginTop: "0.5rem",
+              border: "1px solid green",
+              color: "green",
+              backgroundColor: "white",
+              display: "block",
+              width: "100%",
+              height: "40px",
+            }}
+            onClick={handleAddToCart}
+          >
+            ADD
+          </button>
         </div>
       </div>
+      {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
+      {notification && (
+        <Notification
+          quantity={notification.quantity}
+          productName={notification.name}
+        />
+      )}
+      {isRemoved && <RemoveNotification />}
     </div>
   );
 };

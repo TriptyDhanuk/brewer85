@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "boxicons";
+// import "boxicons";
 import "./Home.css";
 import banner1 from "../../images/banner1.jpg";
 import banner2 from "../../images/banner2.jpg";
@@ -13,10 +13,11 @@ import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
 import ProductCard from "../ProductCard/ProductCard";
-
+import Wishlist from "../../components/Wishlist";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CartIconBadge from "../CartIconBadge";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -25,7 +26,6 @@ const Home = () => {
   const [cart, setCart] = useState([]);
   console.log("selectedProduct", selectedProduct);
   useEffect(() => {
-    // Load selected product from localStorage on component mount
     const storedProduct = localStorage.getItem("selectedProduct");
     if (storedProduct) {
       setSelectedProduct(storedProduct);
@@ -33,16 +33,11 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Save selected product to localStorage whenever it changes
     localStorage.setItem("selectedProduct", selectedProduct);
   }, [selectedProduct]);
 
   const handleProductItemClick = (productName) => {
     setSelectedProduct(productName);
-  };
-
-  const handleAddToCart = (product) => {
-    setCart([...cart, product]);
   };
 
   // useEffect(() => {
@@ -52,6 +47,22 @@ const Home = () => {
   //   setFilteredProducts(filtered);
   // }, [searchQuery]);
 
+  //search product Category
+  useEffect(() => {
+    const filterProducts = () => {
+      const filtered = [];
+      for (const category in products) {
+        const categoryProducts = products[category].filter((product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        filtered.push(...categoryProducts);
+      }
+      setFilteredProducts(filtered);
+    };
+
+    filterProducts();
+  }, [searchQuery]);
+
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -59,65 +70,77 @@ const Home = () => {
   const products = {
     Biryani: [
       {
+        id: 111,
         image: image1,
-        name: "Hydrabadi Biryani",
-        price: "25",
+        name: "Biryani",
+        price: "100",
         discount: "60% off",
       },
     ],
     IceCream: [
       {
+        id: 222,
         image: image2,
         name: "IceCream",
-        price: "25",
+        price: "125",
         discount: "60% off",
       },
     ],
     Pizza: [
       {
+        id: 333,
         image: image4,
         name: "Pizza",
-        price: "25",
+        price: "150",
         discount: "60% off",
       },
     ],
     Burger: [
       {
+        id: 444,
         image: burger,
         name: "Burger",
-        price: "25",
+        price: "90",
         discount: "60% off",
       },
     ],
     Shakes: [
       {
+        id: 555,
         image: shakes,
         name: "Shakes",
-        price: "25",
+        price: "70",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Chinese: [
       {
+        id: 666,
         image: noodles,
         name: "Chinese",
-        price: "25",
+        price: "120",
         discount: "60% off",
       },
+      // Add more products as needed
     ],
     Drinks: [
       {
+        id: 777,
         image: drinks,
         name: "Drinks",
-        price: "25",
+        price: "55",
         discount: "60% off",
       },
     ],
-    // Add more products as needed
+  };
+  const handleImgClick = () => {
+    window.location.href = `/details/${products.id}`;
   };
 
   const settingsMy = {
     dots: false,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
@@ -162,14 +185,15 @@ const Home = () => {
   };
   const settings = {
     dots: false,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1400,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 1,
@@ -178,7 +202,7 @@ const Home = () => {
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -186,7 +210,7 @@ const Home = () => {
         },
       },
       {
-        breakpoint: 640,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -195,7 +219,7 @@ const Home = () => {
       },
 
       {
-        breakpoint: 420,
+        breakpoint: 576,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -205,56 +229,52 @@ const Home = () => {
     ],
   };
   return (
-    <div className="body">
-      <div className="header">
-        <nav className="navbar headNav">
+    <div className="body px-4">
+      <div className="header py-3">
+        <nav className="flex flex-wrap">
           <div className="logo">
             <box-icon name="menu"></box-icon>
             <h4 className="">Home</h4>
           </div>
-          <box-icon name="cart"></box-icon>
+
+          <div className="flex items-center ml-auto">
+            <Wishlist style={{ marginRight: "10px" }} />
+            <CartIconBadge />
+          </div>
         </nav>
       </div>
-      <Slider {...settingsMy}>
-        <div className="slider-banner">
-          <img src={banner1} alt="ban1" />
+      <Slider {...settingsMy} className="mb-3">
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner1} className="w-100px h-50 block rounded-lg" alt="ban1" />
         </div>
-        <div className="slider-banner">
-          <img src={banner4} className="w-100px h-50" alt="ban2" />
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner4} className="w-100px h-50 block rounded-lg" alt="ban2" />
         </div>
-        <div className="slider-banner">
-          <img src={banner2} className="w-100px h-50" alt="ban3" />
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner2} className="w-100px h-50 block rounded-lg" alt="ban3" />
         </div>
-        <div className="slider-banner">
-          <img src={banner1} alt="ban1" />
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner1} className="w-100px h-50 block rounded-lg" alt="ban1" />
         </div>
-        <div className="slider-banner">
-          <img src={banner4} className="w-100px h-50" alt="ban2" />
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner4} className="w-100px h-50 block rounded-lg" alt="ban2" />
         </div>
-        <div className="slider-banner">
-          <img src={banner2} className="w-100px h-50" alt="ban3" />
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner2} className="w-100px h-50 block rounded-lg" alt="ban3" />
         </div>
       </Slider>
 
-      <div className="top-search">
+      <div className="top-search mb-3">
         <input
           type="text"
-          placeholder=" Search Products..."
-          className="search-input bg-[#fffg] "
-          style={{
-            border: "1px solid rgba(0, 0, 0, 0.1)",
-            width: "400px",
-            height: "52px",
-            // backgroundColor: "lightgrey",
-            borderRadius: "7px",
-            paddingLeft: "20px",
-          }}
+          placeholder=" What are you looking for ?"
+          className="search-input block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={searchQuery}
           onChange={handleSearchInputChange}
         />
       </div>
 
-      <div className="products " style={{ marginLeft: "10px" }}>
+      {/* <div className="products " style={{ marginLeft: "10px" }}>
         <h3>All Products</h3>
         <div className="product-category">
           <a href="/menu" class="product-item">
@@ -321,14 +341,36 @@ const Home = () => {
             <h4>Drinks</h4>
           </a>
         </div>
+      </div> */}
+      <div className="products" style={{ marginLeft: "10px" }}>
+        <h3 className="text-xl font-semibold text-slate-800 mb-3">All Products</h3>
+        <div className="product-category flex flex-wrap">
+          {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <a href="/menu" className="product-item block mx-auto" key={product.name}>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="productImage mx-auto mb-3 block"
+                  onClick={() => handleProductItemClick(product.name)}
+                />
+                <h4 className="text-lg font-semibold text-slate-800">{product.name}</h4>
+              </a>
+            ))
+          ) : (
+            <p className="text-base font-medium text-slate-800">No products found</p>
+          )}
+        </div>
       </div>
+
       <div style={{ marginLeft: "5px", marginRight: "5px" }}>
-        <h3>Most Popular</h3>
+        <h3 className="text-xl font-semibold text-slate-800 mb-3">Most Popular</h3>
         <Slider {...settings}>
           {Object.keys(products).map((category) =>
             products[category].map((product) => (
               <div className="product-filter" key={product.name}>
                 <ProductCard
+                  id={product.id}
                   image={product.image}
                   name={product.name}
                   price={product.price}

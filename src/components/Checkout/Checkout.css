@@ -20,17 +20,17 @@
 }
 
 .items-container {
-  margin-top: 20px;
-  margin-left: 58px;
+  /* margin-top: 20px;
+  margin-left: 58px; */
 }
 
 .item {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; */
   /* width: 63rem;
   height: 11rem; */
 }
@@ -46,7 +46,6 @@
 
 .item-actions input {
   width: 40px;
-  margin-right: 10px;
 }
 
 .icons span {

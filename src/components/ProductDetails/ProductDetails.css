@@ -1,3 +1,7 @@
+.details-container {
+  max-height: 150px; 
+  overflow: auto; 
+}
 .bold-text {
   font-weight: bold;
 }
@@ -79,17 +83,17 @@
 }
 .product-details-kcal-circle {
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
   right: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   background-color: white;
   border-radius: 50%;
-  padding: 5px;
+  padding: 2px;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1;
@@ -99,11 +103,11 @@
   display: inline-block;
 }
 .product-details-cal-value {
-  font-size: 20px;
-  margin-bottom: 3px;
+  font-size: 40px;
+
 }
 .product-details-cal-unit {
-  font-size: 12px;
+  font-size: 14px;
   color: rgb(0, 0, 0);
 }
 .product-details-info {
@@ -126,17 +130,17 @@
   margin-right: 20px;
 }
 .product-details-price {
-  font-weight: normal;
+  /* font-weight: normal;
   font-size: 1.2rem;
-  color: rgb(255, 58, 117);
+  color: rgb(255, 58, 117); */
 }
 .product-details-price span {
-  font-size: 2.5rem;
+  /* font-size: 2.5rem;
   font-weight: bold;
-  color: rgb(255, 58, 117);
+  color: rgb(255, 58, 117); */
 }
 .product-details-discount {
-  color: red;
+  /* color: red; */
 }
 .product-details-rating-container {
   display: flex;
@@ -203,6 +207,69 @@
   font-size: 14px;
   color: grey;
 }
+.cart-badge {
+  position: absolute;
+  top: -10px; /* Adjust as needed */
+  right: -16px; /* Adjust as needed */
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 50%;
+}
+
+/* feedback modal */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.feedback-container {
+  text-align: center;
+}
+
+.rating-stars {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.gold-star {
+  color: gold;
+  cursor: pointer;
+}
+
+.empty-star {
+  color: #ddd;
+  cursor: pointer;
+}
+
+.submit-feedback-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-feedback-button:hover {
+  background-color: #0056b3;
+}
+.close-modal-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #888;
+  padding: 0;
+}
+
 /* Media Queries */
 @media only screen and (max-width: 768px) {
   .product-details-navbar {

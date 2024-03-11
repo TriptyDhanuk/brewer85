@@ -127,6 +127,10 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
     }
   };
 
+  const handleImgClick = (itemId) => {
+    window.location.href = `/details/${itemId}`;
+  };
+
   return (
     <div className="body px-4">
       <div className="header py-3">
@@ -150,6 +154,7 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
                   src={item.image}
                   alt={item.name}
                   style={{ height: "134px", width: "141px" }}
+                  onClick={()=>handleImgClick(item.id)}
                 />
               </div>
             <div className="item-details">

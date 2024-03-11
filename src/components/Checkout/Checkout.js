@@ -129,6 +129,9 @@ const CheckOut = () => {
     dispatch(clearCart());
   };
 
+  const handleImgClick = (itemId) => {
+    window.location.href = `/details/${itemId}`;
+  };
   return (
     <div className="body px-4">
       <div className="header py-3">
@@ -149,12 +152,14 @@ const CheckOut = () => {
             <div
               key={item.id}
               className="item mb-3 p-3 flex items-center border border-solid border-slate-200 rounded-md"
+              
             >
               <div>
                 <img
                   src={item.image}
                   alt={item.name}
                   style={{ height: "134px", width: "141px" }}
+                  onClick={()=>handleImgClick(item.id)}
                 />
               </div>
               <div className="item-details">

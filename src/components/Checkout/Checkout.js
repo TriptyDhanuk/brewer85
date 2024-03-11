@@ -211,7 +211,7 @@ const CheckOut = () => {
                       </button>
 
                       <input
-                        type="number"
+                        type="text"
                         id={`qty-${item.id}`}
                         value={item.quantity}
                         readOnly

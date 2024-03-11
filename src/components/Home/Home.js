@@ -71,7 +71,7 @@ const Home = () => {
       {
         id: 111,
         image: image1,
-        name: "Hydrabadi Biryani",
+        name: "Biryani",
         price: "100",
         discount: "60% off",
       },
@@ -244,22 +244,46 @@ const Home = () => {
       </div>
       <Slider {...settingsMy} className="mb-3">
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner1} className="w-100px h-50 block rounded-lg" alt="ban1" />
+          <img
+            src={banner1}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban1"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner4} className="w-100px h-50 block rounded-lg" alt="ban2" />
+          <img
+            src={banner4}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban2"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner2} className="w-100px h-50 block rounded-lg" alt="ban3" />
+          <img
+            src={banner2}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban3"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner1} className="w-100px h-50 block rounded-lg" alt="ban1" />
+          <img
+            src={banner1}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban1"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner4} className="w-100px h-50 block rounded-lg" alt="ban2" />
+          <img
+            src={banner4}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban2"
+          />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={banner2} className="w-100px h-50 block rounded-lg" alt="ban3" />
+          <img
+            src={banner2}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban3"
+          />
         </div>
       </Slider>
 
@@ -342,28 +366,40 @@ const Home = () => {
         </div>
       </div> */}
       <div className="products" style={{ marginLeft: "10px" }}>
-        <h3 className="text-xl font-semibold text-slate-800 mb-3">All Products</h3>
+        <h3 className="text-xl font-semibold text-slate-800 mb-3">
+          All Products
+        </h3>
         <div className="product-category flex flex-wrap">
           {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <a href="/menu" className="product-item block mx-auto" key={product.name}>
+              <a
+                href="/menu"
+                className="product-item block mx-auto"
+                key={product.name}
+              >
                 <img
                   src={product.image}
                   alt={product.name}
                   className="productImage mx-auto mb-3 block"
                   onClick={() => handleProductItemClick(product.name)}
                 />
-                <h4 className="text-lg font-semibold text-slate-800">{product.name}</h4>
+                <h4 className="text-lg font-semibold text-slate-800">
+                  {product.name}
+                </h4>
               </a>
             ))
           ) : (
-            <p className="text-base font-medium text-slate-800">No products found</p>
+            <p className="text-base font-medium text-slate-800">
+              No products found
+            </p>
           )}
         </div>
       </div>
 
       <div style={{ marginLeft: "5px", marginRight: "5px" }}>
-        <h3 className="text-xl font-semibold text-slate-800 mb-3">Most Popular</h3>
+        <h3 className="text-xl font-semibold text-slate-800 mb-3">
+          Most Popular
+        </h3>
         <Slider {...settings}>
           {Object.keys(products).map((category) =>
             products[category].map((product) => (

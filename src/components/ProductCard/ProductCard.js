@@ -157,82 +157,81 @@ const ProductCard = ({ id, image, name, price, discount }) => {
           onClick={handleImgClick}
         />
         <div className="product-details">
-          <h3 style={{ fontSize: "1.5rem" }}>
+          <h3 className="text-lg font-semibold text-slate-900">
             {name}
             {id}
           </h3>
-          <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
+          <p className="mb-2 text-sm font-semibold text-slate-500">yahoo comidia</p>
           <div>
-            <div className="price-tag">
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <p style={{ fontSize: "0.8rem", margin: "0" }}>
-                  <strong>
-                    AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
-                  </strong>
-                </p>
-                <p
-                  style={{
-                    color: "red",
-                    margin: "0 8px",
-                    padding: "0 4px",
-                    fontWeight: "bold",
-                    fontSize: "1em",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {discount}
-                </p>
-              </div>
-              <div className="quantity-button">
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "white",
-                    backgroundColor: "#f35353",
-                    // width: "100px",
-                    height: "40px",
-                  }}
-                  onClick={handleMinusClick}
-                >
-                  -
-                </button>
-                <input
-                  style={{ width: "30px" }}
-                  type="text"
-                  value={quantity}
-                  readOnly
-                />
-                <button
-                  style={{
-                    border: "1px solid green",
-                    color: "white",
-                    backgroundColor: "#7ad17a",
-                    // width: "100px",
-                    height: "40px",
-                  }}
-                  onClick={handlePlusClick}
-                >
-                  +
-                </button>
-              </div>
+            <div className="d-flex mb-2">
+              <p>
+                <strong className="text-nowrap">
+                  AED <span>{price}</span>
+                </strong>
+              </p>
+              <span className="ml-2 text-base font-bold text-red-600">
+                {discount}
+              </span>
             </div>
-            <div style={{ display: "flex", marginTop: "1rem" }}>
-              <button
-                style={{
-                  border: "1px solid green",
-                  color: "green",
-                  backgroundColor: "white",
-                  width: "100%",
-                  height: "40px",
-                  padding: "0.625rem 1.25rem",
-                  // marginLeft: "7rem",
-                }}
-                onClick={handleAddToCart}
-              >
-                ADD
-              </button>
-              {/* {existingCartItem ? (
-                  <Link to="/checkout">
+
+            <div className="flex items-center">
+              
+              <div className="quantity-button w-1/2">
+                <div class="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700" data-hs-input-number>
+                  <div class="flex items-center gap-x-1.5">
+                    <button
+                      className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                      onClick={handleMinusClick}
+                    >
+                      <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+                    </button>
+                    <input
+                      type="text"
+                      value={quantity}
+                      readOnly
+                      className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white"
+                    />
+                    <button
+                      className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                      onClick={handlePlusClick}
+                    >
+                      <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            
+              <div className="w-1/2">
+                <button
+                  style={{
+                    border: "1px solid green",
+                    color: "green",
+                    backgroundColor: "white",
+                    width: "100%",
+                    height: "40px",
+                    padding: "0.625rem 1.25rem",
+                    // marginLeft: "7rem",
+                  }}
+                  onClick={handleAddToCart}
+                >
+                  ADD
+                </button>
+                {/* {existingCartItem ? (
+                    <Link to="/checkout">
+                      <button
+                        style={{
+                          border: "1px solid green",
+                          color: "green",
+                          backgroundColor: "white",
+                          width: "100px",
+                          height: "40px",
+                          marginLeft: "7rem",
+                        }}
+                      >
+                        GO TO CART
+                      </button>
+                    </Link>
+                  ) : (
                     <button
                       style={{
                         border: "1px solid green",
@@ -242,25 +241,12 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                         height: "40px",
                         marginLeft: "7rem",
                       }}
+                      onClick={handleAddToCart}
                     >
-                      GO TO CART
+                      ADD
                     </button>
-                  </Link>
-                ) : (
-                  <button
-                    style={{
-                      border: "1px solid green",
-                      color: "green",
-                      backgroundColor: "white",
-                      width: "100px",
-                      height: "40px",
-                      marginLeft: "7rem",
-                    }}
-                    onClick={handleAddToCart}
-                  >
-                    ADD
-                  </button>
-                )} */}
+                  )} */}
+              </div>
             </div>
           </div>
         </div>

@@ -15,6 +15,11 @@ import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
+import Modal from "react-modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import Lottie from "react-lottie";
+import feedbackSuccessAnimation from "./feedBackAnimation.json";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -24,6 +29,26 @@ const ProductDetails = () => {
   const [notification, setNotification] = useState(null);
   const dispatch = useDispatch();
   let { productId } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleRatingChange = (value) => {
+    setRating(value);
+  };
+
+  const handleSubmitFeedback = () => {
+    console.log("Feedback submitted:", rating);
+    setFeedbackSubmitted(true);
+  };
 
   const products = {
     Biryani: [
@@ -292,7 +317,7 @@ const ProductDetails = () => {
           return; // Exit loop if found in productsMenu
         }
       }
-  
+
       // Check products
       for (const category in products) {
         const foundProduct = products[category].find(
@@ -304,12 +329,11 @@ const ProductDetails = () => {
         }
       }
     };
-  
+
     if (productId && !product) {
       findProduct();
     }
   }, [productId, product, productsMenu, products]);
-  
 
   const handleAddToCart = () => {
     setIsAdded(true);
@@ -395,7 +419,13 @@ const ProductDetails = () => {
                     ))}
                   </div>
                 </div>
-                <div className="product-details-your-rating">
+                <div
+                  className="product-details-your-rating"
+                  onClick={() => {
+                    openModal();
+                    console.log("hello");
+                  }}
+                >
                   <p>Your rating</p>
                   <div className="product-details-star-rating">
                     {[...Array(5)].map((_, index) => (
@@ -464,6 +494,84 @@ const ProductDetails = () => {
               productName={notification.name}
             />
           )}
+          // Inside the modal component
+          {/* <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Feedback Modal"
+          >
+            <button className="close-modal-button" onClick={closeModal}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+            <div className="feedback-container">
+              <p>Please rate your experience:</p>
+              <div className="rating-stars">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className={star <= rating ? "gold-star" : "empty-star"}
+                    onClick={() => handleRatingChange(star)}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+              <button
+                className="submit-feedback-button"
+                onClick={handleSubmitFeedback}
+              >
+                Submit Feedback
+              </button>
+            </div>
+          </Modal> */}
+          // Inside the modal component
+          <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Feedback Modal"
+          >
+            <div className="modal-content">
+              <button className="close-modal-button" onClick={closeModal}>
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+              <div className="feedback-container">
+                {feedbackSubmitted ? (
+                  <Lottie
+                    options={{
+                      loop: false,
+                      autoplay: true,
+                      animationData: feedbackSuccessAnimation,
+                    }}
+                    height={400}
+                    width={400}
+                  />
+                ) : (
+                  <>
+                    <p>Please rate your experience:</p>
+                    <div className="rating-stars">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span
+                          key={star}
+                          className={
+                            star <= rating ? "gold-star" : "empty-star"
+                          }
+                          onClick={() => handleRatingChange(star)}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      className="submit-feedback-button"
+                      onClick={handleSubmitFeedback}
+                    >
+                      Submit Feedback
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </Modal>
         </>
       )}
     </div>

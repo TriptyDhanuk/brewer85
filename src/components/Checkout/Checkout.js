@@ -340,6 +340,7 @@ const CheckOut = () => {
         </Link>
         </div>
       </div>
+      {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
       {isRemoved && <RemoveNotification />}
     </div>
   );

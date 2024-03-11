@@ -49,7 +49,7 @@ const MenuItem = () => {
       {
         id: 111,
         image: image1,
-        name: "Hydrabadi Biryani",
+        name: "Biryani",
         price: "100",
         discount: "60% off",
       },

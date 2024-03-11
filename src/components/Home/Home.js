@@ -139,7 +139,6 @@ const Home = () => {
   };
 
   const settingsMy = {
-    dots: false,
     arrows: false,
     infinite: true,
     speed: 500,
@@ -153,7 +152,6 @@ const Home = () => {
           slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
-          dots: false,
         },
       },
       {
@@ -161,7 +159,6 @@ const Home = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          dots: true,
         },
       },
       {
@@ -169,7 +166,6 @@ const Home = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          dots: true,
         },
       },
 
@@ -178,7 +174,6 @@ const Home = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: true,
         },
       },
     ],
@@ -206,7 +201,6 @@ const Home = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          dots: true,
         },
       },
       {
@@ -214,7 +208,6 @@ const Home = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          dots: true,
         },
       },
 
@@ -223,7 +216,6 @@ const Home = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: true,
         },
       },
     ],

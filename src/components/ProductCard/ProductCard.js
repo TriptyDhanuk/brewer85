@@ -203,15 +203,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
             
               <div className="w-1/2">
                 <button
-                  style={{
-                    border: "1px solid green",
-                    color: "green",
-                    backgroundColor: "white",
-                    width: "100%",
-                    height: "40px",
-                    padding: "0.625rem 1.25rem",
-                    // marginLeft: "7rem",
-                  }}
+                 className="py-2 px-5 w-full font-semibold text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150"
                   onClick={handleAddToCart}
                 >
                   ADD

@@ -161,7 +161,9 @@ const ProductCard = ({ id, image, name, price, discount }) => {
             {name}
             {id}
           </h3>
-          <p className="mb-2 text-sm font-semibold text-slate-500">yahoo comidia</p>
+          <p className="mb-2 text-sm font-semibold text-slate-500">
+            yahoo comidia
+          </p>
           <div>
             <div className="d-flex mb-2">
               <p>
@@ -175,15 +177,30 @@ const ProductCard = ({ id, image, name, price, discount }) => {
             </div>
 
             <div className="flex items-center">
-              
               <div className="quantity-button w-1/2">
-                <div class="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700" data-hs-input-number>
+                <div
+                  class="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700"
+                  data-hs-input-number
+                >
                   <div class="flex items-center gap-x-1.5">
                     <button
                       className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                       onClick={handleMinusClick}
                     >
-                      <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+                      <svg
+                        class="flex-shrink-0 size-3.5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 12h14" />
+                      </svg>
                     </button>
                     <input
                       type="text"
@@ -195,15 +212,29 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                       className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                       onClick={handlePlusClick}
                     >
-                      <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                      <svg
+                        class="flex-shrink-0 size-3.5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                      </svg>
                     </button>
                   </div>
                 </div>
               </div>
-            
+
               <div className="w-1/2">
                 <button
-                 className="py-2 px-5 w-full font-semibold text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150"
+                  className="py-2 px-5 w-full font-semibold text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150"
                   onClick={handleAddToCart}
                 >
                   ADD

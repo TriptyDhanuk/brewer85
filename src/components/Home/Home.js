@@ -22,7 +22,7 @@ const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+
   console.log("selectedProduct", selectedProduct);
   useEffect(() => {
     const storedProduct = localStorage.getItem("selectedProduct");
@@ -283,7 +283,7 @@ const Home = () => {
         <input
           type="text"
           placeholder=" What are you looking for ?"
-          className="search-input block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-200 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="search-input block w-full py-3 px-4 text-sm text-gray-900 border border-solid border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-200 focus:border-lime-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none"
           value={searchQuery}
           onChange={handleSearchInputChange}
         />

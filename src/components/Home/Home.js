@@ -22,7 +22,7 @@ const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+
   console.log("selectedProduct", selectedProduct);
   useEffect(() => {
     const storedProduct = localStorage.getItem("selectedProduct");

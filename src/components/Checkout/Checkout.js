@@ -153,12 +153,12 @@ const CheckOut = () => {
             key={item.id}
             className="item mb-3 p-3 flex items-center border border-solid border-slate-200 rounded-md"
           >
-            <div>
+            <div className="mr-4">
               <img
                 src={item.image}
                 alt={item.name}
                 style={{ height: "134px", width: "141px" }}
-                onClick={()=>handleImgClick(item.id)}
+                onClick={() => handleImgClick(item.id)}
               />
             </div>
             <div className="item-details">
@@ -293,7 +293,7 @@ const CheckOut = () => {
               className="block w-full py-3 px-3 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
             <button
-              className="ml-2 py-3 px-5 text-white font-semibold bg-slate-700 rounded-lg whitespace-nowrap"
+              className="ml-2 py-3 px-5 text-white font-semibold whitespace-nowrap rounded-lg bg-pink-600 hover:bg-slate-700 duration-300"
               onClick={handleApplyCoupon}
               disabled={couponApplied}
             >
@@ -322,7 +322,7 @@ const CheckOut = () => {
         </div>
 
         {/* Subtotal */}
-        <div className="flex">
+        <div className="flex items-center">
           <h5 className="font-semibold text-slate-800">SUBTOTAL </h5>
           <span className="price ml-auto font-semibold text-slate-800">
             <small className="mr-2">AED</small>
@@ -378,7 +378,7 @@ const CheckOut = () => {
           </div>
         </div>
         <hr style={{ margin: "20px 0", borderTop: "1px solid #ccc" }} />
-        <div className="text-right">
+        <div className="mb-5 text-right">
           <Link to="/thankyou">
             <button
               className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"

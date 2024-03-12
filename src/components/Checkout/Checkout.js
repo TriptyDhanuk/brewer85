@@ -148,7 +148,8 @@ const CheckOut = () => {
       </div>
 
       <div className="items-container">
-        {cartItems.map((item) => (
+      {cartItems.length > 0 ? (
+        cartItems.map((item) => (
           <div
             key={item.id}
             className="item mb-3 p-3 flex items-center border border-solid border-slate-200 rounded-md"
@@ -277,7 +278,12 @@ const CheckOut = () => {
               </button>
             </div>
           </div>
-        ))}
+        ))
+      ) : ( 
+        <div className="empty-cart-message">
+            <h1>Add items to your Cart</h1>
+          </div>
+      )}
 
         {/* Coupon Section */}
         <div className="mb-3">

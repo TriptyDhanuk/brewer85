@@ -265,7 +265,7 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
         ))
       ):(
         <div className="empty-cart-message">
-            <h1>Add items to your Cart</h1>
+            <h1>Add items to your WishList</h1>
           </div>
       )}
       </div>

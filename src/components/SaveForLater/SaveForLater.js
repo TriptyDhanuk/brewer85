@@ -7,6 +7,8 @@ import { addToCart, updateCart } from "../../features/cart/cartSlice";
 import CartIconBadge from "../CartIconBadge";
 import Notification from "../Notificaiton/Notification";
 import RemoveNotification from "../Notificaiton/RemoveNotification";
+import Lottie from "react-lottie";
+import emptyWishlistAnimation from "./emptyWishListLottie.json";
 import "./SaveForLater.css";
 
 import {
@@ -265,6 +267,9 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
         ))
       ):(
         <div className="empty-cart-message">
+           <Lottie options={{ loop: false,
+                      autoplay: true, animationData: emptyWishlistAnimation }} height={300}
+                    width={300}/>
             <h1>Add items to your WishList</h1>
           </div>
       )}

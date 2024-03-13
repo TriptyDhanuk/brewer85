@@ -44,16 +44,16 @@
   text-align: center;
 }
 
-.productImage {
-  border-radius: 50%; /* Makes the image circular */
-  background-color: #ccc; /* Grey background color */
-  width: 100px; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
-  transition: transform 0.3s ease; /* Adds transition effect */
-}
+/* .productImage {
+  border-radius: 50%;
+  background-color: #ccc;
+  width: 100px;
+  height: 100px;
+  transition: transform 0.3s ease;
+} */
 
 .product-item:hover .productImage {
-  transform: scale(1.1); /* Scales the image on hover */
+  /*transform: scale(1.1);*/
 }
 
 .logo {

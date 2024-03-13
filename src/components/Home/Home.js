@@ -298,13 +298,13 @@ const Home = () => {
             filteredProducts.map((product) => (
               <a
                 href="/menu"
-                className="product-item block mx-auto"
+                className="product-item block mx-auto w-24 h-24 rounded-full border-4 border-solid border-white shadow-lg overflow-hidden relative"
                 key={product.name}
               >
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="productImage mx-auto mb-3 block"
+                  className="productImage mx-auto mb-3 block duration-300 w-full h-full object-cover hover:scale-110"
                   onClick={() => handleProductItemClick(product.name)}
                 />
                 <h4 className="text-lg font-semibold text-slate-800">

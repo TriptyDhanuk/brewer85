@@ -126,7 +126,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
     console.log("Item saved for later:", item);
   };
   return (
-    <div className="relative sm:mx-[0.625rem]">
+    <div className="relative mx-[0.625rem]">
       <div className="product-card border border-solid border-slate-200 rounded-lg p-3">
         <button
           // className={saveItems.some((item) => item.id === id) ? "selected" : ""}

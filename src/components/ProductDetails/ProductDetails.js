@@ -430,7 +430,7 @@ const ProductDetails = () => {
                       </div>
                     </div>
                     <div
-                      className="product-details-your-rating"
+                      className="product-details-your-rating ml-auto"
                       onClick={() => {
                         // openModal();
                         if (!localStorage.getItem("feedbackSubmitted")) {
@@ -570,7 +570,7 @@ const ProductDetails = () => {
             isOpen={isModalOpen}
             onRequestClose={closeModal}
             contentLabel="Feedback Modal"
-            className={`fixed inset-0 z-50 bg-transparent opacity-100 flex justify-center items-center`}
+            className={`absolute p-5 max-w-[400px] top-1/2 left-1/2 z-50 bg-transparent opacity-100 flex justify-center items-center -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl`}
           >
             <div className="modal-content rounded-lg w-full p-5 opacity-100">
               <button className="close-modal-button" onClick={closeModal}>
@@ -584,8 +584,8 @@ const ProductDetails = () => {
                       autoplay: true,
                       animationData: feedbackSuccessAnimation,
                     }}
-                    height={400}
-                    width={400}
+                    height={200}
+                    width={200}
                   />
                 ) : (
                   <>

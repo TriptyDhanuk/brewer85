@@ -267,7 +267,7 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
         ))
       ):(
         <div className="empty-cart-message">
-           <Lottie options={{ loop: false,
+           <Lottie options={{ loop: true,
                       autoplay: true, animationData: emptyWishlistAnimation }} height={300}
                     width={300}/>
             <h1>Add items to your WishList</h1>

@@ -570,8 +570,9 @@ const ProductDetails = () => {
             isOpen={isModalOpen}
             onRequestClose={closeModal}
             contentLabel="Feedback Modal"
+            className={`fixed inset-0 z-50 bg-transparent opacity-100 flex justify-center items-center`}
           >
-            <div className="modal-content">
+            <div className="modal-content rounded-lg w-full p-5 opacity-100">
               <button className="close-modal-button" onClick={closeModal}>
                 <FontAwesomeIcon icon={faTimes} />
               </button>
@@ -588,8 +589,8 @@ const ProductDetails = () => {
                   />
                 ) : (
                   <>
-                    <p>Please rate your experience:</p>
-                    <div className="rating-stars">
+                    <p className="mb-3 text-lg font-semibold text-slate-800">Please rate your experience:</p>
+                    <div className="rating-stars text-3xl mb-3">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <span
                           key={star}
@@ -603,7 +604,7 @@ const ProductDetails = () => {
                       ))}
                     </div>
                     <button
-                      className="submit-feedback-button"
+                      className="submit-feedback-button py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
                       onClick={handleSubmitFeedback}
                     >
                       Submit Feedback

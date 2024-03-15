@@ -430,7 +430,7 @@ const ProductDetails = () => {
                       </div>
                     </div>
                     <div
-                      className="product-details-your-rating"
+                      className="product-details-your-rating ml-auto"
                       onClick={() => {
                         // openModal();
                         if (!localStorage.getItem("feedbackSubmitted")) {
@@ -497,23 +497,23 @@ const ProductDetails = () => {
                  
                   <div className="flex items-center mb-5">
                     <p className="mr-2 font-semibold text-slate-900">Quantity</p>
-                    <div class="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700">
-                      <div class="flex items-center gap-x-1.5">
+                    <div className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700">
+                      <div className="flex items-center gap-x-1.5">
                         <button
                           className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                           onClick={handleMinusClick}
                         >
                           <svg
-                            class="flex-shrink-0 size-3.5"
+                            className="flex-shrink-0 size-3.5"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           >
                             <path d="M5 12h14" />
                           </svg>
@@ -526,16 +526,16 @@ const ProductDetails = () => {
                           onClick={handlePlusClick}
                         >
                           <svg
-                            class="flex-shrink-0 size-3.5"
+                            className="flex-shrink-0 size-3.5"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           >
                             <path d="M5 12h14" />
                             <path d="M12 5v14" />
@@ -570,8 +570,9 @@ const ProductDetails = () => {
             isOpen={isModalOpen}
             onRequestClose={closeModal}
             contentLabel="Feedback Modal"
+            className={`absolute p-5 max-w-[400px] top-1/2 left-1/2 z-50 bg-transparent opacity-100 flex justify-center items-center -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl`}
           >
-            <div className="modal-content">
+            <div className="modal-content rounded-lg w-full p-5 opacity-100">
               <button className="close-modal-button" onClick={closeModal}>
                 <FontAwesomeIcon icon={faTimes} />
               </button>
@@ -583,13 +584,13 @@ const ProductDetails = () => {
                       autoplay: true,
                       animationData: feedbackSuccessAnimation,
                     }}
-                    height={400}
-                    width={400}
+                    height={200}
+                    width={200}
                   />
                 ) : (
                   <>
-                    <p>Please rate your experience:</p>
-                    <div className="rating-stars">
+                    <p className="mb-3 text-lg font-semibold text-slate-800">Please rate your experience:</p>
+                    <div className="rating-stars text-3xl mb-3">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <span
                           key={star}
@@ -603,7 +604,7 @@ const ProductDetails = () => {
                       ))}
                     </div>
                     <button
-                      className="submit-feedback-button"
+                      className="submit-feedback-button py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
                       onClick={handleSubmitFeedback}
                     >
                       Submit Feedback

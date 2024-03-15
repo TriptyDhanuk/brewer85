@@ -260,10 +260,10 @@
   text-align: center;
 }
 
-.rating-stars {
+/* .rating-stars {
   font-size: 2em;
   margin-bottom: 20px;
-}
+} */
 
 .gold-star {
   color: gold;
@@ -275,18 +275,18 @@
   cursor: pointer;
 }
 
-.submit-feedback-button {
+/* .submit-feedback-button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
-.submit-feedback-button:hover {
+/* .submit-feedback-button:hover {
   background-color: #0056b3;
-}
+} */
 .close-modal-button {
   position: absolute;
   top: 10px;
@@ -351,4 +351,14 @@
     margin-top: 60px;
     max-height: calc(100vh - 60px);
   }
+}
+
+.ReactModal__Overlay {
+  z-index: 9;
+  /* background-color: rgba(255,255,255,1) !important; */
+}
+
+.ReactModal__Overlay:focus-visible,
+.ReactModal__Content:focus-visible {
+  outline: 0;
 }

@@ -293,20 +293,37 @@ const Home = () => {
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           All Products
         </h3>
+
         <div className="product-category flex flex-wrap">
+          {/* <div class="w-[83px] h-24 overflow-hidden rotate-45">
+            <div class="w-24 h-24 rounded-full border-4 border-solid border-white bg-gray-300 relative before:content-[''] before:absolute before:h-full before:w-8 before:bg-primary-800 before:bottom-0 before:left-[90%] before:right-0 after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-gradient-to-r after:from-white  after:via-slate-800 after:to-slate-800 after:top-0 after:left-[73%] before:z-[1]">
+              <div class="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
+                <img
+                  src="../../images/banner1.jpg"
+                  alt=""
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div> */}
           {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <a
                 href="/menu"
-                className="product-item block mx-auto"
+                className="product-item block mx-auto w-[83px] h-24 overflow-hidden rotate-45 relative"
                 key={product.name}
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="productImage mx-auto mb-3 block"
-                  onClick={() => handleProductItemClick(product.name)}
-                />
+                <div class="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative before:content-[''] before:absolute before:h-full before:w-8 before:bg-primary-800 before:bottom-0 before:left-[90%] before:right-0 after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-gradient-to-r after:from-white  after:via-slate-800 after:to-slate-800 after:top-0 after:left-[73%] before:z-[1]">
+                  <div class="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="productImage mx-auto mb-3 block duration-300 w-full h-full object-cover hover:scale-110"
+                      onClick={() => handleProductItemClick(product.name)}
+                    />
+                  </div>
+                </div>
+
                 <h4 className="text-lg font-semibold text-slate-800">
                   {product.name}
                 </h4>

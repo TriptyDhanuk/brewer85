@@ -57,3 +57,14 @@
 .icons span:hover {
   text-decoration: underline;
 }
+
+/* else condition for h1 tag */
+.empty-cart-message {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.empty-cart-message h1 {
+  font-size: 24px;
+  color: #333; 
+}

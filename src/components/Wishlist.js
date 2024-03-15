@@ -8,13 +8,9 @@ const Wishlist = () => {
   console.log("totalItems for wishlist", totalItems);
 
   return (
-    <Link to="/wishlist" className="wishlist-icon-container">
-      <i
-        className="fas fa-heart"
-        style={{ marginRight: "1.8rem", position: "relative" }}
-      >
-        {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
-      </i>
+    <Link to="/wishlist" className="wishlist-icon-container relative mr-4">
+      <box-icon name='heart'></box-icon>
+        {totalItems > 0 && <span className="cart-badge w-5 h-5 text-sm font-semibold text-white flex justify-center items-center rounded-full bg-red-600 absolute -top-1 -right-3">{totalItems}</span>}
     </Link>
   );
 };

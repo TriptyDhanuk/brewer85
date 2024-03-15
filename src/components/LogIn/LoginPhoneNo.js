@@ -130,7 +130,7 @@ const LoginPhoneNo = () => {
   const [error, setError] = useState('');
 
   const handleGetOTP = () => {
-    if (!phoneNumber.trim() || phoneNumber === '+971 ') {
+    if (!phoneNumber.trim() || phoneNumber === '+971') {
       setError('Please provide a valid phone number');
     } else {
       setError('');
@@ -168,6 +168,7 @@ const LoginPhoneNo = () => {
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             onKeyPress={handleKeyPress} // Prevent non-numeric characters
+
           />
           {error && <ErrorText>{error}</ErrorText>}
           <GetStartedButton onClick={handleGetOTP}>Get OTP</GetStartedButton>

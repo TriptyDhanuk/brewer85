@@ -106,8 +106,8 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   };
 
   return (
-    <div style={{ position: "relative" }}>
-      <div className="product-card">
+    <div className="lg:w-3/12 md:w-4/12 sm:w-6/12 w-full sm:px-[0.625rem] relative">
+      <div className="product-card border border-solid border-slate-200 rounded-lg p-3">
         <button
           className={saveItems.some((item) => item.id === id) ? "selected" : ""}
           style={{
@@ -136,53 +136,46 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           onClick={handleImgClick}
         />
         <div className="product-details">
-          <h3 style={{ fontSize: "1.5rem" }}>
+          <h3 className="text-lg font-semibold text-slate-900">
             {name}
             {id}
           </h3>
-          <p style={{ color: "grey", font: "bold" }}>yahoo comidia</p>
-          <div className="price-tag">
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <p style={{ fontSize: "0.8rem", margin: "0" }}>
+          <p className="mb-2 text-sm font-semibold text-slate-500">yahoo comidia</p>
+          
+          <div className="price-tag mb-3">
+            <div className="flex">
+              <span>
                 <strong>
-                  AED <span style={{ fontSize: "1.2rem" }}>{price}</span>
+                  AED <span>{price}</span>
                 </strong>
-              </p>
-              <p
-                style={{
-                  color: "red",
-                  margin: "0 8px",
-                  padding: "0 4px",
-                  fontWeight: "bold",
-                  fontSize: "1em",
-                  whiteSpace: "nowrap",
-                }}
-              >
+              </span>
+              <p className="ml-2 text-base font-bold text-red-600">
                 {discount}
               </p>
             </div>
-
+            </div>
+            <div className="flex items-center">
             <div className="quantity-button w-1/2">
               <div
-                class="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700"
+                className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700"
                 data-hs-input-number
               >
-                <div class="flex items-center gap-x-1.5">
+                <div className="flex items-center gap-x-1.5">
                   <button
                     className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                     onClick={handleMinusClick}
                   >
                     <svg
-                      class="flex-shrink-0 size-3.5"
+                      className="flex-shrink-0 size-3.5"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       <path d="M5 12h14" />
                     </svg>
@@ -198,16 +191,16 @@ const MenuCard = ({ id, image, name, price, discount }) => {
                     onClick={handlePlusClick}
                   >
                     <svg
-                      class="flex-shrink-0 size-3.5"
+                      className="flex-shrink-0 size-3.5"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       <path d="M5 12h14" />
                       <path d="M12 5v14" />
@@ -216,23 +209,19 @@ const MenuCard = ({ id, image, name, price, discount }) => {
                 </div>
               </div>
             </div>
-          </div>
+          
+          <div className="w-1/2">
           <button
-            style={{
-              marginTop: "0.5rem",
-              border: "1px solid green",
-              color: "green",
-              backgroundColor: "white",
-              display: "block",
-              width: "100%",
-              height: "40px",
-            }}
+            className="py-2 px-5 w-full font-semibold uppercase text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150"
             onClick={handleAddToCart}
           >
-            ADD
+            Add
           </button>
+          </div>
+        </div>
         </div>
       </div>
+      <div className="absolute top-2 right-4">
       {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
       {notification && (
         <Notification
@@ -241,6 +230,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
         />
       )}
       {isRemoved && <RemoveNotification />}
+      </div>
     </div>
   );
 };

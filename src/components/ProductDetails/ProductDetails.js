@@ -48,6 +48,8 @@ const ProductDetails = () => {
   const handleSubmitFeedback = () => {
     console.log("Feedback submitted:", rating);
     setFeedbackSubmitted(true);
+    localStorage.setItem("feedbackSubmitted", true);
+    localStorage.setItem("feedbackSubmittedCount", rating);
   };
 
   const products = {
@@ -376,115 +378,185 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="product-details-container">
-      {product && (
-        <>
-          <img
-            src={product.image}
-            alt="Product"
-            className="product-details-image"
-          />
-          <div className="product-details-header">
-            <nav className="product-details-navbar">
+    <div className="body px-4">
+      
+      <div className="header py-3">
+        <nav className="flex flex-wrap">
               <div className="product-details-logo" onClick={handleGoBack}>
                 <box-icon name="arrow-back"></box-icon>
                 <h4 className="product-details-title">Product Details</h4>
               </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div className="flex items-center ml-auto">
                 <Wishlist style={{ marginRight: "10px" }} />
                 <CartIconBadge />
               </div>
             </nav>
           </div>
-          <div className="product-details-content">
-            <div className="product-details-image-container">
-              <div className="product-details-kcal-circle">
-                <div className="product-details-cal-value">25</div>
-                <div className="product-details-cal-unit">Cal</div>
-              </div>
+      {product && (
+        <>
+        <div>
+          <div className="flex flex-wrap items-center">
+            <div className="md:w-6/12">
+              <img
+                src={product.image}
+                alt="Product"
+                className="product-details-image"
+              />
             </div>
-            <div className="product-details-info">
-              <h3 className="product-details-name">{product.name}</h3>
-              <p className="product-details-price">
-                AED <span>{product.price}</span>
-              </p>
-              <div className="product-details-price-rating-container">
-                <div className="product-details-your-rating">
-                  <p>4.5 rating</p>
-                  <div className="product-details-star-rating">
-                    {[...Array(5)].map((_, index) => (
-                      <span key={index} className="star">
-                        &#9733;
-                      </span>
-                    ))}
+            <div className="md:w-6/12">
+              <div className="product-details-content">
+                <div className="product-details-image-container">
+                  <div className="product-details-kcal-circle">
+                    <div className="product-details-cal-value">25</div>
+                    <div className="product-details-cal-unit">Cal</div>
                   </div>
                 </div>
-                <div
-                  className="product-details-your-rating"
-                  onClick={() => {
-                    openModal();
-                    console.log("hello");
-                  }}
-                >
-                  <p>Your rating</p>
-                  <div className="product-details-star-rating">
-                    {[...Array(5)].map((_, index) => (
-                      <span key={index} className="star">
-                        &#9733;
-                      </span>
-                    ))}
+                <div className="product-details-info">
+                  <div className="mb-5">
+                    <h3 className="mb-4 xl:text-3xl text-2xl font-semibold text-slate-900">{product.name}</h3>
+                    <p className="text-md font-semibold text-pink-600 flex items-center">
+                      <span className="mr-3">AED</span> <span className="font-bold xl:text-4xl text-3xl">{product.price}</span>
+                    </p>
                   </div>
-                </div>
-              </div>
-              <div className="product-details-additional-details">
-                <p className="bold-text">Details</p>
-                <h6>
-                  {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
-                  <span>
-                    <a
-                      className="show-more-link"
-                      onClick={() => setShowMore(!showMore)}
-                      style={{ color: "rgb(255, 58, 117)", cursor: "pointer" }}
+                  <div className="flex flex-wrap gap-x-8 mb-5">
+                    <div className="product-details-your-rating">
+                      <p className="font-bold text-slate-900">4.5 rating</p>
+                      <div className="product-details-star-rating">
+                        {[...Array(5)].map((_, index) => (
+                          <span key={index} className="star">
+                            &#9733;
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div
+                      className="product-details-your-rating ml-auto"
+                      onClick={() => {
+                        // openModal();
+                        if (!localStorage.getItem("feedbackSubmitted")) {
+                          openModal();
+                        }
+                        console.log("hello");
+                      }}
                     >
-                      {showMore ? "Show Less" : "Show More"}
-                    </a>
-                  </span>
-                </h6>
-              </div>
+                      <p className="font-bold text-slate-900">Your rating</p>
+                      {/* <div className="product-details-star-rating">
+                        {[...Array(5)].map((_, index) => (
+                          <span key={index} className="star">
+                            &#9733;
+                          </span>
+                        ))}
+                      </div> */}
+                      <div className="product-details-star-rating">
+                        {[...Array(5)].map((_, index) => {
+                          // Retrieve feedback count from local storage
+                          const feedbackCount = localStorage.getItem(
+                            "feedbackSubmittedCount"
+                          );
+                          // Parse feedback count as integer
+                          const parsedFeedbackCount = parseInt(feedbackCount);
+                          // Check if parsedFeedbackCount is a valid integer
+                          const isValidCount = !isNaN(parsedFeedbackCount);
+                          const shouldFillStar =
+                            isValidCount && index < parsedFeedbackCount;
 
-              <div className="product-details-quantity-container">
-                <div className="product-details-quantity-button">
-                  <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
-                    Quantity
-                  </p>
-                  <button
-                    className="product-details-quantity-btn minus-btn"
-                    onClick={handleMinusClick}
-                  >
-                    -
-                  </button>
-                  <span className="product-details-quantity-input">
-                    {quantity}
-                  </span>
-                  <button
-                    className="product-details-quantity-btn plus-btn"
-                    onClick={handlePlusClick}
-                  >
-                    +
-                  </button>
+                          console.log(
+                            `Index: ${index}, Feedback Count: ${parsedFeedbackCount}, Should Fill Star: ${shouldFillStar}`
+                          );
+
+                          return (
+                            <span
+                              key={index}
+                              className={`star ${
+                                shouldFillStar ? "pink-star" : "empty-star"
+                              }`}
+                            >
+                              &#9733;
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="product-details-additional-details mb-5">
+                    <h6 className="text-lg font-bold text-slate-900">Details</h6>
+                    <p className="font-medium">
+                      {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
+                      <span>
+                        <a
+                          className="show-more-link"
+                          onClick={() => setShowMore(!showMore)}
+                          style={{ color: "rgb(255, 58, 117)", cursor: "pointer" }}
+                        >
+                          {showMore ? "Show Less" : "Show More"}
+                        </a>
+                      </span>
+                    </p>
+                  </div>
+
+                 
+                  <div className="flex items-center mb-5">
+                    <p className="mr-2 font-semibold text-slate-900">Quantity</p>
+                    <div className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700">
+                      <div className="flex items-center gap-x-1.5">
+                        <button
+                          className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                          onClick={handleMinusClick}
+                        >
+                          <svg
+                            className="flex-shrink-0 size-3.5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M5 12h14" />
+                          </svg>
+                        </button>
+                        <span className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white">
+                          {quantity}
+                        </span>
+                        <button
+                          className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                          onClick={handlePlusClick}
+                        >
+                          <svg
+                            className="flex-shrink-0 size-3.5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center mb-5">
+                    <span className="mr-2 font-semibold text-slate-900">Total Price </span>
+                    <span className="text-md font-semibold text-pink-600 flex items-center">
+                      <span className="mr-3">AED</span> <span className="font-bold xl:text-4xl text-3xl">{(quantity * product.price).toFixed(2)}</span>
+                    </span>
+                  </div>
+                    <button
+                      className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
+                      onClick={handleAddToCart}
+                    >
+                      ADD TO MY ORDER
+                    </button>
                 </div>
-                <p>
-                  <span style={{ fontWeight: "bold" }}>Total Price </span>
-                  <span className="product-details-price">
-                    AED <span>{(quantity * product.price).toFixed(2)}</span>
-                  </span>
-                </p>
-                <button
-                  className="product-details-add-to-cart-btn"
-                  onClick={handleAddToCart}
-                >
-                  ADD TO MY ORDER
-                </button>
               </div>
             </div>
           </div>
@@ -494,43 +566,13 @@ const ProductDetails = () => {
               productName={notification.name}
             />
           )}
-          // Inside the modal component
-          {/* <Modal
-            isOpen={isModalOpen}
-            onRequestClose={closeModal}
-            contentLabel="Feedback Modal"
-          >
-            <button className="close-modal-button" onClick={closeModal}>
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-            <div className="feedback-container">
-              <p>Please rate your experience:</p>
-              <div className="rating-stars">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    className={star <= rating ? "gold-star" : "empty-star"}
-                    onClick={() => handleRatingChange(star)}
-                  >
-                    ★
-                  </span>
-                ))}
-              </div>
-              <button
-                className="submit-feedback-button"
-                onClick={handleSubmitFeedback}
-              >
-                Submit Feedback
-              </button>
-            </div>
-          </Modal> */}
-          // Inside the modal component
           <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}
             contentLabel="Feedback Modal"
+            className={`absolute p-5 max-w-[400px] top-1/2 left-1/2 z-50 bg-transparent opacity-100 flex justify-center items-center -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl`}
           >
-            <div className="modal-content">
+            <div className="modal-content rounded-lg w-full p-5 opacity-100">
               <button className="close-modal-button" onClick={closeModal}>
                 <FontAwesomeIcon icon={faTimes} />
               </button>
@@ -542,13 +584,13 @@ const ProductDetails = () => {
                       autoplay: true,
                       animationData: feedbackSuccessAnimation,
                     }}
-                    height={400}
-                    width={400}
+                    height={200}
+                    width={200}
                   />
                 ) : (
                   <>
-                    <p>Please rate your experience:</p>
-                    <div className="rating-stars">
+                    <p className="mb-3 text-lg font-semibold text-slate-800">Please rate your experience:</p>
+                    <div className="rating-stars text-3xl mb-3">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <span
                           key={star}
@@ -562,7 +604,7 @@ const ProductDetails = () => {
                       ))}
                     </div>
                     <button
-                      className="submit-feedback-button"
+                      className="submit-feedback-button py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
                       onClick={handleSubmitFeedback}
                     >
                       Submit Feedback
@@ -572,6 +614,7 @@ const ProductDetails = () => {
               </div>
             </div>
           </Modal>
+          </div>
         </>
       )}
     </div>

@@ -15,7 +15,6 @@
     "@testing-library/user-event": "^13.5.0",
     "boxicons": "^2.1.4",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",
     "react-lottie": "^1.2.4",
     "react-modal": "^3.16.1",

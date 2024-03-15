@@ -57,7 +57,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
       setWishlistNoti({ name: itemToAdd.name });
       setTimeout(() => {
         setWishlistNoti(null);
-      }, 3000);
+      }, 30000);
     }
     setSavedForLater(!savedForLater);
   };
@@ -126,15 +126,13 @@ const ProductCard = ({ id, image, name, price, discount }) => {
     console.log("Item saved for later:", item);
   };
   return (
-    <div style={{ position: "relative" }}>
-      <div className="product-card">
+    <div className="relative mx-[0.625rem]">
+      <div className="product-card border border-solid border-slate-200 rounded-lg p-3">
         <button
-          className={saveItems.some((item) => item.id === id) ? "selected" : ""}
+          // className={saveItems.some((item) => item.id === id) ? "selected" : ""}
+          className="absolute top-2 right-5"
           style={{
             color: saveItems.some((item) => item.id === id) ? "pink" : "white",
-            backgroundColor: "transparent",
-            position: "absolute",
-            right: "15px",
           }}
           onClick={toggleSavedForLater}
         >
@@ -148,8 +146,8 @@ const ProductCard = ({ id, image, name, price, discount }) => {
             }}
           ></box-icon>
         </button>
-        <div className="best-seller-ribbon">Best Seller</div>
-        <p>{id}</p>
+        <div className="best-seller-ribbon absolute top-0 -left-[0.625rem] text-white py-2 pl-5 pr-2 font-bold bg-lime-600 after:content-[''] after:absolute after:top-0 after:right-[-19px] after:border-t-[22px] after:border-l-[10px] after:border-b-[18px] after:border-r-[10px] after:border-t-lime-600 after:border-r-transparent after:border-b-lime-600 after:!border-l-lime-600 before:content-[''] before:absolute before:top-[100%] before:left-0 before:border-t-[10px] before:border-l-[10px] before:border-b-[10px] before:border-t-lime-900 before:border-l-transparent  before:border-b-transparent">Best Seller</div>
+        {/* <p className="absolute top-0">{id}</p> */}
         <img
           src={image}
           alt={name}
@@ -161,29 +159,46 @@ const ProductCard = ({ id, image, name, price, discount }) => {
             {name}
             {id}
           </h3>
-          <p className="mb-2 text-sm font-semibold text-slate-500">yahoo comidia</p>
+          <p className="mb-2 text-sm font-semibold text-slate-500">
+            yahoo comidia
+          </p>
           <div>
-            <div className="d-flex mb-2">
-              <p>
+            <div className="flex mb-3">
+              <span>
                 <strong className="text-nowrap">
                   AED <span>{price}</span>
                 </strong>
-              </p>
+              </span>
               <span className="ml-2 text-base font-bold text-red-600">
                 {discount}
               </span>
             </div>
 
             <div className="flex items-center">
-              
               <div className="quantity-button w-1/2">
-                <div class="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700" data-hs-input-number>
-                  <div class="flex items-center gap-x-1.5">
+                <div
+                  className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700"
+                  data-hs-input-number
+                >
+                  <div className="flex items-center gap-x-1.5">
                     <button
                       className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                       onClick={handleMinusClick}
                     >
-                      <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+                      <svg
+                        className="flex-shrink-0 size-3.5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M5 12h14" />
+                      </svg>
                     </button>
                     <input
                       type="text"
@@ -195,23 +210,29 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                       className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                       onClick={handlePlusClick}
                     >
-                      <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                      <svg
+                        className="flex-shrink-0 size-3.5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                      </svg>
                     </button>
                   </div>
                 </div>
               </div>
-            
+
               <div className="w-1/2">
                 <button
-                  style={{
-                    border: "1px solid green",
-                    color: "green",
-                    backgroundColor: "white",
-                    width: "100%",
-                    height: "40px",
-                    padding: "0.625rem 1.25rem",
-                    // marginLeft: "7rem",
-                  }}
+                  className="py-2 px-5 w-full font-semibold text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150"
                   onClick={handleAddToCart}
                 >
                   ADD
@@ -251,14 +272,17 @@ const ProductCard = ({ id, image, name, price, discount }) => {
           </div>
         </div>
       </div>
-      {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
-      {notification && (
-        <Notification
-          quantity={notification.quantity}
-          productName={notification.name}
-        />
-      )}
-      {isRemoved && <RemoveNotification />}
+      <div className="absolute top-2 right-8">
+        {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} className="absolute top-0" />}
+        {notification && (
+          <Notification
+            quantity={notification.quantity}
+            productName={notification.name}
+            className="absolute top-0"
+          />
+        )}
+        {isRemoved && <RemoveNotification />}
+      </div>
     </div>
   );
 };

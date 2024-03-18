@@ -73,11 +73,11 @@ function App() {
     return () => clearTimeout(delay); // Cleanup timeout
   }, []); // Run once on mount
 
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="App">
-      {isLoading ? (
-        <Loading />
-      ) : (
         <Router>
           <Routes>
             <Route path="/" element={<Start />} />
@@ -126,7 +126,6 @@ function App() {
             />
           </Routes>
         </Router>
-      )}
     </div>
   );
 }

@@ -41,10 +41,10 @@
 .product-details-rating .star {
   color: rgb(255, 58, 117);
 }
-.product-details-your-rating {
+/* .product-details-your-rating {
   margin-right: 10%;
   color: grey;
-}
+} */
 /* .product-details-star-rating {
   display: flex;
 }
@@ -110,7 +110,7 @@
   color: rgb(0, 0, 0);
 }
 .product-details-info {
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 .product-details-name {
   font-size: 24px;
@@ -120,11 +120,11 @@
   color: grey;
   font-weight: bold;
 }
-.product-details-price-rating-container {
+/* .product-details-price-rating-container {
   display: flex;
   align-items: center;
   margin-top: 10px;
-}
+} */
 .product-details-price-tag {
   margin-right: 20px;
 }
@@ -151,11 +151,11 @@
   margin-right: 5px;
   font-size: 24px;
 }
-.product-details-your-rating {
+/* .product-details-your-rating {
   margin-bottom: 10px;
-}
+} */
 .product-details-your-rating p {
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 .product-details-quantity-container {
   margin-top: 20px;
@@ -260,10 +260,10 @@
   text-align: center;
 }
 
-.rating-stars {
+/* .rating-stars {
   font-size: 2em;
   margin-bottom: 20px;
-}
+} */
 
 .gold-star {
   color: gold;
@@ -275,18 +275,18 @@
   cursor: pointer;
 }
 
-.submit-feedback-button {
+/* .submit-feedback-button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
-.submit-feedback-button:hover {
+/* .submit-feedback-button:hover {
   background-color: #0056b3;
-}
+} */
 .close-modal-button {
   position: absolute;
   top: 10px;
@@ -302,13 +302,13 @@
 /* Media Queries */
 @media only screen and (max-width: 768px) {
   .product-details-navbar {
-    padding: 10px;
+    /* padding: 10px; */
   }
   .product-details-content {
-    margin-top: 60px;
+    /* margin-top: 60px; */
   }
   .product-details-info {
-    padding: 15px;
+    /* padding: 15px; */
   }
   .product-details-header {
     background-color: rgba(255, 255, 255, 0.5);
@@ -333,9 +333,7 @@
 
 /* feedbaack stars */
 .star {
-  font-size: 1.2rem; 
   cursor: pointer; 
-  margin-right: 5px; 
 }
 
 /* Filled star */
@@ -353,4 +351,14 @@
     margin-top: 60px;
     max-height: calc(100vh - 60px);
   }
+}
+
+.ReactModal__Overlay {
+  z-index: 9;
+  /* background-color: rgba(255,255,255,1) !important; */
+}
+
+.ReactModal__Overlay:focus-visible,
+.ReactModal__Content:focus-visible {
+  outline: 0;
 }

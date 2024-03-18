@@ -337,23 +337,24 @@ const MenuItem = () => {
       </div>
 
       <div>
-        <h3 className="text-xl font-semibold text-slate-800 mb-3">Most Popular</h3>
+        <h3 className="text-xl font-semibold text-slate-800 mb-3">
+          Most Popular
+        </h3>
         <div className="product-filter flex flex-wrap sm:-mx-[0.625rem] gap-y-5">
           {(searchQuery === "" ? filteredProducts : filteredProductsByName).map(
-            (product, index) => (
-              // {filteredProducts.map((product, index) => (
-              <>
-              <div className="lg:w-3/12 md:w-4/12 sm:w-6/12 w-full">
+            (product) => (
+              <div
+                key={product.id}
+                className="lg:w-3/12 md:w-4/12 sm:w-6/12 w-full"
+              >
                 <ProductCard
-                  key={index}
                   image={product.image}
                   name={product.name}
                   id={product.id}
                   price={product.price}
                   discount={product.discount}
                 />
-                </div>
-              </>
+              </div>
             )
           )}
           {(searchQuery === ""

@@ -21,6 +21,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Lottie from "react-lottie";
 import feedbackSuccessAnimation from "./feedBackAnimation.json";
 
+Modal.setAppElement('#root');
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [showMore, setShowMore] = useState(false);
@@ -412,13 +413,15 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 <div className="product-details-info">
-                  <h3 className="product-details-name">{product.name}</h3>
-                  <p className="product-details-price">
-                    AED <span>{product.price}</span>
-                  </p>
-                  <div className="product-details-price-rating-container">
+                  <div className="mb-5">
+                    <h3 className="mb-4 xl:text-3xl text-2xl font-semibold text-slate-900">{product.name}</h3>
+                    <p className="text-md font-semibold text-pink-600 flex items-center">
+                      <span className="mr-3">AED</span> <span className="font-bold xl:text-4xl text-3xl">{product.price}</span>
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-x-8 mb-5">
                     <div className="product-details-your-rating">
-                      <p>4.5 rating</p>
+                      <p className="font-bold text-slate-900">4.5 rating</p>
                       <div className="product-details-star-rating">
                         {[...Array(5)].map((_, index) => (
                           <span key={index} className="star">
@@ -428,7 +431,7 @@ const ProductDetails = () => {
                       </div>
                     </div>
                     <div
-                      className="product-details-your-rating"
+                      className="product-details-your-rating ml-auto"
                       onClick={() => {
                         // openModal();
                         if (!localStorage.getItem("feedbackSubmitted")) {
@@ -437,7 +440,7 @@ const ProductDetails = () => {
                         console.log("hello");
                       }}
                     >
-                      <p>Your rating</p>
+                      <p className="font-bold text-slate-900">Your rating</p>
                       {/* <div className="product-details-star-rating">
                         {[...Array(5)].map((_, index) => (
                           <span key={index} className="star">
@@ -476,9 +479,9 @@ const ProductDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="product-details-additional-details">
-                    <p className="bold-text">Details</p>
-                    <h6>
+                  <div className="product-details-additional-details mb-5">
+                    <h6 className="text-lg font-bold text-slate-900">Details</h6>
+                    <p className="font-medium">
                       {showMore ? <>{text}</> : `${text.substring(0, 250)}...`}
                       <span>
                         <a
@@ -489,43 +492,71 @@ const ProductDetails = () => {
                           {showMore ? "Show Less" : "Show More"}
                         </a>
                       </span>
-                    </h6>
+                    </p>
                   </div>
 
-                  <div className="product-details-quantity-container">
-                    <div className="product-details-quantity-button">
-                      <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
-                        Quantity
-                      </p>
-                      <button
-                        className="product-details-quantity-btn minus-btn"
-                        onClick={handleMinusClick}
-                      >
-                        -
-                      </button>
-                      <span className="product-details-quantity-input">
-                        {quantity}
-                      </span>
-                      <button
-                        className="product-details-quantity-btn plus-btn"
-                        onClick={handlePlusClick}
-                      >
-                        +
-                      </button>
+                 
+                  <div className="flex items-center mb-5">
+                    <p className="mr-2 font-semibold text-slate-900">Quantity</p>
+                    <div className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700">
+                      <div className="flex items-center gap-x-1.5">
+                        <button
+                          className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                          onClick={handleMinusClick}
+                        >
+                          <svg
+                            className="flex-shrink-0 size-3.5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M5 12h14" />
+                          </svg>
+                        </button>
+                        <span className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white">
+                          {quantity}
+                        </span>
+                        <button
+                          className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                          onClick={handlePlusClick}
+                        >
+                          <svg
+                            className="flex-shrink-0 size-3.5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
-                    <p>
-                      <span style={{ fontWeight: "bold" }}>Total Price </span>
-                      <span className="product-details-price">
-                        AED <span>{(quantity * product.price).toFixed(2)}</span>
-                      </span>
-                    </p>
+                  </div>
+                  <div className="flex items-center mb-5">
+                    <span className="mr-2 font-semibold text-slate-900">Total Price </span>
+                    <span className="text-md font-semibold text-pink-600 flex items-center">
+                      <span className="mr-3">AED</span> <span className="font-bold xl:text-4xl text-3xl">{(quantity * product.price).toFixed(2)}</span>
+                    </span>
+                  </div>
                     <button
-                      className="product-details-add-to-cart-btn"
+                      className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
                       onClick={handleAddToCart}
                     >
                       ADD TO MY ORDER
                     </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -540,8 +571,9 @@ const ProductDetails = () => {
             isOpen={isModalOpen}
             onRequestClose={closeModal}
             contentLabel="Feedback Modal"
+            className={`absolute p-5 max-w-[400px] top-1/2 left-1/2 z-50 bg-transparent opacity-100 flex justify-center items-center -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl`}
           >
-            <div className="modal-content">
+            <div className="modal-content rounded-lg w-full p-5 opacity-100">
               <button className="close-modal-button" onClick={closeModal}>
                 <FontAwesomeIcon icon={faTimes} />
               </button>
@@ -553,13 +585,13 @@ const ProductDetails = () => {
                       autoplay: true,
                       animationData: feedbackSuccessAnimation,
                     }}
-                    height={400}
-                    width={400}
+                    height={200}
+                    width={200}
                   />
                 ) : (
                   <>
-                    <p>Please rate your experience:</p>
-                    <div className="rating-stars">
+                    <p className="mb-3 text-lg font-semibold text-slate-800">Please rate your experience:</p>
+                    <div className="rating-stars text-3xl mb-3">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <span
                           key={star}
@@ -573,7 +605,7 @@ const ProductDetails = () => {
                       ))}
                     </div>
                     <button
-                      className="submit-feedback-button"
+                      className="submit-feedback-button py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
                       onClick={handleSubmitFeedback}
                     >
                       Submit Feedback

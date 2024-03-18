@@ -22,7 +22,7 @@ const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+
   console.log("selectedProduct", selectedProduct);
   useEffect(() => {
     const storedProduct = localStorage.getItem("selectedProduct");
@@ -289,92 +289,41 @@ const Home = () => {
         />
       </div>
 
-      {/* <div className="products " style={{ marginLeft: "10px" }}>
-        <h3>All Products</h3>
-        <div className="product-category">
-          <a href="/menu" class="product-item">
-            <img
-              src={image1}
-              alt="image1"
-              class="productImage"
-              onClick={() => handleProductItemClick("Biryani")}
-            />
-            <h4>Biryani</h4>
-          </a>
-          <a href="/menu" class="product-item">
-            <img
-              src={image2}
-              alt="image2"
-              class="productImage"
-              onClick={() => handleProductItemClick("IceCream")}
-            />
-            <h4>IceCream</h4>
-          </a>
-          <a href="/menu" class="product-item">
-            <img
-              src={burger}
-              alt="image3"
-              class="productImage"
-              onClick={() => handleProductItemClick("Burger")}
-            />
-            <h4>Burger</h4>
-          </a>
-          <a href="/menu" class="product-item">
-            <img
-              src={image4}
-              alt="image4"
-              class="productImage"
-              onClick={() => handleProductItemClick("Pizza")}
-            />
-            <h4>Pizza</h4>
-          </a>
-          <a href="/menu" class="product-item">
-            <img
-              src={shakes}
-              alt="image1"
-              class="productImage"
-              onClick={() => handleProductItemClick("Shakes")}
-            />
-            <h4>Shakes & Juices</h4>
-          </a>
-          <a href="/menu" class="product-item">
-            <img
-              src={noodles}
-              alt="image2"
-              class="productImage"
-              onClick={() => handleProductItemClick("Chinese")}
-            />
-            <h4>Chinese</h4>
-          </a>
-          <a href="/menu" class="product-item">
-            <img
-              src={drinks}
-              alt="image3"
-              class="productImage"
-              onClick={() => handleProductItemClick("Drinks")}
-            />
-            <h4>Drinks</h4>
-          </a>
-        </div>
-      </div> */}
       <div className="products" style={{ marginLeft: "10px" }}>
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           All Products
         </h3>
+
         <div className="product-category flex flex-wrap">
+          {/* <div class="w-[83px] h-24 overflow-hidden rotate-45">
+            <div class="w-24 h-24 rounded-full border-4 border-solid border-white bg-gray-300 relative before:content-[''] before:absolute before:h-full before:w-8 before:bg-primary-800 before:bottom-0 before:left-[90%] before:right-0 after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-gradient-to-r after:from-white  after:via-slate-800 after:to-slate-800 after:top-0 after:left-[73%] before:z-[1]">
+              <div class="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
+                <img
+                  src="../../images/banner1.jpg"
+                  alt=""
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div> */}
           {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <a
                 href="/menu"
-                className="product-item block mx-auto"
+                className="product-item block mx-auto w-[83px] h-24 overflow-hidden rotate-45 relative"
                 key={product.name}
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="productImage mx-auto mb-3 block"
-                  onClick={() => handleProductItemClick(product.name)}
-                />
+                <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative before:content-[''] before:absolute before:h-full before:w-8 before:bg-primary-800 before:bottom-0 before:left-[90%] before:right-0 after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-gradient-to-r after:from-white  after:via-slate-800 after:to-slate-800 after:top-0 after:left-[73%] before:z-[1]">
+                  <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="productImage mx-auto mb-3 block duration-300 w-full h-full object-cover hover:scale-110"
+                      onClick={() => handleProductItemClick(product.name)}
+                    />
+                  </div>
+                </div>
+
                 <h4 className="text-lg font-semibold text-slate-800">
                   {product.name}
                 </h4>

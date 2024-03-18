@@ -21,6 +21,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Lottie from "react-lottie";
 import feedbackSuccessAnimation from "./feedBackAnimation.json";
 
+Modal.setAppElement('#root');
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [showMore, setShowMore] = useState(false);

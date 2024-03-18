@@ -313,8 +313,8 @@ const Home = () => {
                 className="product-item block mx-auto w-[83px] h-24 overflow-hidden rotate-45 relative"
                 key={product.name}
               >
-                <div class="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative before:content-[''] before:absolute before:h-full before:w-8 before:bg-primary-800 before:bottom-0 before:left-[90%] before:right-0 after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-gradient-to-r after:from-white  after:via-slate-800 after:to-slate-800 after:top-0 after:left-[73%] before:z-[1]">
-                  <div class="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
+                <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative before:content-[''] before:absolute before:h-full before:w-8 before:bg-primary-800 before:bottom-0 before:left-[90%] before:right-0 after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-gradient-to-r after:from-white  after:via-slate-800 after:to-slate-800 after:top-0 after:left-[73%] before:z-[1]">
+                  <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
                     <img
                       src={product.image}
                       alt={product.name}

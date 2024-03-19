@@ -68,10 +68,10 @@ function App() {
   useEffect(() => {
     const delay = setTimeout(() => {
       setIsLoading(false);
-    }, 500); // Set loading state to false after 500 milliseconds (adjust as needed)
+    }, 100); 
 
-    return () => clearTimeout(delay); // Cleanup timeout
-  }, []); // Run once on mount
+    return () => clearTimeout(delay); 
+  }, []);
 
   if (isLoading) {
     return <Loading />;

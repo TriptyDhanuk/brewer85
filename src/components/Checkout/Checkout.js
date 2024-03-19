@@ -137,6 +137,12 @@ const CheckOut = () => {
 
   return (
     <div className="body px-4">
+      <div className="fixed max-w-[450px] top-2 left-1/2 -translate-x-1/2">
+        {wishlistNoti && (
+          <WishlistNotification productName={wishlistNoti.name} />
+        )}
+        {isRemoved && <RemoveNotification />}
+      </div>
       <div className="header py-3">
         <nav className="flex flex-wrap">
           <div className="logo" onClick={handleGoBack}>
@@ -283,9 +289,15 @@ const CheckOut = () => {
           ))
         ) : (
           <div className="empty-cart-message">
-           <Lottie options={{loop: false,
-                      autoplay: true, animationData: emptyCartAnimation }} height={300}
-                    width={300}/>
+            <Lottie
+              options={{
+                loop: false,
+                autoplay: true,
+                animationData: emptyCartAnimation,
+              }}
+              height={300}
+              width={300}
+            />
             <h1>Add items to your Cart</h1>
           </div>
         )}
@@ -404,8 +416,8 @@ const CheckOut = () => {
           </>
         )}
       </div>
-      {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
-      {isRemoved && <RemoveNotification />}
+      {/* {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
+      {isRemoved && <RemoveNotification />} */}
     </div>
   );
 };

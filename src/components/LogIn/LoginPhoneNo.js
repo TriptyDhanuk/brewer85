@@ -154,7 +154,7 @@ const LoginPhoneNo = () => {
 
   return (
     <>
-      <GreyBackground>
+      <GreyBackground className='!h-screen'>
         <BackgroundImage />
         <LogoContainer>
           <LogoImage src={Logo} alt="Logo" />

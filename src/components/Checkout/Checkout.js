@@ -156,6 +156,9 @@ const CheckOut = () => {
       </div>
 
       <div className="items-container">
+        <div className="cart-message">
+          <h1>My Orders</h1>
+        </div>
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <div

@@ -19,6 +19,13 @@
   margin-right: 5px;
 }
 
+.cart-message h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .items-container {
   /* margin-top: 20px;
   margin-left: 58px; */

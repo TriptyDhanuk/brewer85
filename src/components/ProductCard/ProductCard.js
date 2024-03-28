@@ -57,7 +57,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
       setWishlistNoti({ name: itemToAdd.name });
       setTimeout(() => {
         setWishlistNoti(null);
-      }, 30000);
+      }, 3000);
     }
     setSavedForLater(!savedForLater);
   };

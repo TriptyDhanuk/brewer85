@@ -135,6 +135,16 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
 
   return (
     <div className="body px-4">
+      <div className="fixed max-w-[450px] top-2 left-1/2 -translate-x-1/2">
+      {notification && (
+        <Notification
+          quantity={notification.quantity}
+          productName={notification.name}
+        />
+      )}
+      {isRemoved && <RemoveNotification />}
+      </div>
+
       <div className="header py-3">
         <nav className="flex flex-wrap">
           <div className="logo" onClick={handleGoBack}>
@@ -274,13 +284,13 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
           </div>
       )}
       </div>
-      {notification && (
+      {/* {notification && (
         <Notification
           quantity={notification.quantity}
           productName={notification.name}
         />
       )}
-      {isRemoved && <RemoveNotification />}
+      {isRemoved && <RemoveNotification />} */}
     </div>
   );
 };

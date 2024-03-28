@@ -380,7 +380,15 @@ const ProductDetails = () => {
 
   return (
     <div className="body px-4">
-      
+      <div className="fixed max-w-[450px] top-2 left-1/2 -translate-x-1/2">
+      {notification && (
+            <Notification
+              quantity={notification.quantity}
+              productName={notification.name}
+              
+            />
+          )}
+          </div>
       <div className="header py-3">
         <nav className="flex flex-wrap">
               <div className="product-details-logo" onClick={handleGoBack}>
@@ -561,12 +569,12 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          {notification && (
+          {/* {notification && (
             <Notification
               quantity={notification.quantity}
               productName={notification.name}
             />
-          )}
+          )} */}
           <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}

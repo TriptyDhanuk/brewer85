@@ -15,6 +15,7 @@ import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
+import fullImage from "../../images/food-full-image-01.jpg";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -155,6 +156,13 @@ const ProductDetails = () => {
         name: "Kashmiri Biryani ",
         price: "250",
         discount: "60% off",
+      },
+      {
+        id: 6,
+        image: fullImage,
+        name: "Kashmiri Salad Biryani ",
+        price: "520",
+        discount: "40% off",
       },
       // Add more items as needed
     ],

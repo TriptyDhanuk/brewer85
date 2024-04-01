@@ -15,6 +15,7 @@ import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
+import fullImage from "../../images/food-full-image-01.jpg";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -155,6 +156,13 @@ const ProductDetails = () => {
         name: "Kashmiri Biryani ",
         price: "250",
         discount: "60% off",
+      },
+      {
+        id: 6,
+        image: fullImage,
+        name: "Kashmiri Salad Biryani ",
+        price: "520",
+        discount: "40% off",
       },
       // Add more items as needed
     ],
@@ -380,7 +388,15 @@ const ProductDetails = () => {
 
   return (
     <div className="body px-4">
-      
+      <div className="fixed max-w-[450px] top-2 left-1/2 -translate-x-1/2">
+      {notification && (
+            <Notification
+              quantity={notification.quantity}
+              productName={notification.name}
+              
+            />
+          )}
+          </div>
       <div className="header py-3">
         <nav className="flex flex-wrap">
               <div className="product-details-logo" onClick={handleGoBack}>
@@ -396,15 +412,23 @@ const ProductDetails = () => {
       {product && (
         <>
         <div>
-          <div className="flex flex-wrap items-center">
-            <div className="md:w-6/12">
+          <div className="mainProductDtl">
+            <div className="w-full mb-5">
               <img
                 src={product.image}
                 alt="Product"
                 className="product-details-image"
+                style={{
+                  height: "200px",
+                  objectFit: "contain",
+                  objectPosition: "center top",
+                  width: "100%",
+                  backgroundColor: "#e5e5e5",
+                  padding: "10px 0",
+                }}
               />
             </div>
-            <div className="md:w-6/12">
+            <div className="w-full">
               <div className="product-details-content">
                 <div className="product-details-image-container">
                   <div className="product-details-kcal-circle">
@@ -561,12 +585,12 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          {notification && (
+          {/* {notification && (
             <Notification
               quantity={notification.quantity}
               productName={notification.name}
             />
-          )}
+          )} */}
           <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}

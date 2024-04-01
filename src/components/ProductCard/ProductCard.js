@@ -132,24 +132,6 @@ const ProductCard = ({ id, image, name, price, discount }) => {
   return (
     <div className="relative mx-[0.625rem]">
       <div className="product-card border border-solid border-slate-200 rounded-lg" onClick={handleImgClick}>
-        <button
-          // className={saveItems.some((item) => item.id === id) ? "selected" : ""}
-          className="absolute top-2 right-4 z-10"
-          style={{
-            color: saveItems.some((item) => item.id === id) ? "pink" : "white",
-          }}
-          onClick={toggleSavedForLater}
-        >
-          <box-icon
-            type="solid"
-            name="heart"
-            className="heart-icon"
-            style={{
-              fill: saveItems.some((item) => item.id === id) ? "pink" : "white",
-              stroke: "red",
-            }}
-          ></box-icon>
-        </button>
         <div className="best-seller-ribbon absolute top-0 -left-[0.625rem] text-white py-2 pl-5 pr-2 font-bold bg-lime-600 after:content-[''] after:absolute after:top-0 after:right-[-19px] after:border-t-[18px] after:border-l-[10px] after:border-b-[18px] after:border-r-[10px] after:border-t-lime-600 after:border-r-transparent after:border-b-lime-600 after:!border-l-lime-600 before:content-[''] before:absolute before:top-[100%] before:left-0 before:border-t-[10px] before:border-l-[10px] before:border-b-[10px] before:border-t-lime-900 before:border-l-transparent  before:border-b-transparent text-sm">Best Seller</div>
         {/* <p className="absolute top-0">{id}</p> */}
         <img
@@ -264,6 +246,24 @@ const ProductCard = ({ id, image, name, price, discount }) => {
           </div>
         </div>
       </div>
+      <button
+          // className={saveItems.some((item) => item.id === id) ? "selected" : ""}
+          className="absolute top-2 right-4 z-10"
+          style={{
+            color: saveItems.some((item) => item.id === id) ? "pink" : "white",
+          }}
+          onClick={toggleSavedForLater}
+        >
+          <box-icon
+            type="solid"
+            name="heart"
+            className="heart-icon"
+            style={{
+              fill: saveItems.some((item) => item.id === id) ? "pink" : "white",
+              stroke: "red",
+            }}
+          ></box-icon>
+        </button>
       <div className="absolute top-2 right-8 z-20">
         {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} className="absolute top-0" />}
         {notification && (

@@ -211,9 +211,22 @@ const Home = () => {
           slidesToScroll: 1,
         },
       },
-
+      {
+        breakpoint: 743,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
       {
         breakpoint: 576,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 396,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -317,7 +330,7 @@ const Home = () => {
               >
                 <div className="w-[83px] h-24 overflow-hidden rotate-45 relative">
                   {" "}
-                  <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative before:content-[''] before:absolute before:h-full before:w-8 before:bg-primary-800 before:bottom-0 before:left-[90%] before:right-0 after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-gradient-to-r after:from-white  after:via-slate-800 after:to-slate-800 after:top-0 after:left-[73%] before:z-[1]">
+                  <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative ">
                     <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
                       <img
                         src={product.image}

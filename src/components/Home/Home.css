@@ -3,6 +3,9 @@
   /* padding-left: 1rem;
   padding-right: 1rem; */
 }
+body{
+  background-color: #fdfcfc; 
+}
 
 .navbar {
   display: flex;

@@ -3,6 +3,7 @@ import "../ProductCard/ProductCard.css";
 import "boxicons";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
+import { Link } from "react-router-dom";
 import {
   addToWishlist,
   removeFromWishlist,
@@ -57,7 +58,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
       setWishlistNoti({ name: itemToAdd.name });
       setTimeout(() => {
         setWishlistNoti(null);
-      }, 30000);
+      }, 3000);
     }
     setSavedForLater(!savedForLater);
   };
@@ -130,7 +131,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
       <div className="product-card border border-solid border-slate-200 rounded-lg" onClick={handleImgClick}>
         <button
           // className={saveItems.some((item) => item.id === id) ? "selected" : ""}
-          className="absolute top-2 right-5 z-10"
+          className="absolute top-2 right-4 z-10"
           style={{
             color: saveItems.some((item) => item.id === id) ? "pink" : "white",
           }}
@@ -174,7 +175,9 @@ const ProductCard = ({ id, image, name, price, discount }) => {
               </span>
             </div>
 
-            {/* <div className="flex items-center">
+            
+
+            <div className="flex items-center">
               <div className="quantity-button w-1/2">
                 <div
                   className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700"
@@ -231,44 +234,30 @@ const ProductCard = ({ id, image, name, price, discount }) => {
               </div>
 
               <div className="w-1/2">
-                <button
+                {/* <button
                   className="py-2 px-5 w-full font-semibold text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150"
                   onClick={handleAddToCart}
                 >
                   ADD
-                </button>
+                </button> */}
                 {existingCartItem ? (
                     <Link to="/checkout">
                       <button
-                        style={{
-                          border: "1px solid green",
-                          color: "green",
-                          backgroundColor: "white",
-                          width: "100px",
-                          height: "40px",
-                          marginLeft: "7rem",
-                        }}
+                        className="py-2 px-5 w-full font-semibold uppercase text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150 ml-2"
                       >
-                        GO TO CART
+                          CART
                       </button>
                     </Link>
                   ) : (
                     <button
-                      style={{
-                        border: "1px solid green",
-                        color: "green",
-                        backgroundColor: "white",
-                        width: "100px",
-                        height: "40px",
-                        marginLeft: "7rem",
-                      }}
+                      className="py-2 px-5 w-full font-semibold uppercase text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150 ml-2"
                       onClick={handleAddToCart}
                     >
                       ADD
                     </button>
                   )}
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

@@ -82,7 +82,7 @@ const CheckOut = () => {
             setIsRemoved(true);
             setTimeout(() => {
               setIsRemoved(false);
-            }, 300000);
+            }, 3000);
             return null;
           }
         }

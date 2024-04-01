@@ -234,6 +234,53 @@ const Home = () => {
       },
     ],
   };
+  const settings1 = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 10,
+    slidesToScroll: 1,
+    autoplay: false,
+    responsive: [
+      {
+        breakpoint: 1061,
+        settings: {
+          slidesToShow: 8,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 396,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  
   return (
     <div className="body px-4">
       <div className="header py-3">
@@ -305,57 +352,52 @@ const Home = () => {
       </div>
 
       <div className="products" style={{ marginLeft: "10px" }}>
-        <h3 className="text-xl font-semibold text-slate-800 mb-3">
-          All Products
+        <h3 className="text-xl font-semibold text-slate-800 main_heading mb-3">
+          <span>All Products</span>
         </h3>
+        
 
-        <div className="product-category flex flex-wrap">
-          {/* <div class="w-[83px] h-24 overflow-hidden rotate-45">
-            <div class="w-24 h-24 rounded-full border-4 border-solid border-white bg-gray-300 relative before:content-[''] before:absolute before:h-full before:w-8 before:bg-primary-800 before:bottom-0 before:left-[90%] before:right-0 after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-gradient-to-r after:from-white  after:via-slate-800 after:to-slate-800 after:top-0 after:left-[73%] before:z-[1]">
-              <div class="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
-                <img
-                  src="../../images/banner1.jpg"
-                  alt=""
-                  class="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div> */}
-          {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <a
+        <div className="product-category">
+        <Slider {...settings1}>
+            {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <a
                 href="/menu"
-                className="product-item block mx-auto"
+                className="product-item !block !w-[100px] !mx-auto"
                 key={product.name}
               >
-                <div className="w-[83px] h-24 overflow-hidden rotate-45 relative">
-                  {" "}
-                  <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative ">
-                    <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden -rotate-45">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="productImage mx-auto mb-3 block duration-300 w-full h-full object-cover "
-                        onClick={() => handleProductItemClick(product.name)}
-                      />
+                  <div className="w-full h-24 overflow-hidden relative">
+                    <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative ">
+                      <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="productImage mx-auto mb-3 block duration-300 w-full h-full object-cover"
+                          onClick={() =>
+                            handleProductItemClick(product.name)
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <h4 className="mt-3 text-md font-semibold text-slate-800">
-                  {product.name}
-                </h4>
-              </a>
-            ))
-          ) : (
-            <p className="text-base font-medium text-slate-800">
-              No products found
-            </p>
-          )}
+                  <h4 className="mt-3 text-md font-semibold text-slate-800">
+                    {product.name}
+                  </h4>
+                  </a>             
+              ))
+            ) : (
+              <p className="text-base font-medium text-slate-800">
+                No products found
+              </p>
+            )}
+            </Slider>
+        
         </div>
+        
       </div>
 
-      <div style={{ marginLeft: "5px", marginRight: "5px" }}>
+      <div style={{ marginLeft: "5px", marginRight: "5px" , marginTop: "0.75rem"}}>
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Most Popular
         </h3>

@@ -5,6 +5,7 @@
   margin: 10px;
   width: 368px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
+  position: relative;
 }
 .product-card::after{
   content: '';
@@ -20,6 +21,27 @@
 .heart-icon {
   fill: transparent;
   stroke: red;
+}
+
+.products .main_heading{
+  position: relative;
+  z-index: 1;
+}
+.products .main_heading span{
+  position: relative;
+  z-index: 1;
+  padding-right: 25px;
+  display: inline-block;
+  background-color: #fff;
+}
+.products .main_heading::after{
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #dfdfdf;
 }
 
 .product-image {

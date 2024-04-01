@@ -174,7 +174,7 @@ const CheckOut = () => {
                 />
               </div>
               <div className="item-details">
-                <div className="product-details">
+                <div className="product-details checkout">
                   <h3 className="mb-1 text-lg font-semibold">{item.name}</h3>
                   <p className="font-semibold text-slate-500">
                     yahoo comidia

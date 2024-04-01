@@ -8,3 +8,8 @@
     color: #333; 
   }
   
+@media screen (max-width: 767px){
+  .box_wapper_wish_list{
+    
+  }
+}

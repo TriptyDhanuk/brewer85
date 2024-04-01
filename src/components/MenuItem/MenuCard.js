@@ -108,27 +108,6 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   return (
     <div className="lg:w-3/12 md:w-4/12 sm:w-6/12 w-full sm:px-[0.625rem] relative">
       <div className="product-card border border-solid border-slate-200 rounded-lg">
-        <button
-          className={saveItems.some((item) => item.id === id) ? "selected" : ""}
-          style={{
-            color: saveItems.some((item) => item.id === id) ? "pink" : "white",
-            backgroundColor: "transparent",
-            position: "absolute",
-            right: "15px",
-          }}
-          onClick={toggleSavedForLater}
-        >
-          <box-icon
-            type="solid"
-            name="heart"
-            className="heart-icon"
-            style={{
-              fill: saveItems.some((item) => item.id === id) ? "pink" : "white",
-              stroke: "red",
-            }}
-          ></box-icon>
-        </button>
-
         <img
           src={image}
           alt={name}
@@ -136,20 +115,20 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           onClick={handleImgClick}
         />
         <div className="product-details">
-          <h3 className="text-lg font-semibold text-slate-900">
+          <h3 className="text-lg font-semibold text-white">
             {name}
             {id}
           </h3>
-          <p className="mb-2 text-sm font-semibold text-slate-500">yahoo comidia</p>
+          <p className="mb-1 text-sm font-normal text-white">yahoo comidia</p>
           
           <div className="price-tag mb-3">
             <div className="flex">
               <span>
-                <strong>
+                <strong className="text-nowrap font-normal text-white">
                   AED <span>{price}</span>
                 </strong>
               </span>
-              <p className="ml-2 text-base font-bold text-red-600">
+              <p className="ml-2 text-base font-bold text-white">
                 {discount}
               </p>
             </div>
@@ -221,6 +200,27 @@ const MenuCard = ({ id, image, name, price, discount }) => {
         </div>
         </div>
       </div>
+      <button
+          className={saveItems.some((item) => item.id === id) ? "selected" : ""}
+          style={{
+            color: saveItems.some((item) => item.id === id) ? "pink" : "white",
+            backgroundColor: "transparent",
+            position: "absolute",
+            right: "1rem",
+            top: "0.5rem"
+          }}
+          onClick={toggleSavedForLater}
+        >
+          <box-icon
+            type="solid"
+            name="heart"
+            className="heart-icon"
+            style={{
+              fill: saveItems.some((item) => item.id === id) ? "pink" : "white",
+              stroke: "red",
+            }}
+          ></box-icon>
+        </button>
       <div className="absolute top-2 right-4">
       {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
       {notification && (

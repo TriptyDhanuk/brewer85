@@ -163,8 +163,9 @@ const CheckOut = () => {
           cartItems.map((item) => (
             <div
               key={item.id}
-              className="item mb-3 p-3 flex items-center border border-solid border-slate-200 rounded-md"
+              className="item mb-3 p-3 flex items-center flex-wrap justify-between gap-y-5 border border-solid border-slate-200 rounded-md"
             >
+              <div className="flex">
               <div className="mr-4">
                 <img
                   src={item.image}
@@ -193,6 +194,8 @@ const CheckOut = () => {
                   </div>
                 </div>
               </div>
+              </div>
+              <div className="box_wapper_wish_list flex">
               <div className="item-actions">
                 <div>
                   <label htmlFor={`qty-${item.id}`} className="mr-2">
@@ -288,6 +291,7 @@ const CheckOut = () => {
                   </svg>
                 </button>
               </div>
+            </div>
             </div>
           ))
         ) : (

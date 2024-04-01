@@ -6,6 +6,16 @@
   width: 368px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
 }
+.product-card::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, #000000b8, #48464680, transparent);
+  border-radius: 6px;
+}
 
 .heart-icon {
   fill: transparent;
@@ -13,14 +23,21 @@
 }
 
 .product-image {
-  width: 85%;
-  height: 211px;
+  width: 100%;
+  height: 212px;
   border-radius: 5px;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
 }
 
 .product-details {
   /* padding: 10px; */
+  position: absolute;
+  bottom: 9px;
+  left: 12px;
+  width: calc(100% - 30px);
+  z-index: 2;
 }
 .price-tag {
   /* display: flex;
@@ -48,6 +65,7 @@ button {
   color: white;
   padding: 8px 7px 8px 20px;
   font-weight: bold; */
+  z-index: 2;
 }
 .product-filter {
   /* display: flex; */

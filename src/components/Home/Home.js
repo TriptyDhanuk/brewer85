@@ -11,12 +11,14 @@ import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
+import fullImage from "../../images/food-full-image-01.jpg";
 import ProductCard from "../ProductCard/ProductCard";
 import Wishlist from "../../components/Wishlist";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CartIconBadge from "../CartIconBadge";
+
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -70,7 +72,7 @@ const Home = () => {
     Biryani: [
       {
         id: 111,
-        image: image1,
+        image: fullImage,
         name: "Biryani",
         price: "100",
         discount: "60% off",
@@ -184,7 +186,7 @@ const Home = () => {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     responsive: [
       {
         breakpoint: 1400,
@@ -205,7 +207,7 @@ const Home = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 4,
           slidesToScroll: 1,
         },
       },

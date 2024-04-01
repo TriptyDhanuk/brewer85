@@ -125,3 +125,10 @@ body{
   right: 10px;
   transform: translateY(-50%);
 }
+
+.product-category div:not([class]){
+  padding-right: 15px;
+}
+.product-category .slick-track{
+  margin-left: 0;
+}

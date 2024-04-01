@@ -98,6 +98,15 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
+/* .product-details-kcal-circle::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75px;
+  height: 80px;
+  background-image: url(../../images/calori-top.png);
+} */
 .product-details-cal-value,
 .product-details-cal-unit {
   display: inline-block;
@@ -320,7 +329,7 @@
   overflow: hidden;
 }
 .product-details-content {
-  margin-top: 80px;
+  /* margin-top: 80px; */
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
   max-height: calc(100vh - 80px);
@@ -348,7 +357,7 @@
 
 @media only screen and (max-width: 768px) {
   .product-details-content {
-    margin-top: 70px;
+    /* margin-top: 70px; */
     max-height: calc(100vh - 60px);
   }
 }

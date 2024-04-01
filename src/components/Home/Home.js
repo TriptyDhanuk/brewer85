@@ -237,7 +237,7 @@ const Home = () => {
   const settings1 = {
     dots: false,
     arrows: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 10,
     slidesToScroll: 1,
@@ -253,14 +253,14 @@ const Home = () => {
       {
         breakpoint: 850,
         settings: {
-          slidesToShow: 7,
+          slidesToShow: 6,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 5,
           slidesToScroll: 1,
         },
       },

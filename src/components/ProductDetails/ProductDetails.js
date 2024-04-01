@@ -412,15 +412,23 @@ const ProductDetails = () => {
       {product && (
         <>
         <div>
-          <div className="flex flex-wrap items-center">
-            <div className="md:w-6/12">
+          <div className="mainProductDtl">
+            <div className="w-full mb-5">
               <img
                 src={product.image}
                 alt="Product"
                 className="product-details-image"
+                style={{
+                  height: "200px",
+                  objectFit: "contain",
+                  objectPosition: "center top",
+                  width: "100%",
+                  backgroundColor: "#e5e5e5",
+                  padding: "10px 0",
+                }}
               />
             </div>
-            <div className="md:w-6/12">
+            <div className="w-full">
               <div className="product-details-content">
                 <div className="product-details-image-container">
                   <div className="product-details-kcal-circle">

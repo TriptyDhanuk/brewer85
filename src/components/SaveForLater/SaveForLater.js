@@ -165,12 +165,12 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  style={{ height: "134px", width: "141px" }}
+                  style={{ height: "130px", width: "130px" }}
                   onClick={()=>handleImgClick(item.id)}
                 />
               </div>
             <div className="item-details">
-              <div className="product-details">
+              <div className="product-details checkout ml-5">
                 <h3 className="mb-1 text-lg font-semibold">{item.name}</h3>
                 <p className="font-semibold text-slate-500">
                   yahoo comidia

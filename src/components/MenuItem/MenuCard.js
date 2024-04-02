@@ -191,7 +191,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           
           <div className="w-1/2">
           <button
-            className="py-2 px-5 w-full font-semibold uppercase text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150 ml-2"
+            className="py-2 px-5 w-full font-semibold uppercase text-white border border-solid border-white rounded-md hover:text-white hover:bg-lime-600 duration-150 hover:border-lime-600 ml-2"
             onClick={handleAddToCart}
           >
             Add

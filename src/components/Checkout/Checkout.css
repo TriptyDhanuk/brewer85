@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+.product-details.checkout{
+  position: static;
+  width: auto;
+}
+
 .product-details-logo {
   display: flex;
   align-items: center;

@@ -107,7 +107,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
 
   return (
     <div className="lg:w-3/12 md:w-4/12 sm:w-6/12 w-full sm:px-[0.625rem] relative">
-      <div className="product-card border border-solid border-slate-200 rounded-lg p-3">
+      <div className="product-card border border-solid border-slate-200 rounded-lg">
         <button
           className={saveItems.some((item) => item.id === id) ? "selected" : ""}
           style={{
@@ -212,7 +212,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           
           <div className="w-1/2">
           <button
-            className="py-2 px-5 w-full font-semibold uppercase text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150"
+            className="py-2 px-5 w-full font-semibold uppercase text-lime-600 border border-solid border-lime-600 rounded-md hover:text-white hover:bg-lime-600 duration-150 ml-2"
             onClick={handleAddToCart}
           >
             Add

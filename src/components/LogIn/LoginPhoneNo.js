@@ -10,14 +10,26 @@ const LoginPhoneNo = () => {
   const [phoneNumber, setPhoneNumber] = useState(''); 
   const [error, setError] = useState('');
 
+  // const handleGetOTP = () => {
+  //   if (!phoneNumber.trim() || phoneNumber === '' || phoneNumber.length<=10 ) {
+  //     setError('Please provide a valid phone number');
+  //   } else {
+  //     setError('');
+  //     window.location.href = "/logInOtp";
+  //   }
+  // };
+
   const handleGetOTP = () => {
-    if (!phoneNumber.trim() || phoneNumber === '' || phoneNumber.length!==10 ) {
+    const trimmedPhoneNumber = phoneNumber.trim();
+    const phoneRegex = /^[0-9]{10,}$/;
+    if (!trimmedPhoneNumber || !phoneRegex.test(trimmedPhoneNumber)) {
       setError('Please provide a valid phone number');
     } else {
       setError('');
       window.location.href = "/logInOtp";
     }
   };
+  
 
   const handleKeyPress = (event) => {
     const charCode = event.which ? event.which : event.keyCode;

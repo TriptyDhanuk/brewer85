@@ -11,7 +11,7 @@ const LoginPhoneNo = () => {
   const [error, setError] = useState('');
 
   const handleGetOTP = () => {
-    if (!phoneNumber.trim() || phoneNumber === '') {
+    if (!phoneNumber.trim() || phoneNumber === '' || phoneNumber.length!==10 ) {
       setError('Please provide a valid phone number');
     } else {
       setError('');
@@ -27,7 +27,7 @@ const LoginPhoneNo = () => {
       event.preventDefault();
     }
 
-    if (inputValue.length >= 14) {
+    if (inputValue.length >= 10) {
       event.preventDefault();
     }
   };

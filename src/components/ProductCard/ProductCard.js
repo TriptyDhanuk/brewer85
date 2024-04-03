@@ -230,7 +230,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
                         <button
                           className="py-2 px-5 w-full font-semibold uppercase text-white border border-solid border-white rounded-md hover:text-white hover:bg-lime-600 duration-150 hover:border-lime-600 ml-2"
                         >
-                            CART
+                          CART
                         </button>
                       </Link>
                     ) : (

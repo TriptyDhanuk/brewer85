@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
@@ -36,6 +37,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 //React 18 code splitting done with Suspense and lazy 

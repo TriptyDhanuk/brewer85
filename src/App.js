@@ -37,8 +37,7 @@
 
 // export default App;
 
-
-//React 18 code splitting done with Suspense and lazy 
+//React 18 code splitting done with Suspense and lazy
 import React, { Suspense, useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
@@ -56,7 +55,15 @@ import loadingGif from "./images/Bean.gif";
 // Loading component to show during suspense
 const Loading = () => {
   return (
-    <div className="loading-container" style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+    <div
+      className="loading-container"
+      style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
       <img src={loadingGif} alt="Loading" />
     </div>
   );
@@ -68,9 +75,9 @@ function App() {
   useEffect(() => {
     const delay = setTimeout(() => {
       setIsLoading(false);
-    }, 100); 
+    }, 100);
 
-    return () => clearTimeout(delay); 
+    return () => clearTimeout(delay);
   }, []);
 
   if (isLoading) {
@@ -78,54 +85,54 @@ function App() {
   }
   return (
     <div className="App">
-        <Router>
-          <Routes>
-            <Route path="/" element={<Start />} />
-            <Route path="/login" element={<LoginPhoneNo />} />
-            <Route path="/logInOtp" element={<LoginOTP />} />
-            <Route path="/home" element={<Home />} />
-            <Route
-              path="/menu"
-              element={ 
-                <Suspense fallback={<Loading />}>
-                  <MenuItem />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/details/:productId"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <ProductDetails />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/wishlist"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <SaveForLater />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/checkout"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <CheckOut />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/thankyou"
-              element={
-                <Suspense fallback={<Loading />}>
-                  <ThankYou />
-                </Suspense>
-              }
-            />
-          </Routes>
-        </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Start />} />
+          <Route path="/login" element={<LoginPhoneNo />} />
+          <Route path="/logInOtp" element={<LoginOTP />} />
+          <Route path="/home" element={<Home />} />
+          <Route
+            path="/menu"
+            element={
+              <Suspense fallback={<Loading />}>
+                <MenuItem />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/details/:productId"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ProductDetails />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <Suspense fallback={<Loading />}>
+                <SaveForLater />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <Suspense fallback={<Loading />}>
+                <CheckOut />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/thankyou"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ThankYou />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }

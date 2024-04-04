@@ -15,10 +15,11 @@ import fullImage from "../../images/food-full-image-01.jpg";
 import ProductCard from "../ProductCard/ProductCard";
 import Wishlist from "../../components/Wishlist";
 import Slider from "react-slick";
+import animated1 from "../../images/animated1.mp4";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CartIconBadge from "../CartIconBadge";
-
+import hamburger from "../../images/hamburger.jpg";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -141,9 +142,52 @@ const Home = () => {
 
   const settingsMy = {
     arrows: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2.5,
+    slidesToScroll: 1,
+    autoplay: true,
+    rewind: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2.5,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const offers = {
+    arrows: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     responsive: [
@@ -280,7 +324,7 @@ const Home = () => {
       },
     ],
   };
-  
+
   return (
     <div className="body px-4">
       <div className="header py-3">
@@ -353,19 +397,18 @@ const Home = () => {
 
       <div className="products" style={{ marginLeft: "10px" }}>
         <h3 className="text-xl font-semibold text-slate-800 main_heading mb-3">
-          <span>All Products</span>
+          <span>WHAT'S ON YOUR MIND?</span>
         </h3>
-        
 
         <div className="product-category">
-        <Slider {...settings1}>
+          <Slider {...settings1}>
             {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
                 <a
-                href="/menu"
-                className="product-item !block !w-[100px] !mx-auto"
-                key={product.name}
-              >
+                  href="/menu"
+                  className="product-item !block !w-[100px] !mx-auto"
+                  key={product.name}
+                >
                   <div className="w-full h-24 overflow-hidden relative">
                     <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative ">
                       <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden">
@@ -373,9 +416,7 @@ const Home = () => {
                           src={product.image}
                           alt={product.name}
                           className="productImage mx-auto mb-3 block duration-300 w-full h-full object-cover"
-                          onClick={() =>
-                            handleProductItemClick(product.name)
-                          }
+                          onClick={() => handleProductItemClick(product.name)}
                         />
                       </div>
                     </div>
@@ -384,22 +425,73 @@ const Home = () => {
                   <h4 className="mt-3 text-md font-semibold text-slate-800">
                     {product.name}
                   </h4>
-                  </a>             
+                </a>
               ))
             ) : (
               <p className="text-base font-medium text-slate-800">
                 No products found
               </p>
             )}
-            </Slider>
-        
+          </Slider>
         </div>
-        
       </div>
 
-      <div style={{ marginLeft: "5px", marginRight: "5px" , marginTop: "0.75rem"}}>
+      <div
+        style={{ marginLeft: "5px", marginRight: "5px", marginTop: "0.75rem" }}
+      >
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Most Popular
+        </h3>
+        <Slider {...settings}>
+          {Object.keys(products).map((category) =>
+            products[category].map((product) => (
+              <div className="product-filter" key={product.name}>
+                <ProductCard
+                  id={product.id}
+                  image={product.image}
+                  name={product.name}
+                  price={product.price}
+                  discount={product.discount}
+                />
+              </div>
+            ))
+          )}
+        </Slider>
+      </div>
+
+      {/* <Slider {...offers} className="">
+        <div className="slider-banner px-2 "></div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner4} className="w-100px h-50 block " alt="ban2" />
+        </div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner2} className="w-100px h-50 block " alt="ban3" />
+        </div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img
+            src={banner1}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban1"
+          />
+        </div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img
+            src={banner4}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban2"
+          />
+        </div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img
+            src={banner2}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban3"
+          />
+        </div>
+      </Slider> */}
+      <div className="p-4 bg-blue-900">
+        <h3 className="text-xl font-semibold text-slate-800 mb-3">
+          Top Rated Dishes
         </h3>
         <Slider {...settings}>
           {Object.keys(products).map((category) =>

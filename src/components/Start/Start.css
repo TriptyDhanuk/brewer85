@@ -1,3 +1,14 @@
 body {
     /* overflow: hidden; */
 }
+
+.splash-img {
+    background-image: url(../../images/mobile-bg.jpg);
+}
+
+@media(min-width:768px) {
+    .splash-img {
+        background-image: url(../../images/tab-bg.jpg);
+    }
+    
+}

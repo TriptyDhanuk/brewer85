@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/logo.jpg';
 import Item1 from '../../images/thankU.png';
+import thankBg from '../../images/Capa-1.jpg';
+import '../ThankYou/ThankYou.css';
 
 import '@fontsource/raleway';
 
@@ -17,10 +19,10 @@ const GreyBackground = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden; /* Prevent scrolling */
+  justify-content: center
 `;
 
 const LogoContainer = styled.div`
-  margin-top: 2rem;
   z-index: 1;
 `;
 
@@ -67,10 +69,10 @@ const BackgroundImage = styled.div`
   bottom: 2px;
   right: 30%; /* Shift to the right side */
   transform: translateX(50%) rotate(-12deg); /* Rotate slightly to the left */
-  width: 24rem;
-  height: 24rem;
+  // width: 24rem;
+  // height: 24rem;
   background-color: transparent;
-  background-image: url(${Item1});
+  // background-image: url(${Item1});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -78,8 +80,8 @@ const BackgroundImage = styled.div`
   z-index: 1;
 
   @media screen and (max-width: 768px) {
-    width: 30rem;
-    height: 30rem;
+    // width: 30rem;
+    // height: 30rem;
   }
 
   @media screen and (max-width: 480px) {
@@ -113,13 +115,15 @@ const TextLine = styled.div`
 `;
 
 const SmallerTextLine = styled.div`
-  font-size: 1rem; /* Smaller font size */
+  font-size: 1.1rem; /* Smaller font size */
   margin-bottom: 10px;
+  font-weight: 500;
 `;
 
 const SmallestTextLine = styled.div`
-  font-size: 0.8rem; /* Smallest font size */
+  font-size: 1rem; /* Smallest font size */
   margin-bottom: 10px;
+  font-weight: 500;
 `;
 
 const ThankYou = () => {
@@ -129,18 +133,27 @@ const ThankYou = () => {
 
   return (
     <>
-      <GreyBackground>
+      <GreyBackground 
+      style=
+      {{
+        backgroundImage: `url(${thankBg})`, 
+        backgroundSize: 'cover' , 
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'top center'
+        }}>
         <BackgroundImage />
-        <LogoContainer>
-          <LogoImage src={Logo} alt="Logo" />
-        </LogoContainer>
+        <div className='thankyou_wapper'>
+          <LogoContainer style={{marginTop: '-80px'}}>
+            <LogoImage src={Logo} alt="Logo" style={{display: 'inline-block'}}/>
+          </LogoContainer>
 
-        <InputButtonContainer>
-          <TextLine>Thank You</TextLine>
-          <SmallerTextLine>For your order</SmallerTextLine>
-          <SmallestTextLine>It is getting cooked</SmallestTextLine>
-          <GetStartedButton onClick={handleEnjoyFoodClick}>Make Payment</GetStartedButton>
-        </InputButtonContainer>
+          <InputButtonContainer>
+            <TextLine>Thank You</TextLine>
+            <SmallerTextLine>For your order</SmallerTextLine>
+            <SmallestTextLine>It is getting cooked</SmallestTextLine>
+            <GetStartedButton onClick={handleEnjoyFoodClick}>Make Payment</GetStartedButton>
+          </InputButtonContainer>
+        </div>
       </GreyBackground>
     </>
   );

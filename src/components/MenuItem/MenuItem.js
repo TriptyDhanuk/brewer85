@@ -107,6 +107,15 @@ const MenuItem = () => {
         discount: "60% off",
       },
     ],
+    Alcohol: [
+      {
+        id: 77,
+        image: drinks,
+        name: "alcohol",
+        price: "55",
+        discount: "60% off",
+      },
+    ],
   };
 
   const productsMenu = {

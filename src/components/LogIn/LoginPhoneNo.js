@@ -154,19 +154,24 @@ const LoginPhoneNo = () => {
         <div className="flex justify-center items-end h-screen">
           <div className="md:w-6/12 w-10/12">
             <div className="flex flex-col justify-center items-center gap-y-10 pb-[20vh]">
-              <div className="logo-container w-32 h-32 rounded-full overflow-hidden d-flex justify-center items-center">
-                <img src={Logo} alt="Logo" />
+              <div className="logo-container w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden d-flex justify-center items-center">
+                <img src={Logo} alt="Logo" className='w-full h-full object-cover' />
               </div>
 
-              <div className="flex flex-col gap-y-5 relative z-[1] text-center">
-                <div className="text-lg font-semibold">
+              <div className="flex flex-col gap-y-5 relative z-[1] text-center px-5">
+                <div className="text-lg md:text-2xl font-semibold">
                   Please Insert your Phone no
                 </div>
-                <div className="flex gap-x-2 mb-2 items-center">
+                <div className="flex gap-x-2 mb-2 items-center py-3 px-6 md:py-4 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
+                  <img
+                    src={selectedCountry.image}
+                    alt={selectedCountry.name}
+                    className="w-6 h-6 lg:w-12 lg:h-12"
+                  />
                   <select
                     value={selectedCountry.iso?.numeric || ""}
                     onChange={handleCountryChange}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="border-0 focus:outline-none w-full"
                   >
                     {data
                       .filter((country) => country.iso)
@@ -180,14 +185,10 @@ const LoginPhoneNo = () => {
                       ))}
                   </select>
 
-                  <img
-                    src={selectedCountry.image}
-                    alt={selectedCountry.name}
-                    className="w-8 h-8"
-                  />
+                  
                 </div>
-                <div className="flex gap-x-2 mb-2 items-center">
-                  <span className="text-gray-900 dark:text-white">
+                <div className="flex gap-x-2 mb-2 items-center py-3 px-6 md:py-4 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
+                  <span className="">
                     {selectedCountry.phone[0]}
                   </span>
                   <input
@@ -197,7 +198,7 @@ const LoginPhoneNo = () => {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     onKeyPress={handleKeyPress}
                     maxLength={selectedCountry.phoneLength} 
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pl-16"
+                    className="border-0 focus:outline-none w-full"
                   />
                 </div>
 
@@ -206,7 +207,7 @@ const LoginPhoneNo = () => {
               <div className="">
                 <button
                   onClick={handleGetOTP}
-                  className="inline-block py-3 px-10 text-white rounded-[3.125rem] bg-gray-950 hover:bg-gray-900 no-underline hover:no-underline text-nowrap"
+                  className="inline-block py-3 px-10 md:py-6 md:px-16 text-base md:text-2xl font-semibold text-white rounded-[3.125rem] bg-gray-950 hover:bg-gray-900 no-underline hover:no-underline text-nowrap"
                 >
                   Get OTP
                 </button>

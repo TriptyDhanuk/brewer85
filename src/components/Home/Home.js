@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 // import "boxicons";
 import "./Home.css";
-import banner1 from "../../images/banner1.jpg";
-import banner2 from "../../images/banner2.jpg";
-import banner4 from "../../images/banner4.jpg";
+import b2 from "../../images/b2.png";
+import p1 from "../../images/p1.jpg";
+import b5 from "../../images/b5.png";
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
 import image4 from "../../images/image4.png";
@@ -456,46 +456,22 @@ const Home = () => {
       </div>
       <Slider {...settingsMy} className="mb-3">
         <div className="slider-banner px-2 overflow-hidden">
-          <img
-            src={banner1}
-            className="w-100px h-50 block rounded-lg"
-            alt="ban1"
-          />
+          <img src={b2} className="w-100px h-50 block rounded-lg" alt="ban1" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img
-            src={banner4}
-            className="w-100px h-50 block rounded-lg"
-            alt="ban2"
-          />
+          <img src={p1} className="w-100px h-50 block rounded-lg" alt="ban2" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img
-            src={banner2}
-            className="w-100px h-50 block rounded-lg"
-            alt="ban3"
-          />
+          <img src={b5} className="w-100px h-50 block rounded-lg" alt="ban3" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img
-            src={banner1}
-            className="w-100px h-50 block rounded-lg"
-            alt="ban1"
-          />
+          <img src={b2} className="w-100px h-50 block rounded-lg" alt="ban1" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img
-            src={banner4}
-            className="w-100px h-50 block rounded-lg"
-            alt="ban2"
-          />
+          <img src={p1} className="w-100px h-50 block rounded-lg" alt="ban2" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img
-            src={banner2}
-            className="w-100px h-50 block rounded-lg"
-            alt="ban3"
-          />
+          <img src={b5} className="w-100px h-50 block rounded-lg" alt="ban3" />
         </div>
       </Slider>
 

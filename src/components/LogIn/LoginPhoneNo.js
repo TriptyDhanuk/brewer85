@@ -109,14 +109,19 @@ const LoginPhoneNo = () => {
 
   const handleGetOTP = () => {
     const trimmedPhoneNumber = phoneNumber.trim();
-    const phoneRegex = /^\d{10}$/;
+    const phoneLength = selectedCountry.phoneLength;
+    const phoneRegex = new RegExp(`^\\d{${phoneLength}}$`);
+  
     if (!trimmedPhoneNumber || !phoneRegex.test(trimmedPhoneNumber)) {
       setError("Please provide a valid phone number");
+    } else if (trimmedPhoneNumber.length !== phoneLength) {
+      setError(`Phone number should be ${phoneLength} digits long`);
     } else {
       setError("");
       window.location.href = "/logInOtp";
     }
   };
+  
   console.log("length", data.length);
 
   const handleKeyPress = (event) => {

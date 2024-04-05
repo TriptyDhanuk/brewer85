@@ -13,13 +13,18 @@ import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
 import fullImage from "../../images/food-full-image-01.jpg";
 import ProductCard from "../ProductCard/ProductCard";
+import TopRated from "../TopRated/TopRated";
 import Wishlist from "../../components/Wishlist";
+import rollpasta from "../../images/rollpasta.jpg";
 import Slider from "react-slick";
+import animated1 from "../../images/animated1.mp4";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CartIconBadge from "../CartIconBadge";
-
-
+import hamburger from "../../images/hamburger.jpg";
+import t1 from "../../images/t1.jpg";
+import t2 from "../../images/t2.jpg";
+import ice from "../../images/ice.jpg";
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -139,11 +144,164 @@ const Home = () => {
     window.location.href = `/details/${products.id}`;
   };
 
+  const TopRated = {
+    Biryani: [
+      {
+        id: 111,
+        image: image1,
+        name: "Hydrabadi Biryani",
+        price: "100",
+        discount: "60% off",
+      },
+    ],
+    IceCream: [
+      {
+        id: 222,
+        image: image2,
+        name: "IceCream",
+        price: "125",
+        discount: "60% off",
+      },
+    ],
+    Pizza: [
+      {
+        id: 333,
+        image: image4,
+        name: "Pizza",
+        price: "150",
+        discount: "60% off",
+      },
+    ],
+    Burger: [
+      {
+        id: 444,
+        image: burger,
+        name: "Burger",
+        price: "90",
+        discount: "60% off",
+      },
+    ],
+    Shakes: [
+      {
+        id: 555,
+        image: shakes,
+        name: "Shakes",
+        price: "70",
+        discount: "60% off",
+      },
+    ],
+    Chinese: [
+      {
+        id: 666,
+        image: noodles,
+        name: "Chinese",
+        price: "120",
+        discount: "60% off",
+      },
+      // Add more products as needed
+    ],
+    Drinks: [
+      {
+        id: 777,
+        image: drinks,
+        name: "Drinks",
+        price: "55",
+        discount: "60% off",
+      },
+    ],
+  };
+
   const settingsMy = {
+    arrows: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2.5,
+    slidesToScroll: 1,
+    autoplay: true,
+    rewind: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2.5,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const topOne = {
     arrows: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    rewind: true,
+    autoplaySpeed: 7000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const offers = {
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     responsive: [
@@ -280,7 +438,7 @@ const Home = () => {
       },
     ],
   };
-  
+
   return (
     <div className="body px-4">
       <div className="header py-3">
@@ -353,19 +511,18 @@ const Home = () => {
 
       <div className="products" style={{ marginLeft: "10px" }}>
         <h3 className="text-xl font-semibold text-slate-800 main_heading mb-3">
-          <span>All Products</span>
+          <span>WHAT'S ON YOUR MIND?</span>
         </h3>
-        
 
         <div className="product-category">
-        <Slider {...settings1}>
+          <Slider {...settings1}>
             {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
                 <a
-                href="/menu"
-                className="product-item !block !w-[100px] !mx-auto"
-                key={product.name}
-              >
+                  href="/menu"
+                  className="product-item !block !w-[100px] !mx-auto"
+                  key={product.name}
+                >
                   <div className="w-full h-24 overflow-hidden relative">
                     <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative ">
                       <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden">
@@ -373,9 +530,7 @@ const Home = () => {
                           src={product.image}
                           alt={product.name}
                           className="productImage mx-auto mb-3 block duration-300 w-full h-full object-cover"
-                          onClick={() =>
-                            handleProductItemClick(product.name)
-                          }
+                          onClick={() => handleProductItemClick(product.name)}
                         />
                       </div>
                     </div>
@@ -384,20 +539,20 @@ const Home = () => {
                   <h4 className="mt-3 text-md font-semibold text-slate-800">
                     {product.name}
                   </h4>
-                  </a>             
+                </a>
               ))
             ) : (
               <p className="text-base font-medium text-slate-800">
                 No products found
               </p>
             )}
-            </Slider>
-        
+          </Slider>
         </div>
-        
       </div>
 
-      <div style={{ marginLeft: "5px", marginRight: "5px" , marginTop: "0.75rem"}}>
+      <div
+        style={{ marginLeft: "5px", marginRight: "5px", marginTop: "0.75rem" }}
+      >
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Most Popular
         </h3>
@@ -416,6 +571,92 @@ const Home = () => {
             ))
           )}
         </Slider>
+      </div>
+
+      {/* <Slider {...offers} className="">
+        <div className="slider-banner px-2 "></div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner4} className="w-100px h-50 block " alt="ban2" />
+        </div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img src={banner2} className="w-100px h-50 block " alt="ban3" />
+        </div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img
+            src={banner1}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban1"
+          />
+        </div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img
+            src={banner4}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban2"
+          />
+        </div>
+        <div className="slider-banner px-2 overflow-hidden">
+          <img
+            src={banner2}
+            className="w-100px h-50 block rounded-lg"
+            alt="ban3"
+          />
+        </div>
+      </Slider> */}
+      <div className="p-4 bg-black">
+        <h3 className="text-xl font-semibold text-white mb-3 ">
+          Top Rated Dishes
+        </h3>
+        <div className="relative mb-3">
+          {/* Text and button container */}
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10">
+            <div className="text-center text-white">
+              <div className="border-2 border-white p-4 shadow-lg bg-transparent">
+                <h1 className="text-3xl font-bold">
+                  Get Your Hands On Top Rated Items
+                </h1>
+              </div>
+
+              <div className="">
+                <button className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-3  items-center">
+                  Order Now <span className="ml-2">&#8594;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Slider */}
+          <Slider {...topOne} className="z-0">
+            <div className="slider-banner px-2 overflow-hidden">
+              <img
+                src={ice}
+                className="w-50px h-25 block rounded-lg"
+                alt="ban3"
+              />
+            </div>
+            <div className="slider-banner px-2 overflow-hidden">
+              <img
+                src={t1}
+                className="w-50px h-25 block rounded-lg"
+                alt="ban1"
+              />
+            </div>
+            <div className="slider-banner px-2 overflow-hidden">
+              <img
+                src={t2}
+                className="w-50px h-25 block rounded-lg"
+                alt="ban2"
+              />
+            </div>
+            <div className="slider-banner px-2 overflow-hidden">
+              <img
+                src={rollpasta}
+                className="w-50px h-25 block rounded-lg"
+                alt="ban3"
+              />
+            </div>
+          </Slider>
+        </div>
       </div>
     </div>
   );

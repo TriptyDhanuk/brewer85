@@ -24,13 +24,13 @@ const Start = () => {
           </div> */}
           <div className='flex justify-center items-end h-screen'>
             <div className='w-6/12'>
-              <div className='flex flex-col justify-center items-center gap-y-10 pb-[20vh]'>
-                <div className='logo-container w-32 h-32 rounded-full overflow-hidden d-flex justify-center items-center'>
-                  <img src={Logo} alt="Logo" />
+              <div className='flex flex-col justify-center items-center gap-y-10 pb-[20vh] relative z-10'>
+                <div className='logo-container w-32 h-32 lg:w-56 lg:h-56 rounded-full overflow-hidden d-flex justify-center items-center'>
+                  <img src={Logo} alt="Logo" className='w-full h-full object-cover' />
                 </div>
 
                 <div className=''>
-                  <a href="/login" className='inline-block py-3 px-10 text-white rounded-[3.125rem] bg-gray-950 hover:bg-gray-900 no-underline hover:no-underline text-nowrap'>
+                  <a href="/login" className='inline-block py-3 px-10 lg:py-6 lg:px-16 text-base lg:text-2xl font-semibold text-white rounded-[3.125rem] bg-gray-950 hover:bg-gray-900 no-underline hover:no-underline text-nowrap'>
                     Get Started
                   </a>
                 </div>

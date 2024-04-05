@@ -215,7 +215,7 @@ const Home = () => {
     arrows: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 2.5,
+    slidesToShow: 1.5,
     slidesToScroll: 1,
     autoplay: true,
     rewind: true,
@@ -224,7 +224,7 @@ const Home = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2.5,
+          slidesToShow: 1.5,
           slidesToScroll: 1,
           infinite: true,
         },
@@ -340,53 +340,52 @@ const Home = () => {
   const settings = {
     dots: false,
     arrows: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 3.5,
     slidesToScroll: 1,
     autoplay: false,
     responsive: [
       {
         breakpoint: 1400,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3.5,
           slidesToScroll: 1,
-          infinite: true,
           dots: false,
         },
       },
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 2.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 743,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 396,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.5,
           slidesToScroll: 1,
         },
       },
@@ -397,42 +396,42 @@ const Home = () => {
     arrows: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 10,
+    slidesToShow: 5.5,
     slidesToScroll: 1,
     autoplay: false,
     responsive: [
       {
         breakpoint: 1061,
         settings: {
-          slidesToShow: 8,
+          slidesToShow: 4.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 850,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 3.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 3.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 396,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1.5,
           slidesToScroll: 1,
         },
       },
@@ -440,8 +439,8 @@ const Home = () => {
   };
 
   return (
-    <div className="body px-4">
-      <div className="header py-3">
+    <div className="body">
+      <div className="header py-3 px-4">
         <nav className="flex flex-wrap">
           <div className="logo">
             <box-icon name="menu"></box-icon>
@@ -454,28 +453,29 @@ const Home = () => {
           </div>
         </nav>
       </div>
-      <Slider {...settingsMy} className="mb-3">
+      <Slider {...settingsMy} className="mb-3 px-4">
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={b2} className="w-100px h-50 block rounded-lg" alt="ban1" />
+          <img src={b2} className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg" alt="ban1" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={p1} className="w-100px h-50 block rounded-lg" alt="ban2" />
+          <img src={p1} className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg" alt="ban2" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={b5} className="w-100px h-50 block rounded-lg" alt="ban3" />
+          <img src={b5} className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg" alt="ban3" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={b2} className="w-100px h-50 block rounded-lg" alt="ban1" />
+          <img src={b2} className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg" alt="ban1" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={p1} className="w-100px h-50 block rounded-lg" alt="ban2" />
+          <img src={p1} className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg" alt="ban2" />
         </div>
         <div className="slider-banner px-2 overflow-hidden">
-          <img src={b5} className="w-100px h-50 block rounded-lg" alt="ban3" />
+          <img src={b5} className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg" alt="ban3" />
         </div>
       </Slider>
 
-      <div className="top-search mb-3">
+      <div className='px-4'>
+      <div className="top-search mb-5">
         <input
           type="text"
           placeholder=" What are you looking for ?"
@@ -485,9 +485,9 @@ const Home = () => {
         />
       </div>
 
-      <div className="products" style={{ marginLeft: "10px" }}>
+      <div className="products mb-10">
         <h3 className="text-xl font-semibold text-slate-800 main_heading mb-3">
-          <span>WHAT'S ON YOUR MIND?</span>
+          <span>What's on your mind?</span>
         </h3>
 
         <div className="product-category">
@@ -496,11 +496,11 @@ const Home = () => {
               filteredProducts.map((product) => (
                 <a
                   href="/menu"
-                  className="product-item !block !w-[100px] !mx-auto"
+                  className="product-item !block !mx-auto"
                   key={product.name}
                 >
-                  <div className="w-full h-24 overflow-hidden relative">
-                    <div className="w-24 h-24 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative ">
+                  <div className="w-full h-28 md:h-48 overflow-hidden relative">
+                    <div className="w-28 h-28 md:w-48 md:h-48 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative mx-auto">
                       <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden">
                         <img
                           src={product.image}
@@ -526,9 +526,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div
-        style={{ marginLeft: "5px", marginRight: "5px", marginTop: "0.75rem" }}
-      >
+      <div className="mb-10">
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Most Popular
         </h3>
@@ -547,6 +545,7 @@ const Home = () => {
             ))
           )}
         </Slider>
+      </div>
       </div>
 
       {/* <Slider {...offers} className="">

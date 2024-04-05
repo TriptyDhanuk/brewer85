@@ -118,7 +118,6 @@ const Home = () => {
         price: "70",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Chinese: [
       {
@@ -128,7 +127,6 @@ const Home = () => {
         price: "120",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Drinks: [
       {
@@ -198,7 +196,6 @@ const Home = () => {
         price: "120",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Drinks: [
       {

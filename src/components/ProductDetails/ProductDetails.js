@@ -34,6 +34,7 @@ const ProductDetails = () => {
   let { productId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [rating, setRating] = useState(0);
+  const [feedback,setFeedback]=useState("");
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
   const openModal = () => {
@@ -53,6 +54,7 @@ const ProductDetails = () => {
     setFeedbackSubmitted(true);
     localStorage.setItem("feedbackSubmitted", true);
     localStorage.setItem("feedbackSubmittedCount", rating);
+    localStorage.setItem("feedbackQuote", feedback);
   };
 
   const products = {
@@ -386,6 +388,9 @@ const ProductDetails = () => {
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
+  const handleFeedbackChange = (event) => {
+    setFeedback(event.target.value);
+  };
 
   return (
     <div className="body px-4">
@@ -440,7 +445,7 @@ const ProductDetails = () => {
                     <div className="mb-5">
                       <h3 className="mb-4 xl:text-3xl text-2xl font-semibold text-slate-900">
                         {product.name}
-                      </h3>
+                      </h3> 
                       <p className="text-md font-semibold text-pink-600 flex items-center">
                         <span className="mr-3">AED</span>{" "}
                         <span className="font-bold xl:text-4xl text-3xl">
@@ -650,6 +655,12 @@ const ProductDetails = () => {
                           </span>
                         ))}
                       </div>
+                      <textarea
+                className="feedback-textarea w-full p-3 border rounded"
+                placeholder="Write something about the item..."
+                value={feedback}
+                onChange={handleFeedbackChange}
+              />
                       <button
                         className="submit-feedback-button py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
                         onClick={handleSubmitFeedback}

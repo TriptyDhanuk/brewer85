@@ -83,21 +83,21 @@ const Home = () => {
   };
 
   const products = {
-    CoffeeLatte: [
-      {
-        id: 205,
-        image: g4,
-        name: "CoffeeLatte",
-        price: "125",
-        discount: "60% off",
-      },
-    ],
     Biryani: [
       {
         id: 111,
         image: bir,
         name: "Biryani",
         price: "100",
+        discount: "60% off",
+      },
+    ],
+    CoffeeLatte: [
+      {
+        id: 205,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
         discount: "60% off",
       },
     ],

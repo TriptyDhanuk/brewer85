@@ -579,17 +579,17 @@ const Home = () => {
         </div>
       </Slider> */}
       <div className="p-4 bg-black">
-        <h3 className="text-xl font-semibold text-white mb-3 ">
-          Top Rated Dishes
-        </h3>
+        <h2 className="text-xl font-semibold text-white mb-3 ">
+          Today's Special Items
+        </h2>
         <div className="relative mb-3">
           {/* Text and button container */}
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10">
             <div className="text-center text-white">
               <div className="border-2 border-white p-4 shadow-lg bg-transparent">
-                <h1 className="text-3xl font-bold">
-                  Get Your Hands On Top Rated Items
-                </h1>
+                <h3 className="text-3xl font-bold">
+                  Grab Your Cravings
+                </h3>
               </div>
 
               <div className="">

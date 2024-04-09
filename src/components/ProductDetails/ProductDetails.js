@@ -15,7 +15,12 @@ import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
-
+import g1 from "../../images/g1.jpg";
+import g2 from "../../images/g2.jpg";
+import g3 from "../../images/g3.jpg";
+import g4 from "../../images/g4.jpg";
+import g5 from "../../images/g5.jpg";
+import g6 from "../../images/g6.jpg";
 import fullImage from "../../images/food-full-image-01.jpg";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -313,6 +318,65 @@ const ProductDetails = () => {
       },
     ],
   };
+  const gourmet = {
+    Pudding: [
+      {
+        id: 201,
+        image: g1,
+        name: "Custard Pudding",
+        price: "125",
+        discount: "60% off",
+      },
+    ],
+
+    Chenab: [
+      {
+        id: 202,
+        image: g2,
+        name: "Chenab",
+        price: "90",
+        discount: "60% off",
+      },
+    ],
+    PinaColada: [
+      {
+        id: 203,
+        image: g3,
+        name: "PinaColada",
+        price: "70",
+        discount: "60% off",
+      },
+    ],
+    CoffeeLatte: [
+      {
+        id: 205,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+    ],
+
+    FruitySoda: [
+      {
+        id: 206,
+        image: g5,
+        name: "FruitySoda",
+        price: "70",
+        discount: "60% off",
+      },
+    ],
+
+    ChocoVanillaCake: [
+      {
+        id: 207,
+        image: g6,
+        name: "ChocoVanillaCake",
+        price: "55",
+        discount: "60% off",
+      },
+    ],
+  };
 
   const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -339,7 +403,18 @@ const ProductDetails = () => {
         );
         if (foundProduct) {
           setProduct(foundProduct);
-          return; // Exit loop if found in products
+          return; 
+        }
+      }
+
+      //Check gourmet
+      for (const category in gourmet) {
+        const foundProduct = gourmet[category].find(
+          (item) => item.id === parseInt(productId)
+        );
+        if (foundProduct) {
+          setProduct(foundProduct);
+          return; 
         }
       }
     };
@@ -589,7 +664,9 @@ const ProductDetails = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center mb-5">
+
+                    {/* Total Price */}
+                    {/* <div className="flex items-center mb-5">
                       <span className="mr-2 font-semibold text-slate-900">
                         Total Price{" "}
                       </span>
@@ -599,7 +676,9 @@ const ProductDetails = () => {
                           {(quantity * product.price).toFixed(2)}
                         </span>
                       </span>
-                    </div>
+                    </div> */}
+
+
                     <button
                       className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
                       onClick={handleAddToCart}

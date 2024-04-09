@@ -612,7 +612,7 @@ const Home = () => {
           />
         </div>
       </Slider> */}
-      <div className="p-4 bg-black">
+      <div className="p-4 bg-blue-800">
         <h3 className="text-xl font-semibold text-white mb-3 ">
           Today's Special Items
         </h3>
@@ -620,12 +620,12 @@ const Home = () => {
           {/* Text and button container */}
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10">
             <div className="text-center">
-              <div className="text-black border-2 border-white p-4 shadow-lg bg-white bg-opacity-75">
+              <div className="text-black border-2 border-white p-4 rounded-lg shadow-lg bg-white bg-opacity-75">
                 <h1 className="text-3xl font-bold">Grab Your Craving Now</h1>
               </div>
 
               <div className="">
-                <button className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-3  items-center">
+                <button className="bg-green-700 hover:bg-green-500 text-white font-bold py-4 px-10 rounded mt-3  items-center">
                   Order Now<span className="ml-2">&#8594;</span>
                 </button>
               </div>
@@ -633,7 +633,7 @@ const Home = () => {
           </div>
 
           {/* Slider */}
-          <Slider {...topOne} className="z-0">
+          <Slider {...topOne} className="z-0 [&>.slick-list>.slick-track]:flex [&>.slick-list>.slick-track>.slick-slide]:float-none [&>.slick-list>.slick-track>.slick-slide]:h-auto [&>.slick-list>.slick-track>.slick-slide>div]:h-full [&>.slick-list>.slick-track>.slick-slide>div>.slider-banner]:h-full [&>.slick-list>.slick-track>.slick-slide>div>.slider-banner>img]:h-full">
             <div className="slider-banner px-2 overflow-hidden">
               <img
                 src={ice}
@@ -665,11 +665,11 @@ const Home = () => {
           </Slider>
         </div>
       </div>
-      <div className="mb-10">
+      <div className="mb-10 pt-10 px-5">
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Gourmet Collection
         </h3>
-        <div className="flex overflow-x-auto">
+        <div className="flex flex-wrap gap-y-6 -mx-3">
           {/* <Slider {...settings}> */}
           {Object.keys(gourmet).map((category) =>
             gourmet[category].map((product) => (

@@ -106,7 +106,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
   };
 
   return (
-    <div className="lg:w-3/12 md:w-4/12 sm:w-6/12 w-full sm:px-[0.625rem] relative">
+    <div className="lg:w-3/12 md:w-4/12 sm:w-6/12 w-full px-3 relative">
       <div className="product-card border border-solid border-slate-200 rounded-lg relative h-[280px] overflow-hidden">
         <img
           src={image}

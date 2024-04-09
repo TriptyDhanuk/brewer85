@@ -83,21 +83,21 @@ const Home = () => {
   };
 
   const products = {
-    Biryani: [
-      {
-        id: 111,
-        image: bir,
-        name: "Biryani",
-        price: "100",
-        discount: "60% off",
-      },
-    ],
     CoffeeLatte: [
       {
         id: 205,
         image: g4,
         name: "CoffeeLatte",
         price: "125",
+        discount: "60% off",
+      },
+    ],
+    Biryani: [
+      {
+        id: 111,
+        image: bir,
+        name: "Biryani",
+        price: "100",
         discount: "60% off",
       },
     ],
@@ -613,19 +613,6 @@ const Home = () => {
         </div>
       </Slider> */}
       <div className="p-4 bg-black">
-<<<<<<< HEAD
-        <h2 className="text-xl font-semibold text-white mb-3 ">
-          Today's Special Items
-        </h2>
-        <div className="relative mb-3">
-          {/* Text and button container */}
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10">
-            <div className="text-center text-white">
-              <div className="border-2 border-white p-4 shadow-lg bg-transparent">
-                <h3 className="text-3xl font-bold">
-                  Grab Your Cravings
-                </h3>
-=======
         <h3 className="text-xl font-semibold text-white mb-3 ">
           Today's Special Items
         </h3>
@@ -635,7 +622,6 @@ const Home = () => {
             <div className="text-center">
               <div className="text-black border-2 border-white p-4 shadow-lg bg-white bg-opacity-75">
                 <h1 className="text-3xl font-bold">Grab Your Craving Now</h1>
->>>>>>> 1a4f5490122b8a1c4316a75ab2728ba010e1761a
               </div>
 
               <div className="">

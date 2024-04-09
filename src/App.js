@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
@@ -11,7 +10,7 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import CheckOut from "./components/Checkout/Checkout";
 import ThankYou from "./components/ThankYou/ThankYou";
 import SaveForLater from "./components/SaveForLater/SaveForLater";
-
+import Gourmet from "./components/Gourmet/Gourmet";
 function App() {
   return (
     <div className="App">
@@ -27,6 +26,7 @@ function App() {
             exact
             element={<ProductDetails />}
           />
+          <Route path="/gourmet" exact element={<Gourmet />} />
           <Route path="/wishlist" exact element={<SaveForLater />} />
           <Route path="/checkout" exact element={<CheckOut />} />
           <Route path="/thankyou" exact element={<ThankYou />} />
@@ -38,10 +38,7 @@ function App() {
 
 export default App;
 
-
-
-
-//React 18 code splitting done with Suspense and lazy 
+//React 18 code splitting done with Suspense and lazy
 // import React, { Suspense, useState, useEffect } from "react";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import "./index.css";
@@ -71,9 +68,9 @@ export default App;
 //   useEffect(() => {
 //     const delay = setTimeout(() => {
 //       setIsLoading(false);
-//     }, 100); 
+//     }, 100);
 
-//     return () => clearTimeout(delay); 
+//     return () => clearTimeout(delay);
 //   }, []);
 
 //   if (isLoading) {
@@ -89,7 +86,7 @@ export default App;
 //             <Route path="/home" element={<Home />} />
 //             <Route
 //               path="/menu"
-//               element={ 
+//               element={
 //                 <Suspense fallback={<Loading />}>
 //                   <MenuItem />
 //                 </Suspense>

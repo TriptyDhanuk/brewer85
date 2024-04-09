@@ -34,6 +34,9 @@ import t1 from "../../images/t1.jpg";
 import t2 from "../../images/t2.jpg";
 import ice from "../../images/ice.jpg";
 import MenuCard from "../../components/MenuItem/MenuCard";
+import { Container } from "react-floating-action-button";
+import ViewCart from "../CartButton/ViewCart";
+
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -625,9 +628,12 @@ const Home = () => {
               </div>
 
               <div className="">
-                <button className="bg-green-700 hover:bg-green-500 text-white font-bold py-4 px-10 rounded mt-3  items-center">
+                <a
+                  href="/gourmet"
+                  className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-3  items-center"
+                >
                   Order Now<span className="ml-2">&#8594;</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -685,6 +691,9 @@ const Home = () => {
           {/* </Slider> */}
         </div>
       </div>
+      <Container>
+        <ViewCart />
+      </Container>
     </div>
   );
 };

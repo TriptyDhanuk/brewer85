@@ -158,15 +158,15 @@ const LoginPhoneNo = () => {
                 <img src={Logo} alt="Logo" className='w-full h-full object-cover' />
               </div>
 
-              <div className="flex flex-col gap-y-5 relative z-[1] text-center px-5">
+              <div className="flex flex-col gap-y-5 relative z-[1] text-center px-5 ">
                 <div className="text-lg md:text-2xl font-semibold">
                   Please Insert your Phone no
                 </div>
-                <div className="flex gap-x-2 mb-2 items-center py-3 px-6 md:py-4 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
+                <div className="flex gap-x-2 mb-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
                   <img
                     src={selectedCountry.image}
                     alt={selectedCountry.name}
-                    className="w-6 h-6 lg:w-12 lg:h-12"
+                    className="w-6 h-6 lg:w-8 lg:h-8"
                   />
                   <select
                     value={selectedCountry.iso?.numeric || ""}
@@ -187,7 +187,7 @@ const LoginPhoneNo = () => {
 
                   
                 </div>
-                <div className="flex gap-x-2 mb-2 items-center py-3 px-6 md:py-4 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
+                <div className="flex gap-x-2 mb-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
                   <span className="">
                     {selectedCountry.phone[0]}
                   </span>

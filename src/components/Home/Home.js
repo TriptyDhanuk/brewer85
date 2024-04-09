@@ -34,6 +34,9 @@ import t1 from "../../images/t1.jpg";
 import t2 from "../../images/t2.jpg";
 import ice from "../../images/ice.jpg";
 import MenuCard from "../../components/MenuItem/MenuCard";
+import { Container } from "react-floating-action-button";
+import ViewCart from "../CartButton/ViewCart";
+
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -83,21 +86,21 @@ const Home = () => {
   };
 
   const products = {
-    Biryani: [
-      {
-        id: 111,
-        image: bir,
-        name: "Biryani",
-        price: "100",
-        discount: "60% off",
-      },
-    ],
     CoffeeLatte: [
       {
         id: 205,
         image: g4,
         name: "CoffeeLatte",
         price: "125",
+        discount: "60% off",
+      },
+    ],
+    Biryani: [
+      {
+        id: 111,
+        image: bir,
+        name: "Biryani",
+        price: "100",
         discount: "60% off",
       },
     ],
@@ -625,9 +628,12 @@ const Home = () => {
               </div>
 
               <div className="">
-                <button className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-3  items-center">
+                <a
+                  href="/gourmet"
+                  className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-3  items-center"
+                >
                   Order Now<span className="ml-2">&#8594;</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -669,7 +675,7 @@ const Home = () => {
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Gourmet Collection
         </h3>
-        <div className="flex">
+        <div className="flex overflow-x-auto">
           {/* <Slider {...settings}> */}
           {Object.keys(gourmet).map((category) =>
             gourmet[category].map((product) => (
@@ -685,6 +691,9 @@ const Home = () => {
           {/* </Slider> */}
         </div>
       </div>
+      <Container>
+        <ViewCart />
+      </Container>
     </div>
   );
 };

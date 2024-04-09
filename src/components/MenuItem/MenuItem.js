@@ -8,6 +8,13 @@ import image4 from "../../images/image4.png";
 import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import ProductCard from "../ProductCard/ProductCard";
+import g1 from "../../images/g1.jpg";
+import g2 from "../../images/g2.jpg";
+import g3 from "../../images/g3.jpg";
+import g4 from "../../images/g4.jpg";
+import g5 from "../../images/g5.jpg";
+import g6 from "../../images/g6.jpg";
+import fullImage from "../../images/food-full-image-01.jpg";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
 import "slick-carousel/slick/slick.css";
@@ -15,6 +22,8 @@ import "slick-carousel/slick/slick-theme.css";
 import MenuCard from "./MenuCard";
 import CartIconBadge from "../CartIconBadge";
 import Wishlist from "../../components/Wishlist";
+import { Container } from "react-floating-action-button";
+import ViewCart from "../CartButton/ViewCart";
 
 const MenuItem = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -42,6 +51,15 @@ const MenuItem = () => {
   }, []);
 
   const products = {
+    CoffeeLatte: [
+      {
+        id: 205,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+    ],
     Biryani: [
       {
         id: 111,
@@ -86,7 +104,6 @@ const MenuItem = () => {
         price: "70",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Chinese: [
       {
@@ -107,18 +124,45 @@ const MenuItem = () => {
         discount: "60% off",
       },
     ],
-    Alcohol: [
+  };
+  const productsMenu = {
+    CoffeeLatte: [
       {
-        id: 77,
-        image: drinks,
-        name: "alcohol",
-        price: "55",
+        id: 205,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+      {
+        id: 212,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+      {
+        id: 213,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+      {
+        id: 214,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+      {
+        id: 215,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
         discount: "60% off",
       },
     ],
-  };
-
-  const productsMenu = {
     Biryani: [
       {
         id: 1,
@@ -154,6 +198,13 @@ const MenuItem = () => {
         name: "Kashmiri Biryani ",
         price: "250",
         discount: "60% off",
+      },
+      {
+        id: 6,
+        image: fullImage,
+        name: "Kashmiri Salad Biryani ",
+        price: "520",
+        discount: "40% off",
       },
       // Add more items as needed
     ],
@@ -399,6 +450,9 @@ const MenuItem = () => {
           ))}
         </div> */}
       </div>
+      <Container>
+        <ViewCart />
+      </Container>
     </div>
   );
 };

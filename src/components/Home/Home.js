@@ -34,6 +34,9 @@ import t1 from "../../images/t1.jpg";
 import t2 from "../../images/t2.jpg";
 import ice from "../../images/ice.jpg";
 import MenuCard from "../../components/MenuItem/MenuCard";
+import { Container } from "react-floating-action-button";
+import ViewCart from "../CartButton/ViewCart";
+
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -685,6 +688,9 @@ const Home = () => {
           {/* </Slider> */}
         </div>
       </div>
+      <Container>
+        <ViewCart />
+      </Container>
     </div>
   );
 };

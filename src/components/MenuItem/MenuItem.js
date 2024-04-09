@@ -15,6 +15,8 @@ import "slick-carousel/slick/slick-theme.css";
 import MenuCard from "./MenuCard";
 import CartIconBadge from "../CartIconBadge";
 import Wishlist from "../../components/Wishlist";
+import { Container} from 'react-floating-action-button'
+import ViewCart from "../CartButton/ViewCart";
 
 const MenuItem = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -399,6 +401,9 @@ const MenuItem = () => {
           ))}
         </div> */}
       </div>
+      <Container>
+        <ViewCart />
+      </Container>
     </div>
   );
 };

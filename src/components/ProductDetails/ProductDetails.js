@@ -63,6 +63,15 @@ const ProductDetails = () => {
   };
 
   const products = {
+    CoffeeLatte: [
+      {
+        id: 205,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+    ],
     Biryani: [
       {
         id: 111,
@@ -129,6 +138,43 @@ const ProductDetails = () => {
     ],
   };
   const productsMenu = {
+    CoffeeLatte: [
+      {
+        id: 205,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+      {
+        id: 212,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+      {
+        id: 213,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+      {
+        id: 214,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+      {
+        id: 215,
+        image: g4,
+        name: "CoffeeLatte",
+        price: "125",
+        discount: "60% off",
+      },
+    ],
     Biryani: [
       {
         id: 1,
@@ -403,7 +449,7 @@ const ProductDetails = () => {
         );
         if (foundProduct) {
           setProduct(foundProduct);
-          return; 
+          return;
         }
       }
 
@@ -414,7 +460,7 @@ const ProductDetails = () => {
         );
         if (foundProduct) {
           setProduct(foundProduct);
-          return; 
+          return;
         }
       }
     };
@@ -677,7 +723,6 @@ const ProductDetails = () => {
                         </span>
                       </span>
                     </div> */}
-
 
                     <button
                       className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"

@@ -158,7 +158,7 @@ const LoginPhoneNo = () => {
                 <img src={Logo} alt="Logo" className='w-full h-full object-cover' />
               </div>
 
-              <div className="flex flex-col gap-y-5 relative z-[1] text-center px-5">
+              <div className="flex flex-col gap-y-5 relative z-[1] text-center px-5 ">
                 <div className="text-lg md:text-2xl font-semibold">
                   Please Insert your Phone no
                 </div>

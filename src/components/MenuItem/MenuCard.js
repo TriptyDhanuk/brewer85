@@ -107,19 +107,22 @@ const MenuCard = ({ id, image, name, price, discount }) => {
 
   return (
     <div className="lg:w-3/12 md:w-4/12 sm:w-6/12 w-full sm:px-[0.625rem] relative">
-      <div className="product-card border border-solid border-slate-200 rounded-lg">
+      <div className="product-card border border-solid border-slate-200 rounded-lg relative h-[280px] overflow-hidden">
         <img
           src={image}
           alt={name}
-          className="product-image"
+          className="product-image w-full h-full object-cover"
           onClick={handleImgClick}
         />
-        <div className="product-details">
-          <h3 className="text-lg font-semibold text-white">
-            {name}
-            {id}
-          </h3>
-          <p className="mb-1 text-sm font-normal text-white">yahoo comidia</p>
+        <div onClick={handleImgClick} className="rounded-lg absolute top-0 left-0 bottom-0 right-0 bg-gradient-to-t from-black to-transparent opacity-75"></div>
+        <div className="product-details p-4 absolute left-0 bottom-0 right-0">
+          <div onClick={handleImgClick}>
+            <h3 className="text-lg font-semibold text-white">
+              {name}
+              {id}
+            </h3>
+            <p className="mb-1 text-sm font-normal text-white">yahoo comidia</p>
+          </div>
           
           <div className="price-tag mb-3">
             <div className="flex">

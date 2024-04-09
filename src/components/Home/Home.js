@@ -669,7 +669,7 @@ const Home = () => {
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Gourmet Collection
         </h3>
-        <div className="flex">
+        <div className="flex overflow-x-auto">
           {/* <Slider {...settings}> */}
           {Object.keys(gourmet).map((category) =>
             gourmet[category].map((product) => (

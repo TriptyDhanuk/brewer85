@@ -150,10 +150,10 @@ const LoginPhoneNo = () => {
 
   return (
     <div className="splash-bg h-screen bg-gray-200">
-      <div className="splash-img h-full overflow-hidden w-screen bg-cover bg-[right_bottom] xl:bg-[center]">
-        <div className="flex justify-center items-end h-screen">
+      <div className="splash-img h-full overflow-hidden w-screen bg-cover bg-[right_bottom] lg:bg-[center]">
+        <div className="flex justify-center items-center h-screen">
           <div className="md:w-6/12 w-10/12">
-            <div className='pb-[20vh] relative z-[1]'>
+            <div className='relative z-[1]'>
               <div className='flex flex-col justify-center items-center gap-y-10 p-10 border rounded-xl backdrop-blur-lg'>
                 <div className="logo-container -mt-24 md:-mt-36 w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden d-flex justify-center items-center">
                   <img src={Logo} alt="Logo" className='w-full h-full object-cover' />

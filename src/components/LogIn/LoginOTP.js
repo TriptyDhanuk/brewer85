@@ -56,33 +56,33 @@ const LoginOTP = () => {
           <div className='flex justify-center items-end h-screen'>
             <div className='md:w-6/12 w-10/12'>
               <div className='pb-[20vh] relative z-[1]'>
-              <div className='flex flex-col justify-center items-center gap-y-10 p-10 border rounded-xl backdrop-blur-lg '>
-                <div className='logo-container -mt-24 md:-mt-36 w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden d-flex justify-center items-center'>
-                  <img src={Logo} alt="Logo" className='w-full h-full object-cover' />
-                </div>
+                <div className='flex flex-col justify-center items-center gap-y-10 p-10 border rounded-xl backdrop-blur-lg '>
+                  <div className='logo-container -mt-24 md:-mt-36 w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden d-flex justify-center items-center'>
+                    <img src={Logo} alt="Logo" className='w-full h-full object-cover' />
+                  </div>
 
-                <div className='flex flex-col gap-y-6 relative z-[1] text-center'>
-                  <div className='flex flex-col items-center md:gap-y-4'>
-                    <div className='text-lg md:text-2xl font-semibold'>Please Enter Your Code</div>
-                    <small className='text-lg md:text-2xl font-semibold'>We sent a 6-digit OTP to +971****0000</small>
+                  <div className='flex flex-col gap-y-6 relative z-[1] text-center'>
+                    <div className='flex flex-col items-center md:gap-y-4'>
+                      <div className='text-lg md:text-2xl font-semibold'>Please Enter Your Code</div>
+                      <small className='text-lg md:text-2xl font-semibold'>We sent a 6-digit OTP to +971****0000</small>
+                    </div>
+                    <div className='flex justify-center gap-1'>
+                      {[...Array(6)].map((_, index) => (
+                        <OTPDigitInput
+                          key={index}
+                          type="text"
+                          maxLength="1"
+                          ref={(ref) => (inputs.current[index] = ref)}
+                          onChange={(e) => handleInputChange(index, e)}
+                          wrong={showError} // Apply wrong styling if showError is true
+                          className='w-10 h-12 md:w-16 md:h-16 text-base md:text-2xl font-semibold text-center border border-solid border-slate-400 focus:outline-none'
+                        />
+                      ))}
+                    </div>
+            
+                    <button onClick={handleEnjoyFoodClick} className='inline-block py-3 px-10 md:py-6 md:px-16 text-base md:text-2xl font-semibold text-white rounded-[3.125rem] bg-gray-950 hover:bg-gray-900 no-underline hover:no-underline text-nowrap'>Enjoy Food</button>
+            
                   </div>
-                  <div className='flex justify-center gap-1'>
-                    {[...Array(6)].map((_, index) => (
-                      <OTPDigitInput
-                        key={index}
-                        type="text"
-                        maxLength="1"
-                        ref={(ref) => (inputs.current[index] = ref)}
-                        onChange={(e) => handleInputChange(index, e)}
-                        wrong={showError} // Apply wrong styling if showError is true
-                        className='w-10 h-12 md:w-16 md:h-16 text-base md:text-2xl font-semibold text-center border border-solid border-slate-400 focus:outline-none'
-                      />
-                    ))}
-                  </div>
-          
-                  <button onClick={handleEnjoyFoodClick} className='inline-block py-3 px-10 md:py-6 md:px-16 text-base md:text-2xl font-semibold text-white rounded-[3.125rem] bg-gray-950 hover:bg-gray-900 no-underline hover:no-underline text-nowrap'>Enjoy Food</button>
-          
-                </div>
                 </div>
               </div>
             </div>

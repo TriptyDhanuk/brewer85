@@ -623,14 +623,14 @@ const Home = () => {
           {/* Text and button container */}
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10">
             <div className="text-center">
-              <div className="text-black border-2 border-white p-4 rounded-lg shadow-lg bg-white bg-opacity-75">
-                <h1 className="text-3xl font-bold">Grab Your Craving Now</h1>
+              <div className="text-black bg-opacity-75 relative before:content-[''] before:absolute before:-inset-10 before:bg-white before:blur-2xl">
+                <h2 className="text-3xl font-bold relative z-[1]">Grab Your Craving Now</h2>
               </div>
 
-              <div className="">
+              <div className="mt-8 relative z-[1]">
                 <a
                   href="/gourmet"
-                  className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-3  items-center"
+                  className="inline-block py-6 px-10 text-xl font-semibold uppercase text-white rounded-full bg-lime-600 hover:bg-orange-600 duration-150"
                 >
                   Order Now<span className="ml-2">&#8594;</span>
                 </a>
@@ -691,9 +691,7 @@ const Home = () => {
           {/* </Slider> */}
         </div>
       </div>
-      <Container>
-        <ViewCart />
-      </Container>
+      <ViewCart />
     </div>
   );
 };

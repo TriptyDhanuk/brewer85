@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../../features/cart/cartSlice";
 import "./ViewCart.css";
+import carticon from "./iconBag.png"
 
 const ViewCart = () => {
   const [allCartItemsPrice, setAllCartItemsPrice] = useState([]);
@@ -27,11 +28,16 @@ const ViewCart = () => {
     <>
       {" "}
       {allCartProductsCount > 0 && (
-        <button className="view-cart-button" onClick={handleCheckout}>
-          <div>
-            {allCartProductsCount} Item | ₹ {allCartItemsPrice}
+        <button className="view-cart-button py-3 px-5 rounded-2xl bg-orange-600 fixed bottom-5 right-5 flex items-center text-white shadow-lg shadow-orange-300" onClick={handleCheckout}>
+          <div className="mr-3 pr-1 border-r border-solid border-orange-300">
+            <img src={carticon} className="grayscale invert" />
           </div>
-          <div>Checkout</div>
+          <div className="text-left">
+            <div className="text-lg font-bold">
+              {allCartProductsCount} Item | ₹ {allCartItemsPrice}
+            </div>
+            <div className="text-xl font-bold uppercase tracking-wide">Checkout</div>
+          </div>
         </button>
       )}
     </>

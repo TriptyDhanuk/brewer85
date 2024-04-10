@@ -735,7 +735,7 @@ const ProductDetails = () => {
 
                     <Link to="/checkout">
                       <button
-                        className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150 max-md:w-full"
+                        className="py-3 px-5 text-white font-semibold bg-orange-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150 max-md:w-full"
                         onClick={handleAddToCart}
                       >
                         View Cart

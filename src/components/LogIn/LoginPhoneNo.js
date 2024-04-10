@@ -151,77 +151,77 @@ const LoginPhoneNo = () => {
   return (
     <div className="splash-bg h-screen bg-gray-200">
       <div className="splash-img h-full overflow-hidden w-screen bg-cover bg-[right_bottom] lg:bg-[center]">
-        <div className="flex justify-center items-center h-screen">
-          <div className="md:w-6/12 w-10/12">
-            <div className='relative z-[1]'>
-              <div className='flex flex-col justify-center items-center gap-y-10 p-10 border rounded-xl backdrop-blur-lg'>
-                <div className="logo-container -mt-24 md:-mt-36 w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden d-flex justify-center items-center">
-                  <img src={Logo} alt="Logo" className='w-full h-full object-cover' />
-                </div>
-
-                <div className="flex flex-col gap-y-6 relative z-[1] text-center">
-                  <div className="text-lg md:text-2xl font-semibold">
-                    Please Insert your Phone no
-                  </div>
-                  <div className="flex gap-x-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
-                    <img
-                      src={selectedCountry.image}
-                      alt={selectedCountry.name}
-                      className="w-6 h-6 lg:w-8 lg:h-8"
-                    />
-                    <select
-                      value={selectedCountry.iso?.numeric || ""}
-                      onChange={handleCountryChange}
-                      className="border-0 focus:outline-none w-full"
-                    >
-                      {data
-                        .filter((country) => country.iso)
-                        .map((country) => (
-                          <option
-                            key={country.iso.numeric}
-                            value={country.iso.numeric}
-                          >
-                            {country.name}
-                          </option>
-                        ))}
-                    </select>                    
-                  </div>
-                  <div className="flex gap-x-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
-                    <span className="text-nowrap">
-                      {selectedCountry.phone[0]}
-                    </span>
-                    <input
-                      type="tel"
-                      placeholder="Enter your phone no"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      onKeyPress={handleKeyPress}
-                      maxLength={selectedCountry.phoneLength} 
-                      className="border-0 focus:outline-none w-full"
-                    />
+        <div className='flex justify-center items-center h-screen px-6'>
+            <div className='md:min-w-[460px]'>
+              <div className='relative z-[1]'>
+                <div className='flex flex-col justify-center items-center gap-y-10 p-10 border rounded-xl backdrop-blur-lg'>
+                  <div className="logo-container -mt-24 md:-mt-36 w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden d-flex justify-center items-center">
+                    <img src={Logo} alt="Logo" className='w-full h-full object-cover' />
                   </div>
 
-                  {error && <span className="text-red-500">{error}</span>}
-                
-                  <div className="">
-                    <button
-                      onClick={handleGetOTP}
-                      className="inline-block py-3 px-10 md:py-6 md:px-16 text-base md:text-2xl font-semibold text-white rounded-[3.125rem] bg-gray-950 hover:bg-gray-900 no-underline hover:no-underline text-nowrap"
-                    >
-                      Get OTP
-                    </button>
+                  <div className="flex flex-col gap-y-6 relative z-[1] text-center">
+                    <div className="text-lg md:text-2xl font-semibold">
+                      Please Insert your Phone no
+                    </div>
+                    <div className="flex gap-x-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
+                      <img
+                        src={selectedCountry.image}
+                        alt={selectedCountry.name}
+                        className="w-6 h-6 lg:w-8 lg:h-8"
+                      />
+                      <select
+                        value={selectedCountry.iso?.numeric || ""}
+                        onChange={handleCountryChange}
+                        className="border-0 focus:outline-none w-full"
+                      >
+                        {data
+                          .filter((country) => country.iso)
+                          .map((country) => (
+                            <option
+                              key={country.iso.numeric}
+                              value={country.iso.numeric}
+                            >
+                              {country.name}
+                            </option>
+                          ))}
+                      </select>                    
+                    </div>
+                    <div className="flex gap-x-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
+                      <span className="text-nowrap">
+                        {selectedCountry.phone[0]}
+                      </span>
+                      <input
+                        type="tel"
+                        placeholder="Enter your phone no"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        maxLength={selectedCountry.phoneLength} 
+                        className="border-0 focus:outline-none w-full"
+                      />
+                    </div>
+
+                    {error && <span className="text-red-500">{error}</span>}
+                  
+                    <div className="">
+                      <button
+                        onClick={handleGetOTP}
+                        className="inline-block py-3 px-10 md:py-6 md:px-16 text-base md:text-2xl font-semibold text-white rounded-[3.125rem] bg-gray-950 hover:bg-gray-900 no-underline hover:no-underline text-nowrap"
+                      >
+                        Get OTP
+                      </button>
+                    </div>
                   </div>
-                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="absolute bottom-0 right-0">
-          <img src={Leaf} alt="Leaf" />
+          <div className="absolute bottom-0 right-0">
+            <img src={Leaf} alt="Leaf" />
+          </div>
         </div>
       </div>
     </div>
-    </div>
-  );
+    );
 };
 
 export default LoginPhoneNo;

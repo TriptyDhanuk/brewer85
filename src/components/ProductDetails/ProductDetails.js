@@ -539,7 +539,7 @@ const ProductDetails = () => {
         <>
           <div>
             <div className="mainProductDtl flex flex-wrap -mx-4">
-              <div className="lg:w-6/12 w-full mb-5 px-4">
+              <div className="lg:w-6/12 w-full mb-5 px-4 relative">
                 <img
                   src={product.image}
                   alt="Product"
@@ -553,15 +553,15 @@ const ProductDetails = () => {
                     // padding: "10px 0",
                   }}
                 />
-              </div>
-              <div className="lg:w-6/12 w-full px-4">
-                <div className="product-details-content">
-                  <div className="product-details-image-container">
+                <div className="product-details-image-container">
                     <div className="product-details-kcal-circle">
                       <div className="product-details-cal-value">25</div>
                       <div className="product-details-cal-unit">Cal</div>
                     </div>
                   </div>
+              </div>
+              <div className="lg:w-6/12 w-full px-4">
+                <div className="product-details-content">                  
                   <div className="product-details-info py-8">
                     <div className="mb-5">
                       <h3 className="mb-4 xl:text-3xl text-2xl font-semibold text-slate-900">

@@ -83,7 +83,7 @@
 }
 .product-details-kcal-circle {
   position: absolute;
-  bottom: 0;
+  bottom: -40px;
   right: 10px;
   display: flex;
   flex-direction: column;

@@ -83,9 +83,25 @@ const Gourmet = () => {
     .flat()
     .filter((product) => product.name.toLowerCase().includes(searchQuery));
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   return (
     <div className="body px-4">
-      {/* Your existing header JSX */}
+      <div className="header py-3">
+        <nav className="flex flex-wrap">
+          <div className="logo" onClick={handleGoBack}>
+            {" "}
+            <box-icon name="arrow-back"></box-icon>
+            <h4 className="">Gourmet</h4>
+          </div>
+          <div className="flex items-center ml-auto">
+            <Wishlist style={{ marginRight: "10px" }} />
+            <CartIconBadge />
+          </div>
+        </nav>
+      </div>
       <div className="top-search mb-3">
         <input
           type="text"

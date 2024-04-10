@@ -14,6 +14,12 @@ import g3 from "../../images/g3.jpg";
 import g4 from "../../images/g4.jpg";
 import g5 from "../../images/g5.jpg";
 import g6 from "../../images/g6.jpg";
+import piz from "../../images/piz.jpg";
+import br from "../../images/br.jpg";
+import sk from "../../images/sk.jpg";
+import bir from "../../images/bir.avif";
+import ice1 from "../../images/ice1.avif";
+import dri from "../../images/dri.jpg";
 import fullImage from "../../images/food-full-image-01.jpg";
 import noodles from "../../images/noodles.png";
 import drinks from "../../images/drinks.png";
@@ -63,8 +69,8 @@ const MenuItem = () => {
     Biryani: [
       {
         id: 111,
-        image: image1,
-        name: "Hydrabadi Biryani",
+        image: bir,
+        name: "Biryani",
         price: "100",
         discount: "60% off",
       },
@@ -72,7 +78,7 @@ const MenuItem = () => {
     IceCream: [
       {
         id: 222,
-        image: image2,
+        image: ice1,
         name: "IceCream",
         price: "125",
         discount: "60% off",
@@ -81,7 +87,7 @@ const MenuItem = () => {
     Pizza: [
       {
         id: 333,
-        image: image4,
+        image: piz,
         name: "Pizza",
         price: "150",
         discount: "60% off",
@@ -90,7 +96,7 @@ const MenuItem = () => {
     Burger: [
       {
         id: 444,
-        image: burger,
+        image: br,
         name: "Burger",
         price: "90",
         discount: "60% off",
@@ -99,7 +105,7 @@ const MenuItem = () => {
     Shakes: [
       {
         id: 555,
-        image: shakes,
+        image: sk,
         name: "Shakes",
         price: "70",
         discount: "60% off",
@@ -113,12 +119,11 @@ const MenuItem = () => {
         price: "120",
         discount: "60% off",
       },
-      // Add more products as needed
     ],
     Drinks: [
       {
         id: 777,
-        image: drinks,
+        image: dri,
         name: "Drinks",
         price: "55",
         discount: "60% off",
@@ -166,42 +171,42 @@ const MenuItem = () => {
     Biryani: [
       {
         id: 1,
-        image: image1,
+        image: bir,
         name: "Kashmiri Biryani",
         price: "125",
         discount: "60% off",
       },
       {
         id: 2,
-        image: image1,
+        image: bir,
         name: "Hydrabadi Biryani",
         price: "170",
         discount: "60% off",
       },
       {
         id: 3,
-        image: image1,
+        image: bir,
         name: "Kolkata Special Biryani",
         price: "100",
         discount: "60% off",
       },
       {
         id: 4,
-        image: image1,
+        image: bir,
         name: "Hydrabadi Biryani 2",
         price: "175",
         discount: "60% off",
       },
       {
         id: 5,
-        image: image1,
+        image: bir,
         name: "Kashmiri Biryani ",
         price: "250",
         discount: "60% off",
       },
       {
         id: 6,
-        image: fullImage,
+        image: bir,
         name: "Kashmiri Salad Biryani ",
         price: "520",
         discount: "40% off",
@@ -211,21 +216,21 @@ const MenuItem = () => {
     IceCream: [
       {
         id: 6,
-        image: image2,
+        image: ice1,
         name: "IceCream",
         price: "70",
         discount: "60% off",
       },
       {
         id: 7,
-        image: image2,
+        image: ice1,
         name: "IceCream 1",
         price: "75",
         discount: "60% off",
       },
       {
         id: 8,
-        image: image2,
+        image: ice1,
         name: "IceCream 2",
         price: "80",
         discount: "60% off",
@@ -235,21 +240,21 @@ const MenuItem = () => {
     Pizza: [
       {
         id: 9,
-        image: image4,
+        image: piz,
         name: "Pizza",
         price: "250",
         discount: "60% off",
       },
       {
         id: 10,
-        image: image4,
+        image: piz,
         name: "Pizza 1",
         price: "200",
         discount: "60% off",
       },
       {
         id: 11,
-        image: image4,
+        image: piz,
         name: "Pizza 2",
         price: "180",
         discount: "60% off",
@@ -259,21 +264,21 @@ const MenuItem = () => {
     Burger: [
       {
         id: 12,
-        image: burger,
+        image: br,
         name: "Burger",
         price: "90",
         discount: "60% off",
       },
       {
         id: 13,
-        image: burger,
+        image: br,
         name: "Burger 1",
         price: "110",
         discount: "60% off",
       },
       {
         id: 14,
-        image: burger,
+        image: br,
         name: "Burger 2",
         price: "130",
         discount: "60% off",
@@ -283,21 +288,21 @@ const MenuItem = () => {
     Shakes: [
       {
         id: 15,
-        image: shakes,
+        image: sk,
         name: "Shakes",
         price: "75",
         discount: "60% off",
       },
       {
         id: 16,
-        image: shakes,
+        image: sk,
         name: "Shakes 1",
         price: "100",
         discount: "60% off",
       },
       {
         id: 17,
-        image: shakes,
+        image: sk,
         name: "Shakes 2",
         price: "110",
         discount: "60% off",
@@ -331,21 +336,21 @@ const MenuItem = () => {
     Drinks: [
       {
         id: 21,
-        image: drinks,
+        image: dri,
         name: "Drinks",
         price: "30",
         discount: "60% off",
       },
       {
         id: 22,
-        image: drinks,
+        image: dri,
         name: "Drinks 1",
         price: "45",
         discount: "60% off",
       },
       {
         id: 23,
-        image: drinks,
+        image: dri,
         name: "Drinks 2",
         price: "50",
         discount: "60% off",

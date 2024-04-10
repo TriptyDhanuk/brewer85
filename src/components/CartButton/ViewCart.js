@@ -92,8 +92,8 @@ const ViewCart = () => {
 
   return (
     <>
-      {isVisible && allCartProductsCount > 0 && ( 
-        <button className="view-cart-button custom-class py-3 px-5 rounded-2xl bg-orange-600 fixed bottom-5 right-5  max-sm:left-5 flex items-center text-white shadow-lg shadow-orange-300" onClick={handleCheckout}>
+      {allCartProductsCount > 0 && ( 
+        <button className={`view-cart-button py-3 px-5 rounded-2xl bg-orange-600 fixed bottom-5 right-5  max-sm:left-5 flex items-center text-white shadow-lg shadow-orange-300 ${isVisible ? 'custom-class' : ''}`} onClick={handleCheckout}>
           <div className="mr-3 pr-1 border-r border-solid border-orange-300">
             <img src={carticon} className="grayscale invert max-lg:w-7" alt="Cart Icon" />
           </div>

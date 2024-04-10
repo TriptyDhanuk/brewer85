@@ -41,6 +41,8 @@ const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
   console.log("selectedProduct", selectedProduct);
   useEffect(() => {
@@ -49,6 +51,7 @@ const Home = () => {
       setSelectedProduct(storedProduct);
     }
   }, []);
+
 
   useEffect(() => {
     localStorage.setItem("selectedProduct", selectedProduct);
@@ -450,11 +453,19 @@ const Home = () => {
     ],
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    console.log(isSidebarOpen);
+  };
+
   return (
     <div className="body">
+       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+        <h1>Hello</h1>
+      </div>
       <div className="header py-3 px-4">
         <nav className="flex flex-wrap">
-          <div className="logo">
+        <div className="logo" onClick={toggleSidebar}>
             <box-icon name="menu"></box-icon>
             <h4 className="">Home</h4>
           </div>

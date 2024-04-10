@@ -538,8 +538,8 @@ const ProductDetails = () => {
       {product && (
         <>
           <div>
-            <div className="mainProductDtl flex flex-wrap -mx-5">
-              <div className="lg:w-6/12 w-full mb-5 px-5">
+            <div className="mainProductDtl flex flex-wrap -mx-4">
+              <div className="lg:w-6/12 w-full mb-5 px-4">
                 <img
                   src={product.image}
                   alt="Product"
@@ -554,7 +554,7 @@ const ProductDetails = () => {
                   }}
                 />
               </div>
-              <div className="lg:w-6/12 w-full px-5">
+              <div className="lg:w-6/12 w-full px-4">
                 <div className="product-details-content">
                   <div className="product-details-image-container">
                     <div className="product-details-kcal-circle">

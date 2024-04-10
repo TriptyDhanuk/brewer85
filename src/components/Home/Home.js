@@ -460,21 +460,19 @@ const Home = () => {
 
   return (
     <div className="body">
-       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-        <h1>Hello</h1>
+       <div className={`sidebar ${isSidebarOpen ? "open" : ""} fixed w-64 top-0 left-0 bottom-0 bg-white z-30 -translate-x-64 duration-300 [&.open]:translate-x-0`}>
+          <div className="logo absolute top-3 -right-10" onClick={toggleSidebar}>
+            <box-icon name="menu"></box-icon>
+          </div>
       </div>
       <div className="header py-3 px-4">
-        <nav className="flex flex-wrap">
-        <div className="logo" onClick={toggleSidebar}>
-            <box-icon name="menu"></box-icon>
-            <h4 className="">Home</h4>
-          </div>
-
+        <div className="flex flex-wrap">
+          <h4 className="ml-7">Home</h4>
           <div className="flex items-center ml-auto">
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />
           </div>
-        </nav>
+        </div>
       </div>
       <Slider {...settingsMy} className="mb-3 px-4">
         <div className="slider-banner px-2 overflow-hidden">

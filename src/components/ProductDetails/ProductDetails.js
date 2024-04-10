@@ -595,14 +595,8 @@ const ProductDetails = () => {
                           console.log("hello");
                         }}
                       >
-                        <p className="font-bold text-slate-900">Your rating</p>
-                        {/* <div className="product-details-star-rating">
-                        {[...Array(5)].map((_, index) => (
-                          <span key={index} className="star">
-                            &#9733;
-                          </span>
-                        ))}
-                      </div> */}
+                        {/* dynamic feedback rating */}
+                        {/* <p className="font-bold text-slate-900">Your rating</p>
                         <div className="product-details-star-rating">
                           {[...Array(5)].map((_, index) => {
                             // Retrieve feedback count from local storage
@@ -631,7 +625,7 @@ const ProductDetails = () => {
                               </span>
                             );
                           })}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className="product-details-additional-details mb-5">
@@ -740,7 +734,9 @@ const ProductDetails = () => {
               productName={notification.name}
             />
           )} */}
-            <Modal
+
+          {/* dynamic feedback */}
+            {/* <Modal
               isOpen={isModalOpen}
               onRequestClose={closeModal}
               contentLabel="Feedback Modal"
@@ -795,7 +791,7 @@ const ProductDetails = () => {
                   )}
                 </div>
               </div>
-            </Modal>
+            </Modal> */}
           </div>
         </>
       )}

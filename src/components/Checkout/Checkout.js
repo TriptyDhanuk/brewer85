@@ -18,6 +18,7 @@ import {
 import WishlistNotification from "../Notificaiton/WishlistNotification.js";
 import Lottie from "react-lottie";
 import emptyCartAnimation from "./emptyCartLottie.json";
+import Wishlist from "../Wishlist.js";
 
 const CheckOut = () => {
   const cartItems = useSelector(selectCartItems);
@@ -150,7 +151,7 @@ const CheckOut = () => {
             <h4 className="">Checkout</h4>
           </div>
           <div className="ml-auto">
-            <box-icon type="solid" name="filter-alt"></box-icon>
+            <Wishlist style={{ marginRight: "10px" }} />
           </div>
         </nav>
       </div>

@@ -29,6 +29,7 @@ import g5 from "../../images/g5.jpg";
 import g6 from "../../images/g6.jpg";
 import fullImage from "../../images/food-full-image-01.jpg";
 import Modal from "react-modal";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Lottie from "react-lottie";
@@ -549,24 +550,26 @@ const ProductDetails = () => {
                   src={product.image}
                   alt="Product"
                   className="product-details-image lg:h-full max-lg:h-[350px] w-full object-cover object-center"
-                  style={{
-                    // // height: "200px",
-                    // objectFit: "contain",
-                    // objectPosition: "center top",
-                    // width: "100%",
-                    // backgroundColor: "#e5e5e5",
-                    // padding: "10px 0",
-                  }}
+                  style={
+                    {
+                      // // height: "200px",
+                      // objectFit: "contain",
+                      // objectPosition: "center top",
+                      // width: "100%",
+                      // backgroundColor: "#e5e5e5",
+                      // padding: "10px 0",
+                    }
+                  }
                 />
                 <div className="product-details-image-container">
-                    <div className="product-details-kcal-circle">
-                      <div className="product-details-cal-value">25</div>
-                      <div className="product-details-cal-unit">Cal</div>
-                    </div>
+                  <div className="product-details-kcal-circle">
+                    <div className="product-details-cal-value">25</div>
+                    <div className="product-details-cal-unit">Cal</div>
                   </div>
+                </div>
               </div>
               <div className="lg:w-6/12 w-full px-4">
-                <div className="product-details-content">                  
+                <div className="product-details-content">
                   <div className="product-details-info py-8">
                     <div className="mb-5">
                       <h3 className="mb-4 xl:text-3xl text-2xl font-semibold text-slate-900">
@@ -729,6 +732,15 @@ const ProductDetails = () => {
                     >
                       ADD TO MY ORDER
                     </button>
+
+                    <Link to="/checkout">
+                      <button
+                        className="py-3 px-5 text-white font-semibold bg-orange-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150 max-md:w-full"
+                        onClick={handleAddToCart}
+                      >
+                        View Cart
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -740,7 +752,7 @@ const ProductDetails = () => {
             />
           )} */}
 
-          {/* dynamic feedback */}
+            {/* dynamic feedback */}
             {/* <Modal
               isOpen={isModalOpen}
               onRequestClose={closeModal}

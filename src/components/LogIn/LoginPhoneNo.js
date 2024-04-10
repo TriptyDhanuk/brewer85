@@ -163,7 +163,7 @@ const LoginPhoneNo = () => {
                   <div className="text-lg md:text-2xl font-semibold">
                     Please Insert your Phone no
                   </div>
-                  <div className="flex gap-x-2 mb-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
+                  <div className="flex gap-x-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
                     <img
                       src={selectedCountry.image}
                       alt={selectedCountry.name}
@@ -186,8 +186,8 @@ const LoginPhoneNo = () => {
                         ))}
                     </select>                    
                   </div>
-                  <div className="flex gap-x-2 mb-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
-                    <span className="">
+                  <div className="flex gap-x-2 items-center py-3 px-6 md:py-6 md:px-8 text-base md:text-2xl font-semibold rounded-[3.125rem] bg-white">
+                    <span className="text-nowrap">
                       {selectedCountry.phone[0]}
                     </span>
                     <input

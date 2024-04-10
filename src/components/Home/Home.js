@@ -615,22 +615,22 @@ const Home = () => {
           />
         </div>
       </Slider> */}
-      <div className="p-4 bg-blue-800">
-        <h3 className="text-xl font-semibold text-white mb-3 ">
+      <div className="p-4 bg-blue-800 relative">
+        <div className="absolute inset-0 max-md:bg-black opacity-50 z-[1]"></div>
+        <h3 className="text-xl font-semibold text-white mb-3 relative z-[2]">
           Today's Special Items
         </h3>
-        <div className="relative mb-3">
           {/* Text and button container */}
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10">
+          <div className="absolute inset-0 flex items-center justify-center z-10">
             <div className="text-center">
-              <div className="text-black bg-opacity-75 relative before:content-[''] before:absolute before:-inset-10 before:bg-white before:blur-2xl">
+              <div className="text-black bg-opacity-75 relative before:content-[''] before:absolute before:-inset-10 sm:before:bg-white before:blur-2xl max-sm:text-white max-sm:[text-shadow:_0_1px_6px_rgba(0,0,0,1)]">
                 <h2 className="text-3xl font-bold relative z-[1]">Grab Your Craving Now</h2>
               </div>
 
-              <div className="mt-8 relative z-[1]">
+              <div className="lg:mt-8 mt-4 relative z-[1]">
                 <a
                   href="/gourmet"
-                  className="inline-block py-6 px-10 text-xl font-semibold uppercase text-white rounded-full bg-lime-600 hover:bg-orange-600 duration-150"
+                  className="inline-block py-3 px-10 md:py-6 md:px-16 text-base md:text-2xl font-semibold uppercase text-white rounded-full bg-lime-600 hover:bg-orange-600 duration-150"
                 >
                   Order Now<span className="ml-2">&#8594;</span>
                 </a>
@@ -669,9 +669,8 @@ const Home = () => {
               />
             </div>
           </Slider>
-        </div>
       </div>
-      <div className="mb-10 pt-10 px-5">
+      <div className="mb-10 pt-10 px-5 max-lg:pb-16">
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Gourmet Collection
         </h3>

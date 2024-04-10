@@ -28,15 +28,15 @@ const ViewCart = () => {
     <>
       {" "}
       {allCartProductsCount > 0 && (
-        <button className="view-cart-button py-3 px-5 rounded-2xl bg-orange-600 fixed bottom-5 right-5 flex items-center text-white shadow-lg shadow-orange-300" onClick={handleCheckout}>
+        <button className="view-cart-button py-3 px-5 rounded-2xl bg-orange-600 fixed bottom-5 right-5  max-sm:left-5 flex items-center text-white shadow-lg shadow-orange-300" onClick={handleCheckout}>
           <div className="mr-3 pr-1 border-r border-solid border-orange-300">
-            <img src={carticon} className="grayscale invert" />
+            <img src={carticon} className="grayscale invert max-lg:w-7" />
           </div>
           <div className="text-left">
-            <div className="text-lg font-bold">
+            <div className="lg:text-lg text-sm font-bold">
               {allCartProductsCount} Item | ₹ {allCartItemsPrice}
             </div>
-            <div className="text-xl font-bold uppercase tracking-wide">Checkout</div>
+            <div className="lg:text-xl text-base font-bold uppercase tracking-wide">Checkout</div>
           </div>
         </button>
       )}

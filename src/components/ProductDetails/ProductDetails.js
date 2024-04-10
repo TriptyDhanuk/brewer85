@@ -538,23 +538,23 @@ const ProductDetails = () => {
       {product && (
         <>
           <div>
-            <div className="mainProductDtl">
-              <div className="w-full mb-5">
+            <div className="mainProductDtl flex flex-wrap -mx-5">
+              <div className="lg:w-6/12 w-full mb-5 px-5">
                 <img
                   src={product.image}
                   alt="Product"
-                  className="product-details-image"
+                  className="product-details-image lg:h-full max-lg:h-[350px] w-full object-cover object-center"
                   style={{
-                    height: "200px",
-                    objectFit: "contain",
-                    objectPosition: "center top",
-                    width: "100%",
-                    backgroundColor: "#e5e5e5",
-                    padding: "10px 0",
+                    // // height: "200px",
+                    // objectFit: "contain",
+                    // objectPosition: "center top",
+                    // width: "100%",
+                    // backgroundColor: "#e5e5e5",
+                    // padding: "10px 0",
                   }}
                 />
               </div>
-              <div className="w-full">
+              <div className="lg:w-6/12 w-full px-5">
                 <div className="product-details-content">
                   <div className="product-details-image-container">
                     <div className="product-details-kcal-circle">
@@ -562,7 +562,7 @@ const ProductDetails = () => {
                       <div className="product-details-cal-unit">Cal</div>
                     </div>
                   </div>
-                  <div className="product-details-info">
+                  <div className="product-details-info py-8">
                     <div className="mb-5">
                       <h3 className="mb-4 xl:text-3xl text-2xl font-semibold text-slate-900">
                         {product.name}
@@ -725,7 +725,7 @@ const ProductDetails = () => {
                     </div> */}
 
                     <button
-                      className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
+                      className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150 max-md:w-full"
                       onClick={handleAddToCart}
                     >
                       ADD TO MY ORDER

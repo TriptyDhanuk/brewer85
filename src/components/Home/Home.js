@@ -464,6 +464,13 @@ const Home = () => {
           <div className="logo absolute top-3 -right-10" onClick={toggleSidebar}>
             <box-icon name="menu"></box-icon>
           </div>
+          <nav>
+            <ul className="my-5">
+              <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
+              <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
+              <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
+            </ul>
+          </nav>
       </div>
       <div className="header py-3 px-4">
         <div className="flex flex-wrap">

@@ -36,13 +36,13 @@ import ice from "../../images/ice.jpg";
 import MenuCard from "../../components/MenuItem/MenuCard";
 import { Container } from "react-floating-action-button";
 import ViewCart from "../CartButton/ViewCart";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
 
   console.log("selectedProduct", selectedProduct);
   useEffect(() => {
@@ -52,13 +52,13 @@ const Home = () => {
     }
   }, []);
 
-
   useEffect(() => {
     localStorage.setItem("selectedProduct", selectedProduct);
   }, [selectedProduct]);
 
   const handleProductItemClick = (productName) => {
     setSelectedProduct(productName);
+    console.log("Selected product:", productName);
   };
 
   // useEffect(() => {
@@ -457,20 +457,50 @@ const Home = () => {
     setIsSidebarOpen(!isSidebarOpen);
     console.log(isSidebarOpen);
   };
-
   return (
-    <div className="body">
-       <div className={`sidebar ${isSidebarOpen ? "open" : ""} fixed w-64 top-0 left-0 bottom-0 bg-white z-30 -translate-x-64 duration-300 [&.open]:translate-x-0`}>
-          <div className="logo absolute top-3 -right-10" onClick={toggleSidebar}>
-            <box-icon name="menu"></box-icon>
-          </div>
-          <nav>
+    <div className={`body sidebar ${isSidebarOpen ? "open" : ""}`}>
+      <div
+        className={`sidebar ${
+          isSidebarOpen ? "open" : ""
+        } fixed w-64 top-0 left-0 bottom-0 bg-white z-30 -translate-x-64 duration-300 [&.open]:translate-x-0`}
+      >
+        <div className="logo absolute top-3 -right-10" onClick={toggleSidebar}>
+          <box-icon name="menu"></box-icon>
+        </div>
+        {/* <nav>
             <ul className="my-5">
               <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
               <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
               <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
             </ul>
-          </nav>
+          </nav> */}
+
+      {/* sidebar */}
+        <nav>
+          <ul className="my-5">
+            {Object.keys(products).map((category) => (
+              <li key={category}>
+                <ul>
+                  {products[category].map((product) => (
+                    <li
+                      key={product.id}
+                      onClick={() => handleProductItemClick(product.name)}
+                      className="cursor-pointer"
+                    >
+                      <a
+                        href="/menu"
+                        className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500"
+                        key={product.name}
+                      >
+                        {product.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
       <div className="header py-3 px-4">
         <div className="flex flex-wrap">
@@ -636,55 +666,52 @@ const Home = () => {
         <h3 className="text-xl font-semibold text-white mb-3 relative z-[2]">
           Today's Special Items
         </h3>
-          {/* Text and button container */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className="text-center">
-              <div className="text-black bg-opacity-75 relative before:content-[''] before:absolute before:-inset-10 sm:before:bg-white before:blur-2xl max-sm:text-white max-sm:[text-shadow:_0_1px_6px_rgba(0,0,0,1)]">
-                <h2 className="text-3xl font-bold relative z-[1]">Grab Your Craving Now</h2>
-              </div>
+        {/* Text and button container */}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="text-center">
+            <div className="text-black bg-opacity-75 relative before:content-[''] before:absolute before:-inset-10 sm:before:bg-white before:blur-2xl max-sm:text-white max-sm:[text-shadow:_0_1px_6px_rgba(0,0,0,1)]">
+              <h2 className="text-3xl font-bold relative z-[1]">
+                Grab Your Craving Now
+              </h2>
+            </div>
 
-              <div className="lg:mt-8 mt-4 relative z-[1]">
-                <a
-                  href="/gourmet"
-                  className="inline-block py-3 px-10 md:py-6 md:px-16 text-base md:text-2xl font-semibold uppercase text-white rounded-full bg-lime-600 hover:bg-orange-600 duration-150"
-                >
-                  Order Now<span className="ml-2">&#8594;</span>
-                </a>
-              </div>
+            <div className="lg:mt-8 mt-4 relative z-[1]">
+              <a
+                href="/gourmet"
+                className="inline-block py-3 px-10 md:py-6 md:px-16 text-base md:text-2xl font-semibold uppercase text-white rounded-full bg-lime-600 hover:bg-orange-600 duration-150"
+              >
+                Order Now<span className="ml-2">&#8594;</span>
+              </a>
             </div>
           </div>
+        </div>
 
-          {/* Slider */}
-          <Slider {...topOne} className="z-0 [&>.slick-list>.slick-track]:flex [&>.slick-list>.slick-track>.slick-slide]:float-none [&>.slick-list>.slick-track>.slick-slide]:h-auto [&>.slick-list>.slick-track>.slick-slide>div]:h-full [&>.slick-list>.slick-track>.slick-slide>div>.slider-banner]:h-full [&>.slick-list>.slick-track>.slick-slide>div>.slider-banner>img]:h-full">
-            <div className="slider-banner px-2 overflow-hidden">
-              <img
-                src={ice}
-                className="w-50px h-25 block rounded-lg"
-                alt="ban3"
-              />
-            </div>
-            <div className="slider-banner px-2 overflow-hidden">
-              <img
-                src={t1}
-                className="w-50px h-25 block rounded-lg"
-                alt="ban1"
-              />
-            </div>
-            <div className="slider-banner px-2 overflow-hidden">
-              <img
-                src={t2}
-                className="w-50px h-25 block rounded-lg"
-                alt="ban2"
-              />
-            </div>
-            <div className="slider-banner px-2 overflow-hidden">
-              <img
-                src={rollpasta}
-                className="w-50px h-25 block rounded-lg"
-                alt="ban3"
-              />
-            </div>
-          </Slider>
+        {/* Slider */}
+        <Slider
+          {...topOne}
+          className="z-0 [&>.slick-list>.slick-track]:flex [&>.slick-list>.slick-track>.slick-slide]:float-none [&>.slick-list>.slick-track>.slick-slide]:h-auto [&>.slick-list>.slick-track>.slick-slide>div]:h-full [&>.slick-list>.slick-track>.slick-slide>div>.slider-banner]:h-full [&>.slick-list>.slick-track>.slick-slide>div>.slider-banner>img]:h-full"
+        >
+          <div className="slider-banner px-2 overflow-hidden">
+            <img
+              src={ice}
+              className="w-50px h-25 block rounded-lg"
+              alt="ban3"
+            />
+          </div>
+          <div className="slider-banner px-2 overflow-hidden">
+            <img src={t1} className="w-50px h-25 block rounded-lg" alt="ban1" />
+          </div>
+          <div className="slider-banner px-2 overflow-hidden">
+            <img src={t2} className="w-50px h-25 block rounded-lg" alt="ban2" />
+          </div>
+          <div className="slider-banner px-2 overflow-hidden">
+            <img
+              src={rollpasta}
+              className="w-50px h-25 block rounded-lg"
+              alt="ban3"
+            />
+          </div>
+        </Slider>
       </div>
       <div className="mb-10 pt-10 px-5 max-lg:pb-16">
         <h3 className="text-xl font-semibold text-slate-800 mb-3">

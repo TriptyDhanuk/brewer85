@@ -48,13 +48,13 @@ const MenuItem = () => {
     setSearchQuery(query);
   };
 
-  useEffect(() => {
-    const storedProduct = localStorage.getItem("selectedProduct");
-    console.log("Stored Product:", storedProduct);
-    if (storedProduct) {
-      setSelectedProduct(storedProduct);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedProduct = localStorage.getItem("selectedProduct");
+  //   console.log("Stored Product:", storedProduct);
+  //   if (storedProduct) {
+  //     setSelectedProduct(storedProduct);
+  //   }
+  // }, []);
 
   const products = {
     CoffeeLatte: [

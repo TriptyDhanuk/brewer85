@@ -457,50 +457,53 @@ const Home = () => {
     setIsSidebarOpen(!isSidebarOpen);
     console.log(isSidebarOpen);
   };
+  const toggleSidebarClose= () => {
+    setIsSidebarOpen(false);
+    console.log(isSidebarOpen);
+  };
   return (
-    <div className={`body sidebar ${isSidebarOpen ? "open" : ""}`}>
-      <div
-        className={`sidebar ${
-          isSidebarOpen ? "open" : ""
-        } fixed w-64 top-0 left-0 bottom-0 bg-white z-30 -translate-x-64 duration-300 [&.open]:translate-x-0`}
-      >
-        <div className="logo absolute top-3 -right-10" onClick={toggleSidebar}>
-          <box-icon name="menu"></box-icon>
-        </div>
-        {/* <nav>
-            <ul className="my-5">
-              <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
-              <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
-              <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
-            </ul>
-          </nav> */}
+    <div className={`body sidebar ${isSidebarOpen ? "open" : ""} [&>.main-nav>.nav-box]:-translate-x-64 [&.open>.main-nav>.nav-box]:translate-x-0 [&.open>.main-nav>.overlay]:opacity-50 [&.open>.main-nav>.overlay]:visible`}>
+      <div className="main-nav relative z-10">
+        <div className="nav-box fixed w-64 top-0 left-0 bottom-0 bg-white duration-300 z-30">
+          <div className="logo absolute top-3 -right-10" onClick={toggleSidebar}>
+            <box-icon name="menu"></box-icon>
+          </div>
+          {/* <nav>
+              <ul className="my-5">
+                <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
+                <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
+                <li><a href="#" className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500">Biriyani</a></li>
+              </ul>
+            </nav> */}
 
-      {/* sidebar */}
-        <nav>
-          <ul className="my-5">
-            {Object.keys(products).map((category) => (
-              <li key={category}>
-                <ul>
-                  {products[category].map((product) => (
-                    <li
-                      key={product.id}
-                      onClick={() => handleProductItemClick(product.name)}
-                      className="cursor-pointer"
-                    >
-                      <a
-                        href="/menu"
-                        className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500"
-                        key={product.name}
+        {/* sidebar */}
+          <nav>
+            <ul className="my-5">
+              {Object.keys(products).map((category) => (
+                <li key={category}>
+                  <ul>
+                    {products[category].map((product) => (
+                      <li
+                        key={product.id}
+                        onClick={() => handleProductItemClick(product.name)}
+                        className="cursor-pointer"
                       >
-                        {product.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </nav>
+                        <a
+                          href="/menu"
+                          className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500"
+                          key={product.name}
+                        >
+                          {product.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+        <div className="overlay fixed inset-0 bg-black opacity-0 duration-300 invisible" onClick={toggleSidebarClose}></div>
       </div>
       <div className="header py-3 px-4">
         <div className="flex flex-wrap">

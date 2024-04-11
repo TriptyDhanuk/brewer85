@@ -37,6 +37,7 @@ import MenuCard from "../../components/MenuItem/MenuCard";
 import { Container } from "react-floating-action-button";
 import ViewCart from "../CartButton/ViewCart";
 import { Link } from "react-router-dom";
+import Logo from "../../images/logo.jpg";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -479,6 +480,7 @@ const Home = () => {
         {/* sidebar */}
           <nav>
             <ul className="my-5">
+            <Link to="/home"><li><img src={Logo} alt="Logo" className='w-20 h-20 mx-auto mb-5 object-cover rounded-full' /></li></Link>
               {Object.keys(products).map((category) => (
                 <li key={category}>
                   <ul>

@@ -30,10 +30,13 @@ import CartIconBadge from "../CartIconBadge";
 import Wishlist from "../../components/Wishlist";
 import { Container } from "react-floating-action-button";
 import ViewCart from "../CartButton/ViewCart";
+import Logo from "../../images/logo.jpg";
+import { Link } from "react-router-dom";
 
 const MenuItem = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const storedProduct = localStorage.getItem("selectedProduct");
@@ -375,15 +378,72 @@ const MenuItem = () => {
     product.name.toLowerCase().includes(searchQuery)
   );
 
+  const handleProductItemClick = (productName) => {
+    setSelectedProduct(productName);
+    toggleSidebarClose();
+    console.log("Selected product:", productName);
+  };
+  const toggleSidebarClose = () => {
+    setIsSidebarOpen(false);
+    console.log(isSidebarOpen);
+  };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    console.log(isSidebarOpen);
+  };
+
   return (
-    <div className="body px-4">
+    <div
+      className={`body px-4 sidebar ${
+        isSidebarOpen ? "open" : ""
+      } [&>.main-nav>.nav-box]:-translate-x-64 [&.open>.main-nav>.nav-box]:translate-x-0 [&.open>.main-nav>.overlay]:opacity-50 [&.open>.main-nav>.overlay]:visible [&.open]:overflow-hidden [&.open]:fixed [&.open]:inset-0`}
+    >
+      <div className="main-nav relative z-[25]">
+        <div className="nav-box fixed w-64 top-0 left-0 bottom-0 bg-white duration-300 z-30">
+          <div
+            className="logo absolute top-3 -right-10"
+            onClick={toggleSidebar}
+          >
+            <box-icon name="menu"></box-icon>
+          </div>
+
+          {/* sidebar */}
+          <nav>
+            <ul className="my-5">
+            <Link to="/home"><li><img src={Logo} alt="Logo" className='w-20 h-20 mx-auto mb-5 object-cover rounded-full' /></li></Link>
+            
+                
+              {Object.keys(products).map((category) => (
+                <li key={category}>
+                  <ul>
+                    {products[category].map((product) => (
+                      <li
+                        key={product.id}
+                        onClick={() => handleProductItemClick(product.name)}
+                        className="cursor-pointer"
+                      >
+
+                          <Link  to={`/menu`} className="block py-2 px-4 font-lg font-semibold text-gray-700 hover:text-lime-500"
+                          key={product.name} >
+                          {product.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+        <div
+          className="overlay fixed inset-0 bg-black opacity-0 duration-300 invisible"
+          onClick={toggleSidebarClose}
+        ></div>
+      </div>
       <div className="header py-3">
         <nav className="flex flex-wrap">
-          <div className="logo" onClick={handleGoBack}>
-            {" "}
-            <box-icon name="arrow-back"></box-icon>
-            <h4 className="">Menu Item</h4>
-          </div>
+          <h4 className="ml-7">Menu Item</h4>
+
           <div className="flex items-center ml-auto">
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />

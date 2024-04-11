@@ -21,7 +21,7 @@ import bir from "../../images/bir.avif";
 import ice1 from "../../images/ice1.avif";
 import dri from "../../images/dri.jpg";
 import fullImage from "../../images/food-full-image-01.jpg";
-import noodles from "../../images/noodles.png";
+import chinese from "../../images/chinese.jpg";
 import drinks from "../../images/drinks.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -117,7 +117,7 @@ const MenuItem = () => {
     Chinese: [
       {
         id: 666,
-        image: noodles,
+        image: chinese,
         name: "Chinese",
         price: "120",
         discount: "60% off",
@@ -315,21 +315,21 @@ const MenuItem = () => {
     Chinese: [
       {
         id: 18,
-        image: noodles,
+        image: chinese,
         name: "Chinese",
         price: "125",
         discount: "60% off",
       },
       {
         id: 19,
-        image: noodles,
+        image: chinese,
         name: "Chinese 1",
         price: "165",
         discount: "60% off",
       },
       {
         id: 20,
-        image: noodles,
+        image: chinese,
         name: "Chinese 2",
         price: "155",
         discount: "60% off",
@@ -394,7 +394,7 @@ const MenuItem = () => {
 
   return (
     <div
-      className={`body px-4 sidebar ${
+      className={`body mb-24 px-4 sidebar ${
         isSidebarOpen ? "open" : ""
       } [&>.main-nav>.nav-box]:-translate-x-64 [&.open>.main-nav>.nav-box]:translate-x-0 [&.open>.main-nav>.overlay]:opacity-50 [&.open>.main-nav>.overlay]:visible [&.open]:overflow-hidden [&.open]:fixed [&.open]:inset-0`}
     >

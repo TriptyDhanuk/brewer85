@@ -13,7 +13,7 @@ import image3 from "../../images/image3.png";
 import image4 from "../../images/image4.png";
 import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
-import noodles from "../../images/noodles.png";
+import chinese from "../../images/chinese.jpg";
 import drinks from "../../images/drinks.png";
 import piz from "../../images/piz.jpg";
 import br from "../../images/br.jpg";
@@ -127,7 +127,7 @@ const ProductDetails = () => {
     Chinese: [
       {
         id: 666,
-        image: noodles,
+        image: chinese,
         name: "Chinese",
         price: "120",
         discount: "60% off",
@@ -325,21 +325,21 @@ const ProductDetails = () => {
     Chinese: [
       {
         id: 18,
-        image: noodles,
+        image: chinese,
         name: "Chinese",
         price: "125",
         discount: "60% off",
       },
       {
         id: 19,
-        image: noodles,
+        image: chinese,
         name: "Chinese 1",
         price: "165",
         discount: "60% off",
       },
       {
         id: 20,
-        image: noodles,
+        image: chinese,
         name: "Chinese 2",
         price: "155",
         discount: "60% off",

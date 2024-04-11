@@ -18,6 +18,7 @@ import g4 from "../../images/g4.jpg";
 import g5 from "../../images/g5.jpg";
 import g6 from "../../images/g6.jpg";
 import noodles from "../../images/noodles.png";
+import chinese from "../../images/chinese.jpg";
 import dri from "../../images/dri.jpg";
 import fullImage from "../../images/food-full-image-01.jpg";
 import ProductCard from "../ProductCard/ProductCard";
@@ -147,7 +148,7 @@ const Home = () => {
     Chinese: [
       {
         id: 666,
-        image: noodles,
+        image: chinese,
         name: "Chinese",
         price: "120",
         discount: "60% off",

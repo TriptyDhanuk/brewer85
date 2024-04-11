@@ -462,8 +462,8 @@ const Home = () => {
     console.log(isSidebarOpen);
   };
   return (
-    <div className={`body sidebar ${isSidebarOpen ? "open" : ""} [&>.main-nav>.nav-box]:-translate-x-64 [&.open>.main-nav>.nav-box]:translate-x-0 [&.open>.main-nav>.overlay]:opacity-50 [&.open>.main-nav>.overlay]:visible`}>
-      <div className="main-nav relative z-10">
+    <div className={`body sidebar ${isSidebarOpen ? "open" : ""} [&>.main-nav>.nav-box]:-translate-x-64 [&.open>.main-nav>.nav-box]:translate-x-0 [&.open>.main-nav>.overlay]:opacity-50 [&.open>.main-nav>.overlay]:visible [&.open]:overflow-hidden [&.open]:fixed [&.open]:inset-0`}>
+      <div className="main-nav relative z-[5]">
         <div className="nav-box fixed w-64 top-0 left-0 bottom-0 bg-white duration-300 z-30">
           <div className="logo absolute top-3 -right-10" onClick={toggleSidebar}>
             <box-icon name="menu"></box-icon>
@@ -505,7 +505,7 @@ const Home = () => {
         </div>
         <div className="overlay fixed inset-0 bg-black opacity-0 duration-300 invisible" onClick={toggleSidebarClose}></div>
       </div>
-      <div className="header py-3 px-4">
+      <div className="header py-3 px-4 bg-white sticky top-0 z-[4]">
         <div className="flex flex-wrap">
           <h4 className="ml-7">Home</h4>
           <div className="flex items-center ml-auto">

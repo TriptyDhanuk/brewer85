@@ -520,7 +520,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="body px-4">
+    <div className="body px-4 lg:h-screen">
       <div className="fixed max-w-[450px] top-2 left-1/2 -translate-x-1/2">
         {notification && (
           <Notification
@@ -543,8 +543,8 @@ const ProductDetails = () => {
       </div>
       {product && (
         <>
-          <div>
-            <div className="mainProductDtl flex flex-wrap -mx-4">
+          <div className="lg:h-[calc(100%-4rem)]">
+            <div className="mainProductDtl flex flex-wrap -mx-4 h-full">
               <div className="lg:w-6/12 w-full mb-5 px-4 relative">
                 <img
                   src={product.image}
@@ -561,18 +561,16 @@ const ProductDetails = () => {
                     }
                   }
                 />
-                <div className="product-details-image-container">
-                  <div className="product-details-kcal-circle">
-                    <div className="product-details-cal-value">25</div>
-                    <div className="product-details-cal-unit">Cal</div>
+                  <div className="w-20 h-20 bg-white rounded-full shadow-2xl flex flex-col justify-center items-center absolute lg:bottom-4 right-8 -bottom-10">
+                    <div className="text-4xl font-bold leading-8">25</div>
+                    <div className="text-lg font-bold leading-6">Cal</div>
                   </div>
-                </div>
               </div>
               <div className="lg:w-6/12 w-full px-4">
-                <div className="product-details-content">
+                <div className="flex items-center">
                   <div className="product-details-info py-8">
                     <div className="mb-5">
-                      <h3 className="mb-4 xl:text-3xl text-2xl font-semibold text-slate-900">
+                      <h3 className="mb-4 lg:text-3xl text-2xl font-semibold text-slate-900">
                         {product.name}
                       </h3>
                       <p className="text-md font-semibold text-pink-600 flex items-center">
@@ -668,7 +666,7 @@ const ProductDetails = () => {
                       <div className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700">
                         <div className="flex items-center gap-x-1.5">
                           <button
-                            className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                            className="lg:size-10 size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                             onClick={handleMinusClick}
                           >
                             <svg
@@ -686,11 +684,11 @@ const ProductDetails = () => {
                               <path d="M5 12h14" />
                             </svg>
                           </button>
-                          <span className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0 dark:text-white">
+                          <span className="p-0 w-6 lg:text-xl font-semibold text-gray-800 text-center focus:ring-0 dark:text-white border-0 bg-transparent">
                             {quantity}
                           </span>
                           <button
-                            className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                            className="lg:size-10 size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                             onClick={handlePlusClick}
                           >
                             <svg
@@ -725,22 +723,23 @@ const ProductDetails = () => {
                         </span>
                       </span>
                     </div> */}
-
-                    <button
-                      className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150 max-md:w-full"
-                      onClick={handleAddToCart}
-                    >
-                      ADD TO MY ORDER
-                    </button>
-
-                    <Link to="/checkout">
+                    <div className="flex gap-2">
                       <button
-                        className="py-3 px-5 text-white font-semibold bg-orange-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150 max-md:w-full"
+                        className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150 max-md:w-full"
                         onClick={handleAddToCart}
                       >
-                        View Cart
+                        ADD TO MY ORDER
                       </button>
-                    </Link>
+
+                      <Link to="/checkout">
+                        <button
+                          className="py-3 px-5 text-white font-semibold uppercase bg-orange-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150 max-md:w-full"
+                          onClick={handleAddToCart}
+                        >
+                          View Cart
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

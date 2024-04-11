@@ -133,9 +133,7 @@ const Gourmet = () => {
           ))}
         </div>
       </div>
-      <Container>
-        <ViewCart />
-      </Container>
+      <ViewCart />
     </div>
   );
 };

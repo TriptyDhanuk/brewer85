@@ -495,7 +495,7 @@ const ProductDetails = () => {
     setNotification({ name: product.name, quantity: quantity });
     setTimeout(() => {
       setNotification(null);
-    }, 300000);
+    }, 3000);
   };
 
   const handlePlusClick = () => {

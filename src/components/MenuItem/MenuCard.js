@@ -98,7 +98,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     setNotification({ name: item.name, quantity: quantity });
     setTimeout(() => {
       setNotification(null);
-    }, 300000);
+    }, 3000);
   };
 
   const handleImgClick = () => {

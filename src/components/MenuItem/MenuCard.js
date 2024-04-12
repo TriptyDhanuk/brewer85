@@ -98,7 +98,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
     setNotification({ name: item.name, quantity: quantity });
     setTimeout(() => {
       setNotification(null);
-    }, 3000);
+    }, 300000);
   };
 
   const handleImgClick = () => {
@@ -224,7 +224,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
             }}
           ></box-icon>
         </button>
-      <div className="fixed top-8 left-4 right-4 z-30 text-center">
+      <div className="fixed top-8 left-4 right-4 z-30 text-center flex flex-col items-center gap-y-2">
       {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
       {notification && (
         <Notification

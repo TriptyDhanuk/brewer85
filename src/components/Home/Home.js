@@ -733,7 +733,7 @@ const Home = () => {
           </div>
         </Slider>
       </div>
-      <div className="mb-10 pt-10 px-5 max-lg:pb-16">
+      <div className="mb-10 pt-10 px-5 max-lg:px-3 max-lg:pb-16">
         <h3 className="text-xl font-semibold text-slate-800 mb-3">
           Gourmet Collection
         </h3>

@@ -88,21 +88,23 @@ const Gourmet = () => {
   };
 
   return (
-    <div className="body px-4">
-      <div className="header py-3">
-        <nav className="flex flex-wrap">
+    <div className="body">
+      <div className="header py-3 px-4 bg-white sticky top-0 z-[20]">
+        <div className="flex flex-wrap">
           <div className="logo" onClick={handleGoBack}>
             {" "}
             <box-icon name="arrow-back"></box-icon>
-            <h4 className="">Gourmet</h4>
           </div>
-          <div className="flex items-center ml-auto">
+          <div className="mx-auto px-4 text-center">
+            <h4 className="font-bold">Gourmet</h4>
+          </div>
+          <div className="flex items-center absolute right-5">
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />
           </div>
-        </nav>
+        </div>
       </div>
-      <div className="top-search mb-3">
+      <div className="top-search mb-3 px-4">
         <input
           type="text"
           placeholder=" What are you looking for ?"
@@ -113,10 +115,10 @@ const Gourmet = () => {
       </div>
 
       <div>
-        <h3 className="text-xl font-semibold text-slate-800 mb-3">
+        <h3 className="text-xl font-semibold text-slate-800 mb-3 px-4">
           Gourmet Products
         </h3>
-        <div className="product-filter flex flex-wrap sm:-mx-[0.625rem] gap-y-5">
+        <div className="product-filter flex flex-wrap sm:-mx-[0.625rem] gap-y-5 lg:px-4 px-2">
           {filteredProductsByName.map((product) => (
             <div
               key={product.id}

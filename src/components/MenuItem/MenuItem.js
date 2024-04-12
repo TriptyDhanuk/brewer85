@@ -394,7 +394,7 @@ const MenuItem = () => {
 
   return (
     <div
-      className={`body mb-24 px-4 sidebar ${
+      className={`body mb-24 sidebar ${
         isSidebarOpen ? "open" : ""
       } [&>.main-nav>.nav-box]:-translate-x-64 [&.open>.main-nav>.nav-box]:translate-x-0 [&.open>.main-nav>.overlay]:opacity-50 [&.open>.main-nav>.overlay]:visible [&.open]:overflow-hidden [&.open]:fixed [&.open]:inset-0`}
     >
@@ -440,15 +440,17 @@ const MenuItem = () => {
           onClick={toggleSidebarClose}
         ></div>
       </div>
-      <div className="header py-3">
-        <nav className="flex flex-wrap">
-          <h4 className="ml-7">Menu Item</h4>
+      <div className="header py-3 px-4 bg-white sticky top-0 z-[20]">
+        <div className="flex flex-wrap">
+          <div className="mx-auto px-4 text-center">
+            <h4 className="font-bold">Menu Item</h4>
+          </div>
 
-          <div className="flex items-center ml-auto">
+          <div className="flex items-center absolute right-5">
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />
           </div>
-        </nav>
+        </div>
       </div>
 
       <div className="top-search mb-3">

@@ -93,7 +93,7 @@ const ViewCart = () => {
   return (
     <>
       {allCartProductsCount > 0 && ( 
-        <button className={`view-cart-button py-3 px-5 rounded-2xl bg-orange-600 fixed z-10 bottom-5 right-5 max-sm:left-5 flex items-center text-white shadow-lg shadow-orange-300 opacity-0 translate-y-20 ${isVisible ? 'custom-class' : ''} [&.custom-class]:opacity-100 duration-300 [&.custom-class]:translate-y-0`} onClick={handleCheckout}>
+        <button className={`view-cart-button py-3 px-5 rounded-2xl bg-orange-600 fixed z-10 bottom-5 right-3 max-sm:left-3 flex items-center text-white shadow-lg shadow-orange-300 opacity-0 translate-y-20 ${isVisible ? 'custom-class' : ''} [&.custom-class]:opacity-100 duration-300 [&.custom-class]:translate-y-0`} onClick={handleCheckout}>
           <div className="mr-3 pr-1 border-r border-solid border-orange-300">
             <img src={carticon} className="grayscale invert max-lg:w-7" alt="Cart Icon" />
           </div>

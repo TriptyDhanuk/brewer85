@@ -138,35 +138,35 @@ const MenuItem = () => {
       {
         id: 205,
         image: g4,
-        name: "CoffeeLatte",
+        name: "CoffeeLatte205",
         price: "125",
         discount: "60% off",
       },
       {
         id: 212,
         image: g4,
-        name: "CoffeeLatte",
+        name: "CoffeeLatte212",
         price: "125",
         discount: "60% off",
       },
       {
         id: 213,
         image: g4,
-        name: "CoffeeLatte",
+        name: "CoffeeLatte213",
         price: "125",
         discount: "60% off",
       },
       {
         id: 214,
         image: g4,
-        name: "CoffeeLatte",
+        name: "CoffeeLatte214",
         price: "125",
         discount: "60% off",
       },
       {
         id: 215,
         image: g4,
-        name: "CoffeeLatte",
+        name: "CoffeeLatte215",
         price: "125",
         discount: "60% off",
       },
@@ -515,9 +515,7 @@ const MenuItem = () => {
           ))}
         </div> */}
       </div>
-      <Container>
         <ViewCart />
-      </Container>
     </div>
   );
 };

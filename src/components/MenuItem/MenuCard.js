@@ -119,7 +119,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
           <div onClick={handleImgClick}>
             <h3 className="text-lg font-semibold text-white">
               {name}
-              {id}
+              {/* {id} */}
             </h3>
             <p className="mb-1 text-sm font-normal text-white">yahoo comidia</p>
           </div>

@@ -39,12 +39,21 @@ import { Container } from "react-floating-action-button";
 import ViewCart from "../CartButton/ViewCart";
 import { Link } from "react-router-dom";
 import Logo from "../../images/logo.jpg";
+import Loader from "./loader.gif";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   console.log("selectedProduct", selectedProduct);
   useEffect(() => {
@@ -463,6 +472,15 @@ const Home = () => {
     setIsSidebarOpen(false);
     console.log(isSidebarOpen);
   };
+
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <img src={Loader} alt="Loading..." />
+      </div>
+    );
+  }
+  
   return (
     <div className={`body sidebar ${isSidebarOpen ? "open" : ""} [&>.main-nav>.nav-box]:-translate-x-64 [&.open>.main-nav>.nav-box]:translate-x-0 [&.open>.main-nav>.overlay]:opacity-50 [&.open>.main-nav>.overlay]:visible [&.open]:overflow-hidden [&.open]:fixed [&.open]:inset-0`}>
       <div className="main-nav relative z-[25]">

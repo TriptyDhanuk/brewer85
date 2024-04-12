@@ -138,7 +138,7 @@ const CheckOut = () => {
 
   return (
     <div className="body px-4">
-      <div className="fixed max-w-[450px] top-2 left-1/2 -translate-x-1/2 z-30">
+      <div className="fixed top-8 left-4 right-4 z-30 text-center">
         {wishlistNoti && (
           <WishlistNotification productName={wishlistNoti.name} />
         )}

@@ -4,7 +4,7 @@ import './Notification.css';
 
 const Notification = ({ quantity, productName }) => {
   return (
-    <div className="notification-container">
+    <div className="py-2 px-4 textr-lg font-semibold text-white text-center rounded-lg bg-green-500 inline-block">
       <div className="notification">
         {quantity} {productName} added to cart
       </div>

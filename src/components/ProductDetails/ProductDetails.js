@@ -495,7 +495,7 @@ const ProductDetails = () => {
     setNotification({ name: product.name, quantity: quantity });
     setTimeout(() => {
       setNotification(null);
-    }, 3000);
+    }, 300000);
   };
 
   const handlePlusClick = () => {
@@ -521,7 +521,7 @@ const ProductDetails = () => {
 
   return (
     <div className="body px-4 lg:h-screen">
-      <div className="fixed max-w-[450px] top-2 left-1/2 -translate-x-1/2">
+      <div className="fixed top-8 left-4 right-4 z-30 text-center">
         {notification && (
           <Notification
             quantity={notification.quantity}

@@ -144,22 +144,24 @@ const CheckOut = () => {
         )}
         {isRemoved && <RemoveNotification />}
       </div>
-      <div className="header py-3">
+      <div className="header py-3 bg-white sticky top-0 z-10">
         <nav className="flex flex-wrap">
           <div className="logo" onClick={handleGoBack}>
             <box-icon name="arrow-back"></box-icon>
-            <h4 className="">Checkout</h4>
           </div>
-          <div className="ml-auto">
+          <div className="mx-auto px-4 text-center">
+            <h4 className="font-bold">Checkout</h4>
+          </div>
+          <div className="flex items-center">
             <Wishlist style={{ marginRight: "10px" }} />
           </div>
         </nav>
       </div>
 
       <div className="items-container">
-        <div className="cart-message">
-          <h1>My Orders</h1>
-        </div>
+        {/* <div className="cart-message text-center">
+          <h2 className="font-bold text-center mb-3">My Orders</h2>
+        </div> */}
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <div
@@ -167,34 +169,34 @@ const CheckOut = () => {
               className="item mb-3 p-3 flex items-center flex-wrap justify-between gap-y-5 border border-solid border-slate-200 rounded-md"
             >
               <div className="flex">
-              <div className="mr-4">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{ height: "134px", width: "141px" }}
-                  onClick={() => handleImgClick(item.id)}
-                />
-              </div>
-              <div className="item-details">
-                <div className="product-details checkout">
-                  <h3 className="mb-1 text-lg font-semibold">{item.name}</h3>
-                  <p className="font-semibold text-slate-500">
-                    yahoo comidia
-                  </p>{" "}
-                  <div className="price-tag">
-                    <span>
-                      <strong>
-                        AED{" "}
-                        <span style={{ fontSize: "1.2rem" }}>{item.price}</span>
-                      </strong>
-                    </span>
+                <div className="shrink-0 rounded-lg overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    onClick={() => handleImgClick(item.id)}
+                    className="block w-28 h-28 object-cover"
+                  />
+                </div>
+                <div className="item-details">
+                  <div className="product-details checkout ml-5 shrink-0">
+                    <h3 className="mb-1 text-lg font-semibold">{item.name}</h3>
+                    <p className="font-semibold text-slate-500">
+                      yahoo comidia
+                    </p>{" "}
+                    <div className="price-tag">
+                      <span>
+                        <strong>
+                          AED{" "}
+                          <span style={{ fontSize: "1.2rem" }}>{item.price}</span>
+                        </strong>
+                      </span>
 
-                    <sup className="text-sm font-bold text-red-600 ml-2">
-                      {item.discount}
-                    </sup>
+                      <sup className="text-sm font-bold text-red-600 ml-2">
+                        {item.discount}
+                      </sup>
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
               <div className="box_wapper_wish_list flex">
               <div className="item-actions">
@@ -414,11 +416,9 @@ const CheckOut = () => {
             <div className="mb-5 text-right">
               <Link to="/thankyou">
                 <button
-                  className="py-3 px-5 text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 duration-150"
+                  className="py-3 px-5 uppercase text-white font-semibold bg-lime-600 rounded-lg whitespace-nowrap hover:bg-slate-800 max-sm:w-full duration-150"
                   onClick={handlePlaceOrder}
-                >
-                  PLACE ORDER
-                </button>
+                >Place Order</button>
               </Link>
             </div>
           </>

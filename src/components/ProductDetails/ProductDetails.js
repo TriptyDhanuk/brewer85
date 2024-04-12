@@ -529,23 +529,26 @@ const ProductDetails = () => {
           />
         )}
       </div>
-      <div className="header py-3">
-        <nav className="flex flex-wrap">
+      <div className="header py-3 bg-white sticky top-0 z-10">
+        <div className="flex flex-wrap">
           <div className="product-details-logo" onClick={handleGoBack}>
             <box-icon name="arrow-back"></box-icon>
-            <h4 className="product-details-title">Product Details</h4>
           </div>
-          <div className="flex items-center ml-auto">
+          <div className="mx-auto px-4 text-center">
+            <h4 className="font-bold">Product Details</h4>
+          </div>
+          <div className="flex items-center">
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />
           </div>
-        </nav>
+        </div>
       </div>
       {product && (
         <>
           <div className="lg:h-[calc(100%-4rem)]">
             <div className="mainProductDtl flex flex-wrap -mx-4 h-full">
               <div className="lg:w-6/12 w-full mb-5 px-4 relative">
+                <div className="h-full rounded-2xl overflow-hidden">
                 <img
                   src={product.image}
                   alt="Product"
@@ -561,6 +564,7 @@ const ProductDetails = () => {
                     }
                   }
                 />
+                </div>
                   <div className="w-20 h-20 bg-white rounded-full shadow-2xl flex flex-col justify-center items-center absolute lg:bottom-4 right-8 -bottom-10">
                     <div className="text-4xl font-bold leading-8">25</div>
                     <div className="text-lg font-bold leading-6">Cal</div>

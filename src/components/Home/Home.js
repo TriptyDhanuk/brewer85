@@ -299,7 +299,7 @@ const Home = () => {
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
@@ -307,7 +307,7 @@ const Home = () => {
       {
         breakpoint: 420,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -510,50 +510,53 @@ const Home = () => {
       </div>
       <div className="header py-3 px-4 bg-white sticky top-0 z-[20]">
         <div className="flex flex-wrap">
-          <h4 className="ml-7">Home</h4>
-          <div className="flex items-center ml-auto">
+          <div className="mx-auto px-4 text-center">
+            <h4 className="font-bold">Home</h4>
+          </div>
+          <div className="flex items-center">
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />
           </div>
         </div>
       </div>
-      <Slider {...settingsMy} className="mb-3 px-4">
-        <div className="slider-banner px-2 overflow-hidden">
+      {/* [&>.slick-list>.slick-track>.slick-slide] */}
+      <Slider {...settingsMy} className="mb-3 [&>.slick-list>.slick-track]:flex [&>.slick-list>.slick-track>.slick-slide]:float-none [&>.slick-list>.slick-track]:gap-x-4">
+        <div className="slider-banner overflow-hidden">
           <img
             src={b2}
             className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg"
             alt="ban1"
           />
         </div>
-        <div className="slider-banner px-2 overflow-hidden">
+        <div className="slider-banner overflow-hidden gap-x">
           <img
             src={p1}
             className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg"
             alt="ban2"
           />
         </div>
-        <div className="slider-banner px-2 overflow-hidden">
+        <div className="slider-banner overflow-hidden">
           <img
             src={b5}
             className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg"
             alt="ban3"
           />
         </div>
-        <div className="slider-banner px-2 overflow-hidden">
+        <div className="slider-banner overflow-hidden">
           <img
             src={b2}
             className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg"
             alt="ban1"
           />
         </div>
-        <div className="slider-banner px-2 overflow-hidden">
+        <div className="slider-banner overflow-hidden">
           <img
             src={p1}
             className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg"
             alt="ban2"
           />
         </div>
-        <div className="slider-banner px-2 overflow-hidden">
+        <div className="slider-banner overflow-hidden">
           <img
             src={b5}
             className="w-100px w-full md:h-[25vh] h-[20vh] object-cover block rounded-lg"
@@ -562,8 +565,8 @@ const Home = () => {
         </div>
       </Slider>
 
-      <div className="px-4">
-        <div className="top-search mb-5">
+      <div>
+        <div className="top-search mb-5 px-4">
           <input
             type="text"
             placeholder=" What are you looking for ?"
@@ -574,7 +577,7 @@ const Home = () => {
         </div>
 
         <div className="products mb-10">
-          <h3 className="text-xl font-semibold text-slate-800 main_heading mb-3">
+          <h3 className="text-xl font-semibold text-slate-800 main_heading mb-3 px-4">
             <span>What's on your mind?</span>
           </h3>
 
@@ -588,8 +591,8 @@ const Home = () => {
                     className="product-item !block !mx-auto"
                     key={product.name}
                   >
-                    <div className="w-full h-28 md:h-48 overflow-hidden relative">
-                      <div className="w-28 h-28 md:w-48 md:h-48 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative mx-auto">
+                    <div className="w-full h-32 md:h-48 overflow-hidden relative">
+                      <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative mx-auto">
                         <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden">
                           <img
                             src={product.image}
@@ -616,9 +619,7 @@ const Home = () => {
         </div>
 
         <div className="mb-10">
-          <h3 className="text-xl font-semibold text-slate-800 mb-3">
-            Most Popular
-          </h3>
+          <h3 className="text-xl font-semibold text-slate-800 mb-3 px-4">Most Popular</h3>
           <Slider {...settings}>
             {Object.keys(products).map((category) =>
               products[category].map((product) => (
@@ -667,19 +668,14 @@ const Home = () => {
           />
         </div>
       </Slider> */}
-      <div className="p-4 bg-blue-800 relative">
-        <div className="absolute inset-0 max-md:bg-black opacity-50 z-[1]"></div>
-        <h3 className="text-xl font-semibold text-white mb-3 relative z-[2]">
-          Today's Special Items
-        </h3>
+      <div className=" bg-blue-800 relative">
+        <div className="absolute inset-0 bg-black opacity-50 z-[1]"></div>
+        
         {/* Text and button container */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="text-center">
-            <div className="text-black bg-opacity-75 relative before:content-[''] before:absolute before:-inset-10 sm:before:bg-white before:blur-2xl max-sm:text-white max-sm:[text-shadow:_0_1px_6px_rgba(0,0,0,1)]">
-              <h2 className="text-3xl font-bold relative z-[1]">
-                Grab Your Craving Now
-              </h2>
-            </div>
+          <div className="text-center text-white">
+            <h2 className="text-xl font-semibold mb-3 relative z-[11]">Today's Special Items</h2>
+            <h3 className="md:text-3xl text-2xl font-bold relative z-[1]">Grab Your Craving Now</h3>
 
             <div className="lg:mt-8 mt-4 relative z-[1]">
               <a
@@ -697,23 +693,23 @@ const Home = () => {
           {...topOne}
           className="z-0 [&>.slick-list>.slick-track]:flex [&>.slick-list>.slick-track>.slick-slide]:float-none [&>.slick-list>.slick-track>.slick-slide]:h-auto [&>.slick-list>.slick-track>.slick-slide>div]:h-full [&>.slick-list>.slick-track>.slick-slide>div>.slider-banner]:h-full [&>.slick-list>.slick-track>.slick-slide>div>.slider-banner>img]:h-full"
         >
-          <div className="slider-banner px-2 overflow-hidden">
+          <div className="slider-banner overflow-hidden">
             <img
               src={ice}
-              className="w-50px h-25 block rounded-lg"
+              className="w-50px h-25 block"
               alt="ban3"
             />
           </div>
-          <div className="slider-banner px-2 overflow-hidden">
-            <img src={t1} className="w-50px h-25 block rounded-lg" alt="ban1" />
+          <div className="slider-banner overflow-hidden">
+            <img src={t1} className="w-50px h-25 block" alt="ban1" />
           </div>
-          <div className="slider-banner px-2 overflow-hidden">
-            <img src={t2} className="w-50px h-25 block rounded-lg" alt="ban2" />
+          <div className="slider-banner overflow-hidden">
+            <img src={t2} className="w-50px h-25 block" alt="ban2" />
           </div>
-          <div className="slider-banner px-2 overflow-hidden">
+          <div className="slider-banner overflow-hidden">
             <img
               src={rollpasta}
-              className="w-50px h-25 block rounded-lg"
+              className="w-50px h-25 block"
               alt="ban3"
             />
           </div>

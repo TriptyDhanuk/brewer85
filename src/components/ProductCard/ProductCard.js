@@ -130,6 +130,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
     console.log("Item saved for later:", item);
   };
   return (
+    <>
     <div className="relative mx-[0.625rem]">
       <div className="product-card border border-solid border-slate-200 rounded-lg relative h-[280px]">
         <div className="best-seller-ribbon absolute top-2 -left-[0.625rem] text-white py-2 pl-5 pr-2 font-bold bg-lime-600 after:content-[''] after:absolute after:top-0 after:right-[-19px] after:border-t-[18px] after:border-l-[10px] after:border-b-[18px] after:border-r-[10px] after:border-t-lime-600 after:border-r-transparent after:border-b-lime-600 after:!border-l-lime-600 before:content-[''] before:absolute before:top-[100%] before:left-0 before:border-t-[10px] before:border-l-[10px] before:border-b-[10px] before:border-t-lime-900 before:border-l-transparent  before:border-b-transparent text-sm">Best Seller</div>
@@ -265,7 +266,9 @@ const ProductCard = ({ id, image, name, price, discount }) => {
           }}
         ></box-icon>
       </button>
-      <div className="text-center absolute top-6 left-4 right-4 z-20">
+    </div>
+    
+    <div className="text-center absolute top-6 left-4 right-4 z-20">
         {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} className="absolute top-0" />}
         {notification && (
           <Notification
@@ -276,7 +279,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
         )}
         {isRemoved && <RemoveNotification />}
       </div>
-    </div>
+    </>
   );
 };
 

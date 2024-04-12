@@ -4,7 +4,7 @@ import './Notification.css';
 
 const RemoveNotification = () => {
   return (
-    <div className="notification-container">
+    <div className="py-2 px-4 textr-lg font-semibold text-white text-center rounded-lg bg-red-500 inline-block">
       <div className="notification">
         Successfully removed this item
       </div>

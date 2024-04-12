@@ -591,8 +591,8 @@ const Home = () => {
                     className="product-item !block !mx-auto"
                     key={product.name}
                   >
-                    <div className="w-full h-28 md:h-48 overflow-hidden relative">
-                      <div className="w-28 h-28 md:w-48 md:h-48 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative mx-auto">
+                    <div className="w-full h-32 md:h-48 overflow-hidden relative">
+                      <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-solid border-gray-300 bg-gray-300 relative mx-auto">
                         <div className="w-full h-full rounded-full border-2 border-dotted border-black overflow-hidden">
                           <img
                             src={product.image}

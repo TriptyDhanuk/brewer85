@@ -136,9 +136,9 @@ const MenuItem = () => {
   const productsMenu = {
     CoffeeLatte: [
       {
-        id: 205,
+        id: 206,
         image: g4,
-        name: "CoffeeLatte205",
+        name: "CoffeeLatte206",
         price: "125",
         discount: "60% off",
       },

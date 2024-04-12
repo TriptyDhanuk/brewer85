@@ -145,16 +145,18 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
         {isRemoved && <RemoveNotification />}
       </div>
 
-      <div className="header py-3">
-        <nav className="flex flex-wrap">
+      <div className="header py-3 bg-white sticky top-0 z-10">
+        <div className="flex flex-wrap">
           <div className="logo" onClick={handleGoBack}>
             <box-icon name="arrow-back"></box-icon>
-            <h4 className="">WishList</h4>
           </div>
-          <div className="ml-auto">
+          <div className="mx-auto px-4 text-center">
+            <h4 className="font-bold">WishList</h4>
+          </div>
+          <div className="flex items-center">
             <CartIconBadge />
           </div>
-        </nav>
+        </div>
       </div>
 
       <div className="items-container">
@@ -162,12 +164,12 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
           cartItems.map((item) => (
             <div key={item.id} className="item mb-3 p-3 flex items-center flex-wrap justify-between gap-y-5 border border-solid border-slate-200 rounded-md">
               <div className="flex">
-                <div className="shrink-0">
+                <div className="shrink-0 rounded-lg overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.name}
-                    style={{ height: "130px", width: "130px" }}
                     onClick={() => handleImgClick(item.id)}
+                    className="block w-28 h-28 object-cover"
                   />
                 </div>
                 <div className="item-details">

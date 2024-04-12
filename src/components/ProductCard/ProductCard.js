@@ -168,7 +168,7 @@ const ProductCard = ({ id, image, name, price, discount }) => {
               {isMenuPage && (<div className="flex items-center">
                 <div className="quantity-button w-1/2">
                   <div
-                    className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg dark:bg-slate-900 dark:border-gray-700"
+                    className="py-2 px-2 inline-block bg-white border border-gray-200 rounded-lg"
                     data-hs-input-number
                   >
                     <div className="flex items-center gap-x-1.5">

@@ -135,7 +135,7 @@ const SaveForLater = ({ id, image, name, price, discount, quantity }) => {
 
   return (
     <div className="body px-4">
-      <div className="fixed top-8 left-4 right-4 z-30 text-center">
+      <div className="fixed top-8 left-4 right-4 z-30 text-center flex flex-col items-center">
         {notification && (
           <Notification
             quantity={notification.quantity} productName={notification.name}

@@ -531,7 +531,7 @@ const Home = () => {
           <div className="mx-auto px-4 text-center">
             <h4 className="font-bold">Home</h4>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center absolute right-5">
             <Wishlist style={{ marginRight: "10px" }} />
             <CartIconBadge />
           </div>

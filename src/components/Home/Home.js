@@ -40,13 +40,19 @@ import ViewCart from "../CartButton/ViewCart";
 import { Link } from "react-router-dom";
 import Logo from "../../images/logo.jpg";
 import Loader from "./loader.gif";
+import Notification from "../Notificaiton/Notification";
+import WishlistNotification from "../Notificaiton/WishlistNotification";
+import RemoveNotification from "../Notificaiton/RemoveNotification";
 
 const Home = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]); 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [addToCart, setAddToCart] = useState(() => {});
+  const [addToWishlist, setAddToWishlist] = useState(() => {});
+  const [removeFromWishlist, setRemoveFromWishlist] = useState(() => {});
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -648,11 +654,25 @@ const Home = () => {
                     name={product.name}
                     price={product.price}
                     discount={product.discount}
+                    setAddToCart={setAddToCart}
+                    setAddToWishlist={setAddToWishlist}
+                    setRemoveFromWishlist={setRemoveFromWishlist}
                   />
                 </div>
               ))
             )}
           </Slider>
+          <div className="text-center absolute top-6 left-4 right-4 z-20">
+        {addToWishlist && <WishlistNotification productName={addToWishlist.name} className="absolute top-0" />}
+        {addToCart && (
+          <Notification
+            quantity={addToCart.quantity}
+            productName={addToCart.name}
+            className="absolute top-0"
+          />
+        )}
+        {removeFromWishlist && <RemoveNotification />}
+      </div>
         </div>
       </div>
 

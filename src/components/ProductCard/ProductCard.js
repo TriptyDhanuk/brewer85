@@ -15,7 +15,7 @@ import Notification from "../Notificaiton/Notification.js";
 import { selectSavedForLaterItems } from "../../features/cart/wishlistSlice";
 import { useLocation } from "react-router-dom";
 
-const ProductCard = ({ id, image, name, price, discount }) => {
+const ProductCard = ({ id, image, name, price, discount, setAddToCart,setAddToWishlist, setRemoveFromWishlist }) => {
   const location=useLocation();
   const saveItems = useSelector(selectSavedForLaterItems);
   const cartItems = useSelector(selectCartItems);
@@ -44,8 +44,14 @@ const ProductCard = ({ id, image, name, price, discount }) => {
     if (savedForLater) {
       dispatch(removeFromWishlist(id));
       setIsRemoved(true);
+      if (typeof setRemoveFromWishlist === 'function') {
+        setRemoveFromWishlist(true);
+      }
       setTimeout(() => {
         setIsRemoved(false);
+        if (typeof setRemoveFromWishlist === 'function') {
+          setRemoveFromWishlist(false);
+        }
       }, 3000);
     } else {
       const itemToAdd = {
@@ -58,13 +64,20 @@ const ProductCard = ({ id, image, name, price, discount }) => {
       };
       dispatch(addToWishlist(itemToAdd));
       setSavedForLater(true);
+      if (typeof setAddToWishlist === 'function') {
+        setAddToWishlist(true);
+      }
       setWishlistNoti({ name: itemToAdd.name });
       setTimeout(() => {
         setWishlistNoti(null);
+        if (typeof setAddToWishlist === 'function') {
+          setAddToWishlist(false);
+        }
       }, 3000);
     }
     setSavedForLater(!savedForLater);
   };
+  
 
   console.log("savedForLater", savedForLater);
 
@@ -102,8 +115,14 @@ const ProductCard = ({ id, image, name, price, discount }) => {
     localStorage.setItem("cartItems", JSON.stringify(existingItems));
     dispatch(addToCart(item));
     setNotification({ name: item.name, quantity: quantity });
+    if (typeof setAddToCart === 'function') {
+      setAddToCart({ name: item.name, quantity: quantity });
+    }
     setTimeout(() => {
       setNotification(null);
+      if (typeof setAddToCart === 'function') {
+        setAddToCart(null);
+      }
     }, 3000);
 
     console.log("Item added to cart:", item);

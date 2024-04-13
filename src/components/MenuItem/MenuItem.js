@@ -14,7 +14,7 @@ import g3 from "../../images/g3.jpg";
 import g4 from "../../images/g4.jpg";
 import g5 from "../../images/g5.jpg";
 import g6 from "../../images/g6.jpg";
-import piz from "../../images/piz.jpg";
+import piz from "../../images/pizza.jpg";
 import br from "../../images/br.jpg";
 import sk from "../../images/sk.jpg";
 import bir from "../../images/bir.avif";

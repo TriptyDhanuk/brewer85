@@ -15,7 +15,7 @@ import burger from "../../images/burger.png";
 import shakes from "../../images/shakes.png";
 import chinese from "../../images/chinese.jpg";
 import drinks from "../../images/drinks.png";
-import piz from "../../images/piz.jpg";
+import piz from "../../images/pizza.jpg";
 import br from "../../images/br.jpg";
 import sk from "../../images/sk.jpg";
 import bir from "../../images/bir.avif";

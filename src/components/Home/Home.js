@@ -6,7 +6,7 @@ import p1 from "../../images/p1.jpg";
 import b5 from "../../images/b5.png";
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
-import piz from "../../images/piz.jpg";
+import piz from "../../images/pizza.jpg";
 import br from "../../images/br.jpg";
 import sk from "../../images/sk.jpg";
 import bir from "../../images/bir.avif";

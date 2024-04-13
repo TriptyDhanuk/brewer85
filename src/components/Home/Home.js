@@ -662,7 +662,7 @@ const Home = () => {
               ))
             )}
           </Slider>
-          <div className="text-center absolute top-6 left-4 right-4 z-20">
+          <div className="text-center fixed top-12 left-4 right-4 z-20 flex flex-col items-center gap-y-2">
         {addToWishlist && <WishlistNotification productName={addToWishlist.name} className="absolute top-0" />}
         {addToCart && (
           <Notification

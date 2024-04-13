@@ -224,7 +224,7 @@ const MenuCard = ({ id, image, name, price, discount }) => {
             }}
           ></box-icon>
         </button>
-      <div className="fixed top-8 left-4 right-4 z-30 text-center flex flex-col items-center gap-y-2">
+      <div className="fixed top-12 left-4 right-4 z-30 text-center flex flex-col items-center gap-y-2">
       {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} />}
       {notification && (
         <Notification

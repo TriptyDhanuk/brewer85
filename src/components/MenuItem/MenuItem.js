@@ -453,7 +453,7 @@ const MenuItem = () => {
         </div>
       </div>
 
-      <div className="top-search mb-3">
+      <div className="top-search mb-3 md:px-4 pt-4 px-3">
         <input
           type="text"
           placeholder=" What are you looking for ?"
@@ -464,10 +464,10 @@ const MenuItem = () => {
       </div>
 
       <div>
-        <h3 className="text-xl font-semibold text-slate-800 mb-3">
+        <h3 className="text-xl font-semibold text-slate-800 mb-3 md:px-4 px-3">
           Most Popular
         </h3>
-        <div className="product-filter flex flex-wrap sm:-mx-[0.625rem] gap-y-5">
+        <div className="product-filter flex flex-wrap sm:-mx-[0.625rem] gap-y-5 md:px-4">
           {(searchQuery === "" ? filteredProducts : filteredProductsByName).map(
             (product) => (
               <div

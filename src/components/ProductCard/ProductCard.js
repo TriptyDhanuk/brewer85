@@ -21,6 +21,7 @@ const ProductCard = ({ id, image, name, price, discount, setAddToCart,setAddToWi
   const cartItems = useSelector(selectCartItems);
   const [isRemoved, setIsRemoved] = useState(false);
   const isMenuPage = location.pathname === "/menu";
+  const isHomePage = location.pathname === "/home";
 
   const [quantity, setQuantity] = useState(1);
   const [notification, setNotification] = useState(null);
@@ -65,13 +66,13 @@ const ProductCard = ({ id, image, name, price, discount, setAddToCart,setAddToWi
       dispatch(addToWishlist(itemToAdd));
       setSavedForLater(true);
       if (typeof setAddToWishlist === 'function') {
-        setAddToWishlist(true);
+        setAddToWishlist({ name: itemToAdd.name });
       }
       setWishlistNoti({ name: itemToAdd.name });
       setTimeout(() => {
         setWishlistNoti(null);
         if (typeof setAddToWishlist === 'function') {
-          setAddToWishlist(false);
+          setAddToWishlist(null);
         }
       }, 3000);
     }
@@ -287,8 +288,13 @@ const ProductCard = ({ id, image, name, price, discount, setAddToCart,setAddToWi
       </button>
     </div>
     
-    <div className="text-center absolute top-6 left-4 right-4 z-20">
-        {wishlistNoti && <WishlistNotification productName={wishlistNoti.name} className="absolute top-0" />}
+    { !isHomePage && (<div className="text-center fixed top-12 left-4 right-4 z-20 flex flex-col items-center gap-y-2">
+        {wishlistNoti && (
+          <WishlistNotification
+            productName={wishlistNoti.name}
+            className="absolute top-0"
+          />
+        )}
         {notification && (
           <Notification
             quantity={notification.quantity}
@@ -297,7 +303,7 @@ const ProductCard = ({ id, image, name, price, discount, setAddToCart,setAddToWi
           />
         )}
         {isRemoved && <RemoveNotification />}
-      </div>
+      </div>)}
     </>
   );
 };

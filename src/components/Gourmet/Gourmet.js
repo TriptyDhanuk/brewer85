@@ -3,8 +3,7 @@ import "boxicons";
 import "../Home/Home.css";
 import ProductCard from "../ProductCard/ProductCard";
 import MenuCard from "../MenuItem/MenuCard";
-import CartIconBadge from "../CartIconBadge";
-import Wishlist from "../../components/Wishlist";
+
 import { Container } from "react-floating-action-button";
 import ViewCart from "../CartButton/ViewCart";
 import g1 from "../../images/g1.jpg";
@@ -85,7 +84,6 @@ const Gourmet = () => {
 
   return (
     <div className="body px-4">
-      {/* Your existing header JSX */}
       <div className="top-search mb-3">
         <input
           type="text"
